@@ -21,6 +21,12 @@ import {
   Rocket,
   Star,
   BadgeCheck,
+  Mic,
+  BarChart3,
+  Layers,
+  Bell,
+  Search,
+  Handshake,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -29,33 +35,39 @@ import {
 
 const APP_URL = "https://app.capturepilot.com";
 const SIGNUP_URL = `${APP_URL}/signup`;
+const CHECK_URL = `${APP_URL}/check`;
 
 /* ------------------------------------------------------------------ */
 /*  Comparison table data                                              */
 /* ------------------------------------------------------------------ */
 
-type RowStatus = "yes" | "no" | "partial" | "text";
+type RowStatus = "yes" | "no" | "partial";
 
 interface ComparisonRow {
   feature: string;
-  capturepilot: string;
   cpStatus: RowStatus;
-  govwin: string;
-  gwStatus: RowStatus;
+  cpLabel: string;
+  otherStatus: RowStatus;
+  otherLabel: string;
 }
 
 const COMPARISON_ROWS: ComparisonRow[] = [
-  { feature: "AI Proposal Writer", capturepilot: "Included", cpStatus: "yes", govwin: "Not available", gwStatus: "no" },
-  { feature: "Capability Statement Builder", capturepilot: "Included", cpStatus: "yes", govwin: "Not available", gwStatus: "no" },
-  { feature: "Smart Matching Algorithm", capturepilot: "140-point scoring", cpStatus: "yes", govwin: "Not available", gwStatus: "no" },
-  { feature: "Quick Eligibility Checker", capturepilot: "Instant check", cpStatus: "yes", govwin: "Not available", gwStatus: "no" },
-  { feature: "Market Intelligence", capturepilot: "Included", cpStatus: "yes", govwin: "Analyst-curated", gwStatus: "yes" },
-  { feature: "Pre-RFP Pipeline", capturepilot: "Growing", cpStatus: "partial", govwin: "$2T+ pipeline", gwStatus: "yes" },
-  { feature: "Deal Pipeline CRM", capturepilot: "Built-in", cpStatus: "yes", govwin: "Not available", gwStatus: "no" },
-  { feature: "Partner Search", capturepilot: "Included", cpStatus: "yes", govwin: "Available", gwStatus: "yes" },
-  { feature: "Starting Price", capturepilot: "$199/mo", cpStatus: "text", govwin: "~$8,000/yr", gwStatus: "text" },
-  { feature: "Free Tier", capturepilot: "Yes", cpStatus: "yes", govwin: "No", gwStatus: "no" },
-  { feature: "Target Market", capturepilot: "SMB / Veterans", cpStatus: "text", govwin: "Enterprise", gwStatus: "text" },
+  { feature: "AI Proposal Writer", cpStatus: "yes", cpLabel: "Included", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Capability Statement Builder (Voice)", cpStatus: "yes", cpLabel: "Voice-powered", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Smart Matching (140-point)", cpStatus: "yes", cpLabel: "140-point scoring", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Quick Eligibility Checker", cpStatus: "yes", cpLabel: "Instant check", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Market Intelligence", cpStatus: "yes", cpLabel: "Included", otherStatus: "yes", otherLabel: "Analyst-curated" },
+  { feature: "Deal Pipeline (Kanban)", cpStatus: "yes", cpLabel: "Built-in", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Partner Search", cpStatus: "yes", cpLabel: "1M+ contractors", otherStatus: "yes", otherLabel: "Available" },
+  { feature: "Eligibility / Set-Aside Matching", cpStatus: "yes", cpLabel: "Automatic", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "IDIQ / Vehicle Tracking", cpStatus: "yes", cpLabel: "Included", otherStatus: "yes", otherLabel: "Available" },
+  { feature: "Daily Email Alerts", cpStatus: "yes", cpLabel: "Smart scored alerts", otherStatus: "yes", otherLabel: "Available" },
+  { feature: "Competitor / Incumbent Intel", cpStatus: "yes", cpLabel: "Award + USASpending", otherStatus: "yes", otherLabel: "Analyst reports" },
+  { feature: "Consulting Support Tier", cpStatus: "yes", cpLabel: "Managed services", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Voice-to-Document", cpStatus: "yes", cpLabel: "Record & generate", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Free Tier", cpStatus: "yes", cpLabel: "Yes", otherStatus: "no", otherLabel: "No" },
+  { feature: "30-Day Free Trial", cpStatus: "yes", cpLabel: "Yes", otherStatus: "no", otherLabel: "No" },
+  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$199/mo flat", otherStatus: "no", otherLabel: "$8K-$15K/yr per seat" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -67,25 +79,25 @@ const WHY_SWITCH_CARDS = [
     icon: Brain,
     title: "AI-Powered, Not Just a Database",
     description:
-      "GovWin gives you a massive database to search through manually. CapturePilot uses a 140-point algorithm to score every opportunity against your profile and surfaces only what you can win. No more scrolling through thousands of irrelevant listings.",
+      "GovWin gives you a massive database to search through manually. CapturePilot uses a 140-point algorithm to score every opportunity against your profile and surfaces only what you can win.",
   },
   {
     icon: FileText,
     title: "Built-In Proposal Tools",
     description:
-      "GovWin stops at opportunity identification. CapturePilot includes an AI Proposal Writer and Capability Statement Builder so you can go from discovery to submission in one platform. No additional software purchases needed.",
+      "GovWin stops at opportunity identification. CapturePilot includes an AI Proposal Writer and Capability Statement Builder so you can go from discovery to submission in one platform.",
   },
   {
     icon: DollarSign,
     title: "70% Lower Cost",
     description:
-      "At $199/month ($2,388/year), CapturePilot costs a fraction of GovWin's $8,000-$15,000+ annual seat licenses. For a 5-person team, that's $12,000/year vs. $40,000-$75,000. The savings alone can fund an extra proposal.",
+      "At $199/month ($2,388/year), CapturePilot costs a fraction of GovWin's $8,000-$15,000+ annual seat licenses. For a 5-person team, that is $12,000/year vs $40,000-$75,000.",
   },
   {
     icon: Rocket,
     title: "Built for Small Business",
     description:
-      "GovWin was designed for Lockheed Martin, Raytheon, and Booz Allen. CapturePilot was built from day one for 1-20 person teams, veteran-owned businesses, and first-time GovCon entrants. The interface, pricing, and features all reflect that.",
+      "GovWin was designed for Lockheed Martin, Raytheon, and Booz Allen. CapturePilot was built from day one for 1-20 person teams, veteran-owned businesses, and first-time GovCon entrants.",
   },
 ];
 
@@ -112,6 +124,17 @@ const CP_BEST_FOR = [
 ];
 
 /* ------------------------------------------------------------------ */
+/*  Cross-links                                                        */
+/* ------------------------------------------------------------------ */
+
+const CROSS_LINKS = [
+  { label: "vs GovTribe", href: "/vs/govtribe" },
+  { label: "vs BGOV", href: "/vs/bgov" },
+  { label: "vs HigherGov", href: "/vs/highergov" },
+  { label: "vs SAM.gov", href: "/vs/sam-gov" },
+];
+
+/* ------------------------------------------------------------------ */
 /*  Status icon helper                                                 */
 /* ------------------------------------------------------------------ */
 
@@ -121,12 +144,6 @@ function StatusIcon({ status }: { status: RowStatus }) {
   if (status === "partial") return <Minus className="w-5 h-5 text-amber-500" />;
   return null;
 }
-
-/* ------------------------------------------------------------------ */
-/*  Page metadata (exported from a separate layout or head)            */
-/* ------------------------------------------------------------------ */
-
-// SEO handled via <title> and <meta> tags in the component head
 
 /* ------------------------------------------------------------------ */
 /*  Component                                                          */
@@ -149,13 +166,24 @@ export default function VsGovWinPage() {
 
   return (
     <>
+      <style jsx>{`
+        .shimmer-bg {
+          background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+          background-size: 200% 100%;
+          animation: shimmer 3s linear infinite;
+        }
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+      `}</style>
+
       <SiteNav />
 
-      {/* SEO head tags */}
       <title>CapturePilot vs GovWin (Deltek) — Compare Features & Pricing | CapturePilot</title>
       <meta
         name="description"
-        content="Compare CapturePilot vs GovWin by Deltek. Enterprise-grade government contract intelligence at 70% lower cost. AI proposal writer, smart matching, and capability statement builder included. Built for small businesses, not defense giants."
+        content="Compare CapturePilot vs GovWin by Deltek. Enterprise-grade government contract intelligence at 70% lower cost. AI proposal writer, smart matching, and capability statement builder included."
       />
       <meta name="keywords" content="GovWin alternative, Deltek GovWin vs CapturePilot, government contract software, GovCon tools, SAM.gov matching, federal contracting platform, GovWin pricing" />
       <meta property="og:title" content="CapturePilot vs GovWin — Enterprise Intelligence at a Fraction of the Price" />
@@ -165,17 +193,16 @@ export default function VsGovWinPage() {
 
       <main className="pt-16">
         {/* ============================================================ */}
-        {/*  HERO                                                        */}
+        {/*  HERO — light section with dot pattern                       */}
         {/* ============================================================ */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-stone-50 to-white py-24 md:py-32">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage:
-                "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)",
-              backgroundSize: "64px 64px",
-            }}
-          />
+        <section
+          className="relative overflow-hidden py-24 md:py-32"
+          style={{
+            backgroundImage: "radial-gradient(circle, #e7e5e4 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-stone-50/90 to-white/95 pointer-events-none" />
 
           <div className="relative max-w-4xl mx-auto px-6 text-center">
             <div className="inline-flex items-center gap-2 text-sm font-medium text-emerald-700 bg-emerald-50 px-4 py-1.5 rounded-full mb-6 animate-fade-in-up">
@@ -211,34 +238,36 @@ export default function VsGovWinPage() {
         </section>
 
         {/* ============================================================ */}
-        {/*  COMPARISON TABLE                                            */}
+        {/*  COMPARISON TABLE — dark section with shimmer                 */}
         {/* ============================================================ */}
-        <section id="comparison" className="py-24 bg-white">
-          <div className="max-w-4xl mx-auto px-6">
+        <section id="comparison" className="relative py-24 bg-stone-950 text-white overflow-hidden">
+          <div className="shimmer-bg absolute inset-0 pointer-events-none" />
+
+          <div className="relative max-w-4xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
                 Feature-by-Feature{" "}
-                <span className="gradient-text">Comparison</span>
+                <span className="text-emerald-400">Comparison</span>
               </h2>
-              <p className="text-stone-500 max-w-2xl mx-auto">
+              <p className="text-stone-400 max-w-2xl mx-auto">
                 See how CapturePilot stacks up against GovWin by Deltek across
-                the features that matter most to small businesses.
+                the 16 features that matter most to small businesses.
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl border border-stone-200 shadow-lg overflow-hidden animate-fade-in-up">
+            <div className="bg-stone-900/80 backdrop-blur rounded-2xl border border-stone-700 shadow-2xl overflow-hidden animate-fade-in-up">
               {/* Table header */}
-              <div className="grid grid-cols-3 bg-stone-50 border-b border-stone-200">
-                <div className="px-6 py-4 text-sm font-bold text-stone-500 uppercase tracking-wider">
+              <div className="grid grid-cols-3 border-b border-stone-700">
+                <div className="px-6 py-4 text-sm font-bold text-stone-400 uppercase tracking-wider">
                   Feature
                 </div>
-                <div className="px-6 py-4 text-sm font-bold text-center">
-                  <span className="text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">
+                <div className="px-6 py-4 text-sm font-bold text-center border-x border-emerald-500/30 bg-emerald-500/5 shadow-[inset_0_0_20px_rgba(16,185,129,0.08)]">
+                  <span className="text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full">
                     CapturePilot
                   </span>
                 </div>
                 <div className="px-6 py-4 text-sm font-bold text-center">
-                  <span className="text-stone-500 bg-stone-100 px-3 py-1 rounded-full">
+                  <span className="text-stone-400 bg-stone-800 px-3 py-1 rounded-full">
                     GovWin
                   </span>
                 </div>
@@ -248,30 +277,30 @@ export default function VsGovWinPage() {
               {COMPARISON_ROWS.map((row, i) => (
                 <div
                   key={i}
-                  className={`grid grid-cols-3 border-b border-stone-100 last:border-b-0 transition-colors duration-200 hover:bg-stone-50/60 ${
-                    i % 2 === 0 ? "bg-white" : "bg-stone-50/30"
+                  className={`grid grid-cols-3 border-b border-stone-800 last:border-b-0 transition-colors duration-200 hover:bg-stone-800/50 ${
+                    i % 2 === 0 ? "bg-transparent" : "bg-stone-800/20"
                   }`}
                 >
-                  <div className="px-6 py-4 text-sm font-medium text-stone-700 flex items-center">
+                  <div className="px-6 py-3.5 text-sm font-medium text-stone-300 flex items-center">
                     {row.feature}
                   </div>
-                  <div className="px-6 py-4 text-sm text-center flex items-center justify-center gap-2">
+                  <div className="px-6 py-3.5 text-sm text-center flex items-center justify-center gap-2 border-x border-emerald-500/10">
                     <StatusIcon status={row.cpStatus} />
-                    <span className={row.cpStatus === "yes" ? "text-emerald-700 font-medium" : row.cpStatus === "partial" ? "text-amber-600 font-medium" : "text-stone-600"}>
-                      {row.capturepilot}
+                    <span className={row.cpStatus === "yes" ? "text-emerald-400 font-medium" : "text-stone-400"}>
+                      {row.cpLabel}
                     </span>
                   </div>
-                  <div className="px-6 py-4 text-sm text-center flex items-center justify-center gap-2">
-                    <StatusIcon status={row.gwStatus} />
-                    <span className={row.gwStatus === "yes" ? "text-stone-700 font-medium" : row.gwStatus === "no" ? "text-stone-400" : "text-stone-600"}>
-                      {row.govwin}
+                  <div className="px-6 py-3.5 text-sm text-center flex items-center justify-center gap-2">
+                    <StatusIcon status={row.otherStatus} />
+                    <span className={row.otherStatus === "yes" ? "text-stone-300 font-medium" : row.otherStatus === "partial" ? "text-amber-400" : "text-stone-500"}>
+                      {row.otherLabel}
                     </span>
                   </div>
                 </div>
               ))}
             </div>
 
-            <p className="text-xs text-stone-400 text-center mt-4">
+            <p className="text-xs text-stone-500 text-center mt-4">
               Comparison based on publicly available information as of April 2026.
               GovWin is a registered trademark of Deltek, Inc.
             </p>
@@ -279,10 +308,17 @@ export default function VsGovWinPage() {
         </section>
 
         {/* ============================================================ */}
-        {/*  WHY SWITCH                                                  */}
+        {/*  WHY SWITCH — light section with dot pattern                 */}
         {/* ============================================================ */}
-        <section className="py-24 bg-stone-50">
-          <div className="max-w-6xl mx-auto px-6">
+        <section
+          className="relative py-24 overflow-hidden"
+          style={{
+            backgroundImage: "radial-gradient(circle, #e7e5e4 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        >
+          <div className="absolute inset-0 bg-white/90 pointer-events-none" />
+          <div className="relative max-w-6xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
                 Why Teams{" "}
@@ -320,16 +356,18 @@ export default function VsGovWinPage() {
         </section>
 
         {/* ============================================================ */}
-        {/*  PRICING COMPARISON                                          */}
+        {/*  PRICING COMPARISON — dark section with shimmer              */}
         {/* ============================================================ */}
-        <section className="py-24 bg-white">
-          <div className="max-w-5xl mx-auto px-6">
+        <section className="relative py-24 bg-stone-950 text-white overflow-hidden">
+          <div className="shimmer-bg absolute inset-0 pointer-events-none" />
+
+          <div className="relative max-w-5xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
                 The Price{" "}
-                <span className="gradient-text">Difference</span>
+                <span className="text-emerald-400">Difference</span>
               </h2>
-              <p className="text-stone-500 max-w-2xl mx-auto">
+              <p className="text-stone-400 max-w-2xl mx-auto">
                 GovWin charges enterprise prices for enterprise companies.
                 CapturePilot delivers comparable intelligence at small business pricing.
               </p>
@@ -337,14 +375,14 @@ export default function VsGovWinPage() {
 
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {/* GovWin pricing card */}
-              <div className="bg-stone-50 border border-stone-200 rounded-2xl p-8 relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-stone-300 text-stone-600 text-xs font-bold px-4 py-1.5 rounded-bl-xl">
+              <div className="bg-stone-900 border border-stone-700 rounded-2xl p-8 relative overflow-hidden">
+                <div className="absolute top-0 right-0 bg-stone-700 text-stone-300 text-xs font-bold px-4 py-1.5 rounded-bl-xl">
                   GOVWIN
                 </div>
                 <div className="mb-6">
-                  <p className="text-sm font-medium text-stone-400 mb-1">Annual cost per seat</p>
-                  <p className="text-4xl font-extrabold text-stone-800 tracking-tight">
-                    ${gwMin.toLocaleString()}<span className="text-2xl text-stone-400"> - ${gwMax.toLocaleString()}</span><span className="text-lg font-medium text-stone-400">/yr</span>
+                  <p className="text-sm font-medium text-stone-500 mb-1">Annual cost per seat</p>
+                  <p className="text-4xl font-extrabold tracking-tight">
+                    ${gwMin.toLocaleString()}<span className="text-2xl text-stone-500"> - ${gwMax.toLocaleString()}</span><span className="text-lg font-medium text-stone-500">/yr</span>
                   </p>
                 </div>
                 <div className="space-y-3 mb-8">
@@ -355,29 +393,29 @@ export default function VsGovWinPage() {
                     "No free tier available",
                     "Add-on costs for modules",
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-stone-500">
-                      <Minus className="w-4 h-4 text-stone-300 shrink-0" />
+                    <div key={i} className="flex items-center gap-2 text-sm text-stone-400">
+                      <Minus className="w-4 h-4 text-stone-600 shrink-0" />
                       {item}
                     </div>
                   ))}
                 </div>
-                <div className="bg-stone-200/50 rounded-xl p-4 text-center">
-                  <p className="text-xs text-stone-400 mb-1">5-person team / year</p>
-                  <p className="text-2xl font-extrabold text-stone-600">$40,000 - $75,000</p>
+                <div className="bg-stone-800 rounded-xl p-4 text-center">
+                  <p className="text-xs text-stone-500 mb-1">5-person team / year</p>
+                  <p className="text-2xl font-extrabold text-stone-300">$40,000 - $75,000</p>
                 </div>
               </div>
 
               {/* CapturePilot pricing card */}
-              <div className="bg-gradient-to-br from-emerald-50 to-sky-50 border-2 border-emerald-300 rounded-2xl p-8 relative overflow-hidden shadow-lg shadow-emerald-100/50">
-                <div className="absolute top-0 right-0 bg-emerald-600 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl">
+              <div className="bg-gradient-to-br from-emerald-950 to-emerald-900 border-2 border-emerald-500 rounded-2xl p-8 relative overflow-hidden shadow-lg shadow-emerald-500/20">
+                <div className="absolute top-0 right-0 bg-emerald-500 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl">
                   CAPTUREPILOT
                 </div>
                 <div className="mb-6">
-                  <p className="text-sm font-medium text-emerald-600 mb-1">Monthly, cancel anytime</p>
-                  <p className="text-4xl font-extrabold text-stone-800 tracking-tight">
+                  <p className="text-sm font-medium text-emerald-400 mb-1">Monthly, cancel anytime</p>
+                  <p className="text-4xl font-extrabold tracking-tight">
                     $199<span className="text-lg font-medium text-stone-400">/mo</span>
                   </p>
-                  <p className="text-sm text-emerald-600 font-medium mt-1">
+                  <p className="text-sm text-emerald-400 font-medium mt-1">
                     = ${cpYearly.toLocaleString()}/year
                   </p>
                 </div>
@@ -389,13 +427,13 @@ export default function VsGovWinPage() {
                     "Free tier to start",
                     "All features included",
                   ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-emerald-800">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                    <div key={i} className="flex items-center gap-2 text-sm text-emerald-100">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                       {item}
                     </div>
                   ))}
                 </div>
-                <div className="bg-emerald-600 rounded-xl p-4 text-center">
+                <div className="bg-emerald-500 rounded-xl p-4 text-center">
                   <p className="text-xs text-emerald-100 mb-1">You save annually</p>
                   <p className="text-2xl font-extrabold text-white">
                     ${savingsMin.toLocaleString()} - ${savingsMax.toLocaleString()}
@@ -406,9 +444,9 @@ export default function VsGovWinPage() {
 
             {/* Savings callout */}
             <div className="mt-12 text-center animate-fade-in-up">
-              <div className="inline-flex items-center gap-3 bg-emerald-50 border border-emerald-200 rounded-full px-6 py-3">
-                <TrendingUp className="w-5 h-5 text-emerald-600" />
-                <span className="text-sm font-bold text-emerald-700">
+              <div className="inline-flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/30 rounded-full px-6 py-3">
+                <TrendingUp className="w-5 h-5 text-emerald-400" />
+                <span className="text-sm font-bold text-emerald-300">
                   Save up to ${savingsMax.toLocaleString()} per year by switching to CapturePilot
                 </span>
               </div>
@@ -417,10 +455,17 @@ export default function VsGovWinPage() {
         </section>
 
         {/* ============================================================ */}
-        {/*  BEST FOR                                                    */}
+        {/*  BEST FOR — light section with dot pattern                   */}
         {/* ============================================================ */}
-        <section className="py-24 bg-stone-50">
-          <div className="max-w-6xl mx-auto px-6">
+        <section
+          className="relative py-24 overflow-hidden"
+          style={{
+            backgroundImage: "radial-gradient(circle, #e7e5e4 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        >
+          <div className="absolute inset-0 bg-stone-50/90 pointer-events-none" />
+          <div className="relative max-w-6xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
                 Which Is{" "}
@@ -479,7 +524,43 @@ export default function VsGovWinPage() {
         </section>
 
         {/* ============================================================ */}
-        {/*  FEATURE LINKS                                               */}
+        {/*  CTA — dark section with shimmer                             */}
+        {/* ============================================================ */}
+        <section className="relative py-24 bg-stone-950 text-white overflow-hidden">
+          <div className="shimmer-bg absolute inset-0 pointer-events-none" />
+
+          <div className="relative max-w-3xl mx-auto px-6 text-center">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
+              Ready to Try the{" "}
+              <span className="text-emerald-400">Smarter Alternative?</span>
+            </h2>
+            <p className="text-stone-400 text-lg mb-8 max-w-xl mx-auto">
+              Join hundreds of small businesses that switched from expensive
+              enterprise tools to CapturePilot. Same intelligence, better
+              features, fraction of the price.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href={SIGNUP_URL}
+                className="inline-flex items-center justify-center gap-2 bg-emerald-500 text-white px-8 py-4 rounded-full font-bold text-base hover:bg-emerald-600 transition-colors"
+              >
+                Start Free Trial <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href={CHECK_URL}
+                className="inline-flex items-center justify-center gap-2 border border-stone-600 text-stone-300 px-8 py-4 rounded-full font-bold text-base hover:border-stone-400 hover:text-white transition-colors"
+              >
+                Free Eligibility Check <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <p className="text-xs text-stone-500 mt-6">
+              No credit card required. Free tier available. Cancel anytime.
+            </p>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/*  CROSS-LINKS — light section                                 */}
         {/* ============================================================ */}
         <section className="py-16 bg-white border-t border-stone-100">
           <div className="max-w-4xl mx-auto px-6">
@@ -509,40 +590,22 @@ export default function VsGovWinPage() {
                 );
               })}
             </div>
-          </div>
-        </section>
 
-        {/* ============================================================ */}
-        {/*  CTA                                                         */}
-        {/* ============================================================ */}
-        <section className="py-24 bg-gradient-to-b from-white to-stone-50">
-          <div className="max-w-3xl mx-auto px-6 text-center">
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
-              Ready to Try the{" "}
-              <span className="gradient-text">Smarter Alternative?</span>
-            </h2>
-            <p className="text-stone-500 text-lg mb-8 max-w-xl mx-auto">
-              Join hundreds of small businesses that switched from expensive
-              enterprise tools to CapturePilot. Same intelligence, better
-              features, fraction of the price.
+            {/* Other comparisons */}
+            <p className="text-center text-xs text-stone-400 mt-10 mb-4">
+              Also compare CapturePilot to:
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href={SIGNUP_URL}
-                className="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-4 rounded-full font-bold text-base hover:bg-stone-800 transition-colors"
-              >
-                Start Free Trial <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/#pricing"
-                className="inline-flex items-center justify-center gap-2 border border-stone-300 text-stone-600 px-8 py-4 rounded-full font-bold text-base hover:border-stone-400 hover:text-black transition-colors"
-              >
-                View Pricing <ChevronRight className="w-4 h-4" />
-              </Link>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {CROSS_LINKS.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-xs text-stone-500 hover:text-emerald-600 bg-stone-100 hover:bg-emerald-50 px-3 py-1.5 rounded-full transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
-            <p className="text-xs text-stone-400 mt-6">
-              No credit card required. Free tier available. Cancel anytime.
-            </p>
           </div>
         </section>
       </main>

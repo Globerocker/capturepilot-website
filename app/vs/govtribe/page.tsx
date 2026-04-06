@@ -1,265 +1,198 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useEffect, useState, useRef } from "react";
+import SiteNav from "@/components/SiteNav";
+import SiteFooter from "@/components/SiteFooter";
 import {
   ArrowRight,
-  Check,
-  X,
+  CheckCircle2,
+  XCircle,
+  Zap,
+  DollarSign,
+  Brain,
+  FileText,
+  Shield,
+  TrendingUp,
+  ChevronRight,
   Minus,
+  Rocket,
+  Star,
+  BadgeCheck,
+  Mic,
+  BarChart3,
+  Layers,
   Search,
   Target,
-  FileText,
-  Trophy,
-  Sparkles,
-  BarChart3,
-  Shield,
   Users,
-  Zap,
-  Brain,
-  Rocket,
-  ChevronRight,
-  Star,
-  ArrowUpRight,
   Crosshair,
   PenTool,
-  TrendingUp,
-  Layers,
+  Trophy,
 } from "lucide-react";
-import SiteNav from "../../../components/SiteNav";
-import SiteFooter from "../../../components/SiteFooter";
+
+/* ------------------------------------------------------------------ */
+/*  Constants                                                          */
+/* ------------------------------------------------------------------ */
 
 const APP_URL = "https://app.capturepilot.com";
 const SIGNUP_URL = `${APP_URL}/signup`;
+const CHECK_URL = `${APP_URL}/check`;
 
 /* ------------------------------------------------------------------ */
-/*  Scroll-triggered fade-in hook                                      */
+/*  Comparison table data                                              */
 /* ------------------------------------------------------------------ */
-function useFadeIn(threshold = 0.15) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+
+type RowStatus = "yes" | "no" | "partial";
+
+interface ComparisonRow {
+  feature: string;
+  cpStatus: RowStatus;
+  cpLabel: string;
+  otherStatus: RowStatus;
+  otherLabel: string;
+}
+
+const COMPARISON_ROWS: ComparisonRow[] = [
+  { feature: "AI Proposal Writer", cpStatus: "yes", cpLabel: "Included", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Capability Statement Builder (Voice)", cpStatus: "yes", cpLabel: "Voice-powered", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Smart Matching (140-point)", cpStatus: "yes", cpLabel: "140-point scoring", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Quick Eligibility Checker", cpStatus: "yes", cpLabel: "Instant check", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Market Intelligence", cpStatus: "yes", cpLabel: "Full intel suite", otherStatus: "partial", otherLabel: "Basic search data" },
+  { feature: "Deal Pipeline (Kanban)", cpStatus: "yes", cpLabel: "Built-in", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Partner Search", cpStatus: "yes", cpLabel: "1M+ contractors", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Eligibility / Set-Aside Matching", cpStatus: "yes", cpLabel: "Automatic", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "IDIQ / Vehicle Tracking", cpStatus: "yes", cpLabel: "Included", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Daily Email Alerts", cpStatus: "yes", cpLabel: "Smart scored alerts", otherStatus: "yes", otherLabel: "Keyword alerts" },
+  { feature: "Competitor / Incumbent Intel", cpStatus: "yes", cpLabel: "Award + USASpending", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Consulting Support Tier", cpStatus: "yes", cpLabel: "Managed services", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Voice-to-Document", cpStatus: "yes", cpLabel: "Record & generate", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Free Tier", cpStatus: "yes", cpLabel: "Yes", otherStatus: "yes", otherLabel: "Limited free plan" },
+  { feature: "30-Day Free Trial", cpStatus: "yes", cpLabel: "Yes", otherStatus: "no", otherLabel: "No" },
+  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$199/mo flat", otherStatus: "no", otherLabel: "Starting at $50/mo" },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Pipeline steps                                                     */
+/* ------------------------------------------------------------------ */
+
+const PIPELINE_STEPS = [
+  { icon: Search, label: "Find Opportunities", cp: "AI-matched to your profile", other: "Manual keyword search" },
+  { icon: Crosshair, label: "Qualify & Score", cp: "140-point scoring engine", other: "Not available" },
+  { icon: PenTool, label: "Write Proposals", cp: "AI-generated proposals", other: "Not available" },
+  { icon: Trophy, label: "Win Contracts", cp: "Full capture support", other: "You are on your own" },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Feature cards                                                      */
+/* ------------------------------------------------------------------ */
+
+const FEATURE_CARDS = [
+  {
+    icon: Brain,
+    title: "AI Proposal Writer",
+    description:
+      "Generate compliant, tailored proposals in minutes. Our AI reads the solicitation, understands evaluation criteria, and writes Section L/M-ready responses.",
+    href: "/features/proposals",
+  },
+  {
+    icon: FileText,
+    title: "Capability Statement Builder",
+    description:
+      "Create professional capability statements with AI assistance or paste a transcript. Export PDF-ready documents that make contracting officers take notice.",
+    href: "/features/capability-statement",
+  },
+  {
+    icon: Target,
+    title: "140-Point Smart Matching",
+    description:
+      "Our deterministic scoring engine evaluates NAICS, PSC, set-aside, geography, contract value, past performance, and incumbent risk to surface your best-fit opportunities.",
+    href: "/features/matching",
+  },
+  {
+    icon: BarChart3,
+    title: "Deal Pipeline & Intelligence",
+    description:
+      "Track opportunities from discovery to award. Monitor incumbents, award history, competitive landscape, and market trends in one dashboard.",
+    href: "/features/pipeline",
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Cross-links                                                        */
+/* ------------------------------------------------------------------ */
+
+const CROSS_LINKS = [
+  { label: "vs GovWin", href: "/vs/govwin" },
+  { label: "vs BGOV", href: "/vs/bgov" },
+  { label: "vs HigherGov", href: "/vs/highergov" },
+  { label: "vs SAM.gov", href: "/vs/sam-gov" },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Status icon helper                                                 */
+/* ------------------------------------------------------------------ */
+
+function StatusIcon({ status }: { status: RowStatus }) {
+  if (status === "yes") return <CheckCircle2 className="w-5 h-5 text-emerald-500" />;
+  if (status === "no") return <XCircle className="w-5 h-5 text-red-400" />;
+  if (status === "partial") return <Minus className="w-5 h-5 text-amber-500" />;
+  return null;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Component                                                          */
+/* ------------------------------------------------------------------ */
+
+export default function VsGovTribePage() {
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [threshold]);
+    setMounted(true);
+  }, []);
 
-  return { ref, visible };
-}
-
-/* ------------------------------------------------------------------ */
-/*  Comparison row component                                           */
-/* ------------------------------------------------------------------ */
-function ComparisonRow({
-  feature,
-  cp,
-  gt,
-  delay,
-}: {
-  feature: string;
-  cp: string | boolean;
-  gt: string | boolean;
-  delay: number;
-}) {
-  const { ref, visible } = useFadeIn(0.1);
-
-  const renderValue = (val: string | boolean, isCP: boolean) => {
-    if (val === true)
-      return (
-        <span className="inline-flex items-center gap-1.5 text-emerald-600 font-semibold">
-          <Check className="w-5 h-5" /> Yes
-        </span>
-      );
-    if (val === false)
-      return (
-        <span className="inline-flex items-center gap-1.5 text-stone-400">
-          <X className="w-5 h-5" /> No
-        </span>
-      );
-    if (val === "Basic")
-      return (
-        <span className="inline-flex items-center gap-1.5 text-amber-500 font-medium">
-          <Minus className="w-5 h-5" /> Basic
-        </span>
-      );
-    return (
-      <span className={isCP ? "font-semibold text-stone-900" : "text-stone-600"}>
-        {val}
-      </span>
-    );
-  };
-
-  return (
-    <div
-      ref={ref}
-      className={`grid grid-cols-3 gap-4 py-4 px-4 md:px-6 border-b border-stone-100 transition-all duration-700 ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      <div className="text-sm md:text-base font-medium text-stone-700">{feature}</div>
-      <div className="text-sm md:text-base text-center">{renderValue(cp, true)}</div>
-      <div className="text-sm md:text-base text-center">{renderValue(gt, false)}</div>
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Pipeline step component                                            */
-/* ------------------------------------------------------------------ */
-function PipelineStep({
-  icon: Icon,
-  label,
-  cpStatus,
-  gtStatus,
-  index,
-}: {
-  icon: React.ElementType;
-  label: string;
-  cpStatus: string;
-  gtStatus: string;
-  index: number;
-}) {
-  const { ref, visible } = useFadeIn(0.1);
-
-  return (
-    <div
-      ref={ref}
-      className={`flex items-center gap-4 transition-all duration-700 ${
-        visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
-      }`}
-      style={{ transitionDelay: `${index * 150}ms` }}
-    >
-      <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-black text-white flex items-center justify-center">
-        <Icon className="w-6 h-6" />
-      </div>
-      <div className="flex-1 min-w-0">
-        <p className="font-semibold text-stone-900">{label}</p>
-        <div className="flex gap-4 mt-1 text-sm">
-          <span className="text-emerald-600 font-medium">{cpStatus}</span>
-          <span className="text-stone-400">{gtStatus}</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Feature card component                                             */
-/* ------------------------------------------------------------------ */
-function FeatureCard({
-  icon: Icon,
-  title,
-  description,
-  link,
-  delay,
-}: {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-  link: string;
-  delay: number;
-}) {
-  const { ref, visible } = useFadeIn(0.1);
-
-  return (
-    <div
-      ref={ref}
-      className={`group bg-white rounded-2xl border border-stone-200 p-8 hover:shadow-xl hover:border-stone-300 transition-all duration-500 ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      <div className="w-14 h-14 rounded-2xl bg-stone-50 group-hover:bg-black group-hover:text-white flex items-center justify-center transition-all duration-300 mb-5">
-        <Icon className="w-7 h-7" />
-      </div>
-      <h3 className="text-xl font-bold text-stone-900 mb-3">{title}</h3>
-      <p className="text-stone-600 leading-relaxed mb-5">{description}</p>
-      <Link
-        href={link}
-        className="inline-flex items-center gap-1.5 text-sm font-semibold text-black hover:gap-3 transition-all duration-300"
-      >
-        Learn more <ArrowRight className="w-4 h-4" />
-      </Link>
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Main page                                                          */
-/* ------------------------------------------------------------------ */
-export default function VsGovTribePage() {
-  const heroFade = useFadeIn(0.05);
-  const tableFade = useFadeIn(0.1);
-  const pipelineFade = useFadeIn(0.1);
-  const bestForFade = useFadeIn(0.1);
-  const ctaFade = useFadeIn(0.1);
-
-  const comparisonData: { feature: string; cp: string | boolean; gt: string | boolean }[] = [
-    { feature: "AI Proposal Writer", cp: true, gt: false },
-    { feature: "Capability Statement Builder", cp: true, gt: false },
-    { feature: "Smart Matching Algorithm", cp: true, gt: false },
-    { feature: "Quick Checker", cp: true, gt: false },
-    { feature: "Contract Search", cp: true, gt: true },
-    { feature: "Award History", cp: true, gt: true },
-    { feature: "Market Intelligence", cp: true, gt: "Basic" },
-    { feature: "Deal Pipeline", cp: true, gt: false },
-    { feature: "Consulting Support", cp: true, gt: false },
-    { feature: "Starting Price", cp: "$199/mo", gt: "$50/mo" },
-    { feature: "Free Tier", cp: true, gt: true },
-  ];
-
-  const pipelineSteps = [
-    {
-      icon: Search,
-      label: "Find Opportunities",
-      cpStatus: "CapturePilot: AI-matched",
-      gtStatus: "GovTribe: Manual search",
-    },
-    {
-      icon: Crosshair,
-      label: "Qualify & Score",
-      cpStatus: "CapturePilot: 140-point scoring",
-      gtStatus: "GovTribe: Not available",
-    },
-    {
-      icon: PenTool,
-      label: "Write Proposals",
-      cpStatus: "CapturePilot: AI-generated",
-      gtStatus: "GovTribe: Not available",
-    },
-    {
-      icon: Trophy,
-      label: "Win Contracts",
-      cpStatus: "CapturePilot: Full support",
-      gtStatus: "GovTribe: You're on your own",
-    },
-  ];
+  if (!mounted) return null;
 
   return (
     <>
+      <style jsx>{`
+        .shimmer-bg {
+          background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+          background-size: 200% 100%;
+          animation: shimmer 3s linear infinite;
+        }
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+      `}</style>
+
       <SiteNav />
+
+      <title>CapturePilot vs GovTribe — Search vs Full Capture Platform | CapturePilot</title>
+      <meta
+        name="description"
+        content="Compare CapturePilot vs GovTribe. GovTribe helps you search. CapturePilot helps you win. AI proposals, 140-point matching, deal pipeline, and consulting support included."
+      />
+      <meta name="keywords" content="GovTribe alternative, GovTribe vs CapturePilot, government contract search, GovCon capture tools, federal contracting platform" />
+      <meta property="og:title" content="CapturePilot vs GovTribe — Stop Searching. Start Winning." />
+      <meta property="og:description" content="GovTribe is a search tool. CapturePilot is a complete capture management platform with AI. Free tier available." />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://capturepilot.com/vs/govtribe" />
+
       <main className="pt-16">
-        {/* ── Hero ── */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-stone-50 to-white">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(0,0,0,0.03),transparent_50%)]" />
-          <div
-            ref={heroFade.ref}
-            className={`relative max-w-5xl mx-auto px-6 pt-24 pb-20 text-center transition-all duration-1000 ${
-              heroFade.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
+        {/* ============================================================ */}
+        {/*  HERO — light section with dot pattern                       */}
+        {/* ============================================================ */}
+        <section
+          className="relative overflow-hidden py-24 md:py-32"
+          style={{
+            backgroundImage: "radial-gradient(circle, #e7e5e4 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-stone-50/90 to-white/95 pointer-events-none" />
+
+          <div className="relative max-w-5xl mx-auto px-6 text-center">
             <div className="inline-flex items-center gap-2 bg-white border border-stone-200 rounded-full px-4 py-1.5 text-sm text-stone-600 mb-8 shadow-sm">
               <Layers className="w-4 h-4" />
               Competitor Comparison
@@ -267,9 +200,7 @@ export default function VsGovTribePage() {
 
             <h1 className="text-4xl md:text-6xl font-black tracking-tight text-stone-900 mb-6 leading-[1.1]">
               CapturePilot vs{" "}
-              <span className="bg-gradient-to-r from-stone-600 to-stone-400 bg-clip-text text-transparent">
-                GovTribe
-              </span>
+              <span className="gradient-text">GovTribe</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-stone-600 max-w-3xl mx-auto mb-4 leading-relaxed">
@@ -298,78 +229,95 @@ export default function VsGovTribePage() {
           </div>
         </section>
 
-        {/* ── Comparison Table ── */}
-        <section id="comparison" className="py-20 px-6">
-          <div
-            ref={tableFade.ref}
-            className={`max-w-4xl mx-auto transition-all duration-1000 ${
-              tableFade.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
+        {/* ============================================================ */}
+        {/*  COMPARISON TABLE — dark section with shimmer                 */}
+        {/* ============================================================ */}
+        <section id="comparison" className="relative py-24 bg-stone-950 text-white overflow-hidden">
+          <div className="shimmer-bg absolute inset-0 pointer-events-none" />
+
+          <div className="relative max-w-4xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-black tracking-tight text-stone-900 mb-4">
-                Feature-by-Feature Comparison
+              <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">
+                Feature-by-Feature <span className="text-emerald-400">Comparison</span>
               </h2>
-              <p className="text-stone-600 text-lg max-w-2xl mx-auto">
+              <p className="text-stone-400 text-lg max-w-2xl mx-auto">
                 GovTribe is a solid search tool. CapturePilot is a complete capture management platform.
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden">
+            <div className="bg-stone-900/80 backdrop-blur rounded-2xl border border-stone-700 shadow-2xl overflow-hidden">
               {/* Table header */}
-              <div className="grid grid-cols-3 gap-4 py-4 px-4 md:px-6 bg-stone-50 border-b border-stone-200">
-                <div className="text-sm font-bold text-stone-500 uppercase tracking-wider">
+              <div className="grid grid-cols-3 gap-4 py-4 px-4 md:px-6 border-b border-stone-700">
+                <div className="text-sm font-bold text-stone-400 uppercase tracking-wider">
                   Feature
                 </div>
-                <div className="text-center">
-                  <span className="text-sm font-bold text-stone-900 bg-black text-white px-3 py-1 rounded-full">
+                <div className="text-center border-x border-emerald-500/30 bg-emerald-500/5 shadow-[inset_0_0_20px_rgba(16,185,129,0.08)] rounded-t-lg">
+                  <span className="text-sm font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full">
                     CapturePilot
                   </span>
                 </div>
                 <div className="text-center">
-                  <span className="text-sm font-bold text-stone-500">GovTribe</span>
+                  <span className="text-sm font-bold text-stone-400">GovTribe</span>
                 </div>
               </div>
 
               {/* Table rows */}
-              {comparisonData.map((row, i) => (
-                <ComparisonRow
-                  key={row.feature}
-                  feature={row.feature}
-                  cp={row.cp}
-                  gt={row.gt}
-                  delay={i * 80}
-                />
+              {COMPARISON_ROWS.map((row, i) => (
+                <div
+                  key={i}
+                  className={`grid grid-cols-3 gap-4 py-3.5 px-4 md:px-6 border-b border-stone-800 last:border-b-0 transition-colors duration-200 hover:bg-stone-800/50 ${
+                    i % 2 === 0 ? "bg-transparent" : "bg-stone-800/20"
+                  }`}
+                >
+                  <div className="text-sm font-medium text-stone-300 flex items-center">{row.feature}</div>
+                  <div className="text-sm text-center flex items-center justify-center gap-2 border-x border-emerald-500/10">
+                    <StatusIcon status={row.cpStatus} />
+                    <span className={row.cpStatus === "yes" ? "text-emerald-400 font-medium" : "text-stone-400"}>
+                      {row.cpLabel}
+                    </span>
+                  </div>
+                  <div className="text-sm text-center flex items-center justify-center gap-2">
+                    <StatusIcon status={row.otherStatus} />
+                    <span className={row.otherStatus === "yes" ? "text-stone-300 font-medium" : row.otherStatus === "partial" ? "text-amber-400" : "text-stone-500"}>
+                      {row.otherLabel}
+                    </span>
+                  </div>
+                </div>
               ))}
             </div>
 
-            <p className="text-center text-sm text-stone-400 mt-6">
+            <p className="text-center text-sm text-stone-500 mt-6">
               GovTribe pricing as of April 2026. Subject to change.
             </p>
           </div>
         </section>
 
-        {/* ── Search vs Capture Pipeline ── */}
-        <section className="py-20 px-6 bg-stone-50">
-          <div
-            ref={pipelineFade.ref}
-            className={`max-w-5xl mx-auto transition-all duration-1000 ${
-              pipelineFade.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
+        {/* ============================================================ */}
+        {/*  SEARCH vs CAPTURE PIPELINE — light section with dot pattern */}
+        {/* ============================================================ */}
+        <section
+          className="relative py-24 overflow-hidden"
+          style={{
+            backgroundImage: "radial-gradient(circle, #e7e5e4 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        >
+          <div className="absolute inset-0 bg-stone-50/90 pointer-events-none" />
+
+          <div className="relative max-w-5xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-black tracking-tight text-stone-900 mb-4">
-                Search vs. Capture
+                Search vs. <span className="gradient-text">Capture</span>
               </h2>
               <p className="text-stone-600 text-lg max-w-3xl mx-auto">
-                GovTribe stops at discovery. CapturePilot covers the entire capture lifecycle &mdash;
+                GovTribe stops at discovery. CapturePilot covers the entire capture lifecycle —
                 from finding the right opportunities to submitting winning proposals.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-12 items-start">
+            <div className="grid md:grid-cols-2 gap-8 items-start">
               {/* CapturePilot Pipeline */}
-              <div className="bg-white rounded-2xl border border-stone-200 p-8 shadow-sm">
+              <div className="bg-white rounded-2xl border-2 border-emerald-200 p-8 shadow-lg shadow-emerald-100/50">
                 <div className="flex items-center gap-3 mb-8">
                   <div className="w-10 h-10 rounded-xl bg-black text-white flex items-center justify-center">
                     <Rocket className="w-5 h-5" />
@@ -380,27 +328,27 @@ export default function VsGovTribePage() {
                   </div>
                 </div>
                 <div className="space-y-5">
-                  {pipelineSteps.map((step, i) => (
-                    <div key={step.label} className="flex items-start gap-3">
-                      <div className="flex-shrink-0 mt-0.5">
-                        <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                          <step.icon className="w-4 h-4" />
+                  {PIPELINE_STEPS.map((step, i) => {
+                    const Icon = step.icon;
+                    return (
+                      <div key={step.label} className="flex items-start gap-3">
+                        <div className="flex-shrink-0 mt-0.5">
+                          <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                            <Icon className="w-4 h-4" />
+                          </div>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-stone-900 text-sm">{step.label}</p>
+                          <p className="text-sm text-emerald-600">{step.cp}</p>
                         </div>
                       </div>
-                      <div>
-                        <p className="font-semibold text-stone-900 text-sm">{step.label}</p>
-                        <p className="text-sm text-emerald-600">{step.cpStatus.replace("CapturePilot: ", "")}</p>
-                      </div>
-                      {i < pipelineSteps.length - 1 && (
-                        <div className="hidden" />
-                      )}
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
               {/* GovTribe Stops Here */}
-              <div className="bg-white rounded-2xl border border-stone-200 p-8 shadow-sm">
+              <div className="bg-white rounded-2xl border border-stone-200 p-8">
                 <div className="flex items-center gap-3 mb-8">
                   <div className="w-10 h-10 rounded-xl bg-stone-100 text-stone-500 flex items-center justify-center">
                     <Search className="w-5 h-5" />
@@ -411,43 +359,36 @@ export default function VsGovTribePage() {
                   </div>
                 </div>
                 <div className="space-y-5">
-                  {pipelineSteps.map((step, i) => (
-                    <div key={step.label} className="flex items-start gap-3">
-                      <div className="flex-shrink-0 mt-0.5">
-                        <div
-                          className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                            i === 0
-                              ? "bg-emerald-50 text-emerald-600"
-                              : "bg-stone-50 text-stone-300"
-                          }`}
-                        >
-                          {i === 0 ? (
-                            <step.icon className="w-4 h-4" />
-                          ) : (
-                            <X className="w-4 h-4" />
-                          )}
+                  {PIPELINE_STEPS.map((step, i) => {
+                    const Icon = step.icon;
+                    return (
+                      <div key={step.label} className="flex items-start gap-3">
+                        <div className="flex-shrink-0 mt-0.5">
+                          <div
+                            className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                              i === 0
+                                ? "bg-emerald-50 text-emerald-600"
+                                : "bg-stone-50 text-stone-300"
+                            }`}
+                          >
+                            {i === 0 ? <Icon className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
+                          </div>
+                        </div>
+                        <div>
+                          <p className={`font-semibold text-sm ${i === 0 ? "text-stone-900" : "text-stone-400"}`}>
+                            {step.label}
+                          </p>
+                          <p className={`text-sm ${i === 0 ? "text-stone-500" : "text-stone-300"}`}>
+                            {i === 0 ? step.other : "Not available"}
+                          </p>
                         </div>
                       </div>
-                      <div>
-                        <p
-                          className={`font-semibold text-sm ${
-                            i === 0 ? "text-stone-900" : "text-stone-400"
-                          }`}
-                        >
-                          {step.label}
-                        </p>
-                        <p className={`text-sm ${i === 0 ? "text-stone-500" : "text-stone-300"}`}>
-                          {i === 0
-                            ? "Manual keyword search"
-                            : "Not available"}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
                 <div className="mt-8 p-4 bg-amber-50 border border-amber-100 rounded-xl">
                   <p className="text-sm text-amber-700 font-medium">
-                    GovTribe is a search tool &mdash; it helps you find contracts but leaves the
+                    GovTribe is a search tool — it helps you find contracts but leaves the
                     hard part (qualifying, writing, winning) entirely up to you.
                   </p>
                 </div>
@@ -456,59 +397,59 @@ export default function VsGovTribePage() {
           </div>
         </section>
 
-        {/* ── Feature Deep-Dive Cards ── */}
-        <section className="py-20 px-6">
-          <div className="max-w-5xl mx-auto">
+        {/* ============================================================ */}
+        {/*  FEATURE DEEP-DIVE — dark section with shimmer               */}
+        {/* ============================================================ */}
+        <section className="relative py-24 bg-stone-950 text-white overflow-hidden">
+          <div className="shimmer-bg absolute inset-0 pointer-events-none" />
+
+          <div className="relative max-w-5xl mx-auto px-6">
             <div className="text-center mb-14">
-              <h2 className="text-3xl md:text-4xl font-black tracking-tight text-stone-900 mb-4">
-                What CapturePilot Has That GovTribe Doesn&apos;t
+              <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">
+                What CapturePilot Has That GovTribe <span className="text-emerald-400">Does Not</span>
               </h2>
-              <p className="text-stone-600 text-lg max-w-2xl mx-auto">
+              <p className="text-stone-400 text-lg max-w-2xl mx-auto">
                 These are the tools that turn opportunity awareness into contract wins.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <FeatureCard
-                icon={Sparkles}
-                title="AI Proposal Writer"
-                description="Generate compliant, tailored proposals in minutes. Our AI reads the solicitation, understands evaluation criteria, and writes Section L/M-ready responses."
-                link="/features/proposals"
-                delay={0}
-              />
-              <FeatureCard
-                icon={FileText}
-                title="Capability Statement Builder"
-                description="Create professional capability statements with AI assistance or paste a transcript. Export PDF-ready documents that make contracting officers take notice."
-                link="/features/capability-statement"
-                delay={150}
-              />
-              <FeatureCard
-                icon={Target}
-                title="140-Point Smart Matching"
-                description="Our deterministic scoring engine evaluates NAICS, PSC, set-aside, geography, contract value, past performance, and incumbent risk to surface your best-fit opportunities."
-                link="/features/matching"
-                delay={300}
-              />
-              <FeatureCard
-                icon={BarChart3}
-                title="Deal Pipeline & Intelligence"
-                description="Track opportunities from discovery to award. Monitor incumbents, award history, competitive landscape, and market trends in one dashboard."
-                link="/features/pipeline"
-                delay={450}
-              />
+              {FEATURE_CARDS.map((card, i) => {
+                const Icon = card.icon;
+                return (
+                  <Link
+                    key={i}
+                    href={card.href}
+                    className="bg-stone-900 border border-stone-700 rounded-2xl p-8 hover:border-emerald-500/50 transition-all duration-300 group block"
+                  >
+                    <div className="w-14 h-14 rounded-2xl bg-stone-800 group-hover:bg-emerald-500/10 flex items-center justify-center transition-all duration-300 mb-5">
+                      <Icon className="w-7 h-7 text-stone-400 group-hover:text-emerald-400 transition-colors" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">{card.title}</h3>
+                    <p className="text-stone-400 leading-relaxed mb-5">{card.description}</p>
+                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                      Learn more <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* ── Best For Section ── */}
-        <section className="py-20 px-6 bg-stone-50">
-          <div
-            ref={bestForFade.ref}
-            className={`max-w-5xl mx-auto transition-all duration-1000 ${
-              bestForFade.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
+        {/* ============================================================ */}
+        {/*  BEST FOR — light section with dot pattern                   */}
+        {/* ============================================================ */}
+        <section
+          className="relative py-24 overflow-hidden"
+          style={{
+            backgroundImage: "radial-gradient(circle, #e7e5e4 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        >
+          <div className="absolute inset-0 bg-white/90 pointer-events-none" />
+
+          <div className="relative max-w-5xl mx-auto px-6">
             <div className="text-center mb-14">
               <h2 className="text-3xl md:text-4xl font-black tracking-tight text-stone-900 mb-4">
                 Which One Is Right for You?
@@ -520,7 +461,7 @@ export default function VsGovTribePage() {
               <div className="bg-white rounded-2xl border border-stone-200 p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <Search className="w-6 h-6 text-stone-500" />
-                  <h3 className="text-xl font-bold text-stone-900">GovTribe is best if&hellip;</h3>
+                  <h3 className="text-xl font-bold text-stone-900">GovTribe is best if...</h3>
                 </div>
                 <ul className="space-y-4">
                   {[
@@ -533,7 +474,7 @@ export default function VsGovTribePage() {
                     <li key={item} className="flex items-start gap-3">
                       <div className="flex-shrink-0 mt-1">
                         <div className="w-5 h-5 rounded-full bg-stone-100 flex items-center justify-center">
-                          <Check className="w-3 h-3 text-stone-500" />
+                          <CheckCircle2 className="w-3 h-3 text-stone-500" />
                         </div>
                       </div>
                       <span className="text-stone-600 text-sm leading-relaxed">{item}</span>
@@ -542,7 +483,7 @@ export default function VsGovTribePage() {
                 </ul>
                 <div className="mt-6 pt-6 border-t border-stone-100">
                   <p className="text-sm text-stone-500">
-                    <span className="font-semibold text-stone-700">Starting at $50/mo</span> &mdash;
+                    <span className="font-semibold text-stone-700">Starting at $50/mo</span> —
                     Good for research and monitoring.
                   </p>
                 </div>
@@ -557,20 +498,20 @@ export default function VsGovTribePage() {
                 </div>
                 <div className="flex items-center gap-3 mb-6">
                   <Rocket className="w-6 h-6 text-black" />
-                  <h3 className="text-xl font-bold text-stone-900">CapturePilot is best if&hellip;</h3>
+                  <h3 className="text-xl font-bold text-stone-900">CapturePilot is best if...</h3>
                 </div>
                 <ul className="space-y-4">
                   {[
                     "You want AI to find AND qualify opportunities for you",
                     "You need help writing compliant proposals",
-                    "You're a small business competing against larger firms",
+                    "You are a small business competing against larger firms",
                     "You want a complete capture pipeline in one tool",
                     "You need expert consulting support on demand",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <div className="flex-shrink-0 mt-1">
                         <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center">
-                          <Check className="w-3 h-3 text-emerald-600" />
+                          <CheckCircle2 className="w-3 h-3 text-emerald-600" />
                         </div>
                       </div>
                       <span className="text-stone-700 text-sm leading-relaxed font-medium">{item}</span>
@@ -579,7 +520,7 @@ export default function VsGovTribePage() {
                 </ul>
                 <div className="mt-6 pt-6 border-t border-stone-100">
                   <p className="text-sm text-stone-500">
-                    <span className="font-semibold text-stone-700">Starting at $199/mo</span> &mdash;
+                    <span className="font-semibold text-stone-700">Starting at $199/mo</span> —
                     Everything you need to win, not just search.
                   </p>
                 </div>
@@ -588,36 +529,35 @@ export default function VsGovTribePage() {
           </div>
         </section>
 
-        {/* ── CTA ── */}
-        <section className="py-24 px-6">
-          <div
-            ref={ctaFade.ref}
-            className={`max-w-3xl mx-auto text-center transition-all duration-1000 ${
-              ctaFade.visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            <div className="bg-gradient-to-br from-stone-900 to-black rounded-3xl p-12 md:p-16 text-white relative overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.05),transparent_50%)]" />
+        {/* ============================================================ */}
+        {/*  CTA — dark section with shimmer                             */}
+        {/* ============================================================ */}
+        <section className="relative py-24 bg-stone-950 text-white overflow-hidden">
+          <div className="shimmer-bg absolute inset-0 pointer-events-none" />
+
+          <div className="relative max-w-3xl mx-auto px-6 text-center">
+            <div className="bg-gradient-to-br from-stone-900 to-stone-950 rounded-3xl p-12 md:p-16 relative overflow-hidden border border-stone-800">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(16,185,129,0.08),transparent_50%)]" />
               <div className="relative">
                 <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">
-                  Stop Searching. Start Winning.
+                  Stop Searching. Start <span className="text-emerald-400">Winning</span>.
                 </h2>
                 <p className="text-stone-400 text-lg mb-8 max-w-xl mx-auto">
                   Join small businesses using CapturePilot to find, qualify, and win
-                  government contracts &mdash; with AI-powered proposals and expert support.
+                  government contracts — with AI-powered proposals and expert support.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
                     href={SIGNUP_URL}
-                    className="bg-white text-black px-8 py-3.5 rounded-full font-bold hover:bg-stone-100 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center gap-2"
+                    className="bg-emerald-500 text-white px-8 py-3.5 rounded-full font-bold hover:bg-emerald-600 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center gap-2"
                   >
                     Start Free Today <ArrowRight className="w-4 h-4" />
                   </Link>
                   <Link
-                    href="/features/matching"
+                    href={CHECK_URL}
                     className="border border-stone-600 text-stone-300 px-8 py-3.5 rounded-full font-bold hover:bg-stone-800 hover:text-white transition-all duration-300 inline-flex items-center justify-center gap-2"
                   >
-                    See How Matching Works <ArrowUpRight className="w-4 h-4" />
+                    Free Eligibility Check <ChevronRight className="w-4 h-4" />
                   </Link>
                 </div>
                 <p className="text-stone-500 text-sm mt-6">
@@ -627,7 +567,58 @@ export default function VsGovTribePage() {
             </div>
           </div>
         </section>
+
+        {/* ============================================================ */}
+        {/*  CROSS-LINKS — light section                                 */}
+        {/* ============================================================ */}
+        <section className="py-16 bg-white border-t border-stone-100">
+          <div className="max-w-4xl mx-auto px-6">
+            <p className="text-center text-sm font-bold text-stone-400 uppercase tracking-wider mb-8">
+              Explore CapturePilot Features
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { label: "Smart Matching", href: "/features/matching", icon: Zap },
+                { label: "AI Proposals", href: "/features/proposals", icon: FileText },
+                { label: "Capability Statements", href: "/features/capability-statement", icon: BadgeCheck },
+                { label: "Pricing", href: "/#pricing", icon: DollarSign },
+              ].map((link, i) => {
+                const Icon = link.icon;
+                return (
+                  <Link
+                    key={i}
+                    href={link.href}
+                    className="flex items-center gap-3 bg-stone-50 hover:bg-emerald-50 border border-stone-200 hover:border-emerald-200 rounded-xl px-4 py-3 transition-all group"
+                  >
+                    <Icon className="w-4 h-4 text-stone-400 group-hover:text-emerald-600 transition-colors" />
+                    <span className="text-sm font-medium text-stone-600 group-hover:text-emerald-700 transition-colors">
+                      {link.label}
+                    </span>
+                    <ChevronRight className="w-3.5 h-3.5 text-stone-300 group-hover:text-emerald-400 ml-auto transition-colors" />
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Other comparisons */}
+            <p className="text-center text-xs text-stone-400 mt-10 mb-4">
+              Also compare CapturePilot to:
+            </p>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {CROSS_LINKS.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-xs text-stone-500 hover:text-emerald-600 bg-stone-100 hover:bg-emerald-50 px-3 py-1.5 rounded-full transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
+
       <SiteFooter />
     </>
   );
