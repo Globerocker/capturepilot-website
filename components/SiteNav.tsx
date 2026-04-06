@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Zap, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 const APP_URL = "https://app.capturepilot.com";
 const SIGNUP_URL = `${APP_URL}/signup`;
@@ -10,9 +11,7 @@ export default function SiteNav() {
     <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-xl border-b border-stone-100 z-50">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-            <Zap className="w-4 h-4 text-white" />
-          </div>
+          <Image src="/logo.png" alt="CapturePilot" width={32} height={32} className="rounded-lg" />
           <span className="font-bold text-lg tracking-tight">CapturePilot</span>
         </Link>
         <div className="hidden md:flex items-center gap-8 text-sm">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   Zap, Target, Shield, FileText, BarChart3, Users, ArrowRight,
   CheckCircle2, Clock, Search, Briefcase, Star, Globe, Phone,
@@ -18,9 +19,7 @@ export default function Homepage() {
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-xl border-b border-stone-100 z-50">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-              <Zap className="w-4 h-4 text-white" />
-            </div>
+            <Image src="/logo.png" alt="CapturePilot" width={32} height={32} className="rounded-lg" />
             <span className="font-bold text-lg tracking-tight">CapturePilot</span>
           </Link>
           <div className="hidden md:flex items-center gap-8 text-sm">
@@ -307,8 +306,8 @@ export default function Homepage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-7 h-7 bg-white rounded-lg flex items-center justify-center">
-                  <Zap className="w-3.5 h-3.5 text-black" />
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center">
+                  <Image src="/logo.png" alt="CapturePilot" width={28} height={28} className="rounded-lg invert" />
                 </div>
                 <span className="font-bold text-white text-sm">CapturePilot</span>
               </div>

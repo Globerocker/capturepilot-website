@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Zap } from "lucide-react";
+import Image from "next/image";
 
 const APP_URL = "https://app.capturepilot.com";
 const CHECK_URL = `${APP_URL}/check`;
@@ -13,9 +13,7 @@ export default function SiteFooter() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-7 h-7 bg-white rounded-lg flex items-center justify-center">
-                <Zap className="w-3.5 h-3.5 text-black" />
-              </div>
+              <Image src="/logo.png" alt="CapturePilot" width={28} height={28} className="rounded-lg invert" />
               <span className="font-bold text-white text-sm">CapturePilot</span>
             </div>
             <p className="text-xs leading-relaxed">Government contract matching for small businesses. Built for veterans.</p>
