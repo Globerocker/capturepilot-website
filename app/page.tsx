@@ -170,24 +170,29 @@ export default function Homepage() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: Target, title: "Smart Matching", desc: "AI scores opportunities by NAICS, certifications, location, and past performance. See what fits your business.", tag: "Core" },
-              { icon: FileText, title: "AI Proposal Writer", desc: "Generate full proposals in minutes. Cover letter, technical approach, past performance — all tailored to the solicitation.", tag: "AI" },
-              { icon: BarChart3, title: "Market Intelligence", desc: "See who wins contracts in your industry. Total spend, top agencies, YoY trends — powered by USASpending.", tag: "Intel" },
-              { icon: Mic, title: "Capability Statement", desc: "Record yourself talking about your business. AI writes your capability statement. Brand colors extracted from your website.", tag: "AI" },
-              { icon: Layers, title: "Deal Pipeline", desc: "Track every opportunity from discovery to award. Kanban board with custom stages and notes.", tag: "CRM" },
-              { icon: Users, title: "Find Partners", desc: "Search 1M+ SAM-registered companies for teaming partnerships. Filter by NAICS, certs, and location.", tag: "Network" },
-              { icon: Shield, title: "Eligibility Check", desc: "Instantly see if you qualify for each opportunity's set-aside. Know your certs match before you bid.", tag: "Smart" },
-              { icon: TrendingUp, title: "IDIQ Tracking", desc: "Find active contract vehicles in your industry. Getting on an IDIQ means steady work for years.", tag: "Intel" },
-              { icon: Search, title: "Quick Company Check", desc: "Enter any company's website. In 30 seconds: NAICS codes, matching opportunities, SAM status, competitor analysis.", tag: "Free" },
+              { icon: Target, title: "Smart Matching", desc: "AI scores opportunities by NAICS, certifications, location, and past performance. See what fits your business.", tag: "Core", href: "/features/matching" },
+              { icon: FileText, title: "AI Proposal Writer", desc: "Generate full proposals in minutes. Cover letter, technical approach, past performance — all tailored to the solicitation.", tag: "AI", href: "/features/proposals" },
+              { icon: BarChart3, title: "Market Intelligence", desc: "See who wins contracts in your industry. Total spend, top agencies, YoY trends — powered by USASpending.", tag: "Intel", href: "/features/intelligence" },
+              { icon: Mic, title: "Capability Statement", desc: "Record yourself talking about your business. AI writes your capability statement. Brand colors extracted from your website.", tag: "AI", href: "/features/capability-statement" },
+              { icon: Layers, title: "Deal Pipeline", desc: "Track every opportunity from discovery to award. Kanban board with custom stages and notes.", tag: "CRM", href: "/features/pipeline" },
+              { icon: Users, title: "Find Partners", desc: "Search 1M+ SAM-registered companies for teaming partnerships. Filter by NAICS, certs, and location.", tag: "Network", href: "#" },
+              { icon: Shield, title: "Eligibility Check", desc: "Instantly see if you qualify for each opportunity's set-aside. Know your certs match before you bid.", tag: "Smart", href: "#" },
+              { icon: TrendingUp, title: "IDIQ Tracking", desc: "Find active contract vehicles in your industry. Getting on an IDIQ means steady work for years.", tag: "Intel", href: "#" },
+              { icon: Search, title: "Quick Company Check", desc: "Enter any company's website. In 30 seconds: NAICS codes, matching opportunities, SAM status, competitor analysis.", tag: "Free", href: "/features/quick-checker" },
             ].map((feature, i) => (
-              <div key={i} className="bg-white rounded-2xl p-6 border border-stone-200 hover-lift">
+              <Link key={i} href={feature.href} className="bg-white rounded-2xl p-6 border border-stone-200 hover-lift block group">
                 <div className="flex items-center gap-2 mb-4">
                   <feature.icon className="w-5 h-5 text-emerald-600" />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">{feature.tag}</span>
                 </div>
-                <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
+                <h3 className="text-lg font-bold mb-2 group-hover:text-emerald-600 transition-colors">{feature.title}</h3>
                 <p className="text-sm text-stone-500 leading-relaxed">{feature.desc}</p>
-              </div>
+                {feature.href !== "#" && (
+                  <span className="text-xs font-bold text-emerald-600 mt-3 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    Learn more <ArrowRight className="w-3 h-3" />
+                  </span>
+                )}
+              </Link>
             ))}
           </div>
         </div>
