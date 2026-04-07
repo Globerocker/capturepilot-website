@@ -87,7 +87,7 @@ interface ComparisonRow {
 }
 
 const COMPARISON_ROWS: ComparisonRow[] = [
-  { feature: "AI Proposal Writer", capturepilot: "AI writes proposals", cpStatus: "yes", competitor: "Manages proposals only", compStatus: "no" },
+  { feature: "AI Proposal Writer", capturepilot: "AI drafts proposals", cpStatus: "yes", competitor: "Manages proposals only", compStatus: "no" },
   { feature: "Capability Statement Builder", capturepilot: "Voice input + AI", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
   { feature: "Smart Matching Algorithm", capturepilot: "proprietary multi-factor scoring", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
   { feature: "Quick Company Checker", capturepilot: "Free eligibility check", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
@@ -103,7 +103,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "Voice-to-Document", capturepilot: "Record, AI writes", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
   { feature: "Free Tier Available", capturepilot: "Yes", cpStatus: "yes", competitor: "No", compStatus: "no" },
   { feature: "30-Day Free Trial (Pro)", capturepilot: "Yes", cpStatus: "yes", competitor: "Demo only", compStatus: "no" },
-  { feature: "Shipley Methodology", capturepilot: "Not needed (AI writes)", cpStatus: "text", competitor: "Built-in process", compStatus: "yes" },
+  { feature: "Shipley Methodology", capturepilot: "Not needed (AI drafts)", cpStatus: "text", competitor: "Built-in process", compStatus: "yes" },
   { feature: "Starting Price", capturepilot: "$199/mo flat", cpStatus: "text", competitor: "$50-150/user/mo", compStatus: "text" },
 ];
 
@@ -140,7 +140,7 @@ const PIPELINE_STEPS = [
     step: 4,
     icon: FileText,
     label: "Write",
-    description: "AI writes your proposal. Voice input builds your capability statement. Brand colors applied",
+    description: "AI drafts your proposal outline. Voice input builds your capability statement. Brand colors applied",
     cp: true,
     c2p: false,
   },
@@ -226,11 +226,11 @@ export default function VsCapture2ProposalPage() {
       <title>CapturePilot vs Capture2Proposal — Compare Features & Pricing | CapturePilot</title>
       <meta
         name="description"
-        content="Compare CapturePilot vs Capture2Proposal. AI writes your proposals -- not just manages them. Full pipeline from opportunity discovery to submission for $199/mo flat."
+        content="Compare CapturePilot vs Capture2Proposal. AI drafts your proposals -- not just manages them. Full pipeline from opportunity discovery to submission for $199/mo flat."
       />
       <meta name="keywords" content="Capture2Proposal alternative, Capture2Proposal vs CapturePilot, proposal management software, GovCon proposal tools, AI proposal writer, Shipley methodology alternative" />
-      <meta property="og:title" content="CapturePilot vs Capture2Proposal — AI Writes Your Proposal, Not Just Manages It" />
-      <meta property="og:description" content="Full pipeline from discovery to submission. AI-powered proposal writing, smart matching, and capability statements. $199/mo flat vs per-seat pricing." />
+      <meta property="og:title" content="CapturePilot vs Capture2Proposal — AI Drafts Your Proposal, Not Just Manages It" />
+      <meta property="og:description" content="Full pipeline from discovery to submission. AI-powered proposal drafting, smart matching, and capability statements. $199/mo flat vs per-seat pricing." />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://capturepilot.com/vs/capture2proposal" />
 
@@ -256,14 +256,14 @@ export default function VsCapture2ProposalPage() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 text-white animate-fade-in-up animate-delay-100">
-              AI <span className="gradient-text">Writes</span> Your Proposal.{" "}
+              AI <span className="gradient-text">Drafts</span> Your Proposal.{" "}
               <br className="hidden sm:block" />
               Not Just Manages It.
             </h1>
 
             <p className="text-lg sm:text-xl text-stone-400 leading-relaxed max-w-2xl mx-auto animate-fade-in-up animate-delay-200">
               Capture2Proposal helps you manage the proposal process.
-              CapturePilot&apos;s AI actually writes the proposal -- and finds the opportunity in the first place.
+              CapturePilot&apos;s AI actually drafts the proposal -- and finds the opportunity in the first place.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animate-delay-300">
@@ -365,7 +365,7 @@ export default function VsCapture2ProposalPage() {
               </h2>
               <p className="text-stone-400 max-w-2xl mx-auto">
                 Capture2Proposal assumes you already found and qualified the opportunity.
-                CapturePilot covers the <strong className="text-stone-200">entire pipeline</strong> from finding opportunities to writing the proposal.
+                CapturePilot covers the <strong className="text-stone-200">entire pipeline</strong> from finding opportunities to drafting the proposal.
               </p>
             </div>
 
@@ -447,7 +447,7 @@ export default function VsCapture2ProposalPage() {
               </h2>
               <p className="text-stone-500 max-w-2xl mx-auto">
                 Capture2Proposal charges per seat -- costs add up fast for growing teams.
-                CapturePilot is one flat price that includes AI writing the proposals need separate writers for.
+                CapturePilot is one flat price that includes AI drafting the proposals you would need separate writers for.
               </p>
             </div>
 
@@ -497,13 +497,13 @@ export default function VsCapture2ProposalPage() {
                     $199<span className="text-lg font-medium text-stone-400">/mo</span>
                   </p>
                   <p className="text-sm text-emerald-600 font-medium mt-1">
-                    = ${cpYearly.toLocaleString()}/year -- AI writing included
+                    = ${cpYearly.toLocaleString()}/year -- AI drafting included
                   </p>
                 </div>
                 <div className="space-y-3 mb-8">
                   {[
                     "Full team access included",
-                    "AI writes proposals for you",
+                    "AI drafts proposals for you",
                     "Finds opportunities automatically",
                     "Free tier + 30-day Pro trial",
                     "Discovery to submission in one tool",
@@ -528,7 +528,7 @@ export default function VsCapture2ProposalPage() {
               <div className="inline-flex items-center gap-3 bg-emerald-50 border border-emerald-200 rounded-full px-6 py-3">
                 <TrendingUp className="w-5 h-5 text-emerald-600" />
                 <span className="text-sm font-bold text-emerald-700">
-                  Save up to ${(c2pTeamMaxYearly - cpYearly).toLocaleString()}/year -- and the AI writes the proposals too
+                  Save up to ${(c2pTeamMaxYearly - cpYearly).toLocaleString()}/year -- and the AI drafts the proposals too
                 </span>
               </div>
             </div>
@@ -641,10 +641,10 @@ export default function VsCapture2ProposalPage() {
           <div className="relative max-w-3xl mx-auto px-6 text-center">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 text-white">
               Stop Managing Proposals.{" "}
-              <span className="gradient-text">Start Writing Them.</span>
+              <span className="gradient-text">Start Drafting Them.</span>
             </h2>
             <p className="text-stone-400 text-lg mb-8 max-w-xl mx-auto">
-              Let AI find the opportunities, score them, and write the proposals.
+              Let AI find the opportunities, score them, and draft the proposals.
               You focus on relationships and winning -- not process management.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -118,7 +118,7 @@ const GAP_CARDS = [
     icon: Rocket,
     title: "CapturePilot: Here's Your Proposal",
     description:
-      "CapturePilot takes you from discovery to delivery. Smart matching finds your opportunities. AI writes your proposal. Voice input builds your capability statement. The pipeline tracks your deals. Intelligence doesn't stop at a dashboard -- it flows into action.",
+      "CapturePilot takes you from discovery to delivery. Smart matching finds your opportunities. AI drafts your proposal. Voice input builds your capability statement. The pipeline tracks your deals. Intelligence doesn't stop at a dashboard -- it flows into action.",
     side: "cp" as const,
   },
 ];
@@ -386,7 +386,7 @@ export default function VsFederalCompassPage() {
 
             <div className="mt-12 text-center">
               <p className="text-stone-500 text-sm max-w-xl mx-auto">
-                Federal Compass stops at &ldquo;here is the data.&rdquo; CapturePilot continues to &ldquo;here is your proposal, ready to submit.&rdquo;
+                Federal Compass stops at &ldquo;here is the data.&rdquo; CapturePilot continues to &ldquo;here is your proposal draft, ready for your review.&rdquo;
               </p>
             </div>
           </div>

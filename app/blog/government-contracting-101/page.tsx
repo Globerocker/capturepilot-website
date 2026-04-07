@@ -502,7 +502,7 @@ export default function GovernmentContracting101Page() {
 
           <Callout icon={Zap} color="emerald" title="Skip the Manual Work">
             CapturePilot automates steps 1, 5, and 6. We identify your NAICS codes, match you to
-            opportunities daily, and help you write winning proposals with AI.{" "}
+            opportunities daily, and help you draft winning proposals with AI.{" "}
             <Link href={SIGNUP_URL} className="font-bold underline hover:no-underline">
               Start free
             </Link>.
@@ -561,7 +561,7 @@ export default function GovernmentContracting101Page() {
                 {[
                   "Daily matching to 40,000+ federal opportunities",
                   "NAICS verification and set-aside tracking",
-                  "AI-powered proposal writing assistance",
+                  "AI-powered proposal drafting assistance",
                   "Competitor intelligence and incumbents tracking",
                   "Free eligibility Quick Checker",
                 ].map((item, i) => (

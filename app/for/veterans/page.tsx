@@ -81,7 +81,7 @@ export default function VeteransPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               { icon: Target, title: "SDVOSB & VOSB Matching", desc: "We flag every opportunity with a veteran set-aside. Your matches surface SDVOSB, VOSB, and VA-specific contracts first." },
-              { icon: FileText, title: "AI Proposal Writer", desc: "Turn a solicitation into a full proposal draft in minutes. Technical approach, past performance, compliance matrix — all generated." },
+              { icon: FileText, title: "AI Proposal Writer", desc: "Turn a solicitation into a proposal first draft in minutes. Technical approach framework, past performance structure, compliance matrix — a strong starting point you refine." },
               { icon: BarChart3, title: "Incumbent Intelligence", desc: "See who currently holds the contract, what they charged, and when it expires. Know your competition before you bid." },
               { icon: Users, title: "Team Partner Search", desc: "Find mentor-protege partners, JV candidates, and subcontractors from 1M+ SAM-registered companies." },
               { icon: Star, title: "Capability Statement Builder", desc: "Record yourself talking about your business. AI writes your capability statement with your brand colors and logo." },

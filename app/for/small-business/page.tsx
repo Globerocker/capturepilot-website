@@ -106,7 +106,7 @@ export default function SmallBusinessPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { icon: Target, title: "Smart Matching", desc: "AI scores every opportunity against your NAICS codes, certifications, location, and past performance." },
-              { icon: FileText, title: "AI Proposals", desc: "Generate full proposal drafts from solicitations. Cover letter, technical approach, compliance matrix." },
+              { icon: FileText, title: "AI Proposals", desc: "Generate proposal drafts and outlines from solicitations. Cover letter, technical approach, compliance matrix — ready for your review." },
               { icon: BarChart3, title: "Market Intel", desc: "Who wins in your space? Total spend, top agencies, incumbent contractors, YoY trends." },
               { icon: Layers, title: "Deal Pipeline", desc: "Track opportunities from discovery to award. HubSpot-style Kanban board." },
               { icon: Users, title: "Partner Search", desc: "Find teaming partners from 1M+ SAM-registered companies. Filter by certs and NAICS." },

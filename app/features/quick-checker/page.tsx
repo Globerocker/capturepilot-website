@@ -478,7 +478,7 @@ export default function QuickCheckerPage() {
             />
             <FAQItem
               q="What happens after I run the check?"
-              a="You get your results instantly on screen. From there, you can create a free account to save your results, see detailed opportunity matches, or upgrade to Pro for AI proposal writing and the full platform."
+              a="You get your results instantly on screen. From there, you can create a free account to save your results, see detailed opportunity matches, or upgrade to Pro for AI proposal drafting and the full platform."
             />
             <FAQItem
               q="Can I check a competitor's company?"

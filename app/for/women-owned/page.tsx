@@ -109,7 +109,7 @@ export default function WomenOwnedPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               { icon: Target, title: "WOSB/EDWOSB Matching", desc: "Every opportunity is checked against your certifications. We highlight the ones where your set-aside gives you an edge." },
-              { icon: FileText, title: "AI Proposal Writer", desc: "Generate a complete proposal from the solicitation. Technical approach, staffing plan, past performance — ready to customize." },
+              { icon: FileText, title: "AI Proposal Writer", desc: "Generate a proposal first draft from the solicitation. Technical approach, staffing plan, past performance — a strong starting point to customize." },
               { icon: BarChart3, title: "Market Intelligence", desc: "See total spending in your industry, top agencies, and trending contract types. Know where the money is going." },
               { icon: Users, title: "Partner & Mentor Search", desc: "Find teaming partners, mentor-protege relationships, and JV candidates from SAM-registered companies." },
               { icon: Shield, title: "Eligibility Screening", desc: "Instantly check if your certifications match each opportunity's requirements. No more reading fine print." },

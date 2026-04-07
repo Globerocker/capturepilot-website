@@ -15,9 +15,9 @@ export default function SiteNav() {
           <span className="font-bold text-lg tracking-tight">CapturePilot</span>
         </Link>
         <div className="hidden md:flex items-center gap-8 text-sm">
-          <Link href="/#features" className="text-stone-600 hover:text-black transition-colors">Features</Link>
-          <Link href="/#how-it-works" className="text-stone-600 hover:text-black transition-colors">How It Works</Link>
-          <Link href="/#pricing" className="text-stone-600 hover:text-black transition-colors">Pricing</Link>
+          <Link href="/features" className="text-stone-600 hover:text-black transition-colors">Features</Link>
+          <Link href="/process" className="text-stone-600 hover:text-black transition-colors">How It Works</Link>
+          <Link href="/pricing" className="text-stone-600 hover:text-black transition-colors">Pricing</Link>
           <Link href={LOGIN_URL} className="text-stone-600 hover:text-black transition-colors">Login</Link>
           <Link href={SIGNUP_URL} className="bg-black text-white px-5 py-2.5 rounded-full font-bold hover:bg-stone-800 transition-colors inline-flex items-center gap-1.5">
             Start Free <ArrowRight className="w-3.5 h-3.5" />

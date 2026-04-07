@@ -85,7 +85,7 @@ export default function AgenciesPage() {
               { step: "1", title: "Onboard a Client", desc: "Enter their company info, NAICS codes, certifications, and target states. We enrich their profile automatically — SAM registration, capability keywords, industry classification." },
               { step: "2", title: "Opportunities Match Automatically", desc: "Our scoring engine runs daily. Your client's portal fills with ranked, scored opportunities. Hot matches surface first. Expired opps disappear." },
               { step: "3", title: "Manage from Admin Dashboard", desc: "Assign tasks, upload documents, track competitors, run market intelligence. Your client sees their portal — you see everything." },
-              { step: "4", title: "Generate Proposals with AI", desc: "When a client wants to bid, click one button. AI generates a full proposal draft from the solicitation. Your team refines and submits." },
+              { step: "4", title: "Draft Proposals with AI", desc: "When a client wants to bid, click one button. AI generates a proposal first draft from the solicitation. Your team refines, polishes, and submits." },
             ].map((item, i) => (
               <div key={i} className="flex gap-6 items-start">
                 <div className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center font-black text-lg flex-shrink-0">

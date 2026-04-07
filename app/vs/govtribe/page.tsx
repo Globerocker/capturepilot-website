@@ -78,7 +78,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
 const PIPELINE_STEPS = [
   { icon: Search, label: "Find Opportunities", cp: "AI-matched to your profile", other: "Manual keyword search" },
   { icon: Crosshair, label: "Qualify & Score", cp: "proprietary multi-factor scoring engine", other: "Not available" },
-  { icon: PenTool, label: "Write Proposals", cp: "AI-generated proposals", other: "Not available" },
+  { icon: PenTool, label: "Draft Proposals", cp: "AI-generated proposal drafts", other: "Not available" },
   { icon: Trophy, label: "Win Contracts", cp: "Full capture support", other: "You are on your own" },
 ];
 
@@ -91,7 +91,7 @@ const FEATURE_CARDS = [
     icon: Brain,
     title: "AI Proposal Writer",
     description:
-      "Generate compliant, tailored proposals in minutes. Our AI reads the solicitation, understands evaluation criteria, and writes Section L/M-ready responses.",
+      "Generate compliant, tailored proposal drafts in minutes. Our AI reads the solicitation, understands evaluation criteria, and drafts Section L/M-ready response frameworks.",
     href: "/features/proposals",
   },
   {
@@ -503,7 +503,7 @@ export default function VsGovTribePage() {
                 <ul className="space-y-4">
                   {[
                     "You want AI to find AND qualify opportunities for you",
-                    "You need help writing compliant proposals",
+                    "You need help drafting compliant proposals",
                     "You are a small business competing against larger firms",
                     "You want a complete capture pipeline in one tool",
                     "You need expert consulting support on demand",
@@ -544,7 +544,7 @@ export default function VsGovTribePage() {
                 </h2>
                 <p className="text-stone-400 text-lg mb-8 max-w-xl mx-auto">
                   Join small businesses using CapturePilot to find, qualify, and win
-                  government contracts — with AI-powered proposals and expert support.
+                  government contracts — with AI-powered proposal drafting and expert support.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link

@@ -131,10 +131,10 @@ export default function Homepage() {
             <span className="font-bold text-lg tracking-tight text-white">CapturePilot</span>
           </Link>
           <div className="hidden md:flex items-center gap-8 text-sm">
-            <Link href="#features" className="text-stone-400 hover:text-white transition-colors">Features</Link>
-            <Link href="#how-it-works" className="text-stone-400 hover:text-white transition-colors">How It Works</Link>
-            <Link href="#pricing" className="text-stone-400 hover:text-white transition-colors">Pricing</Link>
-            <Link href="#compare" className="text-stone-400 hover:text-white transition-colors">Compare</Link>
+            <Link href="/features" className="text-stone-400 hover:text-white transition-colors">Features</Link>
+            <Link href="/process" className="text-stone-400 hover:text-white transition-colors">How It Works</Link>
+            <Link href="/pricing" className="text-stone-400 hover:text-white transition-colors">Pricing</Link>
+            <Link href="/vs" className="text-stone-400 hover:text-white transition-colors">Compare</Link>
             <Link href={LOGIN_URL} className="text-stone-400 hover:text-white transition-colors">Login</Link>
             <Link
               href={SIGNUP_URL}
@@ -361,9 +361,9 @@ export default function Homepage() {
               },
               {
                 problem: "Don't know where to start?",
-                solution: "AI analyzes each opportunity against your profile, writes proposals, and builds your capability statement.",
+                solution: "AI analyzes each opportunity against your profile, drafts proposal outlines, and builds your capability statement.",
                 icon: Zap,
-                stat: "15 min proposals",
+                stat: "15 min first drafts",
               },
             ].map((item, i) => (
               <Reveal key={i} delay={i * 150}>
@@ -519,17 +519,17 @@ export default function Homepage() {
               <div>
                 <span className="text-emerald-600 text-sm font-bold uppercase tracking-widest mb-4 block">AI Proposal Writer</span>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-6">
-                  Write Proposals in<br />
+                  Draft Proposals in<br />
                   <span className="gradient-text">15 Minutes</span>
                 </h2>
                 <p className="text-stone-500 text-lg leading-relaxed mb-8">
                   Stop spending weeks on proposals. Our AI reads the full solicitation, understands the requirements,
-                  and generates a tailored proposal with cover letter, technical approach, and past performance.
+                  and generates a tailored first draft with cover letter outline, technical approach framework, and past performance structure. You refine and make it yours.
                 </p>
                 <ul className="space-y-4 mb-10">
                   {[
                     "Reads and analyzes the full solicitation",
-                    "Generates compliant technical approach",
+                    "Drafts a compliant technical approach framework",
                     "Matches your past performance to requirements",
                     "Exports to Word, PDF, or copy-paste",
                   ].map((item, i) => (
@@ -692,7 +692,7 @@ export default function Homepage() {
               {
                 step: "3",
                 title: "Win Contracts",
-                desc: "AI writes your proposal. We build your capability statement. Track your pipeline from discovery to award in one dashboard.",
+                desc: "AI drafts your proposal outline. We build your capability statement. Track your pipeline from discovery to award in one dashboard.",
                 icon: Briefcase,
                 color: "bg-emerald-50 text-emerald-600 border-emerald-200",
               },
@@ -740,7 +740,7 @@ export default function Homepage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { icon: Target, title: "Smart Matching", desc: "6-factor scoring engine matches opportunities to your NAICS, certifications, location, and past performance.", tag: "Core", href: "/features/matching" },
-              { icon: FileText, title: "AI Proposal Writer", desc: "Generate full proposals in 15 minutes. Cover letter, technical approach, past performance — all tailored.", tag: "AI", href: "/features/proposals" },
+              { icon: FileText, title: "AI Proposal Writer", desc: "Generate proposal drafts and outlines in 15 minutes. Cover letter, technical approach, past performance — a strong starting point you refine.", tag: "AI", href: "/features/proposals" },
               { icon: BarChart3, title: "Market Intelligence", desc: "See who wins contracts in your industry. Total spend, top agencies, YoY trends — powered by USASpending.", tag: "Intel", href: "/features/intelligence" },
               { icon: Mic, title: "Capability Statement", desc: "Record yourself talking about your business. AI writes your capability statement. Colors extracted from your website.", tag: "AI", href: "/features/capability-statement" },
               { icon: Layers, title: "Deal Pipeline", desc: "Track every opportunity from discovery to award. Kanban board with custom stages, notes, and team collaboration.", tag: "CRM", href: "/features/pipeline" },

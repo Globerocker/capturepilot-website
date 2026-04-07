@@ -147,7 +147,7 @@ export default function DemoPage() {
                 {
                   icon: <Sparkles className="w-7 h-7 text-emerald-500" />,
                   title: "AI Proposal Walkthrough",
-                  desc: "Watch the AI read a real solicitation, extract requirements, build a compliance matrix, and generate proposal sections. See how 40+ hours becomes 4.",
+                  desc: "Watch the AI read a real solicitation, extract requirements, build a compliance matrix, and generate proposal draft sections. See how 40+ hours becomes 4.",
                   badge: "5 min",
                 },
                 {

@@ -27,6 +27,9 @@ import {
   Bell,
   Search,
   Handshake,
+  Target,
+  Database,
+  BookOpen,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -54,20 +57,20 @@ interface ComparisonRow {
 const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "AI Proposal Writer", cpStatus: "yes", cpLabel: "Included", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Capability Statement Builder (Voice)", cpStatus: "yes", cpLabel: "Voice-powered", otherStatus: "no", otherLabel: "Not available" },
-  { feature: "Smart Matching (proprietary multi-factor)", cpStatus: "yes", cpLabel: "proprietary multi-factor scoring", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Smart Matching (proprietary multi-factor)", cpStatus: "yes", cpLabel: "Proprietary multi-factor scoring", otherStatus: "partial", otherLabel: "Keyword alerts" },
   { feature: "Quick Eligibility Checker", cpStatus: "yes", cpLabel: "Instant check", otherStatus: "no", otherLabel: "Not available" },
-  { feature: "Market Intelligence", cpStatus: "yes", cpLabel: "Included", otherStatus: "yes", otherLabel: "Analyst-curated" },
-  { feature: "Deal Pipeline (Kanban)", cpStatus: "yes", cpLabel: "Built-in", otherStatus: "no", otherLabel: "Not available" },
-  { feature: "Partner Search", cpStatus: "yes", cpLabel: "1M+ contractors", otherStatus: "yes", otherLabel: "Available" },
-  { feature: "Eligibility / Set-Aside Matching", cpStatus: "yes", cpLabel: "Automatic", otherStatus: "no", otherLabel: "Not available" },
-  { feature: "IDIQ / Vehicle Tracking", cpStatus: "yes", cpLabel: "Included", otherStatus: "yes", otherLabel: "Available" },
+  { feature: "Market Intelligence", cpStatus: "yes", cpLabel: "Award + USASpending data", otherStatus: "yes", otherLabel: "Analyst-curated intel" },
+  { feature: "Deal Pipeline (Kanban)", cpStatus: "yes", cpLabel: "Built-in", otherStatus: "partial", otherLabel: "File cabinet system" },
+  { feature: "Partner Search", cpStatus: "yes", cpLabel: "1M+ contractors", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Eligibility / Set-Aside Matching", cpStatus: "yes", cpLabel: "Automatic", otherStatus: "partial", otherLabel: "Manual filters" },
+  { feature: "IDIQ / Vehicle Tracking", cpStatus: "yes", cpLabel: "Included", otherStatus: "yes", otherLabel: "48K+ IDIQ database" },
   { feature: "Daily Email Alerts", cpStatus: "yes", cpLabel: "Smart scored alerts", otherStatus: "yes", otherLabel: "Available" },
   { feature: "Competitor / Incumbent Intel", cpStatus: "yes", cpLabel: "Award + USASpending", otherStatus: "yes", otherLabel: "Analyst reports" },
   { feature: "Consulting Support Tier", cpStatus: "yes", cpLabel: "Managed services", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Voice-to-Document", cpStatus: "yes", cpLabel: "Record & generate", otherStatus: "no", otherLabel: "Not available" },
-  { feature: "Free Tier", cpStatus: "yes", cpLabel: "Yes", otherStatus: "no", otherLabel: "No" },
-  { feature: "30-Day Free Trial", cpStatus: "yes", cpLabel: "Yes", otherStatus: "no", otherLabel: "No" },
-  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$199/mo flat", otherStatus: "no", otherLabel: "$8K-$15K/yr per seat" },
+  { feature: "Recompete Intelligence", cpStatus: "partial", cpLabel: "Via award data", otherStatus: "yes", otherLabel: "Analyst-curated" },
+  { feature: "Free Tier", cpStatus: "yes", cpLabel: "Yes", otherStatus: "no", otherLabel: "5-day trial only" },
+  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$199/mo flat", otherStatus: "no", otherLabel: "$2,695-$5,995/yr" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -77,27 +80,27 @@ const COMPARISON_ROWS: ComparisonRow[] = [
 const WHY_SWITCH_CARDS = [
   {
     icon: Brain,
-    title: "AI-Powered, Not Just a Database",
+    title: "AI Tools, Not Just Databases",
     description:
-      "GovWin gives you a massive database to search through manually. CapturePilot uses a proprietary multi-factor algorithm to score every opportunity against your profile and surfaces only what you can win.",
-  },
-  {
-    icon: FileText,
-    title: "Built-In Proposal Tools",
-    description:
-      "GovWin stops at opportunity identification. CapturePilot includes an AI Proposal Writer that drafts your proposals and a Capability Statement Builder so you can go from discovery to submission in one platform.",
+      "EZGovOpps gives you a database with analyst notes. CapturePilot gives you AI that writes proposals, builds capability statements, and scores every opportunity against your profile automatically.",
   },
   {
     icon: DollarSign,
-    title: "70% Lower Cost",
+    title: "Lower Cost, More Features",
     description:
-      "At $199/month ($2,388/year), CapturePilot costs a fraction of GovWin's $8,000-$15,000+ annual seat licenses. For a 5-person team, that is $12,000/year vs $40,000-$75,000.",
+      "EZGovOpps starts at $2,695/year for 1 user and goes up to $5,995 for 6 users. CapturePilot is $2,388/year with full team access and AI tools that EZGovOpps does not offer.",
   },
   {
-    icon: Rocket,
-    title: "Built for Small Business",
+    icon: Zap,
+    title: "Quick Checker for Instant Qualification",
     description:
-      "GovWin was designed for Lockheed Martin, Raytheon, and Booz Allen. CapturePilot was built from day one for 1-20 person teams, veteran-owned businesses, and first-time GovCon entrants.",
+      "Before you spend hours researching an opportunity, CapturePilot's Quick Checker tells you instantly if your business qualifies. EZGovOpps requires manual review of every opportunity.",
+  },
+  {
+    icon: Layers,
+    title: "Full Capture Pipeline",
+    description:
+      "EZGovOpps focuses on opportunity discovery and tracking. CapturePilot covers the entire pipeline: discovery, qualification, intelligence, proposals, capability statements, and partner search.",
   },
 ];
 
@@ -105,13 +108,13 @@ const WHY_SWITCH_CARDS = [
 /*  Best For data                                                      */
 /* ------------------------------------------------------------------ */
 
-const GOVWIN_BEST_FOR = [
-  "Large enterprises with 100+ employees",
-  "Firms with $10M+ annual revenue",
-  "Teams of 50+ business development staff",
-  "Companies with dedicated capture teams",
-  "Defense primes needing pre-RFP intelligence",
-  "Organizations with existing large contract vehicles",
+const EZGOVOPPS_BEST_FOR = [
+  "Companies wanting analyst-curated intelligence",
+  "Teams focused on IDIQ and recompete tracking",
+  "Firms with experienced BD staff",
+  "Organizations wanting manual agency analysis",
+  "Companies needing collaboration calendar tools",
+  "Teams that prefer human analysis over AI",
 ];
 
 const CP_BEST_FOR = [
@@ -128,9 +131,10 @@ const CP_BEST_FOR = [
 /* ------------------------------------------------------------------ */
 
 const CROSS_LINKS = [
+  { label: "vs GovWin", href: "/vs/govwin" },
+  { label: "vs GovDash", href: "/vs/govdash" },
+  { label: "vs Sweetspot", href: "/vs/sweetspot" },
   { label: "vs GovTribe", href: "/vs/govtribe" },
-  { label: "vs BGOV", href: "/vs/bgov" },
-  { label: "vs HigherGov", href: "/vs/highergov" },
   { label: "vs SAM.gov", href: "/vs/sam-gov" },
 ];
 
@@ -149,7 +153,7 @@ function StatusIcon({ status }: { status: RowStatus }) {
 /*  Component                                                          */
 /* ------------------------------------------------------------------ */
 
-export default function VsGovWinPage() {
+export default function VsEZGovOppsPage() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -159,10 +163,8 @@ export default function VsGovWinPage() {
   if (!mounted) return null;
 
   const cpYearly = 199 * 12;
-  const gwMin = 8000;
-  const gwMax = 15000;
-  const savingsMin = gwMin - cpYearly;
-  const savingsMax = gwMax - cpYearly;
+  const ezMin = 2695;
+  const ezMax = 5995;
 
   return (
     <>
@@ -176,24 +178,34 @@ export default function VsGovWinPage() {
           0% { background-position: -200% 0; }
           100% { background-position: 200% 0; }
         }
+        .hover-lift {
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .hover-lift:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+        @keyframes fade-in-up {
+          from { opacity: 0; transform: translateY(24px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up { animation: fade-in-up 0.6s ease forwards; }
+        .animate-delay-100 { animation-delay: 100ms; }
+        .animate-delay-200 { animation-delay: 200ms; }
+        .animate-delay-300 { animation-delay: 300ms; }
+        .gradient-text {
+          background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
       `}</style>
 
       <SiteNav />
 
-      <title>CapturePilot vs GovWin (Deltek) — Compare Features & Pricing | CapturePilot</title>
-      <meta
-        name="description"
-        content="Compare CapturePilot vs GovWin by Deltek. Enterprise-grade government contract intelligence at 70% lower cost. AI proposal writer, smart matching, and capability statement builder included."
-      />
-      <meta name="keywords" content="GovWin alternative, Deltek GovWin vs CapturePilot, government contract software, GovCon tools, SAM.gov matching, federal contracting platform, GovWin pricing" />
-      <meta property="og:title" content="CapturePilot vs GovWin — Enterprise Intelligence at a Fraction of the Price" />
-      <meta property="og:description" content="AI-powered government contract matching with built-in proposal tools. 70% less than GovWin. Free tier available." />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://capturepilot.com/vs/govwin" />
-
       <main className="pt-16">
         {/* ============================================================ */}
-        {/*  HERO — light section with dot pattern                       */}
+        {/*  HERO                                                        */}
         {/* ============================================================ */}
         <section
           className="relative overflow-hidden py-24 md:py-32"
@@ -212,12 +224,12 @@ export default function VsGovWinPage() {
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 animate-fade-in-up animate-delay-100">
               CapturePilot vs{" "}
-              <span className="gradient-text">GovWin</span>
+              <span className="gradient-text">EZGovOpps</span>
             </h1>
 
             <p className="text-lg sm:text-xl text-stone-500 leading-relaxed max-w-2xl mx-auto animate-fade-in-up animate-delay-200">
-              Enterprise intelligence at a fraction of the price. Built for
-              small businesses, not defense giants.
+              Analyst-curated intelligence meets AI-powered capture. More
+              features, lower cost, full pipeline.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animate-delay-300">
@@ -238,7 +250,7 @@ export default function VsGovWinPage() {
         </section>
 
         {/* ============================================================ */}
-        {/*  COMPARISON TABLE — dark section with shimmer                 */}
+        {/*  COMPARISON TABLE                                            */}
         {/* ============================================================ */}
         <section id="comparison" className="relative py-24 bg-stone-950 text-white overflow-hidden">
           <div className="shimmer-bg absolute inset-0 pointer-events-none" />
@@ -250,8 +262,8 @@ export default function VsGovWinPage() {
                 <span className="text-emerald-400">Comparison</span>
               </h2>
               <p className="text-stone-400 max-w-2xl mx-auto">
-                See how CapturePilot stacks up against GovWin by Deltek across
-                the 16 features that matter most to small businesses.
+                How CapturePilot compares to EZGovOpps across the 16 features
+                that matter most to small businesses.
               </p>
             </div>
 
@@ -268,7 +280,7 @@ export default function VsGovWinPage() {
                 </div>
                 <div className="px-6 py-4 text-sm font-bold text-center">
                   <span className="text-stone-400 bg-stone-800 px-3 py-1 rounded-full">
-                    GovWin
+                    EZGovOpps
                   </span>
                 </div>
               </div>
@@ -286,7 +298,7 @@ export default function VsGovWinPage() {
                   </div>
                   <div className="px-6 py-3.5 text-sm text-center flex items-center justify-center gap-2 border-x border-emerald-500/10">
                     <StatusIcon status={row.cpStatus} />
-                    <span className={row.cpStatus === "yes" ? "text-emerald-400 font-medium" : "text-stone-400"}>
+                    <span className={row.cpStatus === "yes" ? "text-emerald-400 font-medium" : row.cpStatus === "partial" ? "text-amber-400" : "text-stone-400"}>
                       {row.cpLabel}
                     </span>
                   </div>
@@ -302,13 +314,13 @@ export default function VsGovWinPage() {
 
             <p className="text-xs text-stone-500 text-center mt-4">
               Comparison based on publicly available information as of April 2026.
-              GovWin is a registered trademark of Deltek, Inc.
+              EZGovOpps is a trademark of EZGovOpps.
             </p>
           </div>
         </section>
 
         {/* ============================================================ */}
-        {/*  WHY SWITCH — light section with dot pattern                 */}
+        {/*  WHY SWITCH                                                  */}
         {/* ============================================================ */}
         <section
           className="relative py-24 overflow-hidden"
@@ -322,11 +334,11 @@ export default function VsGovWinPage() {
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
                 Why Teams{" "}
-                <span className="gradient-text">Switch to CapturePilot</span>
+                <span className="gradient-text">Choose CapturePilot</span>
               </h2>
               <p className="text-stone-500 max-w-2xl mx-auto">
-                GovWin built the industry 20 years ago. CapturePilot is building
-                what comes next.
+                EZGovOpps offers solid analyst-curated intel. CapturePilot adds
+                AI tools that turn intelligence into action.
               </p>
             </div>
 
@@ -356,7 +368,7 @@ export default function VsGovWinPage() {
         </section>
 
         {/* ============================================================ */}
-        {/*  PRICING COMPARISON — dark section with shimmer              */}
+        {/*  PRICING COMPARISON                                          */}
         {/* ============================================================ */}
         <section className="relative py-24 bg-stone-950 text-white overflow-hidden">
           <div className="shimmer-bg absolute inset-0 pointer-events-none" />
@@ -368,30 +380,30 @@ export default function VsGovWinPage() {
                 <span className="text-emerald-400">Difference</span>
               </h2>
               <p className="text-stone-400 max-w-2xl mx-auto">
-                GovWin charges enterprise prices for enterprise companies.
-                CapturePilot delivers comparable intelligence at small business pricing.
+                EZGovOpps charges per-user annual fees without AI tools.
+                CapturePilot delivers AI-powered capture at competitive pricing.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {/* GovWin pricing card */}
+              {/* EZGovOpps pricing card */}
               <div className="bg-stone-900 border border-stone-700 rounded-2xl p-8 relative overflow-hidden">
                 <div className="absolute top-0 right-0 bg-stone-700 text-stone-300 text-xs font-bold px-4 py-1.5 rounded-bl-xl">
-                  GOVWIN
+                  EZGOVOPPS
                 </div>
                 <div className="mb-6">
-                  <p className="text-sm font-medium text-stone-500 mb-1">Annual cost per seat</p>
+                  <p className="text-sm font-medium text-stone-500 mb-1">Annual plans (per user)</p>
                   <p className="text-4xl font-extrabold tracking-tight">
-                    ${gwMin.toLocaleString()}<span className="text-2xl text-stone-500"> - ${gwMax.toLocaleString()}</span><span className="text-lg font-medium text-stone-500">/yr</span>
+                    ${ezMin.toLocaleString()}<span className="text-2xl text-stone-500"> - ${ezMax.toLocaleString()}</span><span className="text-lg font-medium text-stone-500">/yr</span>
                   </p>
                 </div>
                 <div className="space-y-3 mb-8">
                   {[
-                    "Per-seat licensing model",
+                    "Per-user pricing tiers",
                     "Annual commitment required",
-                    "Enterprise sales process",
-                    "No free tier available",
-                    "Add-on costs for modules",
+                    "No free tier (5-day trial only)",
+                    "No AI proposal or document tools",
+                    "Analyst-curated intel (manual process)",
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-2 text-sm text-stone-400">
                       <Minus className="w-4 h-4 text-stone-600 shrink-0" />
@@ -400,8 +412,8 @@ export default function VsGovWinPage() {
                   ))}
                 </div>
                 <div className="bg-stone-800 rounded-xl p-4 text-center">
-                  <p className="text-xs text-stone-500 mb-1">5-person team / year</p>
-                  <p className="text-2xl font-extrabold text-stone-300">$40,000 - $75,000</p>
+                  <p className="text-xs text-stone-500 mb-1">6-user Platinum plan</p>
+                  <p className="text-2xl font-extrabold text-stone-300">${ezMax.toLocaleString()}/yr</p>
                 </div>
               </div>
 
@@ -423,8 +435,8 @@ export default function VsGovWinPage() {
                   {[
                     "Full team access included",
                     "Month-to-month flexibility",
-                    "Self-service sign-up in minutes",
                     "Free tier to start",
+                    "AI proposal writer included",
                     "All features included",
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-2 text-sm text-emerald-100">
@@ -434,20 +446,19 @@ export default function VsGovWinPage() {
                   ))}
                 </div>
                 <div className="bg-emerald-500 rounded-xl p-4 text-center">
-                  <p className="text-xs text-emerald-100 mb-1">You save annually</p>
+                  <p className="text-xs text-emerald-100 mb-1">Full team, all features</p>
                   <p className="text-2xl font-extrabold text-white">
-                    ${savingsMin.toLocaleString()} - ${savingsMax.toLocaleString()}
+                    ${cpYearly.toLocaleString()}/yr
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Savings callout */}
             <div className="mt-12 text-center animate-fade-in-up">
               <div className="inline-flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/30 rounded-full px-6 py-3">
                 <TrendingUp className="w-5 h-5 text-emerald-400" />
                 <span className="text-sm font-bold text-emerald-300">
-                  Save up to ${savingsMax.toLocaleString()} per year by switching to CapturePilot
+                  Same price range, but with AI proposals, capability statements, and more
                 </span>
               </div>
             </div>
@@ -455,7 +466,7 @@ export default function VsGovWinPage() {
         </section>
 
         {/* ============================================================ */}
-        {/*  BEST FOR — light section with dot pattern                   */}
+        {/*  BEST FOR                                                    */}
         {/* ============================================================ */}
         <section
           className="relative py-24 overflow-hidden"
@@ -472,25 +483,24 @@ export default function VsGovWinPage() {
                 <span className="gradient-text">Right for You?</span>
               </h2>
               <p className="text-stone-500 max-w-2xl mx-auto">
-                Both platforms serve the GovCon market, but for very different
-                audiences. Here is who each tool is built for.
+                EZGovOpps excels at curated intel. CapturePilot turns that
+                intelligence into action with AI.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              {/* GovWin best for */}
               <div className="bg-white border border-stone-200 rounded-2xl p-8 animate-fade-in-up">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-11 h-11 rounded-xl bg-stone-100 flex items-center justify-center">
-                    <Building2 className="w-5 h-5 text-stone-500" />
+                    <Database className="w-5 h-5 text-stone-500" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-stone-800">GovWin by Deltek</h3>
-                    <p className="text-xs text-stone-400">Best for enterprise</p>
+                    <h3 className="font-bold text-stone-800">EZGovOpps</h3>
+                    <p className="text-xs text-stone-400">Best for analyst-curated intel</p>
                   </div>
                 </div>
                 <ul className="space-y-3">
-                  {GOVWIN_BEST_FOR.map((item, i) => (
+                  {EZGOVOPPS_BEST_FOR.map((item, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm text-stone-600">
                       <Star className="w-4 h-4 text-stone-300 mt-0.5 shrink-0" />
                       {item}
@@ -499,7 +509,6 @@ export default function VsGovWinPage() {
                 </ul>
               </div>
 
-              {/* CapturePilot best for */}
               <div className="bg-gradient-to-br from-emerald-50 to-sky-50 border-2 border-emerald-200 rounded-2xl p-8 shadow-lg shadow-emerald-100/50 animate-fade-in-up animate-delay-100">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-11 h-11 rounded-xl bg-emerald-100 flex items-center justify-center">
@@ -524,20 +533,20 @@ export default function VsGovWinPage() {
         </section>
 
         {/* ============================================================ */}
-        {/*  CTA — dark section with shimmer                             */}
+        {/*  CTA                                                         */}
         {/* ============================================================ */}
         <section className="relative py-24 bg-stone-950 text-white overflow-hidden">
           <div className="shimmer-bg absolute inset-0 pointer-events-none" />
 
           <div className="relative max-w-3xl mx-auto px-6 text-center">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
-              Ready to Try the{" "}
-              <span className="text-emerald-400">Smarter Alternative?</span>
+              Ready for{" "}
+              <span className="text-emerald-400">AI-Powered Capture?</span>
             </h2>
             <p className="text-stone-400 text-lg mb-8 max-w-xl mx-auto">
-              Join hundreds of small businesses that switched from expensive
-              enterprise tools to CapturePilot. Same intelligence, better
-              features, fraction of the price.
+              Analyst-curated intel is valuable. But AI that writes your
+              proposals and builds your capability statements is a game
+              changer. Try CapturePilot free.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -560,7 +569,7 @@ export default function VsGovWinPage() {
         </section>
 
         {/* ============================================================ */}
-        {/*  CROSS-LINKS — light section                                 */}
+        {/*  CROSS-LINKS                                                 */}
         {/* ============================================================ */}
         <section className="py-16 bg-white border-t border-stone-100">
           <div className="max-w-4xl mx-auto px-6">
@@ -591,7 +600,6 @@ export default function VsGovWinPage() {
               })}
             </div>
 
-            {/* Other comparisons */}
             <p className="text-center text-xs text-stone-400 mt-10 mb-4">
               Also compare CapturePilot to:
             </p>

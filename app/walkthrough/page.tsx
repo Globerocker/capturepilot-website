@@ -24,7 +24,7 @@ const STEP_LABELS = [
   "Enter Your Website",
   "We Find Your NAICS Codes",
   "40,000+ Opportunities Scored",
-  "AI Writes Your Proposal",
+  "AI Drafts Your Proposal",
   "Track Your Pipeline",
   "Win Government Contracts",
 ];
@@ -316,7 +316,7 @@ function StepOpportunities({ active }: { active: boolean }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Step 4 — AI Writes Your Proposal                                   */
+/*  Step 4 — AI Drafts Your Proposal                                   */
 /* ------------------------------------------------------------------ */
 const PROPOSAL_SECTIONS = [
   "Cover Letter",
@@ -416,8 +416,8 @@ function StepProposal({ active }: { active: boolean }) {
         </div>
       </div>
       <p className="text-stone-300 text-lg text-center max-w-md leading-relaxed">
-        Full proposal generated in{" "}
-        <span className="text-emerald-400 font-bold">15 minutes</span>
+        First draft generated in{" "}
+        <span className="text-emerald-400 font-bold">15 minutes</span> — ready for your review
       </p>
     </div>
   );

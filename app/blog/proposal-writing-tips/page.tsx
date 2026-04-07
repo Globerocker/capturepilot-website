@@ -667,7 +667,7 @@ export default function ProposalWritingTipsPage() {
             <div className="bg-gradient-to-br from-stone-900 to-stone-800 rounded-3xl p-10 sm:p-14 text-white text-center animate-on-scroll">
               <Sparkles className="w-12 h-12 mx-auto mb-6 text-emerald-400" />
               <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4">
-                Write Winning Proposals, Faster
+                Draft Winning Proposals, Faster
               </h2>
               <p className="text-stone-400 text-lg mb-4 max-w-lg mx-auto">
                 CapturePilot finds matching opportunities, analyzes the solicitation, and generates

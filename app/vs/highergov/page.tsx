@@ -82,7 +82,7 @@ const DEPTH_FEATURES = [
   {
     icon: FileText,
     title: "AI Proposal Writer",
-    desc: "Generate full proposals with cover letters, technical approach, and past performance sections. HigherGov has no writing tools at all.",
+    desc: "Generate proposal drafts with cover letter outlines, technical approach frameworks, and past performance structures. HigherGov has no writing tools at all.",
     href: "/features/proposals",
     tag: "AI",
   },
@@ -298,7 +298,7 @@ export default function VsHigherGov() {
                 <ul className="space-y-3">
                   {[
                     "AI scores every opportunity against your profile",
-                    "Writes proposals and capability statements",
+                    "Drafts proposals and capability statements",
                     "Tracks incumbents and award history",
                     "Matches set-aside eligibility automatically",
                     "Full deal pipeline from discovery to award",
@@ -470,7 +470,7 @@ export default function VsHigherGov() {
             </h2>
             <p className="text-lg text-stone-400 mb-8">
               If you are serious about winning federal contracts, you need more than a search engine.
-              CapturePilot gives you AI matching, proposal tools, and capture management
+              CapturePilot gives you AI matching, proposal drafting tools, and capture management
               — all purpose-built for federal contractors.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

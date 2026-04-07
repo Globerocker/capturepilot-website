@@ -147,7 +147,7 @@ function ProposalMockup() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-              AI Writing...
+              AI Drafting...
             </span>
           )}
           {!aiThinking && (
@@ -310,8 +310,8 @@ export default function ProposalsPage() {
     },
     {
       icon: Download,
-      title: "Download Your Proposal",
-      desc: "Get a polished, submission-ready proposal in Word format. Cover letter, technical volume, past performance, pricing, and compliance matrix included.",
+      title: "Download Your Draft",
+      desc: "Get a structured proposal draft in Word format. Cover letter outline, technical approach framework, past performance structure, pricing, and compliance matrix — ready for your review and refinement.",
       color: "bg-emerald-50 border-emerald-200 text-emerald-600",
     },
   ];
@@ -360,13 +360,13 @@ export default function ProposalsPage() {
             <Sparkles className="w-4 h-4" /> AI Proposal Writer
           </div>
           <h1 className="text-5xl sm:text-6xl font-black tracking-tight leading-[1.1] mb-6 animate-fade-in-up animate-delay-100">
-            Write Winning Proposals<br />
+            Draft Your Proposals<br />
             in <span className="gradient-text">Minutes, Not Weeks.</span>
           </h1>
           <p className="text-lg sm:text-xl text-stone-500 max-w-2xl mx-auto mb-10 animate-fade-in-up animate-delay-200">
-            Paste a solicitation. Get a complete, submission-ready government
-            proposal with technical approach, past performance, pricing, and
-            compliance matrix — generated in under 15 minutes.
+            Paste a solicitation. Get a comprehensive first draft with
+            technical approach framework, past performance structure, pricing outline, and
+            compliance matrix — generated in under 15 minutes. You review, refine, and finalize.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animate-delay-300">
             <Link
@@ -455,8 +455,8 @@ export default function ProposalsPage() {
                 {[
                   {
                     icon: Zap,
-                    text: "15 minutes per proposal",
-                    sub: "Paste, review, submit. That simple.",
+                    text: "15 minutes to a first draft",
+                    sub: "Paste, generate, refine. That simple.",
                   },
                   {
                     icon: DollarSign,
@@ -494,7 +494,7 @@ export default function ProposalsPage() {
       <section id="how-it-works" className="py-20 px-6">
         <div className="max-w-5xl mx-auto" ref={processObs.ref}>
           <h2 className="text-3xl sm:text-4xl font-black text-center mb-4">
-            Three Steps. One Winning Proposal.
+            Three Steps. One Strong First Draft.
           </h2>
           <p className="text-lg text-stone-500 text-center mb-16 max-w-2xl mx-auto">
             No templates to fill. No boilerplate to copy-paste. Just results.
@@ -547,7 +547,7 @@ export default function ProposalsPage() {
             Every Section, Handled.
           </h2>
           <p className="text-lg text-stone-500 text-center mb-16 max-w-2xl mx-auto">
-            CapturePilot generates a complete proposal package — not a rough draft you still have to rewrite.
+            AI generates a comprehensive first draft including cover letter outline, technical approach framework, and past performance structure. You review, refine, and finalize before submission.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -599,7 +599,7 @@ export default function ProposalsPage() {
               icon={FileText}
               value={15}
               suffix=" min"
-              label="Average proposal time"
+              label="Average first draft time"
             />
             <AnimatedStat
               icon={BarChart3}
@@ -634,10 +634,10 @@ export default function ProposalsPage() {
         <div className="max-w-3xl mx-auto text-center">
           <FileText className="w-12 h-12 text-emerald-600 mx-auto mb-6" />
           <h2 className="text-3xl sm:text-4xl font-black mb-4">
-            Stop Writing Proposals the Hard Way.
+            Stop Starting Proposals from Scratch.
           </h2>
           <p className="text-lg text-stone-500 mb-8 max-w-xl mx-auto">
-            Your next government proposal is 15 minutes away. Start free — no
+            Your next proposal first draft is 15 minutes away. AI gives you a strong foundation — you refine and make it yours. Start free — no
             credit card required.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

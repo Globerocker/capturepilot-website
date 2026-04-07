@@ -79,7 +79,7 @@ const CAPTURE_FEATURES = [
   {
     icon: FileText,
     title: "AI Proposal Writer",
-    desc: "Generate full proposals in minutes — cover letter, technical approach, and past performance. BGOV has zero proposal tools.",
+    desc: "Generate proposal drafts in minutes — cover letter outline, technical approach framework, and past performance structure. BGOV has zero proposal tools.",
     href: "/features/proposals",
   },
   {
@@ -387,7 +387,7 @@ export default function VsBGOV() {
                   {[
                     "Are a small or mid-size federal contractor",
                     "Want AI to find and score opportunities for you",
-                    "Need proposal writing and capture tools",
+                    "Need proposal drafting and capture tools",
                     "Want to track competitors and incumbents",
                     "Need set-aside matching (SDVOSB, WOSB, 8(a), HUBZone)",
                     "Want to pay $199/mo instead of $12,000/yr",
@@ -440,7 +440,7 @@ export default function VsBGOV() {
               Stop Paying Enterprise Prices for Features You Will <span className="text-emerald-400">Never Use</span>
             </h2>
             <p className="text-lg text-stone-400 mb-8">
-              CapturePilot gives you the capture tools, AI matching, and proposal writing that BGOV does not offer
+              CapturePilot gives you the capture tools, AI matching, and proposal drafting that BGOV does not offer
               — at a fraction of the cost. Start your free trial today.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

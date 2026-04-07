@@ -62,10 +62,10 @@ const selfServiceSteps = [
   },
   {
     icon: FileText,
-    title: "Write Your Proposal",
+    title: "Draft Your Proposal",
     description:
-      "Our AI Proposal Writer generates tailored, compliant proposals in 15 minutes -- not 15 days. Paste the solicitation, and get a structured response aligned to evaluation criteria.",
-    detail: "Capability statements, past performance narratives, and technical approaches -- all generated for you.",
+      "Our AI Proposal Writer generates a tailored first draft in 15 minutes -- not 15 days. Paste the solicitation, and get a structured proposal framework aligned to evaluation criteria. You refine and finalize.",
+    detail: "Capability statements, past performance narratives, and technical approach outlines -- all drafted for you.",
   },
   {
     icon: Kanban,
@@ -147,7 +147,7 @@ const faqs = [
   },
   {
     q: "What's included in the free trial?",
-    a: "30 days of full Pro access -- daily opportunity matching, AI proposal writer, pipeline management, competition analysis, and market intelligence. No credit card required. No feature restrictions.",
+    a: "30 days of full Pro access -- daily opportunity matching, AI proposal drafting, pipeline management, competition analysis, and market intelligence. No credit card required. No feature restrictions.",
   },
   {
     q: "How is this different from GovWin or BGOV?",
@@ -379,7 +379,7 @@ export default function ProcessPage() {
                 </p>
                 <p className="text-stone-500 leading-relaxed mb-6">
                   Use the full platform yourself. Daily opportunity matching, AI
-                  proposal writer, pipeline management, and competition analysis.
+                  proposal drafting, pipeline management, and competition analysis.
                   Built for teams who want to run their own capture process.
                 </p>
                 <p className="text-xs text-stone-400 font-medium uppercase tracking-wider mb-6">
@@ -426,7 +426,7 @@ export default function ProcessPage() {
                 </p>
                 <p className="text-stone-400 leading-relaxed mb-6">
                   Our team does the heavy lifting. We find opportunities, develop win
-                  strategies, write proposals, and manage your pipeline. You focus on
+                  strategies, draft proposals, and manage your pipeline. You focus on
                   running your business.
                 </p>
                 <p className="text-xs text-stone-500 font-medium uppercase tracking-wider mb-6">

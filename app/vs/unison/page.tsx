@@ -116,7 +116,7 @@ const MODEL_CARDS = [
     points: [
       "AI scores every opportunity against YOUR profile",
       "proprietary multi-factor algorithm surfaces only what you can win",
-      "AI writes YOUR proposals and capability statements",
+      "AI drafts YOUR proposals and capability statements",
       "Pipeline tracks YOUR deals from discovery to award",
       "The platform works FOR you, not against you",
     ],
@@ -159,7 +159,7 @@ const MARKETPLACE_RISKS = [
   {
     icon: Network,
     title: "Teaming Is Not a Strategy",
-    description: "Unison's core value proposition is connecting primes with subs. But teaming is one tactic, not a capture strategy. CapturePilot gives you the full pipeline: find opportunities, score them, understand the competition, and write the proposal.",
+    description: "Unison's core value proposition is connecting primes with subs. But teaming is one tactic, not a capture strategy. CapturePilot gives you the full pipeline: find opportunities, score them, understand the competition, and draft the proposal.",
   },
 ];
 
@@ -477,7 +477,7 @@ export default function VsUnisonPage() {
                 <div className="space-y-3 mb-8">
                   {[
                     "Full team access included",
-                    "AI writes proposals for you",
+                    "AI drafts proposals for you",
                     "proprietary multi-factor smart matching",
                     "Free tier + 30-day Pro trial",
                     "Complete pipeline: discover to deliver",
@@ -591,7 +591,7 @@ export default function VsUnisonPage() {
             </h2>
             <p className="text-stone-400 text-lg mb-8 max-w-xl mx-auto">
               Stop competing for visibility on a marketplace.
-              Get an AI-powered platform that finds opportunities, scores them, and writes your proposals.
+              Get an AI-powered platform that finds opportunities, scores them, and drafts your proposals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
