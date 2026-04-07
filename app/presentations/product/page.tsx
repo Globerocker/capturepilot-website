@@ -42,7 +42,7 @@ import {
   ArrowDown,
 } from "lucide-react";
 
-const TOTAL_SLIDES = 20;
+const TOTAL_SLIDES = 19;
 
 /* ------------------------------------------------------------------ */
 /*  Intersection Observer hook                                         */
@@ -1717,6 +1717,10 @@ export default function ProductPresentationPage() {
                 16 features.{" "}
                 <span className="text-emerald-600">$199/mo.</span>
               </h2>
+              <div style={fadeUp(v17, 200)} className="flex items-center justify-center gap-3 mt-4">
+                <span className="bg-emerald-100 text-emerald-700 text-sm font-bold px-4 py-1.5 rounded-full">Save 20% with yearly — $159/mo</span>
+                <span className="text-stone-400 text-sm">30-day free trial included</span>
+              </div>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-[1200px] mx-auto">
@@ -1753,94 +1757,7 @@ export default function ProductPresentationPage() {
           </div>
         </section>
 
-        {/* =================================================================
-            SLIDE 18 — PRICING (light)
-        ================================================================= */}
-        <section
-          ref={s18}
-          className="slide min-h-screen bg-white flex items-center justify-center relative overflow-hidden"
-          style={{ scrollSnapAlign: "start" }}
-        >
-          <DotGridBg />
-
-          <div className="relative z-10 w-full px-16 lg:px-24 max-w-[1400px] mx-auto">
-            <div className="text-center mb-12">
-              <p style={fadeUp(v18, 0)} className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
-                Pricing
-              </p>
-              <h2 style={fadeUp(v18, 100)} className="text-4xl md:text-6xl font-extralight text-stone-900 mb-4 leading-tight">
-                Simple pricing.
-              </h2>
-
-              <div style={fadeUp(v18, 200)} className="flex items-center justify-center gap-4 mt-8">
-                <span className={`text-sm font-medium transition-colors ${!yearly ? "text-stone-900" : "text-stone-400"}`}>Monthly</span>
-                <button
-                  onClick={() => setYearly(!yearly)}
-                  className={`relative w-14 h-7 rounded-full transition-colors duration-300 ${yearly ? "bg-emerald-500" : "bg-stone-300"}`}
-                >
-                  <div className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow-md transition-transform duration-300 ${yearly ? "translate-x-8" : "translate-x-1"}`} />
-                </button>
-                <span className={`text-sm font-medium transition-colors ${yearly ? "text-stone-900" : "text-stone-400"}`}>Yearly</span>
-                {yearly && (
-                  <span className="bg-emerald-100 text-emerald-700 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full">Save 20%</span>
-                )}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[900px] mx-auto">
-              {/* Free */}
-              <div style={fadeLeft(v18, 300)} className="bg-stone-50 border border-stone-200 rounded-2xl p-8 hover:border-stone-300 transition-all">
-                <h3 className="text-stone-900 text-xl font-medium mb-2">Free</h3>
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-5xl font-light text-stone-900">$0</span>
-                  <span className="text-stone-400 text-sm">/forever</span>
-                </div>
-                <div className="space-y-3 mb-8">
-                  {["Quick Company Checker", "5 opportunity matches", "NAICS identification", "Basic eligibility report"].map((item) => (
-                    <div key={item} className="flex items-center gap-3">
-                      <Check className="w-4 h-4 text-stone-400 flex-shrink-0" />
-                      <span className="text-stone-500 text-sm">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <a href="https://app.capturepilot.com/check" target="_blank" rel="noopener noreferrer"
-                  className="block w-full text-center py-3 px-4 rounded-xl border border-stone-300 text-stone-600 text-sm hover:bg-stone-100 transition-all">
-                  Try Quick Check
-                </a>
-              </div>
-
-              {/* Pro */}
-              <div style={fadeRight(v18, 400)} className="bg-white border-2 border-emerald-500 rounded-2xl p-8 relative shadow-xl shadow-emerald-100/50">
-                <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{ animation: v18 ? "glowPulse 3s ease-in-out infinite" : "none" }} />
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg shadow-emerald-500/30">Most Popular</span>
-                </div>
-                <h3 className="text-stone-900 text-xl font-medium mb-2">Pro</h3>
-                <div className="flex items-baseline gap-1 mb-1">
-                  <span className="text-5xl font-light text-emerald-600">${yearly ? "159" : "199"}</span>
-                  <span className="text-stone-400 text-sm">/month</span>
-                </div>
-                {yearly && (
-                  <p className="text-stone-400 text-xs mb-4">Billed $1,908/year <span className="text-emerald-600 font-medium">- save $480</span></p>
-                )}
-                {!yearly && <div className="mb-6" />}
-                <div className="space-y-3 mb-8">
-                  {["Everything in Free", "Unlimited matches", "AI proposal drafts", "Market intelligence", "Deal pipeline", "Cap statement builder", "Partner search", "Priority email alerts"].map((item) => (
-                    <div key={item} className="flex items-center gap-3">
-                      <Check className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                      <span className="text-stone-700 text-sm">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <a href="https://app.capturepilot.com/signup" target="_blank" rel="noopener noreferrer"
-                  className="block w-full text-center py-3 px-4 rounded-xl bg-emerald-500 text-white text-sm font-medium hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/20">
-                  Start Free Trial
-                </a>
-                <p className="text-stone-400 text-[10px] text-center mt-3">30-day free trial. Cancel anytime.</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* SLIDE 18 removed — pricing merged into slide 17 */}
 
         {/* =================================================================
             SLIDE 19 — TRUST (dark)
