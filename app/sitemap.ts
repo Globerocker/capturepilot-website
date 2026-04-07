@@ -50,6 +50,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/resources/bid-checklist`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/resources/proposal-template`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
 
+    // Comparison index + additional pages
+    { url: `${baseUrl}/vs`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/vs/sweetspot`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/vs/govdash`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/vs/ezgovopps`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+
+    // Quick Checker + Blog index
+    { url: `${baseUrl}/check`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+
     // Walkthrough — lower priority (embeddable)
     { url: `${baseUrl}/walkthrough`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
   ];

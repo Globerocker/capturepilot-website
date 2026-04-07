@@ -581,7 +581,7 @@ export default function VsGovDashPage() {
                 { label: "Smart Matching", href: "/features/matching", icon: Zap },
                 { label: "AI Proposals", href: "/features/proposals", icon: FileText },
                 { label: "Capability Statements", href: "/features/capability-statement", icon: BadgeCheck },
-                { label: "Pricing", href: "/#pricing", icon: DollarSign },
+                { label: "Pricing", href: "/pricing", icon: DollarSign },
               ].map((link, i) => {
                 const Icon = link.icon;
                 return (

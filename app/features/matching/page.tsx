@@ -735,7 +735,7 @@ export default function MatchingFeaturePage() {
                 Start Free Trial <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/#pricing"
+                href="/pricing"
                 className="inline-flex items-center justify-center gap-2 border border-stone-300 text-stone-600 px-8 py-4 rounded-full font-bold text-base hover:border-stone-400 hover:text-black transition-colors"
               >
                 View Pricing <ChevronRight className="w-4 h-4" />

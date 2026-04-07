@@ -648,7 +648,7 @@ export default function ProposalsPage() {
               Start Free — 30 Days <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/#pricing"
+              href="/pricing"
               className="text-stone-600 px-8 py-4 rounded-full text-base font-bold hover:bg-stone-50 transition-colors"
             >
               View Pricing

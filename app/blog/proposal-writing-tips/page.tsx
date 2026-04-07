@@ -657,7 +657,7 @@ export default function ProposalWritingTipsPage() {
             Our AI reads the solicitation, maps your company profile to each evaluation criterion,
             and generates a structured first draft in minutes. Then you customize it with your real
             experience and metrics.{" "}
-            <Link href="/features/proposal-writer" className="font-bold underline hover:no-underline">
+            <Link href="/features/proposals" className="font-bold underline hover:no-underline">
               Try the Proposal Writer
             </Link>.
           </Callout>

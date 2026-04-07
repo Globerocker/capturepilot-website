@@ -10,6 +10,11 @@ export const metadata: Metadata = {
     description: "Practical guides for small businesses breaking into federal contracting.",
     url: "https://capturepilot.com/blog",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog — Government Contracting Guides & Strategies",
+    description: "Practical guides for small businesses breaking into federal contracting.",
+  },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
