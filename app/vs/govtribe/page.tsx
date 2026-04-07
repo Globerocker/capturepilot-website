@@ -55,7 +55,7 @@ interface ComparisonRow {
 const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "AI Proposal Writer", cpStatus: "yes", cpLabel: "Included", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Capability Statement Builder (Voice)", cpStatus: "yes", cpLabel: "Voice-powered", otherStatus: "no", otherLabel: "Not available" },
-  { feature: "Smart Matching (140-point)", cpStatus: "yes", cpLabel: "140-point scoring", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Smart Matching (proprietary multi-factor)", cpStatus: "yes", cpLabel: "proprietary multi-factor scoring", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Quick Eligibility Checker", cpStatus: "yes", cpLabel: "Instant check", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Market Intelligence", cpStatus: "yes", cpLabel: "Full intel suite", otherStatus: "partial", otherLabel: "Basic search data" },
   { feature: "Deal Pipeline (Kanban)", cpStatus: "yes", cpLabel: "Built-in", otherStatus: "no", otherLabel: "Not available" },
@@ -77,7 +77,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
 
 const PIPELINE_STEPS = [
   { icon: Search, label: "Find Opportunities", cp: "AI-matched to your profile", other: "Manual keyword search" },
-  { icon: Crosshair, label: "Qualify & Score", cp: "140-point scoring engine", other: "Not available" },
+  { icon: Crosshair, label: "Qualify & Score", cp: "proprietary multi-factor scoring engine", other: "Not available" },
   { icon: PenTool, label: "Write Proposals", cp: "AI-generated proposals", other: "Not available" },
   { icon: Trophy, label: "Win Contracts", cp: "Full capture support", other: "You are on your own" },
 ];
@@ -171,7 +171,7 @@ export default function VsGovTribePage() {
       <title>CapturePilot vs GovTribe — Search vs Full Capture Platform | CapturePilot</title>
       <meta
         name="description"
-        content="Compare CapturePilot vs GovTribe. GovTribe helps you search. CapturePilot helps you win. AI proposals, 140-point matching, deal pipeline, and consulting support included."
+        content="Compare CapturePilot vs GovTribe. GovTribe helps you search. CapturePilot helps you win. AI proposals, proprietary multi-factor matching, deal pipeline, and consulting support included."
       />
       <meta name="keywords" content="GovTribe alternative, GovTribe vs CapturePilot, government contract search, GovCon capture tools, federal contracting platform" />
       <meta property="og:title" content="CapturePilot vs GovTribe — Stop Searching. Start Winning." />

@@ -49,7 +49,7 @@ interface ComparisonRow {
 const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "AI Proposal Writer", cpStatus: "yes", cpLabel: "Included", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Capability Statement Builder (Voice)", cpStatus: "yes", cpLabel: "Voice-powered", otherStatus: "no", otherLabel: "Not available" },
-  { feature: "Smart Matching (140-point)", cpStatus: "yes", cpLabel: "140-point scoring", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Smart Matching (proprietary multi-factor)", cpStatus: "yes", cpLabel: "proprietary multi-factor scoring", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Quick Eligibility Checker", cpStatus: "yes", cpLabel: "Instant check", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Market Intelligence", cpStatus: "yes", cpLabel: "Full intel suite", otherStatus: "yes", otherLabel: "Analyst reports" },
   { feature: "Deal Pipeline (Kanban)", cpStatus: "yes", cpLabel: "Built-in", otherStatus: "no", otherLabel: "Not available" },
@@ -73,7 +73,7 @@ const CAPTURE_FEATURES = [
   {
     icon: Target,
     title: "Smart Matching Algorithm",
-    desc: "140-point scoring across NAICS, PSC, set-asides, geography, past performance, and contract value. BGOV gives you a search bar.",
+    desc: "proprietary multi-factor scoring across NAICS, PSC, set-asides, geography, past performance, and contract value. BGOV gives you a search bar.",
     href: "/features/matching",
   },
   {

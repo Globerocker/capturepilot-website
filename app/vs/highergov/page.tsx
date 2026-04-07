@@ -51,7 +51,7 @@ interface ComparisonRow {
 const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "AI Proposal Writer", cpStatus: "yes", cpLabel: "Included", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Capability Statement Builder (Voice)", cpStatus: "yes", cpLabel: "Voice-powered", otherStatus: "no", otherLabel: "Not available" },
-  { feature: "Smart Matching (140-point)", cpStatus: "yes", cpLabel: "140-point scoring", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Smart Matching (proprietary multi-factor)", cpStatus: "yes", cpLabel: "proprietary multi-factor scoring", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Quick Eligibility Checker", cpStatus: "yes", cpLabel: "Instant check", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Market Intelligence", cpStatus: "yes", cpLabel: "Full intel suite", otherStatus: "partial", otherLabel: "Basic search data" },
   { feature: "Deal Pipeline (Kanban)", cpStatus: "yes", cpLabel: "Built-in", otherStatus: "no", otherLabel: "Not available" },
@@ -406,7 +406,7 @@ export default function VsHigherGov() {
                 <p className="text-sm text-stone-400 mb-6">30-day free trial &middot; No contract</p>
                 <ul className="space-y-3 mb-8">
                   {[
-                    "AI opportunity matching (140-point scoring)",
+                    "AI opportunity matching (proprietary multi-factor scoring)",
                     "AI Proposal Writer",
                     "Capability Statement Builder (voice)",
                     "Deal Pipeline & CRM",

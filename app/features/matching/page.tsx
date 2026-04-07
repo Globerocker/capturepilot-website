@@ -104,7 +104,8 @@ const SCORING_FACTORS = [
   {
     icon: Target,
     title: "NAICS Matching",
-    weight: 25,
+    weight: 90,
+    label: "Critical",
     color: "bg-emerald-500",
     description:
       "Matches your registered NAICS codes against opportunity requirements. Supports primary and secondary code alignment.",
@@ -112,7 +113,8 @@ const SCORING_FACTORS = [
   {
     icon: ShieldCheck,
     title: "Set-Aside Matching",
-    weight: 20,
+    weight: 85,
+    label: "Critical",
     color: "bg-sky-500",
     description:
       "Identifies opportunities reserved for your business classifications: 8(a), SDVOSB, HUBZone, WOSB, and more.",
@@ -120,7 +122,8 @@ const SCORING_FACTORS = [
   {
     icon: Award,
     title: "Past Performance",
-    weight: 20,
+    weight: 80,
+    label: "High",
     color: "bg-violet-500",
     description:
       "Evaluates notice types, incumbent data, and Sources Sought signals to gauge your competitive position.",
@@ -128,7 +131,8 @@ const SCORING_FACTORS = [
   {
     icon: MapPin,
     title: "Geographic Matching",
-    weight: 15,
+    weight: 70,
+    label: "High",
     color: "bg-amber-500",
     description:
       "Scores proximity to the place of performance using your registered office locations and service areas.",
@@ -136,7 +140,8 @@ const SCORING_FACTORS = [
   {
     icon: DollarSign,
     title: "Value Fit",
-    weight: 15,
+    weight: 65,
+    label: "Medium",
     color: "bg-pink-500",
     description:
       "Compares contract value against your revenue history and bonding capacity to ensure realistic pursuit targets.",
@@ -144,7 +149,8 @@ const SCORING_FACTORS = [
   {
     icon: Clock,
     title: "Deadline Scoring",
-    weight: 10,
+    weight: 55,
+    label: "Medium",
     color: "bg-stone-500",
     description:
       "Prioritizes opportunities with enough lead time for quality proposal development. Early-stage notices score higher.",
@@ -173,9 +179,9 @@ const TIMELINE_STEPS = [
   {
     icon: Brain,
     title: "Smart Scoring",
-    subtitle: "140-point algorithm",
+    subtitle: "proprietary multi-factor algorithm",
     description:
-      "Each opportunity is scored against your profile using six weighted factors and bonus signals like incumbent risk assessment, notice type priority, and past performance indicators.",
+      "Each opportunity is scored against your profile using our proprietary multi-factor algorithm with bonus signals like incumbent risk assessment, notice type priority, and past performance indicators.",
   },
   {
     icon: ListOrdered,
@@ -297,7 +303,7 @@ export default function MatchingFeaturePage() {
                 <span className="gradient-text">Start Matching.</span>
               </h1>
               <p className="text-lg sm:text-xl text-stone-500 leading-relaxed animate-fade-in-up animate-delay-200">
-                Our 140-point scoring algorithm analyzes 40,000+ federal
+                Our proprietary multi-factor scoring algorithm analyzes 40,000+ federal
                 opportunities daily and surfaces the contracts you can actually
                 win &mdash; ranked, scored, and ready to pursue.
               </p>
@@ -520,7 +526,7 @@ export default function MatchingFeaturePage() {
                   {[
                     "Automated daily scans across all SAM.gov notice types",
                     "Only see opportunities matched to YOUR profile",
-                    "140-point scoring with HOT/WARM/COLD ranking",
+                    "proprietary multi-factor scoring with HOT/WARM/COLD ranking",
                     "Sources Sought flagged with +20 priority bonus",
                     "Incumbent identification via award notice analysis",
                     "Focus proposals only on high-probability wins",
@@ -651,8 +657,8 @@ export default function MatchingFeaturePage() {
                       <div className="w-11 h-11 rounded-xl bg-stone-50 flex items-center justify-center">
                         <Icon className="w-5 h-5 text-stone-600" />
                       </div>
-                      <span className="text-2xl font-extrabold text-stone-200">
-                        {factor.weight}%
+                      <span className="text-sm font-bold text-emerald-600 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full">
+                        {factor.label}
                       </span>
                     </div>
                     <h3 className="font-bold text-stone-800 mb-1">
@@ -667,7 +673,7 @@ export default function MatchingFeaturePage() {
                         className={`h-full rounded-full ${factor.color} score-bar-fill`}
                         style={
                           {
-                            "--bar-width": `${factor.weight * 4}%`,
+                            "--bar-width": `${factor.weight}%`,
                             animationDelay: `${0.8 + i * 0.15}s`,
                           } as React.CSSProperties
                         }

@@ -178,7 +178,7 @@ export default function Homepage() {
 
               <p className="text-lg sm:text-xl text-stone-400 max-w-xl mb-10 animate-fade-in-up animate-delay-200 leading-relaxed">
                 CapturePilot scans 40,000+ federal opportunities daily and matches them to your business
-                using 6 scoring factors. Stop searching SAM.gov manually. Start winning contracts.
+                with our proprietary matching engine. Stop searching SAM.gov manually. Start winning contracts.
               </p>
 
               <div className="flex flex-col sm:flex-row items-start gap-4 animate-fade-in-up animate-delay-300">
@@ -401,17 +401,17 @@ export default function Homepage() {
                   <span className="text-emerald-400">Scored & Ranked</span>
                 </h2>
                 <p className="text-stone-400 text-lg leading-relaxed mb-8">
-                  Our engine scores every federal opportunity against your profile using 6 weighted factors.
+                  Our proprietary engine scores every federal opportunity against your profile using multiple weighted factors.
                   HOT matches surface first so you never waste time on opportunities you can not win.
                 </p>
                 <ul className="space-y-4 mb-10">
                   {[
-                    "NAICS code matching (25% weight)",
-                    "Set-aside & certification alignment (20%)",
-                    "Geographic proximity scoring (15%)",
-                    "Contract value fit analysis (15%)",
-                    "PSC product/service matching (15%)",
-                    "Deadline urgency scoring (10%)",
+                    "Industry code & service matching",
+                    "Set-aside & certification alignment",
+                    "Geographic proximity analysis",
+                    "Contract value fit scoring",
+                    "Past performance relevance",
+                    "Deadline & urgency prioritization",
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-stone-300">
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
@@ -685,7 +685,7 @@ export default function Homepage() {
               {
                 step: "2",
                 title: "See Your Matches",
-                desc: "We score every federal opportunity against your profile using 6 factors. HOT, WARM, and COLD — so you know where to focus.",
+                desc: "We score every federal opportunity against your profile using our proprietary algorithm. HOT, WARM, and COLD — so you know where to focus.",
                 icon: Target,
                 color: "bg-emerald-50 text-emerald-600 border-emerald-200",
               },
@@ -1059,6 +1059,55 @@ export default function Homepage() {
       </section>
 
       {/* ================================================================ */}
+      {/* 12.5 BACKED BY AMERICURIAL                                       */}
+      {/* ================================================================ */}
+      <section className="py-20 px-6 bg-white border-t border-stone-100">
+        <div className="max-w-5xl mx-auto">
+          <Reveal>
+            <div className="bg-stone-50 rounded-3xl p-8 sm:p-12 border border-stone-200 text-center">
+              <p className="text-sm font-bold text-emerald-600 uppercase tracking-widest mb-4">Built & Backed By</p>
+              <h2 className="text-2xl sm:text-3xl font-black mb-4">
+                You&apos;re Not Just Getting Software.<br />
+                You&apos;re Getting a Team.
+              </h2>
+              <p className="text-stone-500 max-w-2xl mx-auto mb-8 leading-relaxed">
+                CapturePilot is built by{" "}
+                <Link href="https://www.americurial.com" target="_blank" className="text-emerald-600 font-bold hover:underline">
+                  Americurial LLC
+                </Link>
+                , a veteran-owned digital agency. We&apos;ve navigated the federal contracting maze ourselves —
+                and built CapturePilot so you don&apos;t have to do it alone.
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8">
+                {[
+                  { icon: Shield, label: "Veteran-Owned" },
+                  { icon: Users, label: "Real Support Team" },
+                  { icon: Briefcase, label: "GovCon Expertise" },
+                  { icon: Phone, label: "Always Available" },
+                ].map((item, i) => (
+                  <div key={i} className="flex flex-col items-center gap-2">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center">
+                      <item.icon className="w-5 h-5 text-emerald-600" />
+                    </div>
+                    <span className="text-sm font-semibold text-stone-700">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link href="/process" className="inline-flex items-center gap-2 text-emerald-600 font-bold hover:text-emerald-700 transition-colors">
+                  See Our Process <ArrowRight className="w-4 h-4" />
+                </Link>
+                <span className="text-stone-300 hidden sm:inline">|</span>
+                <Link href="https://www.americurial.com" target="_blank" className="inline-flex items-center gap-2 text-stone-500 font-bold hover:text-stone-700 transition-colors">
+                  Visit Americurial.com <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ================================================================ */}
       {/* 13. FINAL CTA                                                    */}
       {/* ================================================================ */}
       <section className="py-28 px-6 bg-stone-950 text-white relative overflow-hidden">
@@ -1157,7 +1206,16 @@ export default function Homepage() {
             </div>
           </div>
           <div className="border-t border-stone-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-xs">&copy; {new Date().getFullYear()} CapturePilot. All rights reserved.</p>
+            <div className="text-xs space-y-1">
+              <p>&copy; {new Date().getFullYear()} CapturePilot. All rights reserved.</p>
+              <p className="text-stone-500">
+                A product by{" "}
+                <Link href="https://www.americurial.com" target="_blank" className="text-stone-400 hover:text-white transition-colors underline underline-offset-2">
+                  Americurial LLC
+                </Link>
+                {" "}— Veteran-Owned Digital Agency
+              </p>
+            </div>
             <div className="flex items-center gap-6 text-xs">
               <Link href={LOGIN_URL} className="hover:text-white transition-colors">Login</Link>
               <Link href={SIGNUP_URL} className="hover:text-white transition-colors">Sign Up</Link>

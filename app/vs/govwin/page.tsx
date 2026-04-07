@@ -54,7 +54,7 @@ interface ComparisonRow {
 const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "AI Proposal Writer", cpStatus: "yes", cpLabel: "Included", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Capability Statement Builder (Voice)", cpStatus: "yes", cpLabel: "Voice-powered", otherStatus: "no", otherLabel: "Not available" },
-  { feature: "Smart Matching (140-point)", cpStatus: "yes", cpLabel: "140-point scoring", otherStatus: "no", otherLabel: "Not available" },
+  { feature: "Smart Matching (proprietary multi-factor)", cpStatus: "yes", cpLabel: "proprietary multi-factor scoring", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Quick Eligibility Checker", cpStatus: "yes", cpLabel: "Instant check", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Market Intelligence", cpStatus: "yes", cpLabel: "Included", otherStatus: "yes", otherLabel: "Analyst-curated" },
   { feature: "Deal Pipeline (Kanban)", cpStatus: "yes", cpLabel: "Built-in", otherStatus: "no", otherLabel: "Not available" },
@@ -79,7 +79,7 @@ const WHY_SWITCH_CARDS = [
     icon: Brain,
     title: "AI-Powered, Not Just a Database",
     description:
-      "GovWin gives you a massive database to search through manually. CapturePilot uses a 140-point algorithm to score every opportunity against your profile and surfaces only what you can win.",
+      "GovWin gives you a massive database to search through manually. CapturePilot uses a proprietary multi-factor algorithm to score every opportunity against your profile and surfaces only what you can win.",
   },
   {
     icon: FileText,

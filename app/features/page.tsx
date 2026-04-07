@@ -307,7 +307,7 @@ export default function FeaturesPage() {
                 Hot matches surface automatically so you never miss a winnable deal.
               </p>
               <ul className="space-y-3 mb-8">
-                {["140-point scoring algorithm", "HOT / WARM / COLD classification", "Daily re-scoring as opportunities update"].map((item) => (
+                {["proprietary multi-factor scoring algorithm", "HOT / WARM / COLD classification", "Daily re-scoring as opportunities update"].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-stone-600 text-sm">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                     {item}

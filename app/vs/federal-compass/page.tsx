@@ -85,7 +85,7 @@ interface ComparisonRow {
 const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "AI Proposal Writer", capturepilot: "Included", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
   { feature: "Capability Statement Builder", capturepilot: "Voice input + AI", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
-  { feature: "Smart Matching Algorithm", capturepilot: "140-point scoring", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
+  { feature: "Smart Matching Algorithm", capturepilot: "proprietary multi-factor scoring", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
   { feature: "Quick Company Checker", capturepilot: "Free eligibility check", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
   { feature: "Market Intelligence", capturepilot: "USASpending data", cpStatus: "yes", competitor: "Agency spend analysis", compStatus: "yes" },
   { feature: "Deal Pipeline (Kanban CRM)", capturepilot: "Built-in", cpStatus: "yes", competitor: "Not available", compStatus: "no" },

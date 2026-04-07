@@ -46,8 +46,15 @@ export default function SiteFooter() {
             </div>
           </div>
         </div>
-        <div className="border-t border-stone-800 pt-6 text-xs text-center">
-          &copy; {new Date().getFullYear()} CapturePilot. All rights reserved.
+        <div className="border-t border-stone-800 pt-6 text-xs text-center space-y-1">
+          <p>&copy; {new Date().getFullYear()} CapturePilot. All rights reserved.</p>
+          <p className="text-stone-500">
+            A product by{" "}
+            <Link href="https://www.americurial.com" target="_blank" className="text-stone-400 hover:text-white transition-colors underline underline-offset-2">
+              Americurial LLC
+            </Link>
+            {" "}— Veteran-Owned Digital Agency
+          </p>
         </div>
       </div>
     </footer>

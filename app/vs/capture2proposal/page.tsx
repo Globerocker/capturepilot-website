@@ -89,7 +89,7 @@ interface ComparisonRow {
 const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "AI Proposal Writer", capturepilot: "AI writes proposals", cpStatus: "yes", competitor: "Manages proposals only", compStatus: "no" },
   { feature: "Capability Statement Builder", capturepilot: "Voice input + AI", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
-  { feature: "Smart Matching Algorithm", capturepilot: "140-point scoring", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
+  { feature: "Smart Matching Algorithm", capturepilot: "proprietary multi-factor scoring", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
   { feature: "Quick Company Checker", capturepilot: "Free eligibility check", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
   { feature: "Market Intelligence", capturepilot: "USASpending data", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
   { feature: "Deal Pipeline (Kanban CRM)", capturepilot: "Built-in Kanban", cpStatus: "yes", competitor: "Proposal workflow", compStatus: "yes" },
@@ -124,7 +124,7 @@ const PIPELINE_STEPS = [
     step: 2,
     icon: Target,
     label: "Qualify",
-    description: "140-point algorithm scores every opportunity. Eligibility checks match you to set-asides",
+    description: "proprietary multi-factor algorithm scores every opportunity. Eligibility checks match you to set-asides",
     cp: true,
     c2p: false,
   },

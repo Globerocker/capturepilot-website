@@ -54,7 +54,7 @@ interface ComparisonRow {
 const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "AI Proposal Writer", samStatus: "no", samLabel: "Not available", cpStatus: "yes", cpLabel: "Included" },
   { feature: "Capability Statement Builder (Voice)", samStatus: "no", samLabel: "Not available", cpStatus: "yes", cpLabel: "Voice-powered" },
-  { feature: "Smart Matching (140-point)", samStatus: "no", samLabel: "Manual keyword search", cpStatus: "yes", cpLabel: "Auto-matched to profile" },
+  { feature: "Smart Matching (proprietary multi-factor)", samStatus: "no", samLabel: "Manual keyword search", cpStatus: "yes", cpLabel: "Auto-matched to profile" },
   { feature: "Quick Eligibility Checker", samStatus: "no", samLabel: "Manual research", cpStatus: "yes", cpLabel: "Instant verification" },
   { feature: "Market Intelligence", samStatus: "no", samLabel: "Not available", cpStatus: "yes", cpLabel: "Full intel suite" },
   { feature: "Deal Pipeline (Kanban)", samStatus: "no", samLabel: "Not available", cpStatus: "yes", cpLabel: "Built-in" },
@@ -311,7 +311,7 @@ export default function VsSamGovPage() {
       <title>CapturePilot vs SAM.gov Manual Search — Smart Matching on Top of SAM | CapturePilot</title>
       <meta
         name="description"
-        content="SAM.gov has the data but terrible UX. CapturePilot adds 140-point scoring, smart matching, AI proposals, and eligibility checks on top of the same SAM.gov data. Save 19+ hours per week."
+        content="SAM.gov has the data but terrible UX. CapturePilot adds proprietary multi-factor scoring, smart matching, AI proposals, and eligibility checks on top of the same SAM.gov data. Save 19+ hours per week."
       />
       <meta name="keywords" content="SAM.gov alternative, SAM.gov search tool, government contract search, SAM.gov matching, federal contracting dashboard, SAM.gov UX, GovCon tools" />
       <meta property="og:title" content="CapturePilot vs SAM.gov — The Intelligence Layer SAM.gov Is Missing" />
@@ -529,7 +529,7 @@ export default function VsSamGovPage() {
                 </p>
                 <p>
                   What CapturePilot does is sit <strong className="text-white">on top</strong> of
-                  SAM.gov. We ingest the same data every night, then apply a 140-point scoring
+                  SAM.gov. We ingest the same data every night, then apply a proprietary multi-factor scoring
                   algorithm, match opportunities to your profile, and give you an intelligent
                   dashboard instead of a government search page from 2004.
                 </p>
@@ -656,7 +656,7 @@ export default function VsSamGovPage() {
             <div className="grid sm:grid-cols-4 gap-4 mt-8">
               {[
                 { icon: Timer, label: "SAM.gov auto-ingested nightly", desc: "37K+ opps scored" },
-                { icon: Target, label: "Matched to your NAICS & certs", desc: "140-point scoring" },
+                { icon: Target, label: "Matched to your NAICS & certs", desc: "proprietary multi-factor scoring" },
                 { icon: Bell, label: "Smart alerts for HOT matches", desc: "Never miss a deadline" },
                 { icon: Mic, label: "Build cap statements by voice", desc: "Talk, don't type" },
               ].map((card, i) => {
