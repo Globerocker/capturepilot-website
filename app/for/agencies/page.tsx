@@ -8,7 +8,7 @@ import SiteNav from "../../../components/SiteNav";
 import SiteFooter from "../../../components/SiteFooter";
 
 const APP_URL = "https://app.capturepilot.com";
-const CALENDLY_URL = "https://calendly.com/capturepilot/strategy-call";
+const CALENDLY_URL = "https://meetings-na2.hubspot.com/americurial/intro-call";
 
 export const metadata: Metadata = {
   title: "CapturePilot for Government Contracting Agencies & Consultants",

@@ -29,7 +29,7 @@ const APP_URL = "https://app.capturepilot.com";
 const CHECK_URL = `${APP_URL}/check`;
 const SIGNUP_URL = `${APP_URL}/signup`;
 const LOGIN_URL = `${APP_URL}/login`;
-const CALENDLY_URL = "https://calendly.com/capturepilot/strategy-call";
+const CALENDLY_URL = "https://meetings-na2.hubspot.com/americurial/intro-call";
 
 /* ------------------------------------------------------------------ */
 /*  FAQ Data                                                           */
@@ -205,7 +205,7 @@ export default function DemoPage() {
             </div>
             <div className="bg-white rounded-2xl border border-stone-200 shadow-lg overflow-hidden">
               <iframe
-                src="https://calendly.com/capturepilot/strategy-call"
+                src="https://meetings-na2.hubspot.com/americurial/intro-call"
                 className="w-full border-0 rounded-2xl"
                 style={{ height: "700px" }}
                 title="Book a Demo with CapturePilot"

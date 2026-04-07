@@ -39,7 +39,7 @@ import {
 const APP_URL = "https://app.capturepilot.com";
 const SIGNUP_URL = `${APP_URL}/signup`;
 const CHECK_URL = `${APP_URL}/check`;
-const CALENDLY_URL = "https://calendly.com/capturepilot/strategy-call";
+const CALENDLY_URL = "https://meetings-na2.hubspot.com/americurial/intro-call";
 
 /* ------------------------------------------------------------------ */
 /*  Pricing data                                                       */

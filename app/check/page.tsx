@@ -39,7 +39,7 @@ import { useState, useEffect, useRef } from "react";
 const APP_URL = "https://app.capturepilot.com";
 const CHECK_URL = `${APP_URL}/check`;
 const SIGNUP_URL = `${APP_URL}/signup`;
-const CALENDLY_URL = "https://calendly.com/capturepilot/strategy-call";
+const CALENDLY_URL = "https://meetings-na2.hubspot.com/americurial/intro-call";
 
 /* ------------------------------------------------------------------ */
 /*  FAQ Data                                                           */

@@ -4,7 +4,7 @@ import Image from "next/image";
 const APP_URL = "https://app.capturepilot.com";
 const CHECK_URL = `${APP_URL}/check`;
 const LOGIN_URL = `${APP_URL}/login`;
-const CALENDLY_URL = "https://calendly.com/capturepilot/strategy-call";
+const CALENDLY_URL = "https://meetings-na2.hubspot.com/americurial/intro-call";
 
 export default function SiteFooter() {
   return (
