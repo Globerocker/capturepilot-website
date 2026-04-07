@@ -279,9 +279,9 @@ export default function MasterPresentationPage() {
                   icon: Clock,
                 },
                 {
-                  stat: "$0",
-                  label: "Cost to Register on SAM.gov",
-                  icon: DollarSign,
+                  stat: "90%",
+                  label: "Of Qualified Contractors Never Enter",
+                  icon: AlertCircle,
                 },
               ].map((item, i) => (
                 <div
@@ -391,7 +391,7 @@ export default function MasterPresentationPage() {
                   {[
                     "Opportunity sourcing & qualification",
                     "Capture strategy & positioning",
-                    "Agency communications (email & fax)",
+                    "Agency communications (email, fax & phone)",
                     "Proposal support & compliance",
                     "Competitive positioning",
                     "Pipeline management",
@@ -540,45 +540,7 @@ export default function MasterPresentationPage() {
             </div>
 
             {/* Timeline bar */}
-            <div className="mt-12 bg-stone-900 border border-stone-800 rounded-xl p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <Clock className="w-4 h-4 text-emerald-500" />
-                <p className="text-stone-400 text-sm font-medium">
-                  Engagement Timeline
-                </p>
-              </div>
-              <div className="h-3 bg-stone-800 rounded-full overflow-hidden flex">
-                <div
-                  className="h-full bg-blue-500/60 rounded-l-full"
-                  style={{ width: "25%" }}
-                />
-                <div
-                  className="h-full bg-amber-500/60"
-                  style={{ width: "25%" }}
-                />
-                <div
-                  className="h-full bg-emerald-500/60"
-                  style={{ width: "25%" }}
-                />
-                <div
-                  className="h-full bg-emerald-400/60 rounded-r-full"
-                  style={{ width: "25%" }}
-                />
-              </div>
-              <div className="flex justify-between mt-2">
-                <span className="text-stone-600 text-xs font-mono">
-                  Month 1
-                </span>
-                <span className="text-stone-600 text-xs font-mono">
-                  Month 3
-                </span>
-                <span className="text-stone-600 text-xs font-mono">
-                  Month 6
-                </span>
-                <span className="text-stone-600 text-xs font-mono">
-                  Month 12+
-                </span>
-              </div>
+            <div className="mt-12">
             </div>
           </div>
         </section>
@@ -682,7 +644,7 @@ export default function MasterPresentationPage() {
                 </div>
 
                 <div className="bg-emerald-500/10 rounded-xl p-6 text-center mb-4">
-                  <p className="text-stone-400 text-sm mb-1">Annual Cost</p>
+                  <p className="text-stone-400 text-sm mb-1">Annual Investment</p>
                   <p className="stat-number text-emerald-500 text-4xl font-light">
                     $42K
                     <span className="text-lg text-stone-500">/year</span>
