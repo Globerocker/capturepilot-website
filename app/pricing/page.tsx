@@ -357,6 +357,7 @@ export default function PricingPage() {
                 <div className="mb-6">
                   <h3 className="text-lg font-black text-stone-900 mb-2">Consulting</h3>
                   <div className="flex items-baseline gap-1 mb-1">
+                    <span className="text-sm font-bold text-stone-500">From</span>
                     <span
                       className="text-4xl font-black text-stone-900 transition-all duration-300"
                       key={consultPrice}
@@ -370,14 +371,17 @@ export default function PricingPage() {
                   </p>
                   {yearly && (
                     <p className="text-xs text-emerald-600 font-medium mb-2">
-                      Billed ${consultAnnualTotal.toLocaleString()}/yr &mdash; save ${consultSavings.toLocaleString()}
+                      Billed from ${consultAnnualTotal.toLocaleString()}/yr &mdash; save ${consultSavings.toLocaleString()}
                     </p>
                   )}
                   {!yearly && (
                     <p className="text-xs text-stone-400 mb-2">
-                      or ${consultYearly.toLocaleString()}/mo billed yearly (save ${consultSavings.toLocaleString()}/yr)
+                      or from ${consultYearly.toLocaleString()}/mo billed yearly (save ${consultSavings.toLocaleString()}/yr)
                     </p>
                   )}
+                  <p className="text-xs text-stone-400 italic mb-1">
+                    Base retainer scales with company size and capture effort. Exact pricing determined during your qualification call.
+                  </p>
                   <p className="text-sm text-stone-600 leading-relaxed">
                     We only take clients we can actually win deals for. Book a 15-30 minute qualification call to see if we&apos;re a fit.
                   </p>
