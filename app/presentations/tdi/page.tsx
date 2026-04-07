@@ -346,9 +346,9 @@ export default function TDIPresentationPage() {
                 <p className="text-stone-600 text-xs mt-2">In MN, WI, IA, NE, AK</p>
               </div>
               <div className="bg-stone-900 border border-stone-800 rounded-2xl p-8 text-center">
-                <p className="text-6xl md:text-7xl font-light text-white mb-3">$1.2M</p>
+                <p className="text-6xl md:text-7xl font-light text-white mb-3">$500K+</p>
                 <p className="text-stone-400 text-sm">Average Deal Size</p>
-                <p className="text-stone-600 text-xs mt-2">Estimated contract value</p>
+                <p className="text-stone-600 text-xs mt-2">Varies by contract scope</p>
               </div>
               <div className="bg-stone-900 border border-stone-800 rounded-2xl p-8 text-center">
                 <p className="text-6xl md:text-7xl font-light text-white mb-3">28</p>
@@ -389,18 +389,18 @@ export default function TDIPresentationPage() {
                   <div className="space-y-4">
                     <div>
                       <p className="text-stone-500 text-xs uppercase tracking-wider mb-1">Total Pipeline Value</p>
-                      <p className="text-3xl font-light text-white">$93.6M</p>
-                      <p className="text-stone-600 text-xs">78 opportunities × $1.2M avg</p>
+                      <p className="text-3xl font-light text-white">$39M+</p>
+                      <p className="text-stone-600 text-xs">78 opportunities × $500K+ avg</p>
                     </div>
                     <div>
-                      <p className="text-stone-500 text-xs uppercase tracking-wider mb-1">Conservative Win Rate (5%)</p>
-                      <p className="text-3xl font-light text-emerald-500">$4.68M</p>
-                      <p className="text-stone-600 text-xs">~4 contracts in Year 1</p>
+                      <p className="text-stone-500 text-xs uppercase tracking-wider mb-1">Example Scenario (5% win rate)</p>
+                      <p className="text-3xl font-light text-emerald-500">$1.95M+</p>
+                      <p className="text-stone-600 text-xs">~3-4 contracts in Year 1</p>
                     </div>
-                    <div>
-                      <p className="text-stone-500 text-xs uppercase tracking-wider mb-1">Realistic Win Rate (10-15%)</p>
-                      <p className="text-3xl font-light text-emerald-400">$9.4M – $14M</p>
-                      <p className="text-stone-600 text-xs">With early Sources Sought engagement</p>
+                    <div className="pt-3 border-t border-stone-800">
+                      <p className="text-stone-600 text-[10px] italic leading-relaxed">
+                        * Win rates are illustrative examples only, not guarantees. Actual results depend on proposal quality, competition, and agency decisions.
+                      </p>
                     </div>
                   </div>
                 </div>
