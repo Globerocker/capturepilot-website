@@ -28,7 +28,7 @@ import {
   BarChart3,
 } from "lucide-react";
 
-const TOTAL_SLIDES = 13;
+const TOTAL_SLIDES = 11;
 
 export default function TDIPresentationPage() {
   const [currentSlide, setCurrentSlide] = useState(1);
@@ -489,28 +489,39 @@ export default function TDIPresentationPage() {
                 </div>
               </div>
 
-              {/* What's Missing */}
-              <div className="bg-stone-900 border border-red-500/20 rounded-2xl p-8">
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="w-3 h-3 rounded-full bg-red-400" />
-                  <h3 className="text-red-400 text-lg font-medium tracking-wide">
-                    What&apos;s Missing
+              {/* We Fill The Gap */}
+              <div className="bg-stone-900 border border-emerald-500/30 rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-3 h-3 rounded-full bg-emerald-500" />
+                  <h3 className="text-emerald-400 text-lg font-medium tracking-wide">
+                    We Fill The Gap
                   </h3>
                 </div>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-3 mb-6">
                   {[
-                    "Capture strategy & methodology",
-                    "Proposal positioning expertise",
-                    "Agency relationship development",
-                    "Federal sales process knowledge",
-                    "SAM.gov registration & compliance",
-                    "Past performance documentation",
+                    "Opportunity sourcing & qualification",
+                    "Capture strategy & positioning",
+                    "Agency communication (email & fax)",
+                    "Proposal outline & compliance",
+                    "SAM.gov registration support",
+                    "Pipeline management",
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-3">
-                      <XCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
-                      <span className="text-stone-300 font-light">{item}</span>
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                      <span className="text-stone-300 text-sm font-light">{item}</span>
                     </div>
                   ))}
+                </div>
+                <div className="border-t border-stone-800 pt-4">
+                  <p className="text-stone-500 text-xs uppercase tracking-wider mb-3">TD&I focuses on:</p>
+                  <div className="flex flex-col gap-2">
+                    {["Technical delivery", "Pricing approval", "Contract execution"].map((item, i) => (
+                      <div key={i} className="flex items-center gap-3">
+                        <CheckCircle2 className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                        <span className="text-stone-400 text-sm font-light">{item}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -982,143 +993,7 @@ export default function TDIPresentationPage() {
           </div>
         </section>
 
-        {/* ===== SLIDE 10: Engagement Model ===== */}
-        <section
-          className="slide min-h-screen bg-stone-950 flex items-center justify-center relative"
-          style={{ scrollSnapAlign: "start" }}
-        >
-          <div className="max-w-5xl mx-auto px-8 w-full">
-            <p className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
-              Engagement Model
-            </p>
-            <h2 className="text-3xl md:text-5xl font-extralight text-white mb-4 leading-tight">
-              Simple, transparent,{" "}
-              <span className="text-emerald-500">aligned incentives.</span>
-            </h2>
-            <div className="w-20 h-px bg-emerald-500/50 mb-16" />
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  label: "Monthly Retainer",
-                  value: "$3,500",
-                  desc: "Your dedicated capture team",
-                  icon: BadgeDollarSign,
-                },
-                {
-                  label: "Success Fee",
-                  value: "5%",
-                  desc: "Only when you win contracts",
-                  icon: Award,
-                },
-                {
-                  label: "Commitment",
-                  value: "12 months",
-                  desc: "Minimum engagement period",
-                  icon: Clock,
-                },
-              ].map((card, i) => (
-                <div
-                  key={i}
-                  className="bg-stone-900 border border-stone-800 rounded-2xl p-8 text-center hover:border-emerald-500/20 transition-all"
-                >
-                  <div className="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center mx-auto mb-6">
-                    <card.icon className="w-7 h-7 text-emerald-500" />
-                  </div>
-                  <p className="text-stone-500 text-sm uppercase tracking-wider mb-3">
-                    {card.label}
-                  </p>
-                  <p className="stat-number text-5xl font-light text-emerald-500 mb-3">
-                    {card.value}
-                  </p>
-                  <p className="text-stone-400 text-sm">{card.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12 p-6 border border-stone-800 rounded-xl bg-stone-900/50">
-              <p className="text-stone-400 text-sm text-center">
-                Our success fee model means we&apos;re financially motivated to{" "}
-                <span className="text-emerald-500 font-medium">
-                  win deals for you
-                </span>
-                , not just bill hours.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ===== SLIDE 11: Division of Responsibilities ===== */}
-        <section
-          className="slide min-h-screen bg-stone-950 flex items-center justify-center relative"
-          style={{ scrollSnapAlign: "start" }}
-        >
-          <div className="max-w-5xl mx-auto px-8 w-full">
-            <p className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
-              Responsibilities
-            </p>
-            <h2 className="text-3xl md:text-5xl font-extralight text-white mb-4 leading-tight">
-              Clear ownership.{" "}
-              <span className="text-emerald-500">No confusion.</span>
-            </h2>
-            <div className="w-20 h-px bg-emerald-500/50 mb-16" />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* We Handle */}
-              <div className="bg-stone-900 border-2 border-emerald-500/30 rounded-2xl p-8">
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-emerald-500" />
-                  </div>
-                  <h3 className="text-emerald-500 text-xl font-medium">
-                    We Handle
-                  </h3>
-                </div>
-                <div className="space-y-4">
-                  {[
-                    "Opportunity sourcing & qualification",
-                    "Capture strategy development",
-                    "Agency communication (email & fax)",
-                    "Proposal outline & compliance",
-                    "Competitive positioning",
-                    "Pipeline management",
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                      <span className="text-stone-300 font-light">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* TD&I Handles */}
-              <div className="bg-stone-900 border-2 border-blue-500/30 rounded-2xl p-8">
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
-                    <Wrench className="w-5 h-5 text-blue-400" />
-                  </div>
-                  <h3 className="text-blue-400 text-xl font-medium">
-                    TD&I Handles
-                  </h3>
-                </div>
-                <div className="space-y-4">
-                  {[
-                    "Technical scope review",
-                    "Pricing approval",
-                    "Contract execution",
-                    "Performance delivery",
-                    "Final submission authorization",
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                      <span className="text-stone-300 font-light">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Slides 10+11 removed — content merged into Slide 4 (Gap) and Slide 8 (Financial) */}
 
         {/* ===== SLIDE 12: Next Steps ===== */}
         <section
