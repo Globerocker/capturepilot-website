@@ -3,11 +3,10 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import {
-  BookOpen, ChevronRight, DollarSign, Building2, Users,
-  Shield, CheckCircle2, Lightbulb, Search,
-  BarChart2, ArrowRight, Target, Hash,
-  Globe, BadgeCheck, FileText, Clock, TrendingUp, Zap,
-  MapPin, Award, Star, Layers, AlertTriangle,
+  ArrowRight, CheckCircle2, AlertTriangle, Lightbulb,
+  BookOpen, ChevronRight, Search, FileText, DollarSign,
+  Target, Zap, Building2, TrendingUp, Globe, Shield,
+  Star, Users, MapPin, Sparkles, BarChart3, Clock, Award,
 } from "lucide-react";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
@@ -17,26 +16,37 @@ const CHECK_URL = `${APP_URL}/check`;
 const SIGNUP_URL = `${APP_URL}/signup`;
 
 const TOC = [
-  { id: "opportunity-size", label: "The $637 Billion Opportunity" },
-  { id: "sam-gov-registration", label: "Start With SAM.gov Registration" },
-  { id: "searching-sam-gov", label: "How to Search SAM.gov Like a Pro" },
-  { id: "set-asides-certifications", label: "Set-Aside Programs That Give You an Edge" },
-  { id: "dollar-thresholds", label: "Dollar Thresholds Every Small Business Needs to Know" },
-  { id: "find-your-niche", label: "Narrow to Your Niche: NAICS Codes and Agencies" },
-  { id: "common-mistakes", label: "7 Mistakes That Kill First-Time Bids" },
-  { id: "use-technology", label: "Stop Searching Manually: Use Technology to Win Faster" },
+  { id: "the-opportunity", label: "The $183 Billion Opportunity" },
+  { id: "sam-gov-registration", label: "Step 1: Get Registered on SAM.gov" },
+  { id: "find-your-naics", label: "Step 2: Know Your NAICS Codes" },
+  { id: "search-sam-gov", label: "Step 3: Search SAM.gov the Right Way" },
+  { id: "set-aside-eligibility", label: "Step 4: Leverage Set-Aside Programs" },
+  { id: "beyond-sam-gov", label: "Step 5: Look Beyond SAM.gov" },
+  { id: "build-your-pipeline", label: "Step 6: Build a Systematic Pipeline" },
+  { id: "common-mistakes", label: "Mistakes That Kill New Contractors" },
 ];
 
-function Callout({ icon: Icon, color, title, children }: {
-  icon: React.ElementType; color: "emerald" | "amber" | "sky";
-  title: string; children: React.ReactNode;
+function Callout({
+  icon: Icon,
+  color,
+  title,
+  children,
+}: {
+  icon: React.ElementType;
+  color: "emerald" | "amber" | "sky";
+  title: string;
+  children: React.ReactNode;
 }) {
   const colors = {
     emerald: "bg-emerald-50 border-emerald-200 text-emerald-800",
     amber: "bg-amber-50 border-amber-200 text-amber-800",
     sky: "bg-sky-50 border-sky-200 text-sky-800",
   };
-  const iconColors = { emerald: "text-emerald-600", amber: "text-amber-600", sky: "text-sky-600" };
+  const iconColors = {
+    emerald: "text-emerald-600",
+    amber: "text-amber-600",
+    sky: "text-sky-600",
+  };
   return (
     <div className={`rounded-2xl border p-6 my-8 ${colors[color]}`}>
       <div className="flex items-center gap-2 mb-2">
@@ -48,7 +58,15 @@ function Callout({ icon: Icon, color, title, children }: {
   );
 }
 
-function SectionHeading({ id, number, title }: { id: string; number: string; title: string }) {
+function SectionHeading({
+  id,
+  number,
+  title,
+}: {
+  id: string;
+  number: string;
+  title: string;
+}) {
   return (
     <div id={id} className="scroll-mt-24 mb-6 pt-12">
       <div className="flex items-center gap-3 mb-2">
@@ -62,7 +80,6 @@ function SectionHeading({ id, number, title }: { id: string; number: string; tit
     </div>
   );
 }
-
 export default function HowToFindGovernmentContractsPage() {
   const articleRef = useRef<HTMLDivElement>(null);
 
@@ -70,9 +87,13 @@ export default function HowToFindGovernmentContractsPage() {
     const els = articleRef.current?.querySelectorAll(".animate-on-scroll");
     if (!els) return;
     const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => {
-        if (e.isIntersecting) { e.target.classList.add("animate-fade-in-up"); obs.unobserve(e.target); }
-      }),
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("animate-fade-in-up");
+            obs.unobserve(e.target);
+          }
+        }),
       { threshold: 0.1 }
     );
     els.forEach((el) => obs.observe(el));
@@ -87,34 +108,44 @@ export default function HowToFindGovernmentContractsPage() {
       <section className="pt-32 pb-16 px-6 bg-gradient-to-b from-stone-50 to-white">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-2 text-sm text-stone-500 mb-6 animate-fade-in-up">
-            <Link href="/" className="hover:text-black transition-colors">Home</Link>
+            <Link href="/" className="hover:text-black transition-colors">
+              Home
+            </Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <Link href="/blog" className="hover:text-black transition-colors">Blog</Link>
+            <Link href="/blog" className="hover:text-black transition-colors">
+              Blog
+            </Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-stone-900 font-medium">How to Find Government Contracts</span>
+            <span className="text-stone-900 font-medium">
+              How to Find Government Contracts
+            </span>
           </div>
 
           <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full px-4 py-1.5 text-sm font-medium mb-6 animate-fade-in-up">
-            <Target className="w-4 h-4" /> Getting Started
+            <Target className="w-4 h-4" /> Getting Started Guide
           </div>
 
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight leading-[1.1] mb-6 animate-fade-in-up animate-delay-100">
             How to Find Government Contracts{" "}
-            <span className="gradient-text">for Your Small Business</span>
+            <span className="gradient-text">for Your Small Business</span>{" "}
+            (2026 Guide)
           </h1>
 
           <p className="text-lg text-stone-500 max-w-2xl mb-6 animate-fade-in-up animate-delay-200">
-            Small businesses won <strong className="text-stone-700">$183.5 billion</strong> in federal prime
-            contracts in FY2024 &mdash; 28.8% of all federal contracting dollars. That share has grown four
-            years running. Here&apos;s exactly how to find your piece of it.
+            The federal government awarded $183 billion in contracts to small
+            businesses in FY2024 alone. The money is real, the process is learnable,
+            and you don&apos;t need a BD team to get started. Here&apos;s exactly
+            where to look and what to do.
           </p>
 
           <div className="flex items-center gap-4 text-sm text-stone-400 animate-fade-in-up animate-delay-300">
-            <span>By <strong className="text-stone-600">CapturePilot Team</strong></span>
+            <span>
+              By <strong className="text-stone-600">CapturePilot Team</strong>
+            </span>
             <span className="w-1 h-1 rounded-full bg-stone-300" />
-            <span>16 min read</span>
+            <span>18 min read</span>
             <span className="w-1 h-1 rounded-full bg-stone-300" />
-            <span>April 7, 2026</span>
+            <span>Updated April 2026</span>
           </div>
         </div>
       </section>
@@ -134,7 +165,9 @@ export default function HowToFindGovernmentContractsPage() {
                   href={`#${item.id}`}
                   className="flex items-center gap-2 text-sm text-stone-600 hover:text-emerald-700 transition-colors py-1"
                 >
-                  <span className="text-emerald-600 font-mono text-xs">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="text-emerald-600 font-mono text-xs">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   {item.label}
                 </a>
               ))}
@@ -142,633 +175,975 @@ export default function HowToFindGovernmentContractsPage() {
           </div>
         </div>
       </section>
-
       {/* Article Body */}
       <article ref={articleRef} className="px-6 pb-20">
         <div className="max-w-4xl mx-auto">
 
-          {/* Section 1: The $637 Billion Opportunity */}
-          <SectionHeading id="opportunity-size" number="01" title="The $637 Billion Opportunity" />
+          {/* Section 1: The Opportunity */}
+          <SectionHeading
+            id="the-opportunity"
+            number="01"
+            title="The $183 Billion Opportunity"
+          />
           <div className="prose-section">
             <p className="text-stone-600 leading-relaxed mb-4">
-              The federal government spent <strong>$755 billion</strong> on contracts in FY2024.
-              Of that, <strong>$637 billion</strong> went to contracts where small businesses were
-              eligible to compete. Small businesses captured <strong>$183.5 billion</strong> of
-              it &mdash; their largest share ever, at 28.8% of all federal contracting dollars.
+              The federal government is the largest buyer of goods and services on
+              the planet. In FY2024, total federal contract awards reached{" "}
+              <strong>$773.68 billion</strong>. Small businesses captured $183
+              billion of that — a record, and roughly 23.6% of the total. That&apos;s
+              not a rounding error. That&apos;s a structural mandate.
             </p>
             <p className="text-stone-600 leading-relaxed mb-4">
-              Congress set a 23% small business goal. The government has beaten that mark four
-              years in a row. That&apos;s not a coincidence &mdash; agency contracting officers have
-              performance ratings tied to small business utilization. They&apos;re actively looking
-              for qualified small businesses.
+              The Small Business Act requires the federal government to award at least{" "}
+              <strong>23% of all prime contract dollars</strong> to small businesses.
+              Agencies are graded on it. Contracting officers actively seek qualifying
+              vendors to satisfy these goals. When you&apos;re a small business, the
+              government is legally obligated to try to give you work.
+            </p>
+            <p className="text-stone-600 leading-relaxed mb-6">
+              Construction, IT, and professional services account for over 60% of
+              small business awards. But virtually every industry — staffing,
+              janitorial, security, logistics, healthcare, engineering — has active
+              procurement. The question isn&apos;t whether the money exists. It&apos;s
+              whether you have a system to find and win it.
             </p>
 
-            <div className="grid sm:grid-cols-3 gap-4 my-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 my-8">
               {[
-                { icon: DollarSign, stat: "$183.5B", label: "To small businesses in FY2024" },
-                { icon: TrendingUp, stat: "28.8%", label: "Of all federal contract dollars" },
-                { icon: Target, stat: "23%", label: "Statutory goal (exceeded by 5.8 pts)" },
+                { stat: "$183B", label: "Small business awards FY2024", icon: DollarSign },
+                { stat: "23%", label: "Statutory small business goal", icon: Target },
+                { stat: "$350K", label: "Simplified acquisition threshold", icon: BarChart3 },
+                { stat: "$15K", label: "Micro-purchase threshold", icon: Zap },
               ].map((item, i) => (
-                <div key={i} className="text-center p-6 bg-stone-50 rounded-2xl border border-stone-100 animate-on-scroll">
-                  <item.icon className="w-8 h-8 text-emerald-600 mx-auto mb-3" />
+                <div
+                  key={i}
+                  className="text-center p-6 bg-stone-50 rounded-2xl border border-stone-100 animate-on-scroll"
+                >
+                  <item.icon className="w-6 h-6 text-emerald-600 mx-auto mb-2" />
                   <p className="text-2xl font-black text-stone-900">{item.stat}</p>
-                  <p className="text-sm text-stone-500 mt-1">{item.label}</p>
+                  <p className="text-xs text-stone-500 mt-1">{item.label}</p>
                 </div>
               ))}
             </div>
 
-            <p className="text-stone-600 leading-relaxed mb-6">
-              The breakdown by program tells an even clearer story. Service-disabled veteran-owned
-              small businesses won <strong>$31.9 billion</strong> in FY2024 &mdash; the first year
-              the government hit its newly raised 5% SDVOSB goal. Women-owned small businesses
-              took home <strong>$31.7 billion</strong>. HUBZone firms won <strong>$17.6 billion</strong>,
-              a record dollar amount. And small disadvantaged businesses received <strong>$78.1 billion</strong>.
-            </p>
-
-            <div className="overflow-x-auto my-8">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-stone-100 rounded-t-xl">
-                    <th className="text-left px-4 py-3 font-bold text-stone-700 rounded-tl-xl">Program</th>
-                    <th className="text-right px-4 py-3 font-bold text-stone-700">FY2024 Awards</th>
-                    <th className="text-right px-4 py-3 font-bold text-stone-700">Goal</th>
-                    <th className="text-right px-4 py-3 font-bold text-stone-700 rounded-tr-xl">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { program: "All Small Business", awards: "$183.5B", goal: "23%", met: true },
-                    { program: "Small Disadvantaged Business", awards: "$78.1B", goal: "12%", met: true },
-                    { program: "SDVOSB", awards: "$31.9B", goal: "5%", met: true },
-                    { program: "WOSB", awards: "$31.7B", goal: "5%", met: false },
-                    { program: "HUBZone", awards: "$17.6B", goal: "3%", met: false },
-                  ].map((row, i) => (
-                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-stone-50"}>
-                      <td className="px-4 py-3 font-medium text-stone-800">{row.program}</td>
-                      <td className="px-4 py-3 text-right font-bold text-stone-900">{row.awards}</td>
-                      <td className="px-4 py-3 text-right text-stone-500">{row.goal}</td>
-                      <td className="px-4 py-3 text-right">
-                        <span className={`inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full ${row.met ? "bg-emerald-100 text-emerald-700" : "bg-amber-100 text-amber-700"}`}>
-                          {row.met ? <CheckCircle2 className="w-3 h-3" /> : <AlertTriangle className="w-3 h-3" />}
-                          {row.met ? "Met" : "Missed"}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <p className="text-xs text-stone-400 mt-2">Source: SBA Small Business Procurement Scorecard, FY2024</p>
-            </div>
-
             <p className="text-stone-600 leading-relaxed">
-              The WOSB and HUBZone goals were technically missed &mdash; WOSB by just 0.03 percentage points.
-              Both still hit record dollar amounts. The opportunity is real. The question is how to find it.
+              Two threshold numbers matter most to new contractors. Purchases under{" "}
+              <strong>$15,000</strong> (the micro-purchase threshold) require no
+              competition at all — a contracting officer can buy from you directly.
+              Purchases between $15,000 and $350,000 fall under Simplified Acquisition
+              Procedures and are <em>automatically reserved for small businesses</em>.
+              You don&apos;t have to beat Lockheed Martin. You&apos;re competing
+              against other small businesses.
             </p>
           </div>
+
+          <Callout icon={Lightbulb} color="sky" title="Why Set-Asides Change Everything">
+            In full-and-open competition, you might bid against 50+ companies including
+            billion-dollar primes. In a set-aside, you&apos;re competing against 5-10
+            small businesses with similar limitations. Set-asides don&apos;t guarantee
+            a win — but they fundamentally change the math in your favor. See our{" "}
+            <Link href="/blog/set-aside-programs" className="underline font-medium">
+              complete set-aside guide
+            </Link>{" "}
+            to understand which programs apply to your business.
+          </Callout>
 
           {/* Section 2: SAM.gov Registration */}
-          <SectionHeading id="sam-gov-registration" number="02" title="Start With SAM.gov Registration" />
+          <SectionHeading
+            id="sam-gov-registration"
+            number="02"
+            title="Step 1: Get Registered on SAM.gov"
+          />
           <div className="prose-section">
             <p className="text-stone-600 leading-relaxed mb-4">
-              Before you can receive a single dollar from the federal government, your business must be
-              registered on <strong>SAM.gov</strong> &mdash; the System for Award Management. It&apos;s
-              the mandatory gateway to all federal contracting. No registration means no payments, period.
+              SAM.gov (System for Award Management) is not optional. You cannot
+              receive payment from the federal government without an active SAM.gov
+              registration. No exceptions. Registration is free — any service
+              charging you to register is a scam.
             </p>
             <p className="text-stone-600 leading-relaxed mb-4">
-              Registration is <strong>completely free</strong>. Ignore any service that charges you to register
-              on SAM.gov &mdash; they&apos;re charging for something you can do yourself at no cost.
-              About 674,000 businesses are actively registered, and more than 56,000 new registrations or
-              renewals are processed every month.
+              SAM.gov also serves as your public storefront. Contracting officers
+              search it when looking for vendors. Your profile — including your NAICS
+              codes, certifications, and business description — is how they find you
+              before an RFP is even published. A weak profile means you get passed
+              over.
+            </p>
+            <p className="text-stone-600 leading-relaxed mb-6">
+              Registration typically takes 1-3 business days. New entities can take
+              up to 10 days for IRS validation. Your registration must be renewed
+              annually — a lapsed registration makes you ineligible for award, even
+              if your proposal wins.
             </p>
 
-            <div className="space-y-3 my-8">
+            <div className="space-y-3 mb-8">
               {[
-                { num: "01", title: "Gather Your Business Information", desc: "Legal business name, EIN or Tax ID, NAICS codes, physical address, bank account for direct deposit, and fiscal year end date." },
-                { num: "02", title: "Create a Login.gov Account", desc: "SAM.gov uses Login.gov for authentication. Go to login.gov and create an account with your business email address." },
-                { num: "03", title: "Start Your Entity Registration", desc: "Log in to sam.gov, click 'Register Your Entity,' select 'Business or Organization,' and follow the workflow." },
-                { num: "04", title: "Select Your NAICS Codes", desc: "Choose the primary NAICS code for your main service, plus secondary codes for adjacent work. See our guide on NAICS codes for small business." },
-                { num: "05", title: "Complete Financial Information", desc: "Enter your bank routing and account number for Electronic Funds Transfer (EFT). This is how you get paid." },
-                { num: "06", title: "Receive Your Unique Entity ID (UEI)", desc: "SAM.gov generates your UEI immediately. It replaces the old DUNS number. Registration is fully active within 1-3 business days." },
-              ].map((step, i) => (
-                <div key={i} className="flex gap-4 p-4 rounded-xl border border-stone-200 hover-lift animate-on-scroll">
-                  <div className="w-10 h-10 rounded-lg bg-emerald-600 flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold text-xs">{step.num}</span>
+                {
+                  step: "01",
+                  title: "Gather your documentation",
+                  desc: "Legal business name, EIN/tax ID, Unique Entity Identifier (UEI — replaced DUNS in 2022), bank account for EFT payments, NAICS codes, and business address.",
+                },
+                {
+                  step: "02",
+                  title: "Create an account at SAM.gov",
+                  desc: "Use login.gov for identity verification. Keep this login secure — it controls your entire federal contracting identity.",
+                },
+                {
+                  step: "03",
+                  title: "Start Entity Registration",
+                  desc: "Navigate to Entity Registrations and start the process. You can save progress and return — it doesn't need to be completed in one session.",
+                },
+                {
+                  step: "04",
+                  title: "Enter business details and set-aside status",
+                  desc: "Select all applicable NAICS codes, enter SIC codes, and mark any set-aside designations (SDVOSB, WOSB, 8(a), HUBZone). These determine which set-aside contracts you can bid.",
+                },
+                {
+                  step: "05",
+                  title: "Submit and activate",
+                  desc: "Submit for review. Watch for email confirmation. Once active, your entity appears in SAM.gov search within 24 hours and you can begin bidding.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.step}
+                  className="flex gap-4 p-5 rounded-xl border border-stone-200 animate-on-scroll"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 font-mono text-sm font-bold flex items-center justify-center flex-shrink-0">
+                    {item.step}
                   </div>
                   <div>
-                    <p className="font-bold text-stone-900 text-sm">{step.title}</p>
-                    <p className="text-stone-500 text-sm leading-relaxed mt-1">{step.desc}</p>
+                    <p className="font-bold text-stone-900 text-sm mb-1">
+                      {item.title}
+                    </p>
+                    <p className="text-stone-600 text-sm leading-relaxed">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <p className="text-stone-600 leading-relaxed mb-4">
-              One critical detail: <strong>SAM registration expires every year.</strong> Set a calendar
-              reminder 60 days before your expiration date. A lapsed registration means your contract
-              payments stop until you renew. Many businesses lose revenue this way.
-            </p>
             <p className="text-stone-600 leading-relaxed">
-              Need a full walkthrough? Our{" "}
-              <Link href="/blog/sam-registration-guide" className="text-emerald-700 font-medium hover:underline">
+              For a detailed walkthrough, see our{" "}
+              <Link
+                href="/blog/sam-registration-guide"
+                className="text-emerald-700 underline font-medium"
+              >
                 SAM.gov registration guide
-              </Link>{" "}
-              covers every step and common error messages.
+              </Link>
+              . It covers common rejection reasons and how to avoid them.
             </p>
           </div>
 
-          <Callout icon={Lightbulb} color="emerald" title="Check Your Eligibility First">
-            Before spending hours on SAM.gov, run a quick eligibility check to see which set-aside
-            certifications your business qualifies for.{" "}
-            <Link href={CHECK_URL} className="font-bold underline hover:no-underline">
-              Check your eligibility free &rarr;
-            </Link>
+          <Callout icon={AlertTriangle} color="amber" title="Don't Let Your Registration Lapse">
+            SAM.gov registrations expire annually. Set a calendar reminder 60 days
+            before your expiration date. Awards have been pulled from contractors
+            mid-solicitation because their registration expired. Your{" "}
+            <strong>CapturePilot dashboard</strong> tracks your SAM expiration and
+            alerts you before it becomes a problem.
           </Callout>
-
-          {/* Section 3: Searching SAM.gov */}
-          <SectionHeading id="searching-sam-gov" number="03" title="How to Search SAM.gov Like a Pro" />
+          {/* Section 3: NAICS Codes */}
+          <SectionHeading
+            id="find-your-naics"
+            number="03"
+            title="Step 2: Know Your NAICS Codes"
+          />
           <div className="prose-section">
             <p className="text-stone-600 leading-relaxed mb-4">
-              Every federal contract opportunity above <strong>$25,000</strong> must be posted on
-              SAM.gov under FAR 5.101. That makes it the single most important place to find work.
-              But raw SAM.gov search is overwhelming &mdash; thousands of results with no prioritization.
+              Your NAICS code is not just a label. It determines whether you qualify
+              as "small" for a specific contract, which set-aside pools you can enter,
+              and how agencies categorize you when they search for vendors. Getting
+              it wrong is costly. An IT firm using the wrong NAICS might bid on a
+              contract where they&apos;re technically too large to qualify — or miss
+              set-asides they were entitled to.
+            </p>
+            <p className="text-stone-600 leading-relaxed mb-4">
+              SBA size standards vary significantly by industry. For IT consulting
+              under NAICS 541511 (Custom Computer Programming Services), the small
+              business threshold is $34 million in average annual revenue. For most
+              construction work, it&apos;s measured by number of employees. The same
+              revenue number that makes you "large" in one code might make you "small"
+              in another.
             </p>
             <p className="text-stone-600 leading-relaxed mb-6">
-              The difference between contractors who find good opportunities and those who don&apos;t
-              comes down to filtering. Here&apos;s what to use:
+              Register multiple NAICS codes on SAM.gov. Use the primary code for your
+              main service, then add secondary codes for adjacent work you pursue.
+              Most businesses that do federal work span 3-6 NAICS codes.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-4 my-8">
-              {[
-                { icon: Hash, title: "NAICS Code", desc: "Filter to your specific industry codes. This is the most powerful filter — it eliminates 90% of irrelevant noise immediately." },
-                { icon: MapPin, title: "Place of Performance", desc: "Filter by state or metro area if you need to work on-site. Remote work opportunities have no geographic limit." },
-                { icon: Shield, title: "Set-Aside Type", desc: "Filter for 8(a), HUBZone, SDVOSB, WOSB, or 'Total Small Business' set-asides matching your certifications." },
-                { icon: Building2, title: "Agency", desc: "Target specific agencies where you have relationships or where spending matches your capabilities." },
-                { icon: DollarSign, title: "Dollar Range", desc: "Use the award amount filter to target the simplified acquisition range ($15K-$350K) for easier competition." },
-                { icon: FileText, title: "Notice Type", desc: "Filter for Solicitations (open bids), Pre-solicitations (coming soon), and Sources Sought (shape the RFP)." },
-              ].map((item, i) => (
-                <div key={i} className="flex gap-3 p-4 rounded-xl border border-stone-200 hover-lift animate-on-scroll">
-                  <div className="w-9 h-9 rounded-lg bg-sky-50 flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-4 h-4 text-sky-600" />
-                  </div>
-                  <div>
-                    <p className="font-bold text-stone-900 text-sm">{item.title}</p>
-                    <p className="text-stone-500 text-xs leading-relaxed mt-0.5">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <p className="text-stone-600 leading-relaxed mb-4">
-              <strong>The most overlooked notice type: Sources Sought.</strong> These are market research
-              notices posted before a solicitation is written. When an agency posts a Sources Sought, they&apos;re
-              asking: &quot;Who can do this work?&quot; Responding to them lets you shape the requirements,
-              establish your qualifications in the contracting officer&apos;s mind, and potentially influence
-              whether the contract becomes a set-aside.
-            </p>
-            <p className="text-stone-600 leading-relaxed mb-4">
-              Responding to Sources Sought doesn&apos;t cost you anything but time. For a detailed strategy,
-              read our post on{" "}
-              <Link href="/blog/sources-sought-notice" className="text-emerald-700 font-medium hover:underline">
-                how to respond to Sources Sought notices
-              </Link>.
-            </p>
-            <p className="text-stone-600 leading-relaxed">
-              Set up saved searches with email alerts for your key NAICS codes and agencies. SAM.gov
-              will notify you when new matching opportunities are posted. Check those alerts daily &mdash;
-              solicitation windows can be as short as 15 days.
-            </p>
-          </div>
-
-          {/* Section 4: Set-Aside Programs */}
-          <SectionHeading id="set-asides-certifications" number="04" title="Set-Aside Programs That Give You an Edge" />
-          <div className="prose-section">
-            <p className="text-stone-600 leading-relaxed mb-4">
-              Set-aside programs reserve specific contracts exclusively for qualifying businesses.
-              Competition is restricted &mdash; which dramatically improves your odds. The more certifications
-              you hold, the more opportunities you&apos;re eligible for.
-            </p>
-            <p className="text-stone-600 leading-relaxed mb-6">
-              You can hold multiple certifications simultaneously. An SDVOSB-certified woman-owned
-              8(a) firm competes in multiple reserved pools. For a full breakdown of eligibility
-              requirements, see our{" "}
-              <Link href="/blog/set-aside-programs" className="text-emerald-700 font-medium hover:underline">
-                set-aside programs guide
-              </Link>.
-            </p>
-
-            <div className="space-y-4 mb-6">
-              {[
-                {
-                  badge: "8(a) Program",
-                  color: "bg-purple-50 text-purple-700 border-purple-200",
-                  title: "8(a) Business Development",
-                  highlights: ["Sole-source up to $4.5M (services) / $7M (manufacturing)", "9-year program for socially & economically disadvantaged businesses", "$78.1B total awarded to SDBs in FY2024", "Access to restricted 8(a) competitions"],
-                },
-                {
-                  badge: "HUBZone",
-                  color: "bg-amber-50 text-amber-700 border-amber-200",
-                  title: "Historically Underutilized Business Zone",
-                  highlights: ["10% price evaluation preference in open competition", "Must maintain 35% of employees in a HUBZone", "$17.6B awarded in FY2024 — record dollar amount", "Principal office must be in a HUBZone"],
-                },
-                {
-                  badge: "SDVOSB",
-                  color: "bg-blue-50 text-blue-700 border-blue-200",
-                  title: "Service-Disabled Veteran-Owned Small Business",
-                  highlights: ["Sole-source up to $4.5M (services) / $7M (manufacturing)", "$31.9B awarded in FY2024 — government hit 5% goal for first time", "Certification via SBA Veteran Small Business Certification (VetCert)", "Strong VA and DoD preference"],
-                },
-                {
-                  badge: "WOSB/EDWOSB",
-                  color: "bg-rose-50 text-rose-700 border-rose-200",
-                  title: "Women-Owned Small Business",
-                  highlights: ["Set-asides in 100+ NAICS codes where women are underrepresented", "EDWOSB sole-source up to $4.5M / $7M manufacturing", "$31.7B awarded to WOSBs in FY2024", "Free certification through SBA or approved third parties"],
-                },
-              ].map((prog, i) => (
-                <div key={i} className="rounded-2xl border border-stone-200 overflow-hidden animate-on-scroll">
-                  <div className="px-5 py-4 bg-stone-50 border-b border-stone-200 flex items-center gap-3">
-                    <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full border ${prog.color}`}>
-                      {prog.badge}
-                    </span>
-                    <h3 className="font-bold text-stone-900">{prog.title}</h3>
-                  </div>
-                  <ul className="px-5 py-4 space-y-2">
-                    {prog.highlights.map((h, j) => (
-                      <li key={j} className="flex items-start gap-2 text-sm text-stone-600">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
-                        {h}
-                      </li>
+            <div className="bg-stone-50 rounded-2xl border border-stone-200 overflow-hidden mb-6 animate-on-scroll">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-stone-200 bg-stone-100">
+                      <th className="text-left px-5 py-3 font-bold text-stone-900">
+                        NAICS Code
+                      </th>
+                      <th className="text-left px-5 py-3 font-bold text-stone-900">
+                        Description
+                      </th>
+                      <th className="text-left px-5 py-3 font-bold text-stone-900">
+                        SBA Size Standard
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      {
+                        code: "541511",
+                        desc: "Custom Computer Programming Services",
+                        std: "$34M avg annual revenue",
+                      },
+                      {
+                        code: "561210",
+                        desc: "Facilities Support Services",
+                        std: "$47M avg annual revenue",
+                      },
+                      {
+                        code: "236220",
+                        desc: "Commercial & Institutional Building Construction",
+                        std: "1,500 employees",
+                      },
+                      {
+                        code: "561612",
+                        desc: "Security Guards & Patrol Services",
+                        std: "$25M avg annual revenue",
+                      },
+                      {
+                        code: "561320",
+                        desc: "Temporary Staffing Services",
+                        std: "$35M avg annual revenue",
+                      },
+                      {
+                        code: "541330",
+                        desc: "Engineering Services",
+                        std: "$25.5M avg annual revenue",
+                      },
+                    ].map((row, i) => (
+                      <tr
+                        key={i}
+                        className="border-b border-stone-100 last:border-0 hover:bg-stone-50"
+                      >
+                        <td className="px-5 py-3 font-mono text-sm text-emerald-700 font-medium">
+                          {row.code}
+                        </td>
+                        <td className="px-5 py-3 text-stone-700">{row.desc}</td>
+                        <td className="px-5 py-3 text-stone-500">{row.std}</td>
+                      </tr>
                     ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <Callout icon={Lightbulb} color="sky" title="Not Sure Which Programs You Qualify For?">
-            Run CapturePilot&apos;s free eligibility checker. Answer 10 questions and get an instant
-            readiness score plus certification recommendations.{" "}
-            <Link href={CHECK_URL} className="font-bold underline hover:no-underline">
-              Check your eligibility &rarr;
-            </Link>
-          </Callout>
-
-          {/* Section 5: Dollar Thresholds */}
-          <SectionHeading id="dollar-thresholds" number="05" title="Dollar Thresholds Every Small Business Needs to Know" />
-          <div className="prose-section">
-            <p className="text-stone-600 leading-relaxed mb-4">
-              The Federal Acquisition Regulation sets dollar thresholds that determine how agencies buy
-              and which businesses can compete. These thresholds changed on <strong>October 1, 2025</strong>{" "}
-              due to an inflation adjustment under 41 U.S.C. § 1908. Make sure you&apos;re working with
-              the current numbers.
-            </p>
-
-            <div className="space-y-4 my-8">
-              {[
-                {
-                  range: "Under $15,000",
-                  label: "Micro-Purchase Threshold",
-                  color: "border-l-4 border-stone-300 bg-stone-50",
-                  badge: "bg-stone-100 text-stone-600",
-                  desc: "Agencies can buy directly with a government credit card. No competition required, no SAM registration required (though registration helps). Your fastest path to revenue.",
-                  tip: "Target these through relationships and agency open days.",
-                },
-                {
-                  range: "$15,001 – $350,000",
-                  label: "Simplified Acquisition Range (Automatic Set-Aside Zone)",
-                  color: "border-l-4 border-emerald-400 bg-emerald-50",
-                  badge: "bg-emerald-100 text-emerald-700",
-                  desc: "The 'Rule of Two' applies: if a contracting officer reasonably expects two or more competitive small business offers, the contract MUST be set aside for small businesses. This is your primary hunting ground.",
-                  tip: "Best entry point for first-time contractors. Less competition, faster awards.",
-                },
-                {
-                  range: "Above $350,000",
-                  label: "Above Simplified Acquisition Threshold",
-                  color: "border-l-4 border-sky-400 bg-sky-50",
-                  badge: "bg-sky-100 text-sky-700",
-                  desc: "Full and open competition by default, but contracting officers can still set aside for small businesses if the Rule of Two is met. Set-asides for specific programs (8(a), HUBZone, etc.) also apply here.",
-                  tip: "Consider teaming with other small businesses to build capacity for larger awards.",
-                },
-              ].map((tier, i) => (
-                <div key={i} className={`rounded-2xl p-5 ${tier.color} animate-on-scroll`}>
-                  <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${tier.badge}`}>{tier.range}</span>
-                    <h3 className="font-bold text-stone-900 text-sm">{tier.label}</h3>
-                  </div>
-                  <p className="text-stone-600 text-sm leading-relaxed mb-2">{tier.desc}</p>
-                  <p className="text-xs font-medium text-stone-500 flex items-center gap-1">
-                    <Lightbulb className="w-3.5 h-3.5 text-amber-500" />
-                    {tier.tip}
-                  </p>
-                </div>
-              ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
 
-            <p className="text-stone-600 leading-relaxed mb-4">
-              The <strong>simplified acquisition range ($15K–$350K)</strong> is where most first-time small
-              business contractors should focus. You&apos;re competing only against other small businesses,
-              and the procurement process is faster and simpler than full-and-open competition.
-            </p>
             <p className="text-stone-600 leading-relaxed">
-              For a deeper dive into the micro-purchase threshold and how to capture those quick-win contracts,
-              see our post on the{" "}
-              <Link href="/blog/micro-purchase-threshold" className="text-emerald-700 font-medium hover:underline">
-                micro-purchase threshold
-              </Link>.
+              Use the{" "}
+              <a
+                href="https://www.sba.gov/size-standards"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline"
+              >
+                SBA Size Standards Tool
+              </a>{" "}
+              to confirm your size status before bidding on any contract. For a deeper
+              dive on which codes drive the most federal awards, read our{" "}
+              <Link
+                href="/blog/naics-codes-explained"
+                className="text-emerald-700 underline font-medium"
+              >
+                NAICS codes guide
+              </Link>
+              .
             </p>
           </div>
 
-          {/* Section 6: Find Your Niche */}
-          <SectionHeading id="find-your-niche" number="06" title="Narrow to Your Niche: NAICS Codes and Agencies" />
+          {/* Section 4: Search SAM.gov */}
+          <SectionHeading
+            id="search-sam-gov"
+            number="04"
+            title="Step 3: Search SAM.gov the Right Way"
+          />
           <div className="prose-section">
             <p className="text-stone-600 leading-relaxed mb-4">
-              Trying to bid on everything is how businesses waste time and lose confidence. The contractors
-              who win consistently pick a lane &mdash; a small set of NAICS codes and 2-3 target agencies &mdash;
-              and go deep on those.
-            </p>
-
-            <h3 className="text-lg font-bold text-stone-900 mt-8 mb-4">Choosing Your NAICS Codes</h3>
-            <p className="text-stone-600 leading-relaxed mb-4">
-              NAICS codes classify what your business does. You&apos;ll select these during SAM registration,
-              and they determine which set-aside competitions you&apos;re eligible for. Each code has its
-              own small business size standard &mdash; defined either as maximum annual revenue or maximum
-              employee count.
+              SAM.gov&apos;s Contract Opportunities section lists every federal
+              solicitation above $25,000. You can search it without an account —
+              but you need an active registration to bid. Start searching immediately,
+              even before your registration clears.
             </p>
             <p className="text-stone-600 leading-relaxed mb-4">
-              Pick 3-5 codes that match your core work. Don&apos;t try to cover every adjacent service you could
-              theoretically offer. A focused profile signals expertise to contracting officers. For a full
-              guide to choosing codes, read{" "}
-              <Link href="/blog/naics-codes-explained" className="text-emerald-700 font-medium hover:underline">
-                NAICS codes explained for government contractors
-              </Link>.
+              The mistake most beginners make is searching for open solicitations
+              with tight response deadlines. By the time a formal RFP is published,
+              savvy contractors have already built agency relationships, submitted
+              capability statements, and shaped the requirements. You&apos;re
+              showing up to a game that started months ago.
             </p>
-
-            <h3 className="text-lg font-bold text-stone-900 mt-8 mb-4">Picking Your Target Agencies</h3>
-            <p className="text-stone-600 leading-relaxed mb-4">
-              Not all agencies are equally accessible. DoD accounts for over <strong>$400 billion</strong> in
-              annual contracting but also has the most rigorous requirements and longest timelines. Civilian
-              agencies &mdash; VA, HHS, GSA, DHS, DOT &mdash; collectively spend hundreds of billions more and
-              often have faster, simpler procurements.
-            </p>
-
-            <div className="overflow-x-auto my-6">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-stone-100">
-                    <th className="text-left px-4 py-3 font-bold text-stone-700 rounded-tl-xl">Agency Type</th>
-                    <th className="text-left px-4 py-3 font-bold text-stone-700">Best For</th>
-                    <th className="text-left px-4 py-3 font-bold text-stone-700">Entry Difficulty</th>
-                    <th className="text-left px-4 py-3 font-bold text-stone-700 rounded-tr-xl">Notes</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { type: "DoD (Army, Navy, Air Force)", best: "IT, construction, logistics, security", difficulty: "High", notes: "Clearances often required; best for veterans via SDVOSB" },
-                    { type: "VA", best: "Healthcare, IT, facilities, veteran services", difficulty: "Medium", notes: "Strong SDVOSB preference; Vets First program" },
-                    { type: "GSA", best: "Almost anything via Schedule", difficulty: "Medium", notes: "GSA Schedule = blanket vehicle; requires separate application" },
-                    { type: "HHS/FDA/CDC", best: "Healthcare, consulting, IT, research", difficulty: "Medium", notes: "Large SDB and WOSB spend" },
-                    { type: "Civilian agencies (<$10B)", best: "Services, professional work", difficulty: "Lower", notes: "Less competition; faster acquisition cycles" },
-                  ].map((row, i) => (
-                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-stone-50"}>
-                      <td className="px-4 py-3 font-medium text-stone-800">{row.type}</td>
-                      <td className="px-4 py-3 text-stone-600">{row.best}</td>
-                      <td className="px-4 py-3">
-                        <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
-                          row.difficulty === "High" ? "bg-red-100 text-red-700" :
-                          row.difficulty === "Medium" ? "bg-amber-100 text-amber-700" :
-                          "bg-emerald-100 text-emerald-700"
-                        }`}>{row.difficulty}</span>
-                      </td>
-                      <td className="px-4 py-3 text-stone-500 text-xs">{row.notes}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <p className="text-stone-600 leading-relaxed mb-4">
-              Before targeting an agency, research their small business spend. Check USASpending.gov to
-              see what they bought last year, which companies won, and what NAICS codes they use most.
-              That intelligence tells you whether there&apos;s a real market for your services there.
-            </p>
-            <p className="text-stone-600 leading-relaxed">
-              CapturePilot&apos;s{" "}
-              <Link href="/features/intelligence" className="text-emerald-700 font-medium hover:underline">
-                intelligence features
-              </Link>{" "}
-              pull this agency spend data automatically, so you don&apos;t have to spend hours in
-              USASpending.gov manually.
-            </p>
-          </div>
-
-          <Callout icon={Zap} color="sky" title="Find Contracts Matched to Your Business">
-            Instead of filtering SAM.gov manually, CapturePilot&apos;s matching engine reads your
-            capabilities and surfaces relevant opportunities automatically.{" "}
-            <Link href="/features/matching" className="font-bold underline hover:no-underline">
-              See how matching works &rarr;
-            </Link>
-          </Callout>
-
-          {/* Section 7: Common Mistakes */}
-          <SectionHeading id="common-mistakes" number="07" title="7 Mistakes That Kill First-Time Bids" />
-          <div className="prose-section">
             <p className="text-stone-600 leading-relaxed mb-6">
-              Most first-time government contractors lose not because their work is bad but because they
-              make avoidable process mistakes. These are the seven most common ones:
+              Here&apos;s how to use SAM.gov strategically:
             </p>
 
-            <div className="space-y-4">
+            <div className="bg-stone-50 rounded-2xl border border-stone-200 overflow-hidden mb-8 animate-on-scroll">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-stone-200 bg-stone-100">
+                      <th className="text-left px-5 py-3 font-bold text-stone-900">
+                        Opportunity Type
+                      </th>
+                      <th className="text-left px-5 py-3 font-bold text-stone-900">
+                        What It Means
+                      </th>
+                      <th className="text-left px-5 py-3 font-bold text-stone-900">
+                        What You Should Do
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      {
+                        type: "Sources Sought / RFI",
+                        meaning:
+                          "Agency is researching the market — no award yet",
+                        action:
+                          "Submit a capability statement; get on their radar early",
+                      },
+                      {
+                        type: "Pre-Solicitation",
+                        meaning: "Formal RFP is coming in 15-30 days",
+                        action:
+                          "Start preparing your team, reach out to the contracting officer",
+                      },
+                      {
+                        type: "Solicitation (RFP/RFQ/IFB)",
+                        meaning: "Formal bid opportunity with a due date",
+                        action:
+                          "Bid if you qualify and have capacity to respond well",
+                      },
+                      {
+                        type: "Award Notice",
+                        meaning: "Contract already awarded to someone else",
+                        action:
+                          "Study it — note the winner, price, period, and agency for future bids",
+                      },
+                      {
+                        type: "Sole Source Notice",
+                        meaning:
+                          "Agency plans to award without competition (J&A)",
+                        action:
+                          "Review: if you qualify and weren't considered, you may be able to challenge",
+                      },
+                    ].map((row, i) => (
+                      <tr
+                        key={i}
+                        className="border-b border-stone-100 last:border-0 hover:bg-white"
+                      >
+                        <td className="px-5 py-3 font-medium text-stone-800">
+                          {row.type}
+                        </td>
+                        <td className="px-5 py-3 text-stone-600">{row.meaning}</td>
+                        <td className="px-5 py-3 text-stone-500">{row.action}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <p className="text-stone-600 leading-relaxed mb-4">
+              Key SAM.gov filters to master: <strong>NAICS code</strong> (your
+              industry), <strong>set-aside type</strong> (filter for SDVOSB, WOSB,
+              8(a), HUBZone, or general small business), <strong>place of performance</strong>{" "}
+              (limit to your region), and <strong>response date</strong> (find
+              notices with enough time to respond well).
+            </p>
+            <p className="text-stone-600 leading-relaxed">
+              The real intelligence move: search SAM.gov award notices for your
+              NAICS code + target agency. You&apos;ll see who&apos;s winning, at
+              what price, with what contract duration. That&apos;s your competitive
+              baseline. Our{" "}
+              <Link
+                href="/features/intelligence"
+                className="text-emerald-700 underline font-medium"
+              >
+                CapturePilot Intelligence
+              </Link>{" "}
+              automates this analysis — surfacing incumbent data and pricing
+              benchmarks so you don&apos;t spend hours digging through SAM.gov
+              manually.
+            </p>
+          </div>
+
+          <Callout icon={Search} color="emerald" title="Sources Sought Are Your Secret Weapon">
+            Most small businesses skip Sources Sought notices because there&apos;s
+            nothing to bid on yet. That&apos;s backwards. Responding to a Sources Sought
+            is how you introduce yourself to the contracting officer before the
+            competition starts. A strong capability statement response can literally
+            shape how the eventual RFP is written — sometimes in ways that favor
+            your specific experience.
+          </Callout>
+          {/* Section 5: Set-Asides */}
+          <SectionHeading
+            id="set-aside-eligibility"
+            number="05"
+            title="Step 4: Leverage Set-Aside Programs"
+          />
+          <div className="prose-section">
+            <p className="text-stone-600 leading-relaxed mb-4">
+              Set-aside programs are where small business contracting gets
+              interesting. The government doesn&apos;t just want to buy from small
+              businesses — it wants to buy from specific types of small businesses,
+              with specific goals for each category. If you qualify, there are pools
+              of contracts you can bid on where the competition is a fraction of
+              what you&apos;d face in full-and-open competition.
+            </p>
+            <p className="text-stone-600 leading-relaxed mb-6">
+              The updated FAR thresholds (effective October 1, 2025) mean even more
+              accessible entry points. Purchases under $15,000 need no competition.
+              Everything from $15,000 to $350,000 is automatically set aside for
+              small businesses unless no small business can do the work. That&apos;s
+              hundreds of thousands of contracts a year that only small businesses
+              can win.
+            </p>
+
+            <div className="space-y-4 mb-8">
               {[
                 {
-                  num: "01",
-                  title: "Bidding Without the Right Past Performance",
-                  desc: "Many solicitations require 2-3 years of relevant past performance. Bidding on contracts you don't qualify for wastes your time and the agency's. Read the PWS/SOW carefully before you invest hours into a proposal.",
-                  severity: "high",
+                  icon: Star,
+                  title: "8(a) Business Development Program",
+                  tag: "Most Powerful",
+                  tagColor: "emerald",
+                  sole: "Sole source up to $4.5M (services) / $7M (manufacturing)",
+                  eligibility: [
+                    "51%+ owned by socially/economically disadvantaged U.S. citizens",
+                    "Owner's net worth below $850K (excluding home and business value)",
+                    "Business in operation for at least 2 years",
+                    "Revenue below SBA size standard for primary NAICS",
+                  ],
+                  note: "One 8(a) sole-source relationship can generate $4.5M without any competitive bidding. The 9-year program includes SBA mentorship and access to joint ventures.",
                 },
                 {
-                  num: "02",
-                  title: "Ignoring Sources Sought Notices",
-                  desc: "This is where contracts get shaped. Contractors who respond to Sources Sought can influence whether a contract becomes a set-aside, what the technical requirements look like, and how performance will be evaluated. Skipping them means you show up late.",
-                  severity: "high",
+                  icon: Shield,
+                  title: "Service-Disabled Veteran-Owned Small Business (SDVOSB)",
+                  tag: "Veterans",
+                  tagColor: "blue",
+                  sole: "Sole source up to $5M (services) / $7M (manufacturing)",
+                  eligibility: [
+                    "51%+ owned by service-disabled veteran(s)",
+                    "Any VA service-connected disability rating qualifies",
+                    "Veteran must manage day-to-day operations",
+                    "Must be certified through SBA's VetCert program",
+                  ],
+                  note: "The VA has a mandatory SDVOSB preference — they must check for SDVOSB vendors before opening competition. SDVOSBs are especially strong at VA and DoD.",
                 },
                 {
-                  num: "03",
-                  title: "Letting SAM Registration Expire",
-                  desc: "SAM.gov registration expires annually. An expired registration stops your contract payments and makes you ineligible to bid. Set a renewal reminder 60 days before expiration — it's a 30-minute task that protects all your revenue.",
-                  severity: "high",
+                  icon: Users,
+                  title: "Women-Owned Small Business (WOSB)",
+                  tag: "Women-Owned",
+                  tagColor: "pink",
+                  sole: "Sole source up to $5M (services) / $7M (manufacturing)",
+                  eligibility: [
+                    "51%+ owned by women who are U.S. citizens",
+                    "Women must manage daily operations and long-term decisions",
+                    "Certified through SBA's WOSB Federal Contracting Program",
+                    "Eligible for designated NAICS codes on SBA's underrepresented list",
+                  ],
+                  note: "If you also qualify as Economically Disadvantaged (EDWOSB), you get access to even more NAICS codes. Always apply for the stronger designation.",
                 },
                 {
-                  num: "04",
-                  title: "Writing a Proposal That Restates the SOW",
-                  desc: "Contracting officers read dozens of proposals. If yours just rewrites the Statement of Work in your own words, it scores poorly. Your technical volume needs to show how you'll solve the problem — your methodology, staffing plan, and differentiators.",
-                  severity: "medium",
+                  icon: MapPin,
+                  title: "HUBZone Program",
+                  tag: "Location-Based",
+                  tagColor: "amber",
+                  sole: "Sole source up to $5M + 10% price preference on open bids",
+                  eligibility: [
+                    "Principal office in a designated HUBZone",
+                    "At least 35% of employees reside in a HUBZone",
+                    "51%+ owned by U.S. citizens, CDCs, or Indian tribes",
+                    "Business is small under applicable size standard",
+                  ],
+                  note: "HUBZone offers a 10% price evaluation preference even in open competition — meaning you can bid 10% higher than a non-HUBZone firm and still win on price.",
+                },
+              ].map((program, i) => (
+                <div
+                  key={i}
+                  className="rounded-2xl border border-stone-200 overflow-hidden hover-lift animate-on-scroll"
+                >
+                  <div className="bg-stone-50 px-6 py-4 flex items-center gap-3 border-b border-stone-200">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0">
+                      <program.icon className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-stone-900 text-sm">
+                        {program.title}
+                      </h3>
+                      <span className="text-xs text-emerald-700 font-medium">
+                        {program.sole}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-6 space-y-4">
+                    <div>
+                      <p className="text-xs font-bold text-stone-400 uppercase tracking-wider mb-2">
+                        Eligibility
+                      </p>
+                      <ul className="space-y-1.5">
+                        {program.eligibility.map((req, j) => (
+                          <li
+                            key={j}
+                            className="flex items-start gap-2 text-sm text-stone-600"
+                          >
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                            <span>{req}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="bg-sky-50 border border-sky-200 rounded-lg p-3">
+                      <div className="flex items-start gap-2">
+                        <Lightbulb className="w-4 h-4 text-sky-600 mt-0.5 flex-shrink-0" />
+                        <p className="text-xs text-sky-800 leading-relaxed">
+                          <strong>Key Insight:</strong> {program.note}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-stone-600 leading-relaxed">
+              Not sure which certifications you qualify for?{" "}
+              <Link
+                href="/blog/set-aside-programs"
+                className="text-emerald-700 underline font-medium"
+              >
+                Read our complete set-aside guide
+              </Link>{" "}
+              — or check your eligibility right now in under 3 minutes.
+            </p>
+          </div>
+
+          {/* CTA 1 */}
+          <div className="my-10 bg-emerald-50 border border-emerald-200 rounded-2xl p-8 text-center animate-on-scroll">
+            <Award className="w-10 h-10 text-emerald-600 mx-auto mb-4" />
+            <h3 className="text-xl font-black text-stone-900 mb-2">
+              Check Your Set-Aside Eligibility
+            </h3>
+            <p className="text-stone-600 text-sm mb-5 max-w-md mx-auto">
+              Answer a few questions about your business. Our Quick Checker tells
+              you which certifications you likely qualify for and what to apply
+              for first.
+            </p>
+            <Link
+              href={CHECK_URL}
+              className="inline-flex items-center gap-2 bg-emerald-600 text-white px-8 py-3 rounded-full font-bold text-sm hover:bg-emerald-700 transition-all hover:scale-105"
+            >
+              Check Your Eligibility Free <ArrowRight className="w-4 h-4" />
+            </Link>
+            <p className="text-xs text-stone-400 mt-3">
+              Free, no account required
+            </p>
+          </div>
+          {/* Section 6: Beyond SAM.gov */}
+          <SectionHeading
+            id="beyond-sam-gov"
+            number="06"
+            title="Step 5: Look Beyond SAM.gov"
+          />
+          <div className="prose-section">
+            <p className="text-stone-600 leading-relaxed mb-4">
+              SAM.gov is necessary. It&apos;s not sufficient. Contractors who rely
+              exclusively on SAM.gov search are competing on the same playing field
+              as everyone else — and they&apos;re seeing opportunities only after
+              they&apos;re publicly posted, which is often too late to build the
+              relationships that win contracts.
+            </p>
+            <p className="text-stone-600 leading-relaxed mb-6">
+              Here are the channels most small businesses ignore:
+            </p>
+
+            <div className="space-y-4 mb-8">
+              {[
+                {
+                  icon: Building2,
+                  title: "Agency Small Business Offices (OSDBUs)",
+                  desc: "Every major federal agency has an Office of Small and Disadvantaged Business Utilization. DoD, VA, DHS, HHS, GSA — they all publish vendor directories, host matchmaking events, and connect small businesses with contracting officers. These offices exist specifically to help you. Call them. Attend their events. Get your capability statement in front of them before any RFP drops.",
                 },
                 {
-                  num: "05",
-                  title: "Underpricing to Win",
-                  desc: "Winning a contract below cost is worse than losing it. The government uses historical pricing data. If you bid 40% below market, you raise red flags about your understanding of the work. Price to perform, not just to win.",
-                  severity: "medium",
+                  icon: Globe,
+                  title: "Agency Procurement Forecasts",
+                  desc: "DHS, DoD, NASA, and many other agencies publish annual procurement forecasts listing upcoming contract opportunities with estimated values and target award dates. These give you 6-12 months of advance notice on what's coming. Most small businesses don't know these exist — which is exactly why reading them is an advantage. Search '[agency name] procurement forecast' or check the agency OSDBU website.",
                 },
                 {
-                  num: "06",
-                  title: "No Capability Statement Ready",
-                  desc: "When you meet an agency small business officer or contracting officer, they will ask for your capability statement. If you don't have one ready, you miss the moment. See our guide to capability statement examples for what a good one looks like.",
-                  severity: "medium",
+                  icon: Users,
+                  title: "Subcontracting via SBA SUB-Net",
+                  desc: "On federal contracts over $750,000, prime contractors are required to have a small business subcontracting plan. The SBA's SUB-Net database lists active subcontracting opportunities from primes looking for small business partners. Subcontracting is often the fastest path to your first federal revenue — you skip the registration complexity of prime contracting and get past performance you can use in future bids.",
                 },
                 {
-                  num: "07",
-                  title: "Targeting Agencies With No Small Business History",
-                  desc: "Some agencies or buying offices have never awarded a set-aside contract in your NAICS code. Check USASpending.gov first. Your time is better spent on agencies with a demonstrated history of small business awards in your space.",
-                  severity: "low",
+                  icon: TrendingUp,
+                  title: "USASpending.gov for Market Intelligence",
+                  desc: "USASpending.gov contains every federal contract ever awarded. Filter by agency + NAICS code + small business type and you'll see exactly what's been bought, from whom, at what price, with what contract structure. This is how you understand the market before you bid on it — find out who the incumbents are, what the typical contract value looks like, and which agencies are active buyers in your space.",
                 },
-              ].map((mistake, i) => (
-                <div key={i} className="flex gap-4 p-5 rounded-2xl border border-stone-200 animate-on-scroll">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 font-bold text-xs ${
-                    mistake.severity === "high" ? "bg-red-100 text-red-700" :
-                    mistake.severity === "medium" ? "bg-amber-100 text-amber-700" :
-                    "bg-stone-100 text-stone-600"
-                  }`}>
-                    {mistake.num}
+                {
+                  icon: FileText,
+                  title: "GSA Multiple Award Schedules",
+                  desc: "A GSA Schedule puts you on a pre-competed contract vehicle that agencies can use without a full RFP process. Once you're on schedule, agencies can buy directly from your schedule at negotiated rates. It takes 3-6 months to get on schedule, but it dramatically expands your accessibility to federal buyers — particularly for IT, professional services, and facilities management.",
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="flex gap-4 p-5 rounded-xl border border-stone-200 hover-lift animate-on-scroll"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                    <item.icon className="w-5 h-5 text-emerald-600" />
                   </div>
                   <div>
-                    <p className="font-bold text-stone-900 text-sm mb-1">{mistake.title}</p>
-                    <p className="text-stone-500 text-sm leading-relaxed">{mistake.desc}</p>
+                    <p className="font-bold text-stone-900 text-sm mb-1">
+                      {item.title}
+                    </p>
+                    <p className="text-stone-600 text-sm leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <Callout icon={Lightbulb} color="sky" title="The Capability Statement Is Your First Impression">
+            Before you can have a conversation with an agency, you need a capability
+            statement — a one-to-two-page document that summarizes what you do, your
+            past performance, your differentiators, and your key certifications and
+            NAICS codes. Without it, you can&apos;t respond to Sources Sought, attend
+            matchmaking events, or reach out to contracting officers effectively. See our{" "}
+            <Link
+              href="/blog/capability-statement-guide"
+              className="underline font-medium"
+            >
+              capability statement guide
+            </Link>{" "}
+            and{" "}
+            <Link
+              href="/features/capability-statement"
+              className="underline font-medium"
+            >
+              CapturePilot&apos;s one-click generator
+            </Link>{" "}
+            to build one today.
+          </Callout>
+
+          {/* Section 7: Pipeline */}
+          <SectionHeading
+            id="build-your-pipeline"
+            number="07"
+            title="Step 6: Build a Systematic Pipeline"
+          />
+          <div className="prose-section">
+            <p className="text-stone-600 leading-relaxed mb-4">
+              One bid is a lottery ticket. A pipeline is a business. Government
+              contracting win rates for competitive bids typically run 10-25% for
+              experienced contractors. New contractors should expect lower, at least
+              initially. That means you need to be tracking 20-30 opportunities at
+              any given time to win 2-4 contracts per year.
+            </p>
+            <p className="text-stone-600 leading-relaxed mb-6">
+              A pipeline isn&apos;t a spreadsheet of every contract posted in your
+              NAICS code. It&apos;s a curated set of opportunities you&apos;ve
+              qualified, researched, and made conscious pursuit decisions about.
+              Quality beats quantity at every stage.
+            </p>
+
+            <div className="relative mb-8">
+              <div className="hidden sm:block absolute top-8 left-0 right-0 h-0.5 bg-stone-200 z-0" />
+              <div className="grid sm:grid-cols-6 gap-3 relative z-10">
+                {[
+                  { num: "1", label: "Discover", desc: "SAM.gov, CapturePilot, agency portals, OSDBU events" },
+                  { num: "2", label: "Qualify", desc: "Set-aside match, NAICS fit, size, teaming needs" },
+                  { num: "3", label: "Capture", desc: "Build agency relationships, submit capability statements" },
+                  { num: "4", label: "Bid", desc: "Write and submit the proposal by the deadline" },
+                  { num: "5", label: "Track", desc: "Follow up on submission status and evaluation timeline" },
+                  { num: "6", label: "Win/Debrief", desc: "Request debrief from CO whether you win or lose" },
+                ].map((step) => (
+                  <div
+                    key={step.num}
+                    className="flex flex-col items-center text-center animate-on-scroll"
+                  >
+                    <div className="w-14 h-14 rounded-full bg-emerald-600 text-white text-lg font-black flex items-center justify-center mb-3 shadow-md">
+                      {step.num}
+                    </div>
+                    <p className="font-bold text-stone-900 text-xs mb-1">
+                      {step.label}
+                    </p>
+                    <p className="text-stone-500 text-xs leading-tight">{step.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <p className="text-stone-600 leading-relaxed mb-4">
+              Track these pipeline metrics from day one:
+            </p>
+            <ul className="space-y-2 mb-6">
+              {[
+                "Opportunities identified per week (your top-of-funnel volume)",
+                "Bid/no-bid decision rate (what % do you pursue vs. pass?)",
+                "Proposal submission rate (what % of pursuits do you actually bid?)",
+                "Win rate (what % of submitted proposals are awarded?)",
+                "Average days from identification to submission",
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-stone-600">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <p className="text-stone-600 leading-relaxed">
+              CapturePilot&apos;s{" "}
+              <Link
+                href="/features/pipeline"
+                className="text-emerald-700 underline font-medium"
+              >
+                pipeline management tools
+              </Link>{" "}
+              track every opportunity from discovery through award, with automated
+              stage prompts and deadline alerts. And our{" "}
+              <Link
+                href="/features/matching"
+                className="text-emerald-700 underline font-medium"
+              >
+                daily matching engine
+              </Link>{" "}
+              surfaces the best-fit opportunities from SAM.gov before you spend
+              hours searching manually.
+            </p>
+          </div>
+
+          {/* CTA 2 */}
+          <div className="my-10 bg-gradient-to-br from-stone-900 to-stone-800 rounded-3xl p-10 text-white text-center animate-on-scroll">
+            <Sparkles className="w-10 h-10 mx-auto mb-4 text-emerald-400" />
+            <h3 className="text-2xl font-black mb-3">
+              Build Your Pipeline in CapturePilot
+            </h3>
+            <p className="text-stone-400 text-sm mb-6 max-w-lg mx-auto">
+              Daily opportunity matching, set-aside tagging, pipeline tracking, and
+              agency intelligence — all in one place. Cancel any time.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link
+                href={SIGNUP_URL}
+                className="bg-white text-black px-7 py-3.5 rounded-full font-bold text-sm hover:bg-stone-100 transition-all hover:scale-105 inline-flex items-center justify-center gap-2"
+              >
+                Start Your 30-Day Free Trial <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/pricing"
+                className="bg-transparent text-white border border-stone-600 px-7 py-3.5 rounded-full font-bold text-sm hover:bg-stone-700 transition-all inline-flex items-center justify-center gap-2"
+              >
+                See Pricing
+              </Link>
+            </div>
+            <p className="text-xs text-stone-500 mt-4">
+              No credit card required for the free trial.
+            </p>
+          </div>
+          {/* Section 8: Mistakes */}
+          <SectionHeading
+            id="common-mistakes"
+            number="08"
+            title="Mistakes That Kill New Contractors"
+          />
+          <div className="prose-section">
+            <p className="text-stone-600 leading-relaxed mb-6">
+              Most first-time contractors don&apos;t lose because the competition is
+              too good. They lose because of self-inflicted errors that disqualify
+              them before evaluators even read their proposal. Avoid these:
+            </p>
+
+            <div className="space-y-4 mb-8">
+              {[
+                {
+                  icon: AlertTriangle,
+                  color: "amber",
+                  title: "Bidding on everything",
+                  desc: "Spray-and-pray bidding produces thin proposals and zero wins. A mediocre proposal on 10 RFPs loses to a great proposal on 2. Be selective. Use a formal bid/no-bid process and only pursue contracts where you have a genuine chance.",
+                },
+                {
+                  icon: FileText,
+                  color: "red",
+                  title: "Skipping Sources Sought notices",
+                  desc: "Sources Sought notices are not just informational. They are invitations. Responding with a capability statement gets you in front of the contracting officer before any competition starts. It can literally shape how the eventual RFP is written. Ignoring them means you start every bid behind.",
+                },
+                {
+                  icon: AlertTriangle,
+                  color: "amber",
+                  title: "Not reading the solicitation carefully",
+                  desc: "The most common cause of proposal disqualification is failing to meet mandatory requirements. Page limits, font size, required sections, submission format — evaluators reject non-compliant proposals without reading them. Read the solicitation twice before writing a word of your proposal.",
+                },
+                {
+                  icon: Clock,
+                  color: "red",
+                  title: "Letting SAM.gov registration lapse",
+                  desc: "SAM.gov must be renewed annually. If your registration expires while an award is pending, the agency cannot award to you — regardless of how good your proposal was. Set reminders 60 days out and renew as soon as the renewal window opens.",
+                },
+                {
+                  icon: Target,
+                  color: "amber",
+                  title: "Using the wrong set-aside designation",
+                  desc: "Claiming a set-aside you don't qualify for — or failing to claim one you do — both cost you. The first can get your award rescinded or lead to False Claims Act liability. The second means you're competing in harder pools than you need to. Verify your eligibility through the proper certification channels before marking any set-aside on SAM.gov.",
+                },
+                {
+                  icon: FileText,
+                  color: "red",
+                  title: "No capability statement",
+                  desc: "Contracting officers ask for capability statements before solicitations are even published. At matchmaking events. At OSDBU outreach sessions. At industry days. If you don't have one ready, you miss the conversation. A one-page capability statement, done well, opens more doors than a 20-page proposal submitted cold.",
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className={`flex gap-4 p-5 rounded-xl border animate-on-scroll ${
+                    item.color === "red"
+                      ? "border-red-200 bg-red-50"
+                      : "border-amber-200 bg-amber-50"
+                  }`}
+                >
+                  <div
+                    className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                      item.color === "red"
+                        ? "bg-red-100 text-red-600"
+                        : "bg-amber-100 text-amber-600"
+                    }`}
+                  >
+                    <item.icon className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <p
+                      className={`font-bold text-sm mb-1 ${
+                        item.color === "red" ? "text-red-900" : "text-amber-900"
+                      }`}
+                    >
+                      {item.title}
+                    </p>
+                    <p
+                      className={`text-sm leading-relaxed ${
+                        item.color === "red" ? "text-red-800" : "text-amber-800"
+                      }`}
+                    >
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <p className="text-stone-600 leading-relaxed mt-6">
-              For mistake #6, read our{" "}
-              <Link href="/blog/capability-statement-guide" className="text-emerald-700 font-medium hover:underline">
-                capability statement guide
-              </Link>{" "}
-              and see what separates effective ones from forgettable ones.
-            </p>
-          </div>
-
-          {/* Section 8: Use Technology */}
-          <SectionHeading id="use-technology" number="08" title="Stop Searching Manually: Use Technology to Win Faster" />
-          <div className="prose-section">
-            <p className="text-stone-600 leading-relaxed mb-4">
-              Manually monitoring SAM.gov is a full-time job. Thousands of solicitations are posted every
-              week. Filtering by NAICS code still leaves hundreds of results. Reading each one to assess fit
-              takes hours per opportunity.
-            </p>
-            <p className="text-stone-600 leading-relaxed mb-6">
-              Contractors who win consistently don&apos;t search harder &mdash; they search smarter.
-              They use technology to surface only the relevant opportunities, track progress across multiple
-              bids, and understand the competitive landscape before they invest in a proposal.
-            </p>
-
-            <div className="overflow-x-auto my-8">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-stone-100">
-                    <th className="text-left px-4 py-3 font-bold text-stone-700 rounded-tl-xl">Task</th>
-                    <th className="text-left px-4 py-3 font-bold text-stone-700">Manual Approach</th>
-                    <th className="text-left px-4 py-3 font-bold text-stone-700 rounded-tr-xl">With CapturePilot</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { task: "Find relevant opportunities", manual: "Search SAM.gov daily, filter manually, read every result", smart: "AI matching surfaces opportunities that fit your capabilities automatically" },
-                    { task: "Track bid pipeline", manual: "Spreadsheet with dozens of columns, manual status updates", smart: "Visual pipeline with stages, deadlines, and team assignments" },
-                    { task: "Research agency spend", manual: "Hours on USASpending.gov building custom reports", smart: "Agency intelligence dashboards — see who won what and for how much" },
-                    { task: "Check certifications", manual: "Research each program separately, estimate eligibility manually", smart: "Free quick checker scores your eligibility in 30 seconds" },
-                    { task: "Build proposals", manual: "Start from scratch each time, manage compliance manually", smart: "Proposal templates with built-in compliance matrix generation" },
-                  ].map((row, i) => (
-                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-stone-50"}>
-                      <td className="px-4 py-3 font-medium text-stone-800">{row.task}</td>
-                      <td className="px-4 py-3 text-stone-500 text-xs">{row.manual}</td>
-                      <td className="px-4 py-3 text-emerald-700 font-medium text-xs">{row.smart}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <p className="text-stone-600 leading-relaxed mb-4">
-              CapturePilot&apos;s{" "}
-              <Link href="/features/matching" className="text-emerald-700 font-medium hover:underline">contract matching</Link>{" "}
-              reads your business profile and surfaces opportunities across SAM.gov that fit your NAICS codes,
-              certifications, and past performance. Your{" "}
-              <Link href="/features/pipeline" className="text-emerald-700 font-medium hover:underline">bid pipeline</Link>{" "}
-              tracks every opportunity from Sources Sought through award decision. And the{" "}
-              <Link href="/features/intelligence" className="text-emerald-700 font-medium hover:underline">intelligence module</Link>{" "}
-              shows you agency spending patterns so you know where to focus before you start.
-            </p>
-            <p className="text-stone-600 leading-relaxed mb-4">
-              Not sure which certifications your business qualifies for? The{" "}
-              <Link href="/features/quick-checker" className="text-emerald-700 font-medium hover:underline">Quick Checker</Link>{" "}
-              gives you an instant eligibility score in 30 seconds. Free, no account required. There&apos;s
-              also a{" "}
-              <Link href="/resources/quick-checker-guide" className="text-emerald-700 font-medium hover:underline">
-                Quick Checker guide
-              </Link>{" "}
-              if you want to understand how each program is evaluated.
-            </p>
             <p className="text-stone-600 leading-relaxed">
-              The contractors who succeed in government contracting treat it like a business development
-              function, not a lottery. They research before they bid, track their pipeline systematically,
-              and learn from every proposal win and loss. The{" "}
-              <Link href="/blog/government-contract-win-rate" className="text-emerald-700 font-medium hover:underline">
-                average win rate for experienced contractors
-              </Link>{" "}
-              is around 30% &mdash; which means a disciplined contractor bidding 10 qualified opportunities
-              a year expects to win 3. That&apos;s how you build a real GovCon business.
+              For more on building a capability statement that actually wins
+              meetings, see our{" "}
+              <Link
+                href="/blog/capability-statement-guide"
+                className="text-emerald-700 underline font-medium"
+              >
+                capability statement guide
+              </Link>
+              . And if you want a pre-bid checklist to run through before every
+              proposal, download our{" "}
+              <Link
+                href="/resources/bid-checklist"
+                className="text-emerald-700 underline font-medium"
+              >
+                Bid Checklist
+              </Link>
+              .
             </p>
           </div>
 
           {/* Final CTA */}
-          <div id="get-started" className="mt-16 rounded-3xl bg-gradient-to-br from-emerald-600 to-emerald-700 p-8 sm:p-12 text-white animate-on-scroll">
-            <div className="max-w-2xl">
-              <div className="flex items-center gap-2 mb-4">
-                <Award className="w-5 h-5 text-emerald-200" />
-                <span className="text-emerald-200 text-sm font-medium">Start Winning Government Contracts</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-black tracking-tight mb-4">
-                Find your first contract opportunity today
+          <div className="mt-16">
+            <div className="bg-gradient-to-br from-stone-900 to-stone-800 rounded-3xl p-10 sm:p-14 text-white text-center animate-on-scroll">
+              <Sparkles className="w-12 h-12 mx-auto mb-6 text-emerald-400" />
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4">
+                Stop Searching. Start Winning.
               </h2>
-              <p className="text-emerald-100 mb-8 leading-relaxed">
-                CapturePilot connects small businesses to $183 billion in annual federal opportunity.
-                Start with a free eligibility check, then explore matched contracts for your business.
-                No credit card required for the 30-day trial.
+              <p className="text-stone-400 text-lg mb-4 max-w-lg mx-auto">
+                CapturePilot identifies the highest-probability government contracts
+                for your business — based on your NAICS codes, certifications, size,
+                and past performance. See your matches in minutes.
               </p>
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  href={CHECK_URL}
-                  className="inline-flex items-center gap-2 bg-white text-emerald-700 font-bold px-6 py-3 rounded-xl hover:bg-emerald-50 transition-colors"
-                >
-                  <Star className="w-4 h-4" /> Check eligibility free
-                </Link>
+              <ul className="text-stone-400 text-sm space-y-2 mb-8 max-w-md mx-auto text-left">
+                {[
+                  "Daily SAM.gov matching tailored to your profile",
+                  "Set-aside opportunity tagging and eligibility scoring",
+                  "Incumbent analysis and pricing benchmarks",
+                  "Pipeline management from discovery through award",
+                  "Capability statement generator",
+                  "30-day free trial, no credit card required",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link
                   href={SIGNUP_URL}
-                  className="inline-flex items-center gap-2 bg-emerald-500 text-white font-bold px-6 py-3 rounded-xl hover:bg-emerald-400 transition-colors border border-emerald-400"
+                  className="bg-white text-black px-8 py-4 rounded-full text-base font-bold hover:bg-stone-100 transition-all hover:scale-105 inline-flex items-center justify-center gap-2"
                 >
-                  Start 30-day free trial <ArrowRight className="w-4 h-4" />
+                  Start Free Trial <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href="/demo"
+                  className="bg-transparent text-white border border-stone-600 px-8 py-4 rounded-full text-base font-bold hover:bg-stone-700 transition-all inline-flex items-center justify-center gap-2"
+                >
+                  Book a Strategy Call
                 </Link>
               </div>
+              <p className="text-sm text-stone-500 mt-4">
+                No credit card required. Cancel any time.
+              </p>
             </div>
           </div>
 
-          {/* Related Posts */}
-          <div className="mt-16 pt-12 border-t border-stone-200">
-            <h2 className="text-xl font-black text-stone-900 mb-6">Related Guides</h2>
-            <div className="grid sm:grid-cols-3 gap-4">
+          {/* Related Links */}
+          <div className="mt-16 pt-8 border-t border-stone-200">
+            <h3 className="font-bold text-stone-900 mb-4">Related Guides</h3>
+            <div className="grid sm:grid-cols-2 gap-4">
               {[
-                { href: "/blog/government-contracting-101", title: "Government Contracting 101", desc: "The complete beginner's guide to federal contracting." },
-                { href: "/blog/set-aside-programs", title: "Set-Aside Programs Explained", desc: "Every small business program, eligibility, and benefit." },
-                { href: "/blog/sam-registration-guide", title: "SAM.gov Registration Guide", desc: "Step-by-step walkthrough for registering your business." },
-              ].map((post, i) => (
+                {
+                  href: "/blog/set-aside-programs",
+                  icon: Shield,
+                  title: "Set-Aside Programs Guide",
+                  desc: "8(a), SDVOSB, WOSB, HUBZone — full breakdown",
+                },
+                {
+                  href: "/blog/naics-codes-explained",
+                  icon: FileText,
+                  title: "NAICS Codes Explained",
+                  desc: "Find the right codes for your business",
+                },
+                {
+                  href: "/blog/sam-registration-guide",
+                  icon: Globe,
+                  title: "SAM.gov Registration Guide",
+                  desc: "Step-by-step walkthrough for 2026",
+                },
+                {
+                  href: "/blog/capability-statement-guide",
+                  icon: Star,
+                  title: "Capability Statement Guide",
+                  desc: "Write one that opens doors",
+                },
+              ].map((link, i) => (
                 <Link
                   key={i}
-                  href={post.href}
-                  className="block p-5 rounded-2xl border border-stone-200 hover-lift transition-all"
+                  href={link.href}
+                  className="flex items-center gap-3 p-4 rounded-xl border border-stone-200 hover-lift"
                 >
-                  <p className="font-bold text-stone-900 text-sm mb-1">{post.title}</p>
-                  <p className="text-stone-500 text-xs leading-relaxed">{post.desc}</p>
-                  <div className="flex items-center gap-1 text-emerald-600 text-xs font-medium mt-3">
-                    Read guide <ArrowRight className="w-3 h-3" />
+                  <link.icon className="w-5 h-5 text-emerald-600" />
+                  <div>
+                    <p className="font-bold text-stone-900 text-sm">{link.title}</p>
+                    <p className="text-xs text-stone-500">{link.desc}</p>
                   </div>
+                  <ArrowRight className="w-4 h-4 text-stone-400 ml-auto" />
                 </Link>
               ))}
             </div>
