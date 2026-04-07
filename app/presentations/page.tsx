@@ -804,8 +804,8 @@ export default function MasterPresentationPage() {
               <div className="flex flex-col gap-5">
                 {[
                   {
-                    text: "Small & mid-size businesses ($2M+ revenue)",
-                    desc: "From growing companies to established firms — we scale with you",
+                    text: "Established 5+ years with $2M+ revenue",
+                    desc: "Proven track record and operational stability to back federal contracts",
                   },
                   {
                     text: "Veteran-owned businesses (SDVOSB / VOSB)",
