@@ -124,21 +124,21 @@ export default function Homepage() {
       {/* ================================================================ */}
       {/* NAVIGATION                                                       */}
       {/* ================================================================ */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-xl border-b border-stone-100 z-50">
+      <nav className="fixed top-0 w-full bg-stone-950/80 backdrop-blur-xl border-b border-stone-800/50 z-50">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <Image src="/logo.png" alt="CapturePilot" width={32} height={32} className="rounded-lg" />
-            <span className="font-bold text-lg tracking-tight">CapturePilot</span>
+            <Image src="/logo.png" alt="CapturePilot" width={32} height={32} className="rounded-lg invert" />
+            <span className="font-bold text-lg tracking-tight text-white">CapturePilot</span>
           </Link>
           <div className="hidden md:flex items-center gap-8 text-sm">
-            <Link href="#features" className="text-stone-600 hover:text-black transition-colors">Features</Link>
-            <Link href="#how-it-works" className="text-stone-600 hover:text-black transition-colors">How It Works</Link>
-            <Link href="#pricing" className="text-stone-600 hover:text-black transition-colors">Pricing</Link>
-            <Link href="#compare" className="text-stone-600 hover:text-black transition-colors">Compare</Link>
-            <Link href={LOGIN_URL} className="text-stone-600 hover:text-black transition-colors">Login</Link>
+            <Link href="#features" className="text-stone-400 hover:text-white transition-colors">Features</Link>
+            <Link href="#how-it-works" className="text-stone-400 hover:text-white transition-colors">How It Works</Link>
+            <Link href="#pricing" className="text-stone-400 hover:text-white transition-colors">Pricing</Link>
+            <Link href="#compare" className="text-stone-400 hover:text-white transition-colors">Compare</Link>
+            <Link href={LOGIN_URL} className="text-stone-400 hover:text-white transition-colors">Login</Link>
             <Link
               href={SIGNUP_URL}
-              className="bg-black text-white px-5 py-2.5 rounded-full font-bold hover:bg-stone-800 transition-all hover:scale-105 inline-flex items-center gap-1.5"
+              className="bg-emerald-500 text-white px-5 py-2.5 rounded-full font-bold hover:bg-emerald-400 transition-all hover:scale-105 inline-flex items-center gap-1.5"
             >
               Start Free <ArrowRight className="w-3.5 h-3.5" />
             </Link>
@@ -149,23 +149,34 @@ export default function Homepage() {
       {/* ================================================================ */}
       {/* 1. HERO                                                          */}
       {/* ================================================================ */}
-      <section className="pt-28 pb-24 px-6 relative overflow-hidden">
-        {/* subtle gradient bg */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-emerald-50/30 to-white pointer-events-none" />
+      <section className="pt-28 pb-24 px-6 relative overflow-hidden bg-stone-950 text-white">
+        {/* Animated grid background */}
+        <div className="absolute inset-0 pointer-events-none" style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px',
+        }} />
+        {/* Radial glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none" />
+        {/* Subtle bottom gradient fade to white */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none z-20" />
+
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left: Copy */}
             <div>
-              <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full px-4 py-1.5 text-sm font-medium mb-8 animate-fade-in-up">
+              <div className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full px-4 py-1.5 text-sm font-medium mb-8 animate-fade-in-up">
                 <Shield className="w-4 h-4" /> Built for Veteran-Owned & Small Businesses
               </div>
 
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] mb-6 animate-fade-in-up animate-delay-100">
                 Win Government<br />
-                Contracts. <span className="gradient-text">Faster.</span>
+                Contracts. <span className="text-emerald-400">Faster.</span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-stone-500 max-w-xl mb-10 animate-fade-in-up animate-delay-200 leading-relaxed">
+              <p className="text-lg sm:text-xl text-stone-400 max-w-xl mb-10 animate-fade-in-up animate-delay-200 leading-relaxed">
                 CapturePilot scans 40,000+ federal opportunities daily and matches them to your business
                 using 6 scoring factors. Stop searching SAM.gov manually. Start winning contracts.
               </p>
@@ -173,41 +184,41 @@ export default function Homepage() {
               <div className="flex flex-col sm:flex-row items-start gap-4 animate-fade-in-up animate-delay-300">
                 <Link
                   href={SIGNUP_URL}
-                  className="bg-black text-white px-8 py-4 rounded-full text-base font-bold hover:bg-stone-800 transition-all hover:scale-105 inline-flex items-center gap-2 shadow-xl shadow-stone-300/40"
+                  className="bg-emerald-500 text-white px-8 py-4 rounded-full text-base font-bold hover:bg-emerald-400 transition-all hover:scale-105 inline-flex items-center gap-2 shadow-xl shadow-emerald-500/20"
                 >
                   Start Free — 30 Days <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href={CHECK_URL}
-                  className="bg-stone-100 text-stone-700 px-8 py-4 rounded-full text-base font-bold hover:bg-stone-200 transition-colors inline-flex items-center gap-2"
+                  className="bg-white/10 text-white px-8 py-4 rounded-full text-base font-bold hover:bg-white/20 transition-colors inline-flex items-center gap-2 border border-white/10"
                 >
                   <Search className="w-4 h-4" /> Quick Company Check
                 </Link>
               </div>
 
-              <p className="text-sm text-stone-400 mt-5">No credit card required. Cancel anytime.</p>
+              <p className="text-sm text-stone-500 mt-5">No credit card required. Cancel anytime.</p>
 
               {/* Trust badges */}
-              <div className="flex flex-wrap items-center gap-6 mt-10 pt-8 border-t border-stone-200/60">
+              <div className="flex flex-wrap items-center gap-6 mt-10 pt-8 border-t border-stone-800/60">
                 <div className="flex items-center gap-2 text-sm text-stone-500">
-                  <BarChart3 className="w-4 h-4 text-emerald-600" />
-                  <span><strong className="text-black">40,000+</strong> Opps Scanned Daily</span>
+                  <BarChart3 className="w-4 h-4 text-emerald-500" />
+                  <span><strong className="text-white">40,000+</strong> Opps Scanned Daily</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-stone-500">
-                  <Shield className="w-4 h-4 text-emerald-600" />
-                  <span><strong className="text-black">Built</strong> for Veterans</span>
+                  <Shield className="w-4 h-4 text-emerald-500" />
+                  <span><strong className="text-white">Built</strong> for Veterans</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-stone-500">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  <span><strong className="text-black">30-Day</strong> Free Trial</span>
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                  <span><strong className="text-white">30-Day</strong> Free Trial</span>
                 </div>
               </div>
             </div>
 
             {/* Right: Animated Dashboard Preview */}
-            <div className="hidden lg:block">
+            <div className="mt-8 lg:mt-0">
               <div className="hero-float">
-                <div className="bg-stone-950 rounded-2xl p-6 shadow-2xl shadow-stone-400/20 border border-stone-800">
+                <div className="bg-stone-900 rounded-2xl p-4 sm:p-6 shadow-2xl shadow-emerald-500/10 border border-stone-800">
                   <div className="flex items-center gap-2 mb-5">
                     <div className="w-3 h-3 rounded-full bg-red-500" />
                     <div className="w-3 h-3 rounded-full bg-yellow-500" />
@@ -218,17 +229,17 @@ export default function Homepage() {
                   {/* Fake opportunity cards */}
                   <div className="space-y-3">
                     {/* Card 1 - HOT */}
-                    <div className="card-slide-1 bg-stone-900 rounded-xl p-4 border border-stone-700/50">
+                    <div className="card-slide-1 bg-stone-800/80 rounded-xl p-3 sm:p-4 border border-stone-700/50">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-white text-sm font-semibold truncate max-w-[200px]">Janitorial Services — Ft. Bragg</span>
-                        <span className="bg-red-500/20 text-red-400 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Hot</span>
+                        <span className="text-white text-xs sm:text-sm font-semibold truncate mr-2">Janitorial Services — Ft. Bragg</span>
+                        <span className="bg-red-500/20 text-red-400 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider flex-shrink-0">Hot</span>
                       </div>
                       <div className="flex items-center gap-3 mb-2">
                         <span className="text-stone-400 text-xs">Dept of Defense</span>
                         <span className="text-stone-600 text-xs">|</span>
                         <span className="text-emerald-400 text-xs font-medium">$1.2M</span>
                       </div>
-                      <div className="w-full bg-stone-800 rounded-full h-2">
+                      <div className="w-full bg-stone-700 rounded-full h-2">
                         <div className="bg-gradient-to-r from-emerald-500 to-emerald-400 h-2 rounded-full score-fill" style={{ "--fill": "92%" } as React.CSSProperties} />
                       </div>
                       <div className="flex justify-between mt-1">
@@ -238,17 +249,17 @@ export default function Homepage() {
                     </div>
 
                     {/* Card 2 - HOT */}
-                    <div className="card-slide-2 bg-stone-900 rounded-xl p-4 border border-stone-700/50">
+                    <div className="card-slide-2 bg-stone-800/80 rounded-xl p-3 sm:p-4 border border-stone-700/50">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-white text-sm font-semibold truncate max-w-[200px]">IT Security Assessment — VA</span>
-                        <span className="bg-orange-500/20 text-orange-400 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Hot</span>
+                        <span className="text-white text-xs sm:text-sm font-semibold truncate mr-2">IT Security Assessment — VA</span>
+                        <span className="bg-orange-500/20 text-orange-400 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider flex-shrink-0">Hot</span>
                       </div>
                       <div className="flex items-center gap-3 mb-2">
                         <span className="text-stone-400 text-xs">Veterans Affairs</span>
                         <span className="text-stone-600 text-xs">|</span>
                         <span className="text-emerald-400 text-xs font-medium">$850K</span>
                       </div>
-                      <div className="w-full bg-stone-800 rounded-full h-2">
+                      <div className="w-full bg-stone-700 rounded-full h-2">
                         <div className="bg-gradient-to-r from-emerald-500 to-yellow-400 h-2 rounded-full score-fill" style={{ "--fill": "78%" } as React.CSSProperties} />
                       </div>
                       <div className="flex justify-between mt-1">
@@ -258,17 +269,17 @@ export default function Homepage() {
                     </div>
 
                     {/* Card 3 - WARM */}
-                    <div className="card-slide-3 bg-stone-900 rounded-xl p-4 border border-stone-700/50">
+                    <div className="card-slide-3 bg-stone-800/80 rounded-xl p-3 sm:p-4 border border-stone-700/50 hidden sm:block">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-white text-sm font-semibold truncate max-w-[200px]">Grounds Maintenance — GSA</span>
-                        <span className="bg-blue-500/20 text-blue-400 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Warm</span>
+                        <span className="text-white text-xs sm:text-sm font-semibold truncate mr-2">Grounds Maintenance — GSA</span>
+                        <span className="bg-blue-500/20 text-blue-400 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider flex-shrink-0">Warm</span>
                       </div>
                       <div className="flex items-center gap-3 mb-2">
                         <span className="text-stone-400 text-xs">General Services Admin</span>
                         <span className="text-stone-600 text-xs">|</span>
                         <span className="text-emerald-400 text-xs font-medium">$340K</span>
                       </div>
-                      <div className="w-full bg-stone-800 rounded-full h-2">
+                      <div className="w-full bg-stone-700 rounded-full h-2">
                         <div className="bg-gradient-to-r from-blue-500 to-blue-400 h-2 rounded-full score-fill" style={{ "--fill": "61%" } as React.CSSProperties} />
                       </div>
                       <div className="flex justify-between mt-1">
