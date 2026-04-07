@@ -412,7 +412,7 @@ export default function MasterPresentationPage() {
                 ))}
               </div>
               <div className="bg-emerald-500/10 rounded-xl p-8 text-center mb-6">
-                <p className="text-stone-400 text-sm mb-2">Annual Cost</p>
+                <p className="text-stone-400 text-sm mb-2">Annual Investment</p>
                 <p className="stat-number text-emerald-500 text-5xl md:text-6xl font-light">
                   $42K
                   <span className="text-xl text-stone-500">/year</span>
@@ -636,11 +636,11 @@ export default function MasterPresentationPage() {
             <div className="w-20 h-px bg-emerald-500/50 mb-16" />
             <div className="flex flex-col gap-6">
               {[
-                "$10M+ annual revenue",
-                "Established industry track record",
-                "Serious about federal (12+ month commitment)",
-                "Bonding capacity",
-                "Leadership buy-in",
+                "Established 5+ years with $2M+ revenue",
+                "Veteran-owned businesses (SDVOSB / VOSB)",
+                "Zero or lapsed federal bidding history",
+                "IT, Infrastructure, Construction, Logistics, or Environmental Services",
+                "Leadership buy-in for a 12+ month commitment",
               ].map((item, i) => (
                 <div
                   key={i}
@@ -727,7 +727,7 @@ export default function MasterPresentationPage() {
             <div className="w-20 h-px bg-emerald-500/50 mb-16" />
             <div className="space-y-6">
               {[
-                { step: "01", title: "Book a 30-minute intro call", desc: "We learn your business and assess fit" },
+                { step: "01", title: "Book a 15-20 minute intro call", desc: "We learn your business and assess fit" },
                 { step: "02", title: "We analyze your market", desc: "Free opportunity analysis for your NAICS codes" },
                 { step: "03", title: "Your federal pipeline starts in 30 days", desc: "Operational within the first month" },
               ].map((item, i) => (
