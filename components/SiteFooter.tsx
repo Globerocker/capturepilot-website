@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Linkedin } from "lucide-react";
 
 const APP_URL = "https://app.capturepilot.com";
 const CHECK_URL = `${APP_URL}/check`;
@@ -16,14 +17,18 @@ export default function SiteFooter() {
               <Image src="/logo.png" alt="CapturePilot" width={28} height={28} className="rounded-lg invert" />
               <span className="font-bold text-white text-sm">CapturePilot</span>
             </div>
-            <p className="text-xs leading-relaxed">Government contract matching for small businesses. Built for veterans.</p>
+            <p className="text-xs leading-relaxed mb-3">Government contract matching for small businesses. Built for veterans.</p>
+            <Link href="https://www.linkedin.com/company/111953265/" target="_blank" className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-stone-800 hover:bg-emerald-600 transition-colors">
+              <Linkedin className="w-4 h-4 text-stone-400 hover:text-white" />
+            </Link>
           </div>
           <div>
             <p className="font-bold text-white text-sm mb-3">Product</p>
             <div className="space-y-2 text-sm">
-              <Link href="/#features" className="block hover:text-white transition-colors">Features</Link>
-              <Link href="/#pricing" className="block hover:text-white transition-colors">Pricing</Link>
+              <Link href="/features" className="block hover:text-white transition-colors">Features</Link>
+              <Link href="/pricing" className="block hover:text-white transition-colors">Pricing</Link>
               <Link href={CHECK_URL} className="block hover:text-white transition-colors">Quick Check</Link>
+              <Link href="/blog" className="block hover:text-white transition-colors">Blog</Link>
               <Link href={LOGIN_URL} className="block hover:text-white transition-colors">Login</Link>
             </div>
           </div>
