@@ -804,20 +804,20 @@ export default function MasterPresentationPage() {
               <div className="flex flex-col gap-5">
                 {[
                   {
-                    text: "$5M+ annual revenue",
-                    desc: "Firms generating $5M to $1B+ in annual revenue",
+                    text: "Small & mid-size businesses ($2M+ revenue)",
+                    desc: "From growing companies to established firms — we scale with you",
+                  },
+                  {
+                    text: "Veteran-owned businesses (SDVOSB / VOSB)",
+                    desc: "Thousands of set-aside contracts reserved specifically for you",
                   },
                   {
                     text: "Zero or lapsed federal bidding history",
-                    desc: "Companies that haven't yet entered — or re-entering after years away",
+                    desc: "Never bid before — or re-entering after years away",
                   },
                   {
                     text: "IT, Infrastructure, Construction, Logistics, or Environmental Services",
                     desc: "Industries with strong federal demand and contract volume",
-                  },
-                  {
-                    text: "Ideally veteran-owned (but not required)",
-                    desc: "SDVOSB/VOSB status unlocks dedicated set-aside contracts",
                   },
                   {
                     text: "Leadership buy-in for a 12+ month commitment",
