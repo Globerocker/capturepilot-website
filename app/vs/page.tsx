@@ -56,20 +56,19 @@ interface MatrixRow {
   capture2: CellStatus;
   sweetspot: CellStatus;
   govdash: CellStatus;
-  samgov: CellStatus;
 }
 
 const MATRIX_ROWS: MatrixRow[] = [
-  { feature: "AI Proposal Drafts", cp: "yes", govwin: "no", govtribe: "no", bgov: "no", highergov: "no", federalCompass: "no", unison: "no", capture2: "partial", sweetspot: "yes", govdash: "yes", samgov: "no" },
-  { feature: "Capability Statement", cp: "yes", govwin: "no", govtribe: "no", bgov: "no", highergov: "no", federalCompass: "no", unison: "no", capture2: "no", sweetspot: "no", govdash: "no", samgov: "no" },
-  { feature: "Smart Matching", cp: "yes", govwin: "partial", govtribe: "partial", bgov: "no", highergov: "partial", federalCompass: "partial", unison: "partial", capture2: "no", sweetspot: "yes", govdash: "yes", samgov: "no" },
-  { feature: "Quick Checker", cp: "yes", govwin: "no", govtribe: "no", bgov: "no", highergov: "no", federalCompass: "no", unison: "no", capture2: "no", sweetspot: "no", govdash: "no", samgov: "no" },
-  { feature: "Market Intel", cp: "yes", govwin: "yes", govtribe: "partial", bgov: "yes", highergov: "yes", federalCompass: "yes", unison: "no", capture2: "no", sweetspot: "partial", govdash: "partial", samgov: "partial" },
-  { feature: "Deal Pipeline", cp: "yes", govwin: "no", govtribe: "no", bgov: "no", highergov: "no", federalCompass: "no", unison: "no", capture2: "yes", sweetspot: "yes", govdash: "yes", samgov: "no" },
-  { feature: "Partner Search", cp: "yes", govwin: "yes", govtribe: "partial", bgov: "no", highergov: "yes", federalCompass: "partial", unison: "yes", capture2: "no", sweetspot: "no", govdash: "no", samgov: "yes" },
-  { feature: "Consulting Support", cp: "yes", govwin: "no", govtribe: "no", bgov: "no", highergov: "no", federalCompass: "no", unison: "no", capture2: "no", sweetspot: "no", govdash: "no", samgov: "no" },
-  { feature: "Starting Price", cp: "yes", govwin: "no", govtribe: "partial", bgov: "no", highergov: "partial", federalCompass: "no", unison: "partial", capture2: "partial", sweetspot: "partial", govdash: "no", samgov: "yes" },
-  { feature: "Free Tier", cp: "yes", govwin: "no", govtribe: "no", bgov: "no", highergov: "no", federalCompass: "no", unison: "partial", capture2: "no", sweetspot: "no", govdash: "no", samgov: "yes" },
+  { feature: "AI Proposal Drafts", cp: "yes", govwin: "no", govtribe: "no", bgov: "no", highergov: "no", federalCompass: "no", unison: "no", capture2: "partial", sweetspot: "yes", govdash: "yes" },
+  { feature: "Capability Statement", cp: "yes", govwin: "no", govtribe: "no", bgov: "no", highergov: "no", federalCompass: "no", unison: "no", capture2: "no", sweetspot: "no", govdash: "no" },
+  { feature: "Smart Matching", cp: "yes", govwin: "partial", govtribe: "partial", bgov: "no", highergov: "partial", federalCompass: "partial", unison: "partial", capture2: "no", sweetspot: "yes", govdash: "yes" },
+  { feature: "Quick Checker", cp: "yes", govwin: "no", govtribe: "no", bgov: "no", highergov: "no", federalCompass: "no", unison: "no", capture2: "no", sweetspot: "no", govdash: "no" },
+  { feature: "Market Intel", cp: "yes", govwin: "yes", govtribe: "partial", bgov: "yes", highergov: "yes", federalCompass: "yes", unison: "no", capture2: "no", sweetspot: "partial", govdash: "partial" },
+  { feature: "Deal Pipeline", cp: "yes", govwin: "no", govtribe: "no", bgov: "no", highergov: "no", federalCompass: "no", unison: "no", capture2: "yes", sweetspot: "yes", govdash: "yes" },
+  { feature: "Partner Search", cp: "yes", govwin: "yes", govtribe: "partial", bgov: "no", highergov: "yes", federalCompass: "partial", unison: "yes", capture2: "no", sweetspot: "no", govdash: "no" },
+  { feature: "Consulting Support", cp: "yes", govwin: "no", govtribe: "no", bgov: "no", highergov: "no", federalCompass: "no", unison: "no", capture2: "no", sweetspot: "no", govdash: "no" },
+  { feature: "Email Alerts", cp: "yes", govwin: "yes", govtribe: "yes", bgov: "yes", highergov: "yes", federalCompass: "partial", unison: "partial", capture2: "no", sweetspot: "yes", govdash: "yes" },
+  { feature: "Free Tier", cp: "yes", govwin: "no", govtribe: "no", bgov: "no", highergov: "no", federalCompass: "no", unison: "partial", capture2: "no", sweetspot: "no", govdash: "no" },
 ];
 
 const PRICE_LABELS: Record<string, string> = {
@@ -83,7 +82,6 @@ const PRICE_LABELS: Record<string, string> = {
   capture2: "$99+/mo",
   sweetspot: "Custom",
   govdash: "$500+/mo",
-  samgov: "Free",
 };
 
 const COMPETITORS = [
@@ -97,7 +95,6 @@ const COMPETITORS = [
   "capture2",
   "sweetspot",
   "govdash",
-  "samgov",
 ] as const;
 
 const COMPETITOR_LABELS: Record<string, string> = {
@@ -111,7 +108,19 @@ const COMPETITOR_LABELS: Record<string, string> = {
   capture2: "Capture2",
   sweetspot: "Sweetspot",
   govdash: "GovDash",
-  samgov: "SAM.gov",
+};
+
+const COMPETITOR_SLUGS: Record<string, string> = {
+  cp: "",
+  govwin: "govwin",
+  govtribe: "govtribe",
+  bgov: "bgov",
+  highergov: "highergov",
+  federalCompass: "federal-compass",
+  unison: "unison",
+  capture2: "capture2proposal",
+  sweetspot: "sweetspot",
+  govdash: "govdash",
 };
 
 /* ------------------------------------------------------------------ */
@@ -135,7 +144,7 @@ const COMPETITOR_CARDS: CompetitorCard[] = [
   { name: "Capture2Proposal", slug: "capture2proposal", tagline: "Manages proposals, doesn't write them", icon: FileText },
   { name: "Sweetspot AI", slug: "sweetspot", tagline: "AI-native newcomer", icon: Sparkles },
   { name: "GovDash", slug: "govdash", tagline: "AI proposal focus", icon: Brain },
-  { name: "SAM.gov", slug: "sam-gov", tagline: "The source, not the solution", icon: Shield },
+  { name: "EZGovOpps", slug: "ezgovopps", tagline: "Mid-market intel with analyst curation", icon: Award },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -321,85 +330,86 @@ export default function VsOverviewPage() {
             </div>
 
             <div className="overflow-x-auto -mx-6 px-6">
-              <div className="min-w-[1100px]">
-                <div className="bg-stone-950 rounded-2xl border border-stone-800 shadow-2xl overflow-hidden">
+              <div className="min-w-[1000px]">
+                <div className="bg-white rounded-2xl border border-stone-200 shadow-lg overflow-hidden">
                   {/* Header */}
-                  <div className="grid grid-cols-12 border-b border-stone-800">
-                    <div className="col-span-2 px-4 py-3 text-xs font-bold text-stone-500 uppercase tracking-wider">
+                  <div className="grid" style={{ gridTemplateColumns: '2fr repeat(10, 1fr)' }}>
+                    <div className="px-4 py-4 text-xs font-bold text-stone-400 uppercase tracking-wider border-b border-stone-200">
                       Feature
                     </div>
-                    {COMPETITORS.map((key) => (
-                      <div
-                        key={key}
-                        className={`col-span-1 px-2 py-3 text-xs font-bold text-center ${
-                          key === "cp"
-                            ? "bg-emerald-500/10 border-x border-emerald-500/30 text-emerald-400"
-                            : "text-stone-500"
-                        }`}
-                      >
-                        {COMPETITOR_LABELS[key]}
-                      </div>
-                    ))}
+                    {COMPETITORS.map((key) => {
+                      const slug = COMPETITOR_SLUGS[key];
+                      const inner = (
+                        <div
+                          className={`px-2 py-4 text-xs font-bold text-center border-b ${
+                            key === "cp"
+                              ? "bg-emerald-50 border-emerald-200 text-emerald-700"
+                              : "border-stone-200 text-stone-500 hover:text-emerald-600 hover:bg-emerald-50/50 transition-colors cursor-pointer"
+                          }`}
+                        >
+                          {COMPETITOR_LABELS[key]}
+                          {key === "cp" && (
+                            <div className="text-[9px] font-medium text-emerald-500 mt-0.5">You are here</div>
+                          )}
+                        </div>
+                      );
+                      return slug ? (
+                        <Link key={key} href={`/vs/${slug}`}>{inner}</Link>
+                      ) : (
+                        <div key={key}>{inner}</div>
+                      );
+                    })}
                   </div>
 
                   {/* Rows */}
-                  {MATRIX_ROWS.map((row, i) => {
-                    const isPriceRow = row.feature === "Starting Price";
-                    const isFreeTierRow = row.feature === "Free Tier";
-                    return (
-                      <div
-                        key={i}
-                        className={`grid grid-cols-12 border-b border-stone-800/50 last:border-b-0 hover:bg-stone-800/30 transition-colors ${
-                          i % 2 === 0 ? "bg-transparent" : "bg-stone-900/40"
-                        }`}
-                      >
-                        <div className="col-span-2 px-4 py-3 text-sm font-medium text-stone-300 flex items-center">
-                          {row.feature}
-                        </div>
-                        {COMPETITORS.map((key) => {
-                          const status = row[key as keyof MatrixRow] as CellStatus;
-                          return (
-                            <div
-                              key={key}
-                              className={`col-span-1 px-2 py-3 flex items-center justify-center ${
-                                key === "cp"
-                                  ? "border-x border-emerald-500/10 bg-emerald-500/5"
-                                  : ""
-                              }`}
-                            >
-                              {isPriceRow ? (
-                                <span
-                                  className={`text-xs font-medium ${
-                                    key === "cp"
-                                      ? "text-emerald-400"
-                                      : status === "yes"
-                                      ? "text-emerald-400"
-                                      : status === "partial"
-                                      ? "text-amber-400"
-                                      : "text-red-400"
-                                  }`}
-                                >
+                  {MATRIX_ROWS.map((row, i) => (
+                    <div
+                      key={i}
+                      className="grid border-b border-stone-100 last:border-b-0 hover:bg-stone-50 transition-colors"
+                      style={{ gridTemplateColumns: '2fr repeat(10, 1fr)' }}
+                    >
+                      <div className="px-4 py-3 text-sm font-medium text-stone-700 flex items-center">
+                        {row.feature}
+                      </div>
+                      {COMPETITORS.map((key) => {
+                        const status = row[key as keyof MatrixRow] as CellStatus;
+                        const slug = COMPETITOR_SLUGS[key];
+                        const cell = (
+                          <div
+                            className={`px-2 py-3 flex items-center justify-center ${
+                              key === "cp"
+                                ? "bg-emerald-50/60"
+                                : slug ? "cursor-pointer hover:bg-emerald-50/30 transition-colors" : ""
+                            }`}
+                          >
+                            {row.feature === "Starting Price" || row.feature === "Email Alerts" ? (
+                              row.feature === "Starting Price" ? (
+                                <span className={`text-xs font-semibold ${key === "cp" ? "text-emerald-600" : "text-stone-500"}`}>
                                   {PRICE_LABELS[key]}
                                 </span>
-                              ) : isFreeTierRow ? (
-                                <CellIcon status={status} />
                               ) : (
                                 <CellIcon status={status} />
-                              )}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    );
-                  })}
+                              )
+                            ) : (
+                              <CellIcon status={status} />
+                            )}
+                          </div>
+                        );
+                        return slug ? (
+                          <Link key={key} href={`/vs/${slug}`}>{cell}</Link>
+                        ) : (
+                          <div key={key}>{cell}</div>
+                        );
+                      })}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
 
-            <p className="text-xs text-stone-400 text-center mt-4">
-              Based on publicly available information as of April 2026. Scroll
-              horizontally on mobile. Green = included, amber = partial/limited,
-              red = not available.
+            <p className="text-xs text-stone-400 text-center mt-6">
+              Click any competitor column to see the full comparison. Scroll
+              horizontally on mobile. <span className="text-emerald-600">Green</span> = included, <span className="text-amber-500">amber</span> = partial, <span className="text-red-400">red</span> = not available.
             </p>
           </div>
         </section>
