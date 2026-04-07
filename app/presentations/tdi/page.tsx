@@ -27,7 +27,7 @@ import {
   Award,
 } from "lucide-react";
 
-const TOTAL_SLIDES = 12;
+const TOTAL_SLIDES = 13;
 
 export default function TDIPresentationPage() {
   const [currentSlide, setCurrentSlide] = useState(1);
@@ -318,6 +318,96 @@ export default function TDIPresentationPage() {
 
             <p className="text-stone-600 text-xs mt-8 tracking-wide">
               Sources: USASpending.gov, FCC, NTIA
+            </p>
+          </div>
+        </section>
+
+        {/* ===== SLIDE 2B: TD&I Specific Opportunity ===== */}
+        <section
+          className="slide min-h-screen bg-stone-950 flex items-center justify-center relative"
+          style={{ scrollSnapAlign: "start" }}
+        >
+          <div className="max-w-6xl mx-auto px-8 w-full">
+            <p className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
+              Your Opportunity
+            </p>
+            <h2 className="text-3xl md:text-5xl font-extralight text-white mb-4 leading-tight max-w-4xl">
+              We already identified{" "}
+              <span className="text-emerald-500">78 qualified opportunities</span>{" "}
+              in your operating states.
+            </h2>
+            <div className="w-20 h-px bg-emerald-500/50 mb-16" />
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-stone-900 border border-emerald-500/30 rounded-2xl p-8 text-center">
+                <p className="text-6xl md:text-7xl font-light text-emerald-500 mb-3">78</p>
+                <p className="text-stone-400 text-sm">Hot Match Opportunities</p>
+                <p className="text-stone-600 text-xs mt-2">In MN, WI, IA, NE, AK</p>
+              </div>
+              <div className="bg-stone-900 border border-stone-800 rounded-2xl p-8 text-center">
+                <p className="text-6xl md:text-7xl font-light text-white mb-3">$1.2M</p>
+                <p className="text-stone-400 text-sm">Average Deal Size</p>
+                <p className="text-stone-600 text-xs mt-2">Estimated contract value</p>
+              </div>
+              <div className="bg-stone-900 border border-stone-800 rounded-2xl p-8 text-center">
+                <p className="text-6xl md:text-7xl font-light text-white mb-3">28</p>
+                <p className="text-stone-400 text-sm">Sources Sought Notices</p>
+                <p className="text-stone-600 text-xs mt-2">Early-stage — highest win probability</p>
+              </div>
+            </div>
+
+            <div className="bg-stone-900/50 border border-stone-800 rounded-2xl p-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-white font-medium mb-4 flex items-center gap-2">
+                    <Target className="w-4 h-4 text-emerald-500" /> Opportunity Breakdown
+                  </h3>
+                  <div className="space-y-3">
+                    {[
+                      { label: "Sources Sought / RFI", count: 28, color: "bg-emerald-500", desc: "Earliest stage — shape the RFP" },
+                      { label: "Presolicitation", count: 19, color: "bg-blue-500", desc: "Upcoming bids — prepare now" },
+                      { label: "Active Solicitations", count: 31, color: "bg-amber-500", desc: "Open for bidding" },
+                    ].map((item) => (
+                      <div key={item.label} className="flex items-center gap-4">
+                        <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: item.color === "bg-emerald-500" ? "#10b981" : item.color === "bg-blue-500" ? "#3b82f6" : "#f59e0b" }} />
+                        <div className="flex-1">
+                          <div className="flex justify-between">
+                            <span className="text-white text-sm">{item.label}</span>
+                            <span className="text-emerald-500 font-medium text-sm">{item.count}</span>
+                          </div>
+                          <p className="text-stone-600 text-xs">{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-white font-medium mb-4 flex items-center gap-2">
+                    <BarChart3 className="w-4 h-4 text-emerald-500" /> Revenue Potential
+                  </h3>
+                  <div className="space-y-4">
+                    <div>
+                      <p className="text-stone-500 text-xs uppercase tracking-wider mb-1">Total Pipeline Value</p>
+                      <p className="text-3xl font-light text-white">$93.6M</p>
+                      <p className="text-stone-600 text-xs">78 opportunities × $1.2M avg</p>
+                    </div>
+                    <div>
+                      <p className="text-stone-500 text-xs uppercase tracking-wider mb-1">Conservative Win Rate (5%)</p>
+                      <p className="text-3xl font-light text-emerald-500">$4.68M</p>
+                      <p className="text-stone-600 text-xs">~4 contracts in Year 1</p>
+                    </div>
+                    <div>
+                      <p className="text-stone-500 text-xs uppercase tracking-wider mb-1">Realistic Win Rate (10-15%)</p>
+                      <p className="text-3xl font-light text-emerald-400">$9.4M – $14M</p>
+                      <p className="text-stone-600 text-xs">With early Sources Sought engagement</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p className="text-stone-600 text-xs mt-6 tracking-wide">
+              Analysis performed April 2026 via CapturePilot proprietary matching engine. NAICS: 237130, 517110, 238210.
             </p>
           </div>
         </section>
