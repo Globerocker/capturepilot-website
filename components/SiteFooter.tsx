@@ -28,7 +28,6 @@ export default function SiteFooter() {
               <Link href="/pricing" className="block hover:text-white transition-colors">Pricing</Link>
               <Link href={CHECK_URL} className="block hover:text-white transition-colors">Quick Check</Link>
               <Link href="/blog" className="block hover:text-white transition-colors">Blog</Link>
-              <Link href={LOGIN_URL} className="block hover:text-white transition-colors">Login</Link>
             </div>
           </div>
           <div>

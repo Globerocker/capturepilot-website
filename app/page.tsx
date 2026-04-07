@@ -1217,9 +1217,9 @@ export default function Homepage() {
               </p>
             </div>
             <div className="flex items-center gap-6 text-xs">
-              <Link href={LOGIN_URL} className="hover:text-white transition-colors">Login</Link>
-              <Link href={SIGNUP_URL} className="hover:text-white transition-colors">Sign Up</Link>
+              <Link href={SIGNUP_URL} className="hover:text-white transition-colors">Start Free Trial</Link>
               <Link href={CHECK_URL} className="hover:text-white transition-colors">Quick Check</Link>
+              <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
             </div>
           </div>
         </div>
