@@ -398,7 +398,7 @@ export default function PricingPage() {
                 </div>
                 <Link
                   href={CALENDLY_URL}
-                  target="_blank"
+                  target="_blank" rel="noopener noreferrer"
                   className="w-full text-center py-3.5 rounded-full font-bold transition-colors inline-flex items-center justify-center gap-2 bg-stone-100 text-stone-800 hover:bg-stone-200"
                 >
                   Book Qualification Call
@@ -629,7 +629,7 @@ export default function PricingPage() {
               </Link>
               <Link
                 href={CALENDLY_URL}
-                target="_blank"
+                target="_blank" rel="noopener noreferrer"
                 className="bg-white text-stone-800 px-8 py-4 rounded-full font-bold border-2 border-stone-200 hover:border-stone-300 hover:bg-stone-50 transition-colors inline-flex items-center justify-center gap-2 text-lg"
               >
                 Book Qualification Call

@@ -63,7 +63,7 @@ export default function AboutPage() {
             <Link
               href={CALENDLY_URL}
               className="text-stone-600 px-8 py-4 rounded-full text-base font-bold hover:bg-stone-100 transition-colors"
-              target="_blank"
+              target="_blank" rel="noopener noreferrer"
             >
               Talk to Our Team
             </Link>

@@ -782,7 +782,7 @@ export default function CheckPage() {
                 </p>
                 <Link
                   href={CALENDLY_URL}
-                  target="_blank"
+                  target="_blank" rel="noopener noreferrer"
                   className="text-sm font-bold text-amber-700 hover:text-amber-800 inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all"
                 >
                   Book a Qualification Call

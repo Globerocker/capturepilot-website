@@ -330,7 +330,7 @@ export default function ProcessPage() {
             </Link>
             <Link
               href={CALENDLY_URL}
-              target="_blank"
+              target="_blank" rel="noopener noreferrer"
               className="text-stone-400 border border-stone-700 px-8 py-4 rounded-full text-base font-bold hover:bg-stone-800 hover:text-white transition-all inline-flex items-center gap-2"
             >
               Book a Strategy Call
@@ -448,7 +448,7 @@ export default function ProcessPage() {
                 </ul>
                 <Link
                   href={CALENDLY_URL}
-                  target="_blank"
+                  target="_blank" rel="noopener noreferrer"
                   className="w-full bg-emerald-500 text-stone-950 px-6 py-3.5 rounded-full text-sm font-black hover:bg-emerald-400 transition-colors inline-flex items-center justify-center gap-2"
                 >
                   Book a Strategy Call <ArrowRight className="w-4 h-4" />
@@ -551,7 +551,7 @@ export default function ProcessPage() {
           <div className="text-center mt-12">
             <Link
               href={CALENDLY_URL}
-              target="_blank"
+              target="_blank" rel="noopener noreferrer"
               className="bg-stone-900 text-white px-8 py-4 rounded-full text-base font-bold hover:bg-stone-800 transition-all hover:scale-105 inline-flex items-center gap-2 shadow-lg"
             >
               Book a Free Strategy Call <ArrowRight className="w-4 h-4" />
@@ -592,7 +592,7 @@ export default function ProcessPage() {
                 Built by{" "}
                 <Link
                   href="https://www.americurial.com"
-                  target="_blank"
+                  target="_blank" rel="noopener noreferrer"
                   className="text-emerald-400 font-bold underline underline-offset-4 decoration-emerald-400/30 hover:decoration-emerald-400 transition-colors"
                 >
                   Americurial LLC
@@ -611,7 +611,7 @@ export default function ProcessPage() {
               </p>
               <Link
                 href="https://www.americurial.com"
-                target="_blank"
+                target="_blank" rel="noopener noreferrer"
                 className="text-emerald-400 text-sm font-bold hover:text-emerald-300 transition-colors inline-flex items-center gap-1.5"
               >
                 Learn about Americurial <ArrowRight className="w-3.5 h-3.5" />
@@ -684,7 +684,7 @@ export default function ProcessPage() {
             </Link>
             <Link
               href={CALENDLY_URL}
-              target="_blank"
+              target="_blank" rel="noopener noreferrer"
               className="bg-emerald-500 text-stone-950 px-8 py-4 rounded-full text-base font-bold hover:bg-emerald-400 transition-all hover:scale-105 inline-flex items-center gap-2 shadow-lg"
             >
               Book a Strategy Call <ArrowRight className="w-4 h-4" />

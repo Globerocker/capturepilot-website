@@ -653,8 +653,7 @@ function StepCelebration({ active }: { active: boolean }) {
         </div>
         <a
           href={SIGNUP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          target="_blank" rel="noopener noreferrer"
           className="group bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-8 py-3.5 rounded-xl text-lg transition-all duration-300 flex items-center gap-2 shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:shadow-[0_0_40px_rgba(16,185,129,0.5)]"
         >
           Start Free — 30 Days

@@ -1049,7 +1049,7 @@ export default function Homepage() {
                     </li>
                   ))}
                 </ul>
-                <Link href={CALENDLY_URL} className="w-full bg-stone-100 text-stone-700 py-3.5 rounded-xl font-bold text-sm hover:bg-stone-200 transition-colors block text-center" target="_blank">
+                <Link href={CALENDLY_URL} className="w-full bg-stone-100 text-stone-700 py-3.5 rounded-xl font-bold text-sm hover:bg-stone-200 transition-colors block text-center" target="_blank" rel="noopener noreferrer">
                   Book Strategy Call
                 </Link>
               </div>
@@ -1072,7 +1072,7 @@ export default function Homepage() {
               </h2>
               <p className="text-stone-500 max-w-2xl mx-auto mb-8 leading-relaxed">
                 CapturePilot is built by{" "}
-                <Link href="https://www.americurial.com" target="_blank" className="text-emerald-600 font-bold hover:underline">
+                <Link href="https://www.americurial.com" target="_blank" rel="noopener noreferrer" className="text-emerald-600 font-bold hover:underline">
                   Americurial LLC
                 </Link>
                 , a veteran-owned digital agency. We&apos;ve navigated the federal contracting maze ourselves —
@@ -1098,7 +1098,7 @@ export default function Homepage() {
                   See Our Process <ArrowRight className="w-4 h-4" />
                 </Link>
                 <span className="text-stone-300 hidden sm:inline">|</span>
-                <Link href="https://www.americurial.com" target="_blank" className="inline-flex items-center gap-2 text-stone-500 font-bold hover:text-stone-700 transition-colors">
+                <Link href="https://www.americurial.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-stone-500 font-bold hover:text-stone-700 transition-colors">
                   Visit Americurial.com <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -1132,7 +1132,7 @@ export default function Homepage() {
               <Link
                 href={CALENDLY_URL}
                 className="text-stone-400 px-8 py-4 rounded-full text-base font-bold hover:bg-stone-800 hover:text-white transition-colors inline-flex items-center gap-2"
-                target="_blank"
+                target="_blank" rel="noopener noreferrer"
               >
                 <Phone className="w-4 h-4" /> Talk to Our Team
               </Link>
@@ -1199,7 +1199,7 @@ export default function Homepage() {
               <div className="space-y-2 text-sm">
                 <Link href="/blog/government-contracting-101" className="block hover:text-white transition-colors">GovCon 101</Link>
                 <Link href="/resources/quick-checker-guide" className="block hover:text-white transition-colors">Quick Check Guide</Link>
-                <Link href={CALENDLY_URL} className="block hover:text-white transition-colors" target="_blank">Contact</Link>
+                <Link href={CALENDLY_URL} className="block hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">Contact</Link>
                 <Link href={`${APP_URL}/privacy`} className="block hover:text-white transition-colors">Privacy</Link>
                 <Link href={`${APP_URL}/terms`} className="block hover:text-white transition-colors">Terms</Link>
               </div>
@@ -1210,7 +1210,7 @@ export default function Homepage() {
               <p>&copy; {new Date().getFullYear()} CapturePilot. All rights reserved.</p>
               <p className="text-stone-500">
                 A product by{" "}
-                <Link href="https://www.americurial.com" target="_blank" className="text-stone-400 hover:text-white transition-colors underline underline-offset-2">
+                <Link href="https://www.americurial.com" target="_blank" rel="noopener noreferrer" className="text-stone-400 hover:text-white transition-colors underline underline-offset-2">
                   Americurial LLC
                 </Link>
                 {" "}— Veteran-Owned Digital Agency

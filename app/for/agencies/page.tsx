@@ -35,7 +35,7 @@ export default function AgenciesPage() {
             Client portal, admin CRM, automated matching, and AI proposals — all white-label ready.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href={CALENDLY_URL} className="bg-black text-white px-8 py-4 rounded-full text-base font-bold hover:bg-stone-800 transition-all hover:scale-105 inline-flex items-center gap-2 shadow-lg" target="_blank">
+            <Link href={CALENDLY_URL} className="bg-black text-white px-8 py-4 rounded-full text-base font-bold hover:bg-stone-800 transition-all hover:scale-105 inline-flex items-center gap-2 shadow-lg" target="_blank" rel="noopener noreferrer">
               Book a Demo <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -131,7 +131,7 @@ export default function AgenciesPage() {
               ))}
             </div>
           </div>
-          <Link href={CALENDLY_URL} className="bg-black text-white px-8 py-4 rounded-full text-base font-bold hover:bg-stone-800 transition-all hover:scale-105 inline-flex items-center gap-2 shadow-lg" target="_blank">
+          <Link href={CALENDLY_URL} className="bg-black text-white px-8 py-4 rounded-full text-base font-bold hover:bg-stone-800 transition-all hover:scale-105 inline-flex items-center gap-2 shadow-lg" target="_blank" rel="noopener noreferrer">
             Book a Demo <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

@@ -21,8 +21,7 @@ export default function EmbedPage() {
       <div className="bg-stone-900 border-t border-stone-800 px-4 py-3 flex items-center justify-between">
         <a
           href="https://capturepilot.com"
-          target="_blank"
-          rel="noopener noreferrer"
+          target="_blank" rel="noopener noreferrer"
           className="flex items-center gap-2 text-stone-400 hover:text-white transition-colors"
         >
           <div className="w-5 h-5 rounded bg-emerald-500 flex items-center justify-center">
@@ -34,8 +33,7 @@ export default function EmbedPage() {
         </a>
         <a
           href={SIGNUP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          target="_blank" rel="noopener noreferrer"
           className="flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
         >
           Start Free
