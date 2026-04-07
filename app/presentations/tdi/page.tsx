@@ -25,6 +25,7 @@ import {
   Phone,
   Mail,
   Award,
+  BarChart3,
 } from "lucide-react";
 
 const TOTAL_SLIDES = 13;
