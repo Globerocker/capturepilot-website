@@ -101,8 +101,9 @@ export default function TDIPresentationPage() {
       <style jsx global>{`
         @media print {
           body {
-            background: white !important;
-            color: black !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            color-adjust: exact !important;
           }
           .slide-container {
             scroll-snap-type: none !important;
@@ -113,12 +114,6 @@ export default function TDIPresentationPage() {
             min-height: 100vh !important;
             page-break-after: always;
             page-break-inside: avoid;
-            background: white !important;
-            color: #1a1a1a !important;
-          }
-          .slide * {
-            color: #1a1a1a !important;
-            border-color: #d1d5db !important;
           }
           .slide .stat-number {
             color: #059669 !important;
@@ -127,19 +122,6 @@ export default function TDIPresentationPage() {
           .slide-counter,
           .nav-arrows {
             display: none !important;
-          }
-          .bg-stone-900 {
-            background: #f3f4f6 !important;
-          }
-          .bg-stone-950 {
-            background: white !important;
-          }
-          .bg-stone-800 {
-            background: #e5e7eb !important;
-          }
-          .bg-emerald-500\\/10,
-          .bg-emerald-900\\/20 {
-            background: #d1fae5 !important;
           }
           .bg-red-500\\/10,
           .bg-red-900\\/20 {
