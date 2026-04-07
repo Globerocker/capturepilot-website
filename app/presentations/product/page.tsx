@@ -7,6 +7,8 @@ import {
   FileText,
   Zap,
   CheckCircle2,
+  XCircle,
+  Minus,
   ArrowRight,
   ChevronUp,
   ChevronDown,
@@ -30,9 +32,13 @@ import {
   BadgeDollarSign,
   Handshake,
   Mail,
+  Lock,
+  Layers,
+  CircleDollarSign,
+  BadgeCheck,
 } from "lucide-react";
 
-const TOTAL_SLIDES = 12;
+const TOTAL_SLIDES = 16;
 
 /* ------------------------------------------------------------------ */
 /*  Intersection Observer hook — triggers animation when slide is visible */
@@ -104,6 +110,10 @@ export default function ProductPresentationPage() {
   const s10 = useRef<HTMLElement>(null);
   const s11 = useRef<HTMLElement>(null);
   const s12 = useRef<HTMLElement>(null);
+  const s13 = useRef<HTMLElement>(null);
+  const s14 = useRef<HTMLElement>(null);
+  const s15 = useRef<HTMLElement>(null);
+  const s16 = useRef<HTMLElement>(null);
 
   const v1 = useSlideInView(s1);
   const v2 = useSlideInView(s2);
@@ -117,6 +127,10 @@ export default function ProductPresentationPage() {
   const v10 = useSlideInView(s10);
   const v11 = useSlideInView(s11);
   const v12 = useSlideInView(s12);
+  const v13 = useSlideInView(s13);
+  const v14 = useSlideInView(s14);
+  const v15 = useSlideInView(s15);
+  const v16 = useSlideInView(s16);
 
   /* ---- navigation helpers ---- */
   const scrollToSlide = useCallback((n: number) => {
@@ -177,7 +191,7 @@ export default function ProductPresentationPage() {
   }, []);
 
   /* ---- slide theme helper for nav dots ---- */
-  const darkSlides = [1, 3, 5, 7, 9, 11];
+  const darkSlides = [1, 3, 5, 7, 9, 10, 12, 15];
   const isDark = darkSlides.includes(currentSlide);
 
   /* ---- animation helper class ---- */
@@ -187,6 +201,9 @@ export default function ProductPresentationPage() {
       transform: visible ? "translateY(0)" : "translateY(32px)",
       transition: `opacity 0.8s ease ${delay}ms, transform 0.8s ease ${delay}ms`,
     }) as React.CSSProperties;
+
+  /* ---- pricing toggle ---- */
+  const [yearly, setYearly] = useState(false);
 
   return (
     <>
@@ -253,6 +270,28 @@ export default function ProductPresentationPage() {
         @keyframes glowPulse {
           0%, 100% { box-shadow: 0 0 20px rgba(16,185,129,0.15); }
           50% { box-shadow: 0 0 40px rgba(16,185,129,0.3); }
+        }
+        @keyframes tableRowSlide {
+          from { opacity: 0; transform: translateX(-30px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes orbFloat {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(15px, -20px) scale(1.05); }
+          66% { transform: translate(-10px, 10px) scale(0.95); }
+        }
+        @keyframes pulseBorder {
+          0%, 100% { box-shadow: 0 0 20px rgba(16,185,129,0.2), inset 0 0 20px rgba(16,185,129,0.05); }
+          50% { box-shadow: 0 0 40px rgba(16,185,129,0.4), inset 0 0 30px rgba(16,185,129,0.1); }
+        }
+        @keyframes checkPop {
+          0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+          60% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+          100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        @keyframes slideUp {
+          from { opacity: 0; transform: translateY(24px); }
+          to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
 
@@ -345,6 +384,12 @@ export default function ProductPresentationPage() {
           {/* Gradient orbs */}
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-emerald-500/3 rounded-full blur-3xl" />
+
+          {/* Floating emerald glow orb */}
+          <div
+            className="absolute top-1/3 right-1/3 w-48 h-48 bg-emerald-500/8 rounded-full blur-[100px]"
+            style={{ animation: "orbFloat 8s ease-in-out infinite" }}
+          />
 
           <div className="relative z-10 text-center max-w-5xl mx-auto px-8">
             <div style={fadeUp(v1, 0)} className="mb-8">
@@ -466,7 +511,13 @@ export default function ProductPresentationPage() {
           className="slide min-h-screen bg-stone-950 flex items-center justify-center relative overflow-hidden"
           style={{ scrollSnapAlign: "start" }}
         >
-          <div className="max-w-6xl mx-auto px-8 w-full">
+          {/* Floating emerald glow orb */}
+          <div
+            className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-emerald-500/6 rounded-full blur-[120px]"
+            style={{ animation: "orbFloat 10s ease-in-out infinite" }}
+          />
+
+          <div className="max-w-6xl mx-auto px-8 w-full relative z-10">
             <div className="text-center mb-12">
               <p style={fadeUp(v3, 0)} className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
                 The Solution
@@ -638,9 +689,9 @@ export default function ProductPresentationPage() {
                     <div
                       key={item.text}
                       style={fadeUp(v4, item.delay)}
-                      className="flex items-start gap-4"
+                      className="flex items-start gap-4 group"
                     >
-                      <div className="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                      <div className="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-100 transition-colors duration-300">
                         <item.icon className="w-5 h-5 text-emerald-600" />
                       </div>
                       <p className="text-stone-600 text-sm leading-relaxed pt-2">{item.text}</p>
@@ -651,7 +702,7 @@ export default function ProductPresentationPage() {
 
               {/* Right — mockup */}
               <div style={fadeUp(v4, 300)}>
-                <div className="bg-stone-50 border border-stone-200 rounded-2xl p-6 shadow-sm">
+                <div className="bg-stone-50 border border-stone-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow duration-500">
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-stone-900 font-medium text-sm">Your Matches</h3>
                     <span className="text-emerald-600 text-xs font-medium">47 new today</span>
@@ -665,7 +716,7 @@ export default function ProductPresentationPage() {
                     ].map((opp) => (
                       <div
                         key={opp.title}
-                        className="bg-white border border-stone-100 rounded-xl p-4"
+                        className="bg-white border border-stone-100 rounded-xl p-4 hover:border-emerald-200 transition-colors duration-300"
                         style={{
                           animation: v4
                             ? `cardSlideUp 0.6s ease ${opp.delay}ms both`
@@ -716,7 +767,13 @@ export default function ProductPresentationPage() {
           className="slide min-h-screen bg-stone-950 flex items-center justify-center relative overflow-hidden"
           style={{ scrollSnapAlign: "start" }}
         >
-          <div className="max-w-5xl mx-auto px-8 w-full">
+          {/* Floating emerald glow orb */}
+          <div
+            className="absolute top-1/4 right-1/4 w-56 h-56 bg-emerald-500/6 rounded-full blur-[100px]"
+            style={{ animation: "orbFloat 9s ease-in-out infinite" }}
+          />
+
+          <div className="max-w-5xl mx-auto px-8 w-full relative z-10">
             <div className="text-center mb-12">
               <p style={fadeUp(v5, 0)} className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
                 AI Proposals
@@ -826,7 +883,7 @@ export default function ProductPresentationPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               {/* Left — chart mockup */}
               <div style={fadeUp(v6, 200)}>
-                <div className="bg-stone-50 border border-stone-200 rounded-2xl p-6">
+                <div className="bg-stone-50 border border-stone-200 rounded-2xl p-6 hover:shadow-md transition-shadow duration-500">
                   <h3 className="text-stone-900 font-medium text-sm mb-6">
                     Top Agencies by Spend in Your NAICS
                   </h3>
@@ -862,7 +919,7 @@ export default function ProductPresentationPage() {
                       <Users className="w-4 h-4 text-stone-400" />
                       <span className="text-stone-700 text-xs font-medium">Top Incumbent</span>
                     </div>
-                    <div className="bg-white border border-stone-100 rounded-lg p-3">
+                    <div className="bg-white border border-stone-100 rounded-lg p-3 hover:border-emerald-200 transition-colors duration-300">
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="text-stone-800 text-sm font-medium">CleanForce Solutions LLC</p>
@@ -916,7 +973,13 @@ export default function ProductPresentationPage() {
           className="slide min-h-screen bg-stone-950 flex items-center justify-center relative overflow-hidden"
           style={{ scrollSnapAlign: "start" }}
         >
-          <div className="max-w-5xl mx-auto px-8 w-full">
+          {/* Floating emerald glow orb */}
+          <div
+            className="absolute top-1/2 left-1/6 w-40 h-40 bg-emerald-500/8 rounded-full blur-[80px]"
+            style={{ animation: "orbFloat 7s ease-in-out infinite" }}
+          />
+
+          <div className="max-w-5xl mx-auto px-8 w-full relative z-10">
             <div className="text-center mb-12">
               <p style={fadeUp(v7, 0)} className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
                 Capability Statement
@@ -1122,7 +1185,7 @@ export default function ProductPresentationPage() {
                           className={`bg-white border rounded-xl p-4 transition-all duration-500 hover:shadow-md ${
                             column.glow
                               ? "border-emerald-200 shadow-md shadow-emerald-100"
-                              : "border-stone-100"
+                              : "border-stone-100 hover:border-emerald-200"
                           }`}
                           style={{
                             animation: v8
@@ -1168,7 +1231,13 @@ export default function ProductPresentationPage() {
           className="slide min-h-screen bg-stone-950 flex items-center justify-center relative overflow-hidden"
           style={{ scrollSnapAlign: "start" }}
         >
-          <div className="max-w-4xl mx-auto px-8 w-full">
+          {/* Floating emerald glow orb */}
+          <div
+            className="absolute bottom-1/3 right-1/4 w-52 h-52 bg-emerald-500/6 rounded-full blur-[100px]"
+            style={{ animation: "orbFloat 11s ease-in-out infinite" }}
+          />
+
+          <div className="max-w-4xl mx-auto px-8 w-full relative z-10">
             <div className="text-center mb-12">
               <p style={fadeUp(v9, 0)} className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
                 Quick Check
@@ -1284,19 +1353,435 @@ export default function ProductPresentationPage() {
         </section>
 
         {/* ===================================================================
-            SLIDE 10 — EVERYTHING INCLUDED (light)
+            SLIDE 10 — COMPETITOR COMPARISON (dark) — NEW
         =================================================================== */}
         <section
           ref={s10}
+          className="slide min-h-screen bg-stone-950 flex items-center justify-center relative overflow-hidden"
+          style={{ scrollSnapAlign: "start" }}
+        >
+          {/* Grid bg */}
+          <div className="grid-bg absolute inset-0 opacity-[0.02]">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(16,185,129,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.3) 1px, transparent 1px)",
+                backgroundSize: "80px 80px",
+                animation: "gridMove 25s linear infinite",
+              }}
+            />
+          </div>
+
+          {/* Floating emerald glow orb */}
+          <div
+            className="absolute top-1/3 left-1/3 w-60 h-60 bg-emerald-500/5 rounded-full blur-[120px]"
+            style={{ animation: "orbFloat 12s ease-in-out infinite" }}
+          />
+
+          <div className="max-w-6xl mx-auto px-4 md:px-8 w-full relative z-10">
+            <div className="text-center mb-10">
+              <p style={fadeUp(v10, 0)} className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
+                Comparison
+              </p>
+              <h2 style={fadeUp(v10, 100)} className="text-3xl md:text-5xl font-extralight text-white mb-4 leading-tight">
+                See how we{" "}
+                <span className="text-emerald-500">compare.</span>
+              </h2>
+              <p style={fadeUp(v10, 200)} className="text-stone-400 text-base font-light max-w-2xl mx-auto">
+                The only platform combining AI tools + consulting support at SMB pricing.
+              </p>
+            </div>
+
+            {/* Comparison table */}
+            <div style={fadeUp(v10, 300)} className="overflow-x-auto -mx-4 px-4">
+              <div className="min-w-[800px]">
+                {/* Header row */}
+                <div
+                  className="grid grid-cols-9 gap-0 mb-1"
+                  style={{
+                    animation: v10 ? "tableRowSlide 0.6s ease 400ms both" : "none",
+                    opacity: v10 ? undefined : 0,
+                  }}
+                >
+                  <div className="p-3 text-stone-500 text-xs font-medium uppercase tracking-wider">Feature</div>
+                  <div className="p-3 text-center rounded-t-xl bg-emerald-500/10 border-t-2 border-x border-emerald-500/50 border-stone-800">
+                    <span className="text-emerald-400 text-xs font-bold uppercase tracking-wider">CapturePilot</span>
+                  </div>
+                  {["GovWin", "GovTribe", "BGOV", "HigherGov", "Sweetspot", "GovDash", "EZGovOpps"].map((name) => (
+                    <div key={name} className="p-3 text-center">
+                      <span className="text-stone-500 text-[10px] font-medium uppercase tracking-wider">{name}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Data rows */}
+                {[
+                  { feature: "AI Proposal Drafts", cp: true, values: [false, false, false, false, true, true, false] },
+                  { feature: "Capability Statement", cp: true, values: [false, false, false, false, false, false, false] },
+                  { feature: "Smart Matching", cp: true, values: ["partial", "partial", false, "partial", true, true, false] },
+                  { feature: "Quick Checker (Free)", cp: true, values: [false, false, false, false, false, false, false] },
+                  { feature: "Market Intelligence", cp: true, values: [true, "partial", true, true, "partial", "partial", true] },
+                  { feature: "Deal Pipeline", cp: true, values: [false, false, false, false, true, true, false] },
+                  { feature: "Consulting Support", cp: true, values: [false, false, false, false, false, false, false] },
+                  { feature: "Voice-to-Document", cp: true, values: [false, false, false, false, false, false, false] },
+                ].map((row, rowIdx) => (
+                  <div
+                    key={row.feature}
+                    className={`grid grid-cols-9 gap-0 ${rowIdx % 2 === 0 ? "bg-stone-900/30" : ""}`}
+                    style={{
+                      animation: v10 ? `tableRowSlide 0.5s ease ${500 + rowIdx * 120}ms both` : "none",
+                      opacity: v10 ? undefined : 0,
+                    }}
+                  >
+                    <div className="p-3 flex items-center">
+                      <span className="text-stone-300 text-xs font-medium">{row.feature}</span>
+                    </div>
+                    <div className="p-3 flex items-center justify-center bg-emerald-500/5 border-x border-emerald-500/20">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                    </div>
+                    {row.values.map((val, i) => (
+                      <div key={i} className="p-3 flex items-center justify-center">
+                        {val === true ? (
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500/60" />
+                        ) : val === "partial" ? (
+                          <Minus className="w-4 h-4 text-amber-400/70" />
+                        ) : (
+                          <XCircle className="w-4 h-4 text-red-400/50" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+
+                {/* Price row */}
+                <div
+                  className="grid grid-cols-9 gap-0 mt-1 border-t border-stone-800"
+                  style={{
+                    animation: v10 ? `tableRowSlide 0.5s ease ${500 + 8 * 120}ms both` : "none",
+                    opacity: v10 ? undefined : 0,
+                  }}
+                >
+                  <div className="p-3 flex items-center">
+                    <span className="text-stone-300 text-xs font-bold">Price</span>
+                  </div>
+                  <div
+                    className="p-3 flex items-center justify-center bg-emerald-500/10 border-x border-b border-emerald-500/30 rounded-b-xl"
+                    style={{ animation: v10 ? "pulseBorder 3s ease-in-out infinite" : "none" }}
+                  >
+                    <span className="text-emerald-400 text-sm font-bold">$199/mo</span>
+                  </div>
+                  {["$8K+/yr", "$600/yr", "$7K+/yr", "$1K+/yr", "Custom", "$500+/mo", "$2.7K+/yr"].map((price, i) => (
+                    <div key={i} className="p-3 flex items-center justify-center">
+                      <span className="text-stone-500 text-[11px] font-mono">{price}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================================================================
+            SLIDE 11 — PARTNER SEARCH (light) — NEW
+        =================================================================== */}
+        <section
+          ref={s11}
+          className="slide min-h-screen bg-white flex items-center justify-center relative"
+          style={{ scrollSnapAlign: "start" }}
+        >
+          <div className="max-w-5xl mx-auto px-8 w-full">
+            <div className="text-center mb-12">
+              <p style={fadeUp(v11, 0)} className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
+                Partner Search
+              </p>
+              <h2 style={fadeUp(v11, 100)} className="text-3xl md:text-5xl font-extralight text-stone-900 mb-4 leading-tight">
+                Find teaming partners{" "}
+                <span className="text-emerald-600">in seconds.</span>
+              </h2>
+              <p style={fadeUp(v11, 200)} className="text-stone-400 text-lg font-light max-w-2xl mx-auto">
+                Search 1M+ SAM-registered companies. Filter by NAICS, certifications, location.
+              </p>
+            </div>
+
+            {/* Partner search mockup */}
+            <div style={fadeUp(v11, 300)} className="max-w-2xl mx-auto">
+              <div className="bg-stone-50 border border-stone-200 rounded-2xl p-6 shadow-sm">
+                {/* Search input */}
+                <div
+                  className="bg-white border border-stone-200 rounded-xl px-4 py-3 flex items-center gap-3 mb-6"
+                  style={{
+                    animation: v11 ? "cardSlideUp 0.5s ease 400ms both" : "none",
+                    opacity: v11 ? undefined : 0,
+                  }}
+                >
+                  <Search className="w-4 h-4 text-stone-400 flex-shrink-0" />
+                  <span className="text-stone-800 text-sm font-mono">
+                    NAICS 237130 + SDVOSB
+                    <span
+                      className="inline-block w-0.5 h-4 bg-emerald-500 ml-0.5 align-middle"
+                      style={{ animation: v11 ? "blink 1s step-end infinite" : "none" }}
+                    />
+                  </span>
+                  <span className="ml-auto text-stone-400 text-xs">127 results</span>
+                </div>
+
+                {/* Company cards */}
+                <div className="space-y-4">
+                  {[
+                    {
+                      name: "Iron Ridge Construction LLC",
+                      naics: ["237130", "237110"],
+                      location: "Virginia Beach, VA",
+                      certs: ["SDVOSB", "SB"],
+                      samStatus: "Active",
+                      delay: 600,
+                    },
+                    {
+                      name: "Patriot Infrastructure Group",
+                      naics: ["237130", "237310"],
+                      location: "Fayetteville, NC",
+                      certs: ["SDVOSB", "8(a)"],
+                      samStatus: "Active",
+                      delay: 900,
+                    },
+                    {
+                      name: "Summit Civil Partners Inc",
+                      naics: ["237130", "238910"],
+                      location: "San Antonio, TX",
+                      certs: ["SDVOSB"],
+                      samStatus: "Active",
+                      delay: 1200,
+                    },
+                  ].map((company) => (
+                    <div
+                      key={company.name}
+                      className="bg-white border border-stone-100 rounded-xl p-5 hover:border-emerald-200 hover:shadow-md transition-all duration-500"
+                      style={{
+                        animation: v11
+                          ? `slideUp 0.6s ease ${company.delay}ms both`
+                          : "none",
+                        opacity: v11 ? undefined : 0,
+                      }}
+                    >
+                      <div className="flex items-start justify-between mb-3">
+                        <div>
+                          <h4 className="text-stone-800 text-sm font-medium flex items-center gap-2">
+                            <Building2 className="w-4 h-4 text-stone-400" />
+                            {company.name}
+                          </h4>
+                          <div className="flex items-center gap-1 mt-1 ml-6">
+                            <MapPin className="w-3 h-3 text-stone-400" />
+                            <span className="text-stone-400 text-xs">{company.location}</span>
+                          </div>
+                        </div>
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200">
+                          {company.samStatus}
+                        </span>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5 ml-6">
+                        {company.naics.map((n) => (
+                          <span key={n} className="text-[10px] bg-stone-100 text-stone-500 px-2 py-0.5 rounded font-mono">
+                            {n}
+                          </span>
+                        ))}
+                        {company.certs.map((c) => (
+                          <span key={c} className="text-[10px] bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded font-medium">
+                            {c}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================================================================
+            SLIDE 12 — ELIGIBILITY & IDIQ TRACKING (dark) — NEW
+        =================================================================== */}
+        <section
+          ref={s12}
+          className="slide min-h-screen bg-stone-950 flex items-center justify-center relative overflow-hidden"
+          style={{ scrollSnapAlign: "start" }}
+        >
+          {/* Floating emerald glow orb */}
+          <div
+            className="absolute top-1/4 left-1/3 w-48 h-48 bg-emerald-500/6 rounded-full blur-[100px]"
+            style={{ animation: "orbFloat 9s ease-in-out infinite" }}
+          />
+
+          <div className="max-w-6xl mx-auto px-8 w-full relative z-10">
+            <div className="text-center mb-12">
+              <p style={fadeUp(v12, 0)} className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
+                Eligibility & Vehicles
+              </p>
+              <h2 style={fadeUp(v12, 100)} className="text-3xl md:text-5xl font-extralight text-white mb-4 leading-tight">
+                Know before you bid.{" "}
+                <span className="text-emerald-500">Win more often.</span>
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* LEFT — Instant Eligibility Check */}
+              <div
+                style={fadeUp(v12, 300)}
+                className="bg-stone-900 border border-stone-800 rounded-2xl p-8"
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                    <BadgeCheck className="w-5 h-5 text-emerald-500" />
+                  </div>
+                  <div>
+                    <h3 className="text-white text-sm font-medium">Instant Eligibility Check</h3>
+                    <p className="text-stone-500 text-xs">For: Janitorial — Fort Bragg</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {[
+                    { label: "NAICS Match", pass: true, delay: 500 },
+                    { label: "Set-Aside Eligible", pass: true, delay: 700 },
+                    { label: "Location Match", pass: true, delay: 900 },
+                    { label: "Value Fit", pass: true, delay: 1100 },
+                    { label: "Security Clearance", pass: false, delay: 1300 },
+                  ].map((item) => (
+                    <div
+                      key={item.label}
+                      className="flex items-center gap-4"
+                      style={{
+                        animation: v12
+                          ? `slideInLeft 0.5s ease ${item.delay}ms both`
+                          : "none",
+                        opacity: v12 ? undefined : 0,
+                      }}
+                    >
+                      <div
+                        style={{
+                          animation: v12
+                            ? `checkPop 0.4s ease ${item.delay + 200}ms both`
+                            : "none",
+                          opacity: v12 ? undefined : 0,
+                        }}
+                      >
+                        {item.pass ? (
+                          <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                        ) : (
+                          <XCircle className="w-5 h-5 text-red-400" />
+                        )}
+                      </div>
+                      <span className={`text-sm ${item.pass ? "text-stone-300" : "text-red-300"}`}>
+                        {item.label}
+                      </span>
+                      {!item.pass && (
+                        <span className="text-red-400/70 text-[10px] ml-auto uppercase tracking-wider">Action needed</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <div
+                  className="mt-6 pt-4 border-t border-stone-800"
+                  style={{
+                    animation: v12 ? "cardSlideUp 0.5s ease 1600ms both" : "none",
+                    opacity: v12 ? undefined : 0,
+                  }}
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="h-2 flex-1 bg-stone-800 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-emerald-500 rounded-full"
+                        style={{
+                          width: v12 ? "80%" : "0%",
+                          transition: "width 1.5s ease 1800ms",
+                        }}
+                      />
+                    </div>
+                    <span className="text-emerald-500 text-xs font-mono font-bold">80%</span>
+                  </div>
+                  <p className="text-stone-500 text-[10px] mt-2">Eligibility score</p>
+                </div>
+              </div>
+
+              {/* RIGHT — IDIQ Contract Vehicles */}
+              <div
+                style={fadeUp(v12, 400)}
+                className="bg-stone-900 border border-stone-800 rounded-2xl p-8"
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                    <Layers className="w-5 h-5 text-emerald-500" />
+                  </div>
+                  <div>
+                    <h3 className="text-white text-sm font-medium">IDIQ Contract Vehicles</h3>
+                    <p className="text-stone-500 text-xs">Get on a vehicle = years of steady work</p>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  {[
+                    { name: "GSA MAS (Multiple Award Schedule)", agency: "GSA", value: "$40B+", delay: 600 },
+                    { name: "OASIS+ Small Business", agency: "GSA", value: "$60B ceiling", delay: 800 },
+                    { name: "SEWP VI", agency: "NASA", value: "$15B", delay: 1000 },
+                    { name: "T4NG2", agency: "VA", value: "$12B", delay: 1200 },
+                  ].map((vehicle) => (
+                    <div
+                      key={vehicle.name}
+                      className="bg-stone-800/50 border border-stone-700/50 rounded-xl p-4 hover:border-emerald-500/20 transition-colors duration-300"
+                      style={{
+                        animation: v12
+                          ? `slideInRight 0.5s ease ${vehicle.delay}ms both`
+                          : "none",
+                        opacity: v12 ? undefined : 0,
+                      }}
+                    >
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h4 className="text-white text-xs font-medium mb-1">{vehicle.name}</h4>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[10px] bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded">
+                              {vehicle.agency}
+                            </span>
+                          </div>
+                        </div>
+                        <span className="text-emerald-400 text-xs font-mono font-bold">{vehicle.value}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div
+                  className="mt-6 pt-4 border-t border-stone-800 text-center"
+                  style={{
+                    animation: v12 ? "cardSlideUp 0.5s ease 1500ms both" : "none",
+                    opacity: v12 ? undefined : 0,
+                  }}
+                >
+                  <p className="text-stone-500 text-xs">
+                    We track <span className="text-emerald-400 font-medium">200+ active vehicles</span> across all agencies
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================================================================
+            SLIDE 13 — EVERYTHING INCLUDED (light)
+        =================================================================== */}
+        <section
+          ref={s13}
           className="slide min-h-screen bg-white flex items-center justify-center relative"
           style={{ scrollSnapAlign: "start" }}
         >
           <div className="max-w-5xl mx-auto px-8 w-full">
             <div className="text-center mb-16">
-              <p style={fadeUp(v10, 0)} className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
+              <p style={fadeUp(v13, 0)} className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
                 All-in-One
               </p>
-              <h2 style={fadeUp(v10, 100)} className="text-3xl md:text-5xl font-extralight text-stone-900 mb-4 leading-tight">
+              <h2 style={fadeUp(v13, 100)} className="text-3xl md:text-5xl font-extralight text-stone-900 mb-4 leading-tight">
                 16 features. One platform.{" "}
                 <span className="text-emerald-600">$199/mo.</span>
               </h2>
@@ -1315,10 +1800,10 @@ export default function ProductPresentationPage() {
               ].map((feature) => (
                 <div
                   key={feature.label}
-                  style={fadeUp(v10, feature.delay)}
+                  style={fadeUp(v13, feature.delay)}
                   className="bg-stone-50 border border-stone-100 rounded-2xl p-6 text-center hover:shadow-lg hover:shadow-emerald-100/30 hover:border-emerald-200 transition-all duration-500 group cursor-default"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center mx-auto mb-4 group-hover:bg-emerald-100 transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center mx-auto mb-4 group-hover:bg-emerald-100 group-hover:scale-110 transition-all duration-300">
                     <feature.icon className="w-6 h-6 text-emerald-600" />
                   </div>
                   <p className="text-stone-700 text-sm font-medium">{feature.label}</p>
@@ -1326,7 +1811,7 @@ export default function ProductPresentationPage() {
               ))}
             </div>
 
-            <div style={fadeUp(v10, 1100)} className="text-center mt-12">
+            <div style={fadeUp(v13, 1100)} className="text-center mt-12">
               <p className="text-stone-400 text-sm">
                 30-day free trial. No credit card required.
               </p>
@@ -1335,33 +1820,60 @@ export default function ProductPresentationPage() {
         </section>
 
         {/* ===================================================================
-            SLIDE 11 — PRICING (dark)
+            SLIDE 14 — PRICING (light) — ENHANCED
         =================================================================== */}
         <section
-          ref={s11}
-          className="slide min-h-screen bg-stone-950 flex items-center justify-center relative overflow-hidden"
+          ref={s14}
+          className="slide min-h-screen bg-white flex items-center justify-center relative"
           style={{ scrollSnapAlign: "start" }}
         >
           <div className="max-w-4xl mx-auto px-8 w-full">
-            <div className="text-center mb-16">
-              <p style={fadeUp(v11, 0)} className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
+            <div className="text-center mb-12">
+              <p style={fadeUp(v14, 0)} className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
                 Pricing
               </p>
-              <h2 style={fadeUp(v11, 100)} className="text-3xl md:text-5xl font-extralight text-white mb-4 leading-tight">
+              <h2 style={fadeUp(v14, 100)} className="text-3xl md:text-5xl font-extralight text-stone-900 mb-4 leading-tight">
                 Simple, transparent pricing.
               </h2>
+
+              {/* Yearly toggle */}
+              <div style={fadeUp(v14, 200)} className="flex items-center justify-center gap-4 mt-8">
+                <span className={`text-sm font-medium transition-colors ${!yearly ? "text-stone-900" : "text-stone-400"}`}>
+                  Monthly
+                </span>
+                <button
+                  onClick={() => setYearly(!yearly)}
+                  className={`relative w-14 h-7 rounded-full transition-colors duration-300 ${
+                    yearly ? "bg-emerald-500" : "bg-stone-300"
+                  }`}
+                >
+                  <div
+                    className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow-md transition-transform duration-300 ${
+                      yearly ? "translate-x-8" : "translate-x-1"
+                    }`}
+                  />
+                </button>
+                <span className={`text-sm font-medium transition-colors ${yearly ? "text-stone-900" : "text-stone-400"}`}>
+                  Yearly
+                </span>
+                {yearly && (
+                  <span className="bg-emerald-100 text-emerald-700 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full">
+                    Save 20%
+                  </span>
+                )}
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
               {/* Free */}
               <div
-                style={fadeUp(v11, 200)}
-                className="bg-stone-900 border border-stone-800 rounded-2xl p-8 hover:border-stone-700 transition-all"
+                style={fadeUp(v14, 300)}
+                className="bg-stone-50 border border-stone-200 rounded-2xl p-8 hover:border-stone-300 transition-all"
               >
-                <h3 className="text-white text-lg font-medium mb-2">Free</h3>
+                <h3 className="text-stone-900 text-lg font-medium mb-2">Free</h3>
                 <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-4xl font-light text-white">$0</span>
-                  <span className="text-stone-500 text-sm">/forever</span>
+                  <span className="text-4xl font-light text-stone-900">$0</span>
+                  <span className="text-stone-400 text-sm">/forever</span>
                 </div>
                 <div className="space-y-3 mb-8">
                   {[
@@ -1371,8 +1883,8 @@ export default function ProductPresentationPage() {
                     "Basic eligibility report",
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3">
-                      <Check className="w-4 h-4 text-stone-600 flex-shrink-0" />
-                      <span className="text-stone-400 text-sm">{item}</span>
+                      <Check className="w-4 h-4 text-stone-400 flex-shrink-0" />
+                      <span className="text-stone-500 text-sm">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -1380,27 +1892,40 @@ export default function ProductPresentationPage() {
                   href="https://app.capturepilot.com/check"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full text-center py-3 px-4 rounded-xl border border-stone-700 text-stone-300 text-sm hover:bg-stone-800 transition-all"
+                  className="block w-full text-center py-3 px-4 rounded-xl border border-stone-300 text-stone-600 text-sm hover:bg-stone-100 transition-all"
                 >
                   Try Quick Check
                 </a>
               </div>
 
-              {/* Pro */}
+              {/* Pro — ENHANCED with glow */}
               <div
-                style={fadeUp(v11, 400)}
-                className="bg-stone-900 border-2 border-emerald-500/50 rounded-2xl p-8 relative"
+                style={fadeUp(v14, 400)}
+                className="bg-white border-2 border-emerald-500 rounded-2xl p-8 relative shadow-xl shadow-emerald-100/50"
               >
+                <div
+                  className="absolute inset-0 rounded-2xl pointer-events-none"
+                  style={{ animation: v14 ? "glowPulse 3s ease-in-out infinite" : "none" }}
+                />
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                  <span className="bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg shadow-emerald-500/30">
                     Most Popular
                   </span>
                 </div>
-                <h3 className="text-white text-lg font-medium mb-2">Pro</h3>
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-4xl font-light text-emerald-500">$199</span>
-                  <span className="text-stone-500 text-sm">/month</span>
+                <h3 className="text-stone-900 text-lg font-medium mb-2">Pro</h3>
+                <div className="flex items-baseline gap-1 mb-1">
+                  <span className="text-4xl font-light text-emerald-600">
+                    ${yearly ? "159" : "199"}
+                  </span>
+                  <span className="text-stone-400 text-sm">/month</span>
                 </div>
+                {yearly && (
+                  <p className="text-stone-400 text-xs mb-4">
+                    Billed $1,908/year{" "}
+                    <span className="text-emerald-600 font-medium">- save $480</span>
+                  </p>
+                )}
+                {!yearly && <div className="mb-6" />}
                 <div className="space-y-3 mb-8">
                   {[
                     "Everything in Free",
@@ -1414,7 +1939,7 @@ export default function ProductPresentationPage() {
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3">
                       <Check className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                      <span className="text-stone-300 text-sm">{item}</span>
+                      <span className="text-stone-700 text-sm">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -1426,31 +1951,102 @@ export default function ProductPresentationPage() {
                 >
                   Start Free Trial
                 </a>
-                <p className="text-stone-600 text-[10px] text-center mt-3">
-                  30-day free trial. Cancel anytime.
+                <p className="text-stone-400 text-[10px] text-center mt-3">
+                  30-day free trial on both plans. Cancel anytime.
                 </p>
               </div>
             </div>
 
-            <div style={fadeUp(v11, 600)} className="text-center mt-10">
-              <p className="text-stone-500 text-sm">
+            <div style={fadeUp(v14, 600)} className="text-center mt-10">
+              <p className="text-stone-400 text-sm">
                 Or work with our consulting team —{" "}
-                <span className="text-emerald-500 font-medium">starting at $2,500/mo</span>
+                <span className="text-emerald-600 font-medium">starting at $2,500/mo</span>
               </p>
             </div>
           </div>
         </section>
 
         {/* ===================================================================
-            SLIDE 12 — GET STARTED (light)
+            SLIDE 15 — TRUST & SOCIAL PROOF (dark)
         =================================================================== */}
         <section
-          ref={s12}
+          ref={s15}
+          className="slide min-h-screen bg-stone-950 flex items-center justify-center relative overflow-hidden"
+          style={{ scrollSnapAlign: "start" }}
+        >
+          {/* Floating emerald glow orb */}
+          <div
+            className="absolute bottom-1/4 right-1/3 w-56 h-56 bg-emerald-500/5 rounded-full blur-[120px]"
+            style={{ animation: "orbFloat 10s ease-in-out infinite" }}
+          />
+
+          <div className="max-w-4xl mx-auto px-8 w-full relative z-10">
+            <div className="text-center mb-16">
+              <p style={fadeUp(v15, 0)} className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
+                Trusted
+              </p>
+              <h2 style={fadeUp(v15, 100)} className="text-3xl md:text-5xl font-extralight text-white mb-4 leading-tight">
+                Built by people who{" "}
+                <span className="text-emerald-500">win contracts.</span>
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  stat: "37K+",
+                  label: "Federal opportunities tracked",
+                  icon: Target,
+                  delay: 200,
+                },
+                {
+                  stat: "80K+",
+                  label: "SAM-registered contractors",
+                  icon: Building2,
+                  delay: 400,
+                },
+                {
+                  stat: "91K+",
+                  label: "Government contacts indexed",
+                  icon: Users,
+                  delay: 600,
+                },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  style={fadeUp(v15, item.delay)}
+                  className="bg-stone-900 border border-stone-800 rounded-2xl p-8 text-center hover:border-emerald-500/20 transition-all duration-500 group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-emerald-500/20 transition-colors">
+                    <item.icon className="w-6 h-6 text-emerald-500" />
+                  </div>
+                  <p className="text-3xl font-light text-white mb-2">{item.stat}</p>
+                  <p className="text-stone-500 text-sm">{item.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <div style={fadeUp(v15, 800)} className="mt-12 text-center">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-stone-900 border border-stone-800 rounded-full">
+                <Shield className="w-4 h-4 text-emerald-500" />
+                <span className="text-stone-400 text-xs">
+                  Veteran-founded. Built in America. Data updated daily.
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===================================================================
+            SLIDE 16 — GET STARTED (light)
+        =================================================================== */}
+        <section
+          ref={s16}
           className="slide min-h-screen bg-white flex items-center justify-center relative"
           style={{ scrollSnapAlign: "start" }}
         >
           <div className="max-w-3xl mx-auto px-8 w-full text-center">
-            <div style={fadeUp(v12, 0)} className="mb-6">
+            <div style={fadeUp(v16, 0)} className="mb-6">
               <div className="inline-flex items-center gap-2 px-4 py-2 border border-stone-200 rounded-full">
                 <Shield className="w-4 h-4 text-emerald-500" />
                 <span className="text-stone-500 tracking-[0.2em] uppercase text-xs">
@@ -1460,7 +2056,7 @@ export default function ProductPresentationPage() {
             </div>
 
             <h2
-              style={fadeUp(v12, 100)}
+              style={fadeUp(v16, 100)}
               className="text-3xl md:text-5xl font-extralight text-stone-900 mb-6 leading-tight"
             >
               Ready to win your first{" "}
@@ -1468,14 +2064,14 @@ export default function ProductPresentationPage() {
             </h2>
 
             <p
-              style={fadeUp(v12, 200)}
+              style={fadeUp(v16, 200)}
               className="text-stone-400 text-lg font-light mb-12"
             >
               No credit card required. Cancel anytime.
             </p>
 
             <div
-              style={fadeUp(v12, 400)}
+              style={fadeUp(v16, 400)}
               className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
             >
               <a
@@ -1498,7 +2094,7 @@ export default function ProductPresentationPage() {
               </a>
             </div>
 
-            <div style={fadeUp(v12, 600)} className="pt-8 border-t border-stone-100">
+            <div style={fadeUp(v16, 600)} className="pt-8 border-t border-stone-100">
               <p className="text-stone-400 text-sm">
                 CapturePilot — A product by{" "}
                 <span className="text-stone-600 font-medium">Americurial LLC</span>
