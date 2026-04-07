@@ -804,24 +804,24 @@ export default function MasterPresentationPage() {
               <div className="flex flex-col gap-5">
                 {[
                   {
-                    text: "$10M+ annual revenue",
-                    desc: "Demonstrated business scale and stability",
+                    text: "$5M+ annual revenue",
+                    desc: "Firms generating $5M to $1B+ in annual revenue",
                   },
                   {
-                    text: "Established track record in their industry",
-                    desc: "Proven delivery capability we can leverage",
+                    text: "Zero or lapsed federal bidding history",
+                    desc: "Companies that haven't yet entered — or re-entering after years away",
                   },
                   {
-                    text: "Willing to pursue federal work seriously (12+ month commitment)",
-                    desc: "Federal sales cycles require patience and investment",
+                    text: "IT, Infrastructure, Construction, Logistics, or Environmental Services",
+                    desc: "Industries with strong federal demand and contract volume",
                   },
                   {
-                    text: "Bonding capacity for contract requirements",
-                    desc: "Financial backing to support contract obligations",
+                    text: "Ideally veteran-owned (but not required)",
+                    desc: "SDVOSB/VOSB status unlocks dedicated set-aside contracts",
                   },
                   {
-                    text: "Leadership buy-in for federal market entry",
-                    desc: "Executive sponsorship drives success",
+                    text: "Leadership buy-in for a 12+ month commitment",
+                    desc: "Federal sales cycles require patience — the payoff is recurring multi-year revenue",
                   },
                 ].map((item, i) => (
                   <div
@@ -986,7 +986,7 @@ export default function MasterPresentationPage() {
               {[
                 {
                   step: "01",
-                  title: "Book a 30-minute intro call",
+                  title: "Book a 15-20 minute intro call",
                   desc: "We learn your business and assess fit",
                 },
                 {
