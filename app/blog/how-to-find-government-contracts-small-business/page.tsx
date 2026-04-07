@@ -611,21 +611,21 @@ export default function HowToFindGovernmentContractsPage() {
                   title: "8(a) Business Development Program",
                   tag: "Most Powerful",
                   tagColor: "emerald",
-                  sole: "Sole source up to $4.5M (services) / $7M (manufacturing)",
+                  sole: "Sole source up to $5.5M (services) / $8.5M (manufacturing)",
                   eligibility: [
                     "51%+ owned by socially/economically disadvantaged U.S. citizens",
                     "Owner's net worth below $850K (excluding home and business value)",
                     "Business in operation for at least 2 years",
                     "Revenue below SBA size standard for primary NAICS",
                   ],
-                  note: "One 8(a) sole-source relationship can generate $4.5M without any competitive bidding. The 9-year program includes SBA mentorship and access to joint ventures.",
+                  note: "One 8(a) sole-source relationship can generate $5.5M without any competitive bidding. The 9-year program includes SBA mentorship and access to joint ventures.",
                 },
                 {
                   icon: Shield,
                   title: "Service-Disabled Veteran-Owned Small Business (SDVOSB)",
                   tag: "Veterans",
                   tagColor: "blue",
-                  sole: "Sole source up to $5M (services) / $7M (manufacturing)",
+                  sole: "Sole source up to $5.5M (services) / $8.5M (manufacturing)",
                   eligibility: [
                     "51%+ owned by service-disabled veteran(s)",
                     "Any VA service-connected disability rating qualifies",
@@ -639,7 +639,7 @@ export default function HowToFindGovernmentContractsPage() {
                   title: "Women-Owned Small Business (WOSB)",
                   tag: "Women-Owned",
                   tagColor: "pink",
-                  sole: "Sole source up to $5M (services) / $7M (manufacturing)",
+                  sole: "Sole source up to $5.5M (services) / $8.5M (manufacturing)",
                   eligibility: [
                     "51%+ owned by women who are U.S. citizens",
                     "Women must manage daily operations and long-term decisions",
@@ -653,7 +653,7 @@ export default function HowToFindGovernmentContractsPage() {
                   title: "HUBZone Program",
                   tag: "Location-Based",
                   tagColor: "amber",
-                  sole: "Sole source up to $5M + 10% price preference on open bids",
+                  sole: "Sole source up to $5.5M + 10% price preference on open bids",
                   eligibility: [
                     "Principal office in a designated HUBZone",
                     "At least 35% of employees reside in a HUBZone",
