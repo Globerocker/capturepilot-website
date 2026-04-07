@@ -26,7 +26,7 @@ import {
   Award,
 } from "lucide-react";
 
-const TOTAL_SLIDES = 9;
+const TOTAL_SLIDES = 10;
 
 export default function MasterPresentationPage() {
   const [currentSlide, setCurrentSlide] = useState(1);
@@ -714,6 +714,107 @@ export default function MasterPresentationPage() {
                 means we only earn more when you win.{" "}
                 <span className="text-white">Fully aligned incentives.</span>
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== SLIDE 6B: Our Unfair Advantage ===== */}
+        <section
+          className="slide min-h-screen bg-stone-950 flex items-center justify-center relative"
+          style={{ scrollSnapAlign: "start" }}
+        >
+          <div className="max-w-6xl mx-auto px-8 w-full">
+            <p className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
+              Our Unfair Advantage
+            </p>
+            <h2 className="text-3xl md:text-5xl font-extralight text-white mb-4 leading-tight max-w-4xl">
+              Consulting expertise powered by{" "}
+              <span className="text-emerald-500">proprietary intelligence software.</span>
+            </h2>
+            <div className="w-20 h-px bg-emerald-500/50 mb-12" />
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+              {/* Left: Software Platform */}
+              <div className="bg-stone-900 border border-stone-800 rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center">
+                    <Zap className="w-5 h-5 text-emerald-500" />
+                  </div>
+                  <div>
+                    <h3 className="text-emerald-400 font-medium">CapturePilot Platform</h3>
+                    <p className="text-stone-500 text-xs">Proprietary — built in-house</p>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { feature: "Smart Matching Engine", desc: "Scans 40,000+ federal opportunities daily and scores them against your profile" },
+                    { feature: "Competitor Intelligence", desc: "Tracks who wins what in your space — award history, incumbents, spending trends" },
+                    { feature: "AI Proposal Drafting", desc: "Generates proposal outlines in minutes — cover letter, technical approach, past performance" },
+                    { feature: "Real-Time Pipeline", desc: "Every opportunity tracked from Sources Sought through award — nothing falls through cracks" },
+                    { feature: "Eligibility Engine", desc: "Instant set-aside matching — know which contracts you qualify for before you invest time" },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-3 py-2 border-b border-stone-800/50 last:border-0">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-white text-sm font-medium">{item.feature}</p>
+                        <p className="text-stone-500 text-xs">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right: Human Expertise */}
+              <div className="bg-stone-900 border border-stone-800 rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
+                    <Users className="w-5 h-5 text-blue-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-blue-400 font-medium">Dedicated Capture Team</h3>
+                    <p className="text-stone-500 text-xs">Veteran-owned — real GovCon experience</p>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { feature: "Agency Relationship Building", desc: "Direct communication with contracting officers — email, fax, phone" },
+                    { feature: "Capture Strategy", desc: "Win themes, competitive positioning, teaming recommendations for each pursuit" },
+                    { feature: "Proposal Development", desc: "We outline, structure, and review every proposal before submission" },
+                    { feature: "Sources Sought Responses", desc: "Early engagement that shapes RFPs in your favor — highest-value activity in GovCon" },
+                    { feature: "Ongoing Pipeline Management", desc: "Weekly pipeline reviews, strategy adjustments, and monthly reporting" },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-3 py-2 border-b border-stone-800/50 last:border-0">
+                      <CheckCircle2 className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-white text-sm font-medium">{item.feature}</p>
+                        <p className="text-stone-500 text-xs">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom: vs competitors */}
+            <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-2xl p-6">
+              <p className="text-emerald-400 text-sm font-medium mb-4 text-center">Why This Combination Beats Every Alternative</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="text-center">
+                  <p className="text-stone-500 text-xs uppercase tracking-wider mb-2">Traditional Consultants</p>
+                  <p className="text-stone-400 text-sm">Give recommendations.<br />Charge hourly. No software.</p>
+                  <p className="text-red-400 text-xs mt-2 font-medium">You still do all the work.</p>
+                </div>
+                <div className="text-center border-x border-emerald-500/10 px-4">
+                  <p className="text-emerald-400 text-xs uppercase tracking-wider mb-2">Americurial + CapturePilot</p>
+                  <p className="text-white text-sm font-medium">Software finds opportunities.<br />Team executes the capture.<br />You just deliver the work.</p>
+                  <p className="text-emerald-400 text-xs mt-2 font-medium">Full stack. Aligned incentives.</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-stone-500 text-xs uppercase tracking-wider mb-2">SaaS-Only Platforms</p>
+                  <p className="text-stone-400 text-sm">Give you a dashboard.<br />No capture team. Self-service.</p>
+                  <p className="text-red-400 text-xs mt-2 font-medium">You still need to figure it out.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
