@@ -13,7 +13,14 @@ export default function SiteNav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-xl border-b border-stone-100 z-50">
+    <>
+    {/* Beta Banner */}
+    <div className="fixed top-0 w-full bg-emerald-600 text-white text-center py-2.5 px-4 text-sm font-medium z-[60]">
+      <span className="mr-2">🚀</span>
+      Public Beta — All Features Free for 30 Days.
+      <a href="https://app.capturepilot.com/signup" className="underline underline-offset-2 font-bold ml-1">Join the Beta →</a>
+    </div>
+    <nav className="fixed top-10 w-full bg-white/80 backdrop-blur-xl border-b border-stone-100 z-50">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Image src="/logo.png" alt="CapturePilot" width={32} height={32} className="rounded-lg" />
@@ -78,5 +85,8 @@ export default function SiteNav() {
         </>
       )}
     </nav>
+    {/* Spacer for beta banner height so pages with pt-16 still clear both bars */}
+    <div className="h-10" />
+    </>
   );
 }

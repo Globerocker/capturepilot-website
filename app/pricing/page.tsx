@@ -219,6 +219,18 @@ export default function PricingPage() {
           {/* shimmer bg */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-50/60 via-transparent to-transparent pointer-events-none" />
           <div className="max-w-4xl mx-auto text-center relative">
+            {/* Beta Banner */}
+            <div className="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-6 mb-10 text-left sm:text-center">
+              <p className="text-lg font-black text-emerald-800 mb-1">
+                🚀 PUBLIC BETA — Try Everything Free
+              </p>
+              <p className="text-sm text-emerald-700 leading-relaxed">
+                During our public beta, all Pro features are unlocked for 30 days. No credit card required.
+                <br className="hidden sm:block" />
+                Beta users who provide feedback get <span className="font-bold">$99/mo locked-in pricing</span> after beta ends.
+              </p>
+            </div>
+
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium mb-6">
               <DollarSign className="w-4 h-4" />
               Transparent Pricing
@@ -300,7 +312,7 @@ export default function PricingPage() {
               <div className="relative rounded-2xl border-2 border-emerald-500 shadow-xl shadow-emerald-100 scale-[1.02] p-8 flex flex-col transition-all">
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                   <span className="bg-emerald-500 text-white text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap">
-                    30-Day Free Trial
+                    Public Beta — Free Access
                   </span>
                 </div>
                 <div className="mb-6">
@@ -342,9 +354,12 @@ export default function PricingPage() {
                   href={SIGNUP_URL}
                   className="w-full text-center py-3.5 rounded-full font-bold transition-colors inline-flex items-center justify-center gap-2 bg-black text-white hover:bg-stone-800"
                 >
-                  Start Free Trial
+                  Join the Beta — Free
                   <ArrowRight className="w-4 h-4" />
                 </Link>
+                <p className="text-[11px] text-stone-400 text-center mt-2">
+                  After beta: $199/mo or $99/mo with feedback discount
+                </p>
               </div>
 
               {/* ─── Consulting ─── */}
@@ -624,7 +639,7 @@ export default function PricingPage() {
                 href={SIGNUP_URL}
                 className="bg-black text-white px-8 py-4 rounded-full font-bold hover:bg-stone-800 transition-colors inline-flex items-center justify-center gap-2 text-lg"
               >
-                Start Free Trial
+                Join the Beta — Free
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
@@ -639,7 +654,7 @@ export default function PricingPage() {
             <div className="mt-6 flex flex-col sm:flex-row gap-6 justify-center text-sm text-stone-500">
               <span className="inline-flex items-center gap-1.5">
                 <Check className="w-4 h-4 text-emerald-500" />
-                30-day free trial on Pro
+                Public beta — all features free
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <Check className="w-4 h-4 text-emerald-500" />

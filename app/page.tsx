@@ -122,9 +122,18 @@ export default function Homepage() {
       `}</style>
 
       {/* ================================================================ */}
+      {/* BETA BANNER                                                      */}
+      {/* ================================================================ */}
+      <div className="fixed top-0 w-full bg-emerald-600 text-white text-center py-2.5 px-4 text-sm font-medium z-[60]">
+        <span className="mr-2">🚀</span>
+        Public Beta — All Features Free for 30 Days.
+        <a href="https://app.capturepilot.com/signup" className="underline underline-offset-2 font-bold ml-1">Join the Beta →</a>
+      </div>
+
+      {/* ================================================================ */}
       {/* NAVIGATION                                                       */}
       {/* ================================================================ */}
-      <nav className="fixed top-0 w-full bg-stone-950/80 backdrop-blur-xl border-b border-stone-800/50 z-50">
+      <nav className="fixed top-10 w-full bg-stone-950/80 backdrop-blur-xl border-b border-stone-800/50 z-50">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
             <Image src="/logo.png" alt="CapturePilot" width={32} height={32} className="rounded-lg invert" />
@@ -149,7 +158,7 @@ export default function Homepage() {
       {/* ================================================================ */}
       {/* 1. HERO                                                          */}
       {/* ================================================================ */}
-      <section className="pt-28 pb-24 px-6 relative overflow-hidden bg-stone-950 text-white">
+      <section className="pt-[8.5rem] pb-24 px-6 relative overflow-hidden bg-stone-950 text-white">
         {/* Animated grid background */}
         <div className="absolute inset-0 pointer-events-none" style={{
           backgroundImage: `
