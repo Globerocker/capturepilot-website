@@ -172,8 +172,8 @@ export default function LinkedInBanner() {
           <div className="absolute -top-20 right-[25%] w-[500px] h-[400px] bg-emerald-50 rounded-full blur-[100px]" />
 
           <div className="relative z-10 h-full flex">
-            <div className="w-[28%]" />
-            <div className="w-[72%] flex flex-col items-center justify-center text-center pr-6">
+            <div className="w-[30%]" />
+            <div className="w-[70%] flex flex-col justify-center pl-4 pr-14">
               <div className="flex items-center gap-5 mb-5">
                 <Image src="/americurial-logo-black.png" alt="Americurial" width={200} height={36} />
                 <div className="w-[1px] h-8 bg-stone-300" />
