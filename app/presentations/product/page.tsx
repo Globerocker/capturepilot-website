@@ -279,7 +279,7 @@ export default function ProductPresentationPage() {
   return (
     <>
       {/* ============ GLOBAL STYLES ============ */}
-      <style jsx global>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @media print {
           *, *::before, *::after {
             -webkit-print-color-adjust: exact !important;
@@ -413,7 +413,7 @@ export default function ProductPresentationPage() {
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
-      `}</style>
+      ` }} />
 
       {/* ============ NAV DOTS ============ */}
       <div className="nav-dots fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-1.5">
