@@ -170,6 +170,11 @@ export default function LinkedInBanner() {
           }} />
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-500/30 to-emerald-500" />
           <div className="absolute -top-20 right-[25%] w-[500px] h-[400px] bg-emerald-50 rounded-full blur-[100px]" />
+          {/* Contour circles — bottom-left behind headshot */}
+          <div className="absolute bottom-[-250px] left-[-150px] w-[500px] h-[500px] rounded-full border border-emerald-200/40" />
+          <div className="absolute bottom-[-200px] left-[-100px] w-[400px] h-[400px] rounded-full border border-emerald-200/50" />
+          <div className="absolute bottom-[-150px] left-[-50px] w-[300px] h-[300px] rounded-full border border-emerald-200/40" />
+          <div className="absolute bottom-[-100px] left-[0px] w-[200px] h-[200px] rounded-full border border-emerald-200/30" />
 
           <div className="relative z-10 h-full flex">
             <div className="w-[30%]" />
