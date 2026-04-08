@@ -173,8 +173,8 @@ export default function LinkedInBanner() {
 
           <div className="relative z-10 h-full flex">
             <div className="w-[28%]" />
-            <div className="w-[72%] flex flex-col justify-start pt-8 pr-14">
-              <div className="flex items-center gap-5 mb-6">
+            <div className="w-[72%] flex flex-col items-center justify-center text-center pr-6">
+              <div className="flex items-center gap-5 mb-5">
                 <Image src="/americurial-logo-black.png" alt="Americurial" width={200} height={36} />
                 <div className="w-[1px] h-8 bg-stone-300" />
                 <div className="flex items-center gap-3">
@@ -186,16 +186,16 @@ export default function LinkedInBanner() {
               <h1 className="text-[50px] font-extralight text-stone-900 tracking-tight leading-[1.1] mb-1">
                 Helping Veteran-Owned &amp; Small Businesses
               </h1>
-              <h2 className="text-[50px] font-light text-emerald-600 tracking-tight leading-[1.05]">
+              <h2 className="text-[50px] font-light text-emerald-600 tracking-tight leading-[1.05] mb-5">
                 Win Government Contracts
               </h2>
 
-              <div className="flex items-center gap-6 mt-5">
-                <span className="text-stone-400 text-[13px]">Federal Capture Consulting</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                <span className="text-stone-400 text-[13px]">AI-Powered Matching</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                <span className="text-emerald-600 text-[13px] font-medium">capturepilot.com</span>
+              <div className="flex items-center gap-8">
+                <span className="text-stone-500 text-base">Federal Capture Consulting</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span className="text-stone-500 text-base">AI-Powered Matching</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span className="text-emerald-600 text-base font-medium">capturepilot.com</span>
               </div>
             </div>
           </div>
