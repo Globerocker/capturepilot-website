@@ -281,37 +281,40 @@ export default function ProductPresentationPage() {
       {/* ============ GLOBAL STYLES ============ */}
       <style jsx global>{`
         @media print {
-          * {
+          *, *::before, *::after {
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
             color-adjust: exact !important;
           }
-          html, body {
+          html {
             height: auto !important;
             overflow: visible !important;
           }
-          .slide-container {
+          body {
+            height: auto !important;
+            overflow: visible !important;
+            margin: 0 !important;
+            padding: 0 !important;
+          }
+          #print-slides {
+            height: auto !important;
+            overflow: visible !important;
             scroll-snap-type: none !important;
-            overflow: visible !important;
-            height: auto !important;
             display: block !important;
+            position: static !important;
           }
-          .slide {
+          #print-slides > section {
             min-height: 100vh !important;
             height: 100vh !important;
             page-break-after: always !important;
             page-break-inside: avoid !important;
             break-after: page !important;
             overflow: hidden !important;
-            display: flex !important;
+            position: relative !important;
           }
           .nav-dots,
           .slide-counter,
           .nav-arrows {
-            display: none !important;
-          }
-          .grid-bg,
-          .emerald-orb {
             display: none !important;
           }
         }
@@ -474,7 +477,8 @@ export default function ProductPresentationPage() {
       {/* ============ SLIDE CONTAINER ============ */}
       <div
         ref={containerRef}
-        className="slide-container h-screen overflow-y-scroll"
+        id="print-slides"
+        className="slide-container h-screen overflow-y-scroll print:!h-auto print:!overflow-visible print:!block"
         style={{ scrollSnapType: "y mandatory" }}
       >
 
