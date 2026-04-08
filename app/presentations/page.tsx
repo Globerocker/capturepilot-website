@@ -88,20 +88,29 @@ export default function MasterPresentationPage() {
     <>
       <style jsx global>{`
         @media print {
-          body {
+          * {
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
             color-adjust: exact !important;
+          }
+          html, body {
+            height: auto !important;
+            overflow: visible !important;
           }
           .slide-container {
             scroll-snap-type: none !important;
             overflow: visible !important;
             height: auto !important;
+            display: block !important;
           }
           .slide {
             min-height: 100vh !important;
-            page-break-after: always;
-            page-break-inside: avoid;
+            height: 100vh !important;
+            page-break-after: always !important;
+            page-break-inside: avoid !important;
+            break-after: page !important;
+            overflow: hidden !important;
+            display: flex !important;
           }
           .slide .stat-number {
             color: #059669 !important;
