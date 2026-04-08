@@ -176,11 +176,11 @@ export default function LinkedInBanner() {
                 <span className="text-emerald-700 text-sm font-medium">Veteran-Owned Federal Capture Consulting</span>
               </div>
 
-              <h1 className="text-[56px] font-extralight text-stone-900 tracking-tight leading-[1.05] mb-0">
-                Win Government Contracts.
+              <h1 className="text-[50px] font-extralight text-stone-900 tracking-tight leading-[1.1] mb-1">
+                Helping Veteran-Owned &amp; Small Businesses
               </h1>
-              <h2 className="text-[56px] font-light text-emerald-600 tracking-tight leading-[1.05]">
-                Faster.
+              <h2 className="text-[50px] font-light text-emerald-600 tracking-tight leading-[1.05]">
+                Win Government Contracts
               </h2>
 
               <div className="flex items-center gap-6 mt-auto mb-8">
