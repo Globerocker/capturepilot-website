@@ -1,12 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
-
-const inter = localFont({
-  src: "../node_modules/next/dist/next-devtools/server/font/geist-latin.woff2",
-  variable: "--font-inter",
-  preload: false,
-});
 
 export const metadata: Metadata = {
   title: {
@@ -46,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full`}>
+    <html lang="en" className="h-full">
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );
