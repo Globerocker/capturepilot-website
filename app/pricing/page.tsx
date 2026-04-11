@@ -222,12 +222,12 @@ export default function PricingPage() {
             {/* Beta Banner */}
             <div className="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-6 mb-10 text-left sm:text-center">
               <p className="text-lg font-black text-emerald-800 mb-1">
-                🚀 PUBLIC BETA — Try Everything Free
+                PUBLIC BETA — Try Everything Free
               </p>
               <p className="text-sm text-emerald-700 leading-relaxed">
-                During our public beta, all Pro features are unlocked for 30 days. No credit card required.
+                Every Pro feature is unlocked free until <span className="font-bold">May 9, 2026</span> (our founder Andre Schuler&apos;s birthday). No credit card required.
                 <br className="hidden sm:block" />
-                Beta users who provide feedback get <span className="font-bold">$99/mo locked-in pricing</span> after beta ends.
+                Beta users who provide feedback get <span className="font-bold">$149/mo locked-in pricing</span> (25% off forever).
               </p>
             </div>
 
@@ -358,7 +358,7 @@ export default function PricingPage() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <p className="text-[11px] text-stone-400 text-center mt-2">
-                  After beta: $199/mo or $99/mo with feedback discount
+                  After beta: $199/mo standard or $149/mo locked-in for beta feedback users
                 </p>
               </div>
 
