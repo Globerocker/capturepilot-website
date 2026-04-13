@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   },
   description: "CapturePilot matches your small business with federal government contracts you can actually win. Built for veteran-owned, women-owned, and small businesses. 40,000+ opportunities. AI-powered matching.",
   keywords: "government contracts, SAM.gov, federal contracting, SDVOSB, WOSB, small business, veteran owned, capability statement, proposal writer",
-  metadataBase: new URL("https://capturepilot.com"),
+  metadataBase: new URL("https://www.capturepilot.com"),
   verification: {
     google: "d0DbhX6VNRMZVVyi9TrVAZ-mqsL9k_tBIOvGhqGC95o",
   },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: "CapturePilot — Win Government Contracts. Faster.",
     description: "Find and win federal contracts matched to your business. AI-powered matching for veteran-owned and small businesses.",
     type: "website",
-    url: "https://capturepilot.com",
+    url: "https://www.capturepilot.com",
     siteName: "CapturePilot",
   },
   twitter: {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://capturepilot.com",
+    canonical: "https://www.capturepilot.com",
   },
 };
 

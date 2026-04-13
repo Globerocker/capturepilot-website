@@ -177,7 +177,7 @@ export default function VsGovTribePage() {
       <meta property="og:title" content="CapturePilot vs GovTribe — Stop Searching. Start Winning." />
       <meta property="og:description" content="GovTribe is a search tool. CapturePilot is a complete capture management platform with AI. Free tier available." />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://capturepilot.com/vs/govtribe" />
+      <meta property="og:url" content="https://www.capturepilot.com/vs/govtribe" />
 
       <main className="pt-16">
         {/* ============================================================ */}

@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Blog — Government Contracting Guides & Strategies",
   description: "Learn government contracting with practical guides on NAICS codes, SAM.gov registration, set-aside programs, proposal writing, and capability statements. Written for small businesses.",
   keywords: "government contracting blog, GovCon guides, small business federal contracts, NAICS codes, SAM.gov, set-aside programs, proposal writing",
-  alternates: { canonical: "https://capturepilot.com/blog" },
+  alternates: { canonical: "https://www.capturepilot.com/blog" },
   openGraph: {
     title: "Blog — Government Contracting Guides & Strategies",
     description: "Practical guides for small businesses breaking into federal contracting.",
-    url: "https://capturepilot.com/blog",
+    url: "https://www.capturepilot.com/blog",
   },
   twitter: {
     card: "summary_large_image",

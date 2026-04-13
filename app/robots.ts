@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/embed", "/api/"],
       },
     ],
-    sitemap: "https://capturepilot.com/sitemap.xml",
+    sitemap: "https://www.capturepilot.com/sitemap.xml",
   };
 }

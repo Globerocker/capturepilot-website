@@ -193,7 +193,7 @@ export default function VsFederalCompassPage() {
       <meta property="og:title" content="CapturePilot vs Federal Compass — Enterprise Intelligence Without the Enterprise Price" />
       <meta property="og:description" content="AI-powered government contract matching with built-in proposal tools. A fraction of the cost of Federal Compass. Free tier available." />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://capturepilot.com/vs/federal-compass" />
+      <meta property="og:url" content="https://www.capturepilot.com/vs/federal-compass" />
 
       <main className="pt-16">
         {/* ============================================================ */}

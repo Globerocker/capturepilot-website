@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description:
       "Built by veterans who saw the gap between enterprise contracting tools and the bare-bones SAM.gov experience. We built the platform we wished existed.",
     type: "website",
-    url: "https://capturepilot.com/about",
+    url: "https://www.capturepilot.com/about",
   },
 };
 

@@ -189,7 +189,7 @@ export default function VsGovWinPage() {
       <meta property="og:title" content="CapturePilot vs GovWin — Enterprise Intelligence at a Fraction of the Price" />
       <meta property="og:description" content="AI-powered government contract matching with built-in proposal tools. 70% less than GovWin. Free tier available." />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://capturepilot.com/vs/govwin" />
+      <meta property="og:url" content="https://www.capturepilot.com/vs/govwin" />
 
       <main className="pt-16">
         {/* ============================================================ */}

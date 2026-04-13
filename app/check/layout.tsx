@@ -6,12 +6,12 @@ export const metadata: Metadata = {
     "Check if your business qualifies for government contracts in 30 seconds. Free SAM.gov eligibility checker. Find your NAICS codes, set-aside status, and matching federal opportunities. No signup required.",
   keywords:
     "government contract eligibility check, can my business get government contracts, SAM.gov eligibility checker, NAICS code finder, small business government contracts, federal contract eligibility, SBA certification check, SDVOSB eligibility, WOSB eligibility, 8a certification check, government contract checker free",
-  alternates: { canonical: "https://capturepilot.com/check" },
+  alternates: { canonical: "https://www.capturepilot.com/check" },
   openGraph: {
     title: "Free Government Contract Eligibility Checker — CapturePilot",
     description:
       "Enter your website. Get your NAICS codes, SAM status, and matching opportunities in 30 seconds. 100% free, no signup required.",
-    url: "https://capturepilot.com/check",
+    url: "https://www.capturepilot.com/check",
   },
   twitter: {
     card: "summary_large_image",

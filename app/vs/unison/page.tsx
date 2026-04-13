@@ -220,7 +220,7 @@ export default function VsUnisonPage() {
       <meta property="og:title" content="CapturePilot vs Unison — Intelligence, Not a Marketplace" />
       <meta property="og:description" content="Your AI intelligence engine vs a vendor marketplace. Smart matching, AI proposals, and capability statements built for small businesses." />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://capturepilot.com/vs/unison" />
+      <meta property="og:url" content="https://www.capturepilot.com/vs/unison" />
 
       <main className="pt-16">
         {/* ============================================================ */}

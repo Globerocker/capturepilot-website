@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "About CapturePilot — Veterans Helping Veterans Win Contracts",
   description: "Built by Americurial LLC, a veteran-owned digital agency. We built CapturePilot because small businesses deserve enterprise-grade intelligence.",
   keywords: "about CapturePilot, Americurial LLC, veteran-owned business, GovCon startup, government contract platform, who built CapturePilot",
-  alternates: { canonical: "https://capturepilot.com/about" },
+  alternates: { canonical: "https://www.capturepilot.com/about" },
   openGraph: {
     title: "About CapturePilot — Veterans Helping Veterans Win Contracts",
     description: "Built by Americurial LLC, a veteran-owned digital agency. We built CapturePilot because small businesses deserve enterprise-grade intelligence.",
-    url: "https://capturepilot.com/about",
+    url: "https://www.capturepilot.com/about",
   },
 };
 

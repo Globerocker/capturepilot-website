@@ -317,7 +317,7 @@ export default function VsSamGovPage() {
       <meta property="og:title" content="CapturePilot vs SAM.gov — The Intelligence Layer SAM.gov Is Missing" />
       <meta property="og:description" content="Same data, 10x better experience. Smart matching, scoring, and AI proposals built on top of SAM.gov." />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://capturepilot.com/vs/sam-gov" />
+      <meta property="og:url" content="https://www.capturepilot.com/vs/sam-gov" />
 
       <main className="pt-16">
         {/* ============================================================ */}

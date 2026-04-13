@@ -156,7 +156,7 @@ export default function VsBGOV() {
       <meta property="og:title" content="CapturePilot vs BGOV — Intelligence Without the Enterprise Price Tag" />
       <meta property="og:description" content="BGOV costs $6K-$12K/yr for legislative tracking. CapturePilot gives you AI capture tools at $199/mo. Free tier available." />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://capturepilot.com/vs/bgov" />
+      <meta property="og:url" content="https://www.capturepilot.com/vs/bgov" />
 
       <main className="pt-16">
         {/* ============================================================ */}

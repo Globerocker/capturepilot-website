@@ -176,7 +176,7 @@ export default function VsHigherGov() {
       <meta property="og:title" content="CapturePilot vs HigherGov — Federal Focus Beats Broad & Shallow" />
       <meta property="og:description" content="HigherGov covers everything broadly. CapturePilot goes deep on federal contracting with AI matching, proposals, and capture tools." />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://capturepilot.com/vs/highergov" />
+      <meta property="og:url" content="https://www.capturepilot.com/vs/highergov" />
 
       <main className="pt-16">
         {/* ============================================================ */}

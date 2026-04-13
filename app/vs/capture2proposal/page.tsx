@@ -232,7 +232,7 @@ export default function VsCapture2ProposalPage() {
       <meta property="og:title" content="CapturePilot vs Capture2Proposal — AI Drafts Your Proposal, Not Just Manages It" />
       <meta property="og:description" content="Full pipeline from discovery to submission. AI-powered proposal drafting, smart matching, and capability statements. $199/mo flat vs per-seat pricing." />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://capturepilot.com/vs/capture2proposal" />
+      <meta property="og:url" content="https://www.capturepilot.com/vs/capture2proposal" />
 
       <main className="pt-16">
         {/* ============================================================ */}
