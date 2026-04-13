@@ -210,8 +210,26 @@ export default function PricingPage() {
   const proPrice = yearly ? proYearly : proMonthly;
   const consultPrice = yearly ? consultYearly : consultMonthly;
 
+  // FAQ JSON-LD for rich snippets in Google search results
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQS.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <SiteNav />
       <main className="pt-16">
         {/* ── Hero ── */}
