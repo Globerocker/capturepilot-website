@@ -1,11 +1,10 @@
-"use client";
-
 import Link from "next/link";
 import SiteNav from "../../components/SiteNav";
 import SiteFooter from "../../components/SiteFooter";
 import { BookOpen, ArrowRight, Clock, Tag } from "lucide-react";
 
 const POSTS = [
+  { slug: "how-to-find-government-contracts-small-business", title: "How to Find Government Contracts as a Small Business (2026)", category: "Getting Started", readTime: "18 min", description: "Step-by-step playbook to find federal contracts you can actually win. SAM.gov, Sources Sought, set-asides, and the tools that cut 20 hours of search per week." },
   { slug: "government-contracting-101", title: "Government Contracting 101: The Complete Beginner's Guide", category: "Getting Started", readTime: "15 min", description: "Everything you need to know about selling to the federal government. NAICS codes, SAM.gov, set-asides, contract types, and step-by-step instructions." },
   { slug: "naics-codes-explained", title: "NAICS Codes Explained: Find the Right Codes for Your Business", category: "Getting Started", readTime: "10 min", description: "What NAICS codes are, why they matter, how to find yours, and the top codes for small business government contractors." },
   { slug: "set-aside-programs", title: "Government Set-Aside Programs: Your Unfair Advantage", category: "Set-Asides", readTime: "12 min", description: "Complete guide to 8(a), SDVOSB, WOSB, EDWOSB, HUBZone, and SDB set-aside programs with eligibility requirements." },

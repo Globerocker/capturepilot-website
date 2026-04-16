@@ -39,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Blog — medium priority, high SEO value
     { url: `${baseUrl}/blog/government-contracting-101`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/blog/how-to-find-government-contracts-small-business`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/blog/naics-codes-explained`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/blog/set-aside-programs`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/blog/capability-statement-guide`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
