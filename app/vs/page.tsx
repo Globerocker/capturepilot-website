@@ -37,6 +37,46 @@ import {
 const APP_URL = "https://app.capturepilot.com";
 const SIGNUP_URL = `${APP_URL}/signup`;
 const CHECK_URL = `${APP_URL}/check`;
+const BASE = "https://www.capturepilot.com";
+
+const vsCollectionJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "CapturePilot vs Competitors — GovCon Software Comparisons",
+  description: "Detailed side-by-side comparisons of CapturePilot against every major government contracting platform.",
+  url: `${BASE}/vs`,
+  isPartOf: { "@type": "WebSite", name: "CapturePilot", url: BASE },
+  mainEntity: {
+    "@type": "ItemList",
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    numberOfItems: 11,
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "CapturePilot vs GovWin", url: `${BASE}/vs/govwin` },
+      { "@type": "ListItem", position: 2, name: "CapturePilot vs GovTribe", url: `${BASE}/vs/govtribe` },
+      { "@type": "ListItem", position: 3, name: "CapturePilot vs BGOV", url: `${BASE}/vs/bgov` },
+      { "@type": "ListItem", position: 4, name: "CapturePilot vs HigherGov", url: `${BASE}/vs/highergov` },
+      { "@type": "ListItem", position: 5, name: "CapturePilot vs Federal Compass", url: `${BASE}/vs/federal-compass` },
+      { "@type": "ListItem", position: 6, name: "CapturePilot vs Unison", url: `${BASE}/vs/unison` },
+      { "@type": "ListItem", position: 7, name: "CapturePilot vs Capture2Proposal", url: `${BASE}/vs/capture2proposal` },
+      { "@type": "ListItem", position: 8, name: "CapturePilot vs Sweetspot AI", url: `${BASE}/vs/sweetspot` },
+      { "@type": "ListItem", position: 9, name: "CapturePilot vs GovDash", url: `${BASE}/vs/govdash` },
+      { "@type": "ListItem", position: 10, name: "CapturePilot vs EZGovOpps", url: `${BASE}/vs/ezgovopps` },
+      { "@type": "ListItem", position: 11, name: "CapturePilot vs SAM.gov", url: `${BASE}/vs/sam-gov` },
+    ],
+  },
+};
+
+const vsHubFaqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    { "@type": "Question", name: "Which CapturePilot alternative is the best for small businesses?", acceptedAnswer: { "@type": "Answer", text: "For small businesses under $10M revenue, none of the established players were built for you. GovWin ($8K-$15K/yr per seat) and BGOV ($6K-$12K/yr) target enterprises. GovTribe ($50+/mo) is search-only. HigherGov ($99-$199/mo) covers federal + state + local broadly but has no AI proposal or capability statement tools. CapturePilot was purpose-built for SMB GovCon at $199/mo flat with a free tier, AI proposal drafting, Quick Checker eligibility, and set-aside matching for SDVOSB, WOSB, 8(a), and HUBZone." } },
+    { "@type": "Question", name: "Why are there so many government contracting tools?", acceptedAnswer: { "@type": "Answer", text: "GovCon tooling fragmented because different teams have different jobs. BGOV and GovWin grew out of legislative and defense intelligence for lobbyists and large primes. GovTribe and HigherGov are search databases on top of SAM.gov data. Capture2Proposal and Shipley-style tools manage the proposal workflow. Unison runs a teaming marketplace. Sweetspot and GovDash added AI on top of proposal or search workflows. CapturePilot exists because small businesses needed one platform that covers the whole pipeline — find, qualify, draft, submit — not five stitched-together tools." } },
+    { "@type": "Question", name: "What is the cheapest GovCon platform with AI proposal writing?", acceptedAnswer: { "@type": "Answer", text: "As of 2026, CapturePilot at $199/month is the lowest-priced platform that includes AI proposal drafting, with a free tier for eligibility checking and top-5 match preview. GovDash starts at $500+/mo per seat. Sweetspot AI requires a custom-pricing sales call. Capture2Proposal charges $50-$150 per seat per month but manages proposals rather than drafting them with AI. Traditional research tools like GovWin and BGOV charge enterprise prices and do not include AI proposal drafting at all." } },
+    { "@type": "Question", name: "Is SAM.gov enough, or do I need a paid tool?", acceptedAnswer: { "@type": "Answer", text: "SAM.gov is the official federal database and is free, but it is raw data — no matching, no scoring, no proposal help, and weak search filtering. Small businesses typically spend 15–25 hours per week sifting through irrelevant listings. A paid layer makes sense once your time is worth more than the subscription. CapturePilot ingests the same SAM.gov data daily but scores 37K+ opportunities against your NAICS / PSC / set-aside / geography profile and surfaces only matches you can realistically win." } },
+    { "@type": "Question", name: "Can I switch from GovWin or BGOV to CapturePilot without losing data?", acceptedAnswer: { "@type": "Answer", text: "Yes. CapturePilot indexes the same SAM.gov contract opportunities and supplements them with USASpending.gov award data, SBIR.gov R&D opportunities, and SAM.gov registered-contractor records (1M+) for partner search. You do not need to export watchlists — CapturePilot's smart matching automatically surfaces the opportunities that fit your profile. Existing pursuits can be recreated in the Kanban pipeline in minutes, and onboarding (NAICS + set-aside + states) takes under 10 minutes." } },
+  ],
+};
 
 /* ------------------------------------------------------------------ */
 /*  Matrix data                                                        */
@@ -203,6 +243,8 @@ export default function VsOverviewPage() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(vsCollectionJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(vsHubFaqJsonLd) }} />
       <style jsx>{`
         .shimmer-bg {
           background: linear-gradient(

@@ -3,6 +3,31 @@ import SiteNav from "../../components/SiteNav";
 import SiteFooter from "../../components/SiteFooter";
 import { BookOpen, ArrowRight, Clock, Tag } from "lucide-react";
 
+const BASE = "https://www.capturepilot.com";
+const collectionJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "CapturePilot Blog — Government Contracting Guides & Strategies",
+  description: "Practical, practitioner-written guides for small businesses breaking into federal government contracting.",
+  url: `${BASE}/blog`,
+  isPartOf: { "@type": "WebSite", name: "CapturePilot", url: BASE },
+  publisher: { "@type": "Organization", name: "CapturePilot", logo: { "@type": "ImageObject", url: `${BASE}/logo.png` } },
+  mainEntity: {
+    "@type": "ItemList",
+    itemListOrder: "https://schema.org/ItemListUnordered",
+    numberOfItems: 7,
+    itemListElement: [
+      { "@type": "ListItem", position: 1, url: `${BASE}/blog/how-to-find-government-contracts-small-business` },
+      { "@type": "ListItem", position: 2, url: `${BASE}/blog/government-contracting-101` },
+      { "@type": "ListItem", position: 3, url: `${BASE}/blog/naics-codes-explained` },
+      { "@type": "ListItem", position: 4, url: `${BASE}/blog/set-aside-programs` },
+      { "@type": "ListItem", position: 5, url: `${BASE}/blog/capability-statement-guide` },
+      { "@type": "ListItem", position: 6, url: `${BASE}/blog/sam-registration-guide` },
+      { "@type": "ListItem", position: 7, url: `${BASE}/blog/proposal-writing-tips` },
+    ],
+  },
+};
+
 const POSTS = [
   { slug: "how-to-find-government-contracts-small-business", title: "How to Find Government Contracts as a Small Business (2026)", category: "Getting Started", readTime: "18 min", description: "Step-by-step playbook to find federal contracts you can actually win. SAM.gov, Sources Sought, set-asides, and the tools that cut 20 hours of search per week." },
   { slug: "government-contracting-101", title: "Government Contracting 101: The Complete Beginner's Guide", category: "Getting Started", readTime: "15 min", description: "Everything you need to know about selling to the federal government. NAICS codes, SAM.gov, set-asides, contract types, and step-by-step instructions." },
@@ -16,6 +41,10 @@ const POSTS = [
 export default function BlogPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
       <SiteNav />
       <main className="pt-16">
         {/* Hero */}
