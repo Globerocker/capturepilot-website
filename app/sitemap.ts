@@ -45,11 +45,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/blog/capability-statement-guide`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/blog/sam-registration-guide`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/blog/proposal-writing-tips`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/blog/federal-contracting-action-plan`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
 
     // Resources — medium priority
     { url: `${baseUrl}/resources/quick-checker-guide`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/resources/bid-checklist`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/resources/proposal-template`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/resources/agency-pain-points`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
 
     // Comparison index + additional pages
     { url: `${baseUrl}/vs`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },

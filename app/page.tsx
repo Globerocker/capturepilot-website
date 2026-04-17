@@ -337,6 +337,48 @@ export default function Homepage() {
               <Globe className="w-5 h-5" />
               <span className="font-bold text-stone-600 text-lg tracking-tight">HUBZone</span>
             </div>
+            <div className="flex items-center gap-2">
+              <Users className="w-5 h-5" />
+              <span className="font-bold text-stone-600 text-lg tracking-tight">Tribal / Native-Owned</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================ */}
+      {/* 2b. DATA SOURCES                                                 */}
+      {/* ================================================================ */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-xs font-bold text-emerald-600 uppercase tracking-widest mb-2">Built on authoritative data</p>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 mb-3">The same sources your competitors use — structured, scored, and always current.</h2>
+            <p className="text-stone-600 max-w-2xl mx-auto">
+              CapturePilot aggregates seven federal data sources into one workspace and rebuilds your match list every 24 hours. No spreadsheets, no manual SAM.gov searches, no stale CSVs.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              { name: "SAM.gov",        desc: "37K+ active federal opportunities",    icon: <Building2 className="w-5 h-5" /> },
+              { name: "USASpending.gov", desc: "10 years of past-award intelligence",  icon: <TrendingUp className="w-5 h-5" /> },
+              { name: "SBIR.gov",        desc: "Small-business R&D solicitations",     icon: <Sparkles className="w-5 h-5" /> },
+              { name: "SBA Certify",     desc: "800+ certified teaming partners",      icon: <Award className="w-5 h-5" /> },
+              { name: "FPDS",            desc: "Contract-award detail records",        icon: <Briefcase className="w-5 h-5" /> },
+              { name: "Monthly Treasury","desc": "FY unobligated-balance tracking",     icon: <Clock className="w-5 h-5" /> },
+              { name: "GSA eBuy",        desc: "Schedule-holder RFQ visibility",        icon: <Shield className="w-5 h-5" /> },
+              { name: "Agency forecasts","desc": "OSDBU-published pipeline reports",     icon: <Target className="w-5 h-5" /> },
+            ].map((src, i) => (
+              <div key={i} className="bg-stone-50 border border-stone-200 rounded-2xl p-4 hover:border-emerald-300 hover:bg-white transition-colors">
+                <div className="text-emerald-600 mb-2">{src.icon}</div>
+                <div className="font-bold text-sm text-stone-900 mb-0.5">{src.name}</div>
+                <div className="text-xs text-stone-500 leading-snug">{src.desc}</div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <p className="text-xs text-stone-500 italic">
+              Plus 900+ Small Business Liaison Officer contacts at top primes (Lockheed, Raytheon, BAE, GDIT, Leidos…) for subcontracting outreach.
+            </p>
           </div>
         </div>
       </section>
