@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import {
   Shield, ArrowRight, CheckCircle2, Target, FileText,
-  BarChart3, Users, Star, Award, TrendingUp,
+  BarChart3, Users, Star, Award, TrendingUp, Tag,
 } from "lucide-react";
 import SiteNav from "../../../components/SiteNav";
 import SiteFooter from "../../../components/SiteFooter";
@@ -13,8 +13,8 @@ const CHECK_URL = `${APP_URL}/check`;
 const CALENDLY_URL = "https://meetings-na2.hubspot.com/americurial/intro-call";
 
 export const metadata: Metadata = {
-  title: "CapturePilot for Veteran-Owned Businesses — SDVOSB & VOSB Contracts",
-  description: "Find SDVOSB and VOSB set-aside government contracts matched to your veteran-owned business. 2,276+ veteran set-aside opportunities. AI-powered matching.",
+  title: "CapturePilot for Veteran-Owned Businesses — 20% Off SDVOSB & VOSB Plans",
+  description: "Built by veterans, for veterans. 20% off every paid plan for verified SDVOSB and VOSB firms — forever. 2,276+ veteran set-aside opportunities tracked.",
 };
 
 export default function VeteransPage() {
@@ -26,22 +26,53 @@ export default function VeteransPage() {
       <section className="pt-32 pb-20 px-6">
         <div className="max-w-5xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full px-4 py-1.5 text-sm font-medium mb-8">
-            <Shield className="w-4 h-4" /> Built by Veterans, for Veterans
+            <Shield className="w-4 h-4" /> Veterans who help veterans win.
           </div>
           <h1 className="text-5xl sm:text-6xl font-black tracking-tight leading-[1.1] mb-6">
             Your Service Earned<br />
             You an <span className="gradient-text">Advantage.</span>
           </h1>
-          <p className="text-lg sm:text-xl text-stone-500 max-w-2xl mx-auto mb-10">
+          <p className="text-lg sm:text-xl text-stone-500 max-w-2xl mx-auto mb-6">
             The federal government sets aside billions in contracts exclusively for veteran-owned businesses.
             CapturePilot finds the ones that match your company — automatically.
           </p>
+          <div className="inline-flex items-center gap-2 bg-emerald-600 text-white rounded-full px-4 py-2 text-sm font-bold mb-10 shadow-md">
+            <Tag className="w-4 h-4" />
+            20% off every plan for verified SDVOSB + VOSB firms — forever
+          </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href={SIGNUP_URL} className="bg-black text-white px-8 py-4 rounded-full text-base font-bold hover:bg-stone-800 transition-all hover:scale-105 inline-flex items-center gap-2 shadow-lg">
-              Start Free — 30 Days <ArrowRight className="w-4 h-4" />
+              Start Free — Claim 20% Off <ArrowRight className="w-4 h-4" />
             </Link>
             <Link href={CHECK_URL} className="bg-stone-100 text-stone-700 px-8 py-4 rounded-full text-base font-bold hover:bg-stone-200 transition-colors inline-flex items-center gap-2">
               Check My Eligibility
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Veteran Discount Callout */}
+      <section className="py-12 px-6 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white">
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
+          <div className="w-16 h-16 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
+            <Tag className="w-8 h-8" />
+          </div>
+          <div className="flex-1 text-center md:text-left">
+            <h2 className="text-2xl md:text-3xl font-black mb-2">
+              20% Off, Every Plan, Forever.
+            </h2>
+            <p className="text-emerald-50 leading-relaxed">
+              Verified SDVOSB and VOSB firms save 20% on every paid subscription — auto-applied at
+              checkout. We verify via SAM.gov Entity API. Not certified yet? Self-declare
+              in-app and we&apos;ll re-verify automatically once your VetCert propagates.
+            </p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <Link
+              href={SIGNUP_URL}
+              className="bg-white text-emerald-700 px-6 py-3 rounded-full font-bold hover:bg-stone-100 transition-colors inline-flex items-center gap-2 whitespace-nowrap"
+            >
+              Claim Discount <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -131,8 +162,12 @@ export default function VeteransPage() {
           <h2 className="text-3xl sm:text-4xl font-black mb-4">
             You Served Your Country.<br />Now Let Your Country Work for You.
           </h2>
-          <p className="text-lg text-stone-500 mb-8">
+          <p className="text-lg text-stone-500 mb-4">
             Start finding veteran set-aside contracts matched to your business. Free for 30 days.
+          </p>
+          <p className="text-sm font-bold text-emerald-700 mb-8 inline-flex items-center gap-2">
+            <Tag className="w-4 h-4" />
+            Verified SDVOSB + VOSB firms: 20% off every plan, forever
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href={SIGNUP_URL} className="bg-black text-white px-8 py-4 rounded-full text-base font-bold hover:bg-stone-800 transition-all hover:scale-105 inline-flex items-center gap-2 shadow-lg">

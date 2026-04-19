@@ -30,7 +30,13 @@ import {
   Mail,
   Briefcase,
   Clock,
+  Star as StarIcon,
 } from "lucide-react";
+
+const VETERAN_DISCOUNT_PERCENT = 20;
+function vetPrice(base: number) {
+  return Math.round(base * (1 - VETERAN_DISCOUNT_PERCENT / 100));
+}
 
 /* ------------------------------------------------------------------ */
 /*  Constants                                                          */
@@ -121,6 +127,10 @@ const COMPARISON: ComparisonRow[] = [
 
 const FAQS = [
   {
+    q: "Do veteran-owned businesses get a discount?",
+    a: "Yes. Verified SDVOSB and VOSB firms get 20% off every paid plan \u2014 forever, not just the first year. We verify your certification via the SAM.gov Entity API using your UEI. Not certified yet? Self-declare in the app and we\u2019ll re-verify automatically once your VetCert propagates to SAM.",
+  },
+  {
     q: "Can I cancel anytime?",
     a: "Yes. Monthly plans cancel anytime from your dashboard \u2014 no contracts, no cancellation fees. You keep access through the end of your billing period.",
   },
@@ -196,6 +206,7 @@ function CellValue({ value }: { value: boolean | string }) {
 
 export default function PricingPage() {
   const [yearly, setYearly] = useState(false);
+  const [veteranMode, setVeteranMode] = useState(false);
 
   const proMonthly = 199;
   const proYearly = 159;
@@ -207,7 +218,9 @@ export default function PricingPage() {
   const consultAnnualTotal = 24000;
   const consultSavings = 6000;
 
-  const proPrice = yearly ? proYearly : proMonthly;
+  const baseProPrice = yearly ? proYearly : proMonthly;
+  const proPrice = veteranMode ? vetPrice(baseProPrice) : baseProPrice;
+  const proAnnualTotalDisplayed = veteranMode ? vetPrice(proAnnualTotal) : proAnnualTotal;
   const consultPrice = yearly ? consultYearly : consultMonthly;
 
   // FAQ JSON-LD for rich snippets in Google search results
@@ -288,6 +301,30 @@ export default function PricingPage() {
                 <span className="text-emerald-600 text-xs font-bold">Save 20%</span>
               </button>
             </div>
+
+            {/* ── Veteran Discount Toggle ── */}
+            <div className="mt-6 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setVeteranMode(!veteranMode)}
+                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all border-2 ${
+                  veteranMode
+                    ? "bg-emerald-600 text-white border-emerald-600 shadow-md"
+                    : "bg-white text-emerald-700 border-emerald-300 hover:bg-emerald-50"
+                }`}
+              >
+                <Shield className="w-4 h-4" />
+                {veteranMode
+                  ? `${VETERAN_DISCOUNT_PERCENT}% Veteran Discount Applied`
+                  : `Veteran-Owned Business? See ${VETERAN_DISCOUNT_PERCENT}% Off`}
+              </button>
+            </div>
+            {veteranMode && (
+              <p className="mt-3 text-sm text-emerald-700 max-w-xl mx-auto">
+                Auto-applied at checkout for verified SDVOSB + VOSB firms. Self-declare in the app;
+                we re-verify via SAM.gov monthly.
+              </p>
+            )}
           </div>
         </section>
 
@@ -334,8 +371,16 @@ export default function PricingPage() {
                   </span>
                 </div>
                 <div className="mb-6">
-                  <h3 className="text-lg font-black text-stone-900 mb-2">Pro</h3>
-                  <div className="flex items-baseline gap-1 mb-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <h3 className="text-lg font-black text-stone-900">Pro</h3>
+                    {veteranMode && (
+                      <span className="inline-flex items-center gap-1 bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                        <Shield className="w-3 h-3" />
+                        VET {VETERAN_DISCOUNT_PERCENT}% OFF
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-baseline gap-2 mb-1 flex-wrap">
                     <span
                       className="text-4xl font-black text-stone-900 transition-all duration-300"
                       key={proPrice}
@@ -343,15 +388,26 @@ export default function PricingPage() {
                       ${proPrice}
                     </span>
                     <span className="text-stone-500 text-sm">/mo</span>
+                    {veteranMode && (
+                      <span className="text-sm text-stone-400 line-through">
+                        ${baseProPrice}
+                      </span>
+                    )}
                   </div>
                   {yearly && (
                     <p className="text-xs text-emerald-600 font-medium mb-2">
-                      Billed ${proAnnualTotal.toLocaleString()}/yr &mdash; save ${proSavings}
+                      Billed ${proAnnualTotalDisplayed.toLocaleString()}/yr
+                      {veteranMode && (
+                        <span className="text-stone-400 line-through ml-1.5">
+                          ${proAnnualTotal.toLocaleString()}
+                        </span>
+                      )}
+                      {" "}&mdash; save ${proSavings}{veteranMode && " + 20% vet"}
                     </p>
                   )}
                   {!yearly && (
                     <p className="text-xs text-stone-400 mb-2">
-                      or ${proYearly}/mo billed yearly (save ${proSavings}/yr)
+                      or ${veteranMode ? vetPrice(proYearly) : proYearly}/mo billed yearly (save ${proSavings}/yr)
                     </p>
                   )}
                   <p className="text-sm text-stone-600 leading-relaxed">
