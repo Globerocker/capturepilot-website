@@ -20,6 +20,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/features/quick-checker`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/features/pipeline`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/features/capability-statement`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/features/recompete-radar`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/features/forecast-radar`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/features/tribal-partners`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/updates`, lastModified: now, changeFrequency: "daily", priority: 0.7 },
+    { url: `${baseUrl}/academy`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
 
     // Comparison pages — high SEO value
     { url: `${baseUrl}/vs/govwin`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
