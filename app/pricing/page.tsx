@@ -250,6 +250,21 @@ export default function PricingPage() {
           {/* shimmer bg */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-50/60 via-transparent to-transparent pointer-events-none" />
           <div className="max-w-4xl mx-auto text-center relative">
+            {/* Veteran Banner — PROMINENT hero callout */}
+            <Link
+              href="/for/veterans"
+              className="group inline-block w-full sm:w-auto mb-6"
+            >
+              <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-2xl px-6 py-4 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all flex items-center gap-3 flex-wrap justify-center">
+                <Shield className="w-5 h-5 flex-shrink-0" />
+                <p className="text-sm md:text-base font-bold">
+                  Verified SDVOSB/VOSB? Get{" "}
+                  <span className="bg-white/20 rounded-full px-2 py-0.5">20% off — forever</span>
+                </p>
+                <ArrowRight className="w-4 h-4 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+
             {/* Beta Banner */}
             <div className="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-6 mb-10 text-left sm:text-center">
               <p className="text-lg font-black text-emerald-800 mb-1">

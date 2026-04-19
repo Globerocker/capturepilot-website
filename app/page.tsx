@@ -7,7 +7,7 @@ import {
   Zap, Target, Shield, FileText, BarChart3, Users, ArrowRight,
   CheckCircle2, Clock, Search, Briefcase, Star, Globe, Phone,
   ChevronRight, Layers, Mic, TrendingUp, Check, X, Play,
-  Award, Building2, Sparkles, MousePointerClick, BookOpen,
+  Award, Building2, Sparkles, MousePointerClick, BookOpen, Eye,
 } from "lucide-react";
 
 const APP_URL = "https://app.capturepilot.com";
@@ -379,6 +379,120 @@ export default function Homepage() {
             <p className="text-xs text-stone-500 italic">
               Plus 900+ Small Business Liaison Officer contacts at top primes (Lockheed, Raytheon, BAE, GDIT, Leidos…) for subcontracting outreach.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================ */}
+      {/* 2c. WHAT SHIPPED LATELY — live feature teaser                    */}
+      {/* ================================================================ */}
+      <section className="py-20 px-6 bg-gradient-to-b from-white via-stone-50 to-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold mb-3">
+              <Sparkles className="w-3.5 h-3.5" />
+              Shipped this quarter
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 mb-3">
+              New capabilities, built in public.
+            </h2>
+            <p className="text-stone-600 max-w-2xl mx-auto">
+              Six major additions in the last 90 days. See the full live changelog at{" "}
+              <Link href="/updates" className="text-emerald-700 underline underline-offset-4">capturepilot.com/updates</Link>.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              {
+                title: "Recompete Radar",
+                desc: "Federal contracts expiring in 3-18 months, ranked by recompete confidence. Win the prep cycle.",
+                href: "/features/recompete-radar",
+                color: "emerald",
+                icon: <Target className="w-5 h-5" />,
+                tag: "NEW",
+              },
+              {
+                title: "Agency Forecast Watcher",
+                desc: "Daily change-detection across VA, DoD, GSA, DOE, DHS forecasts. NAICS-matched alerts.",
+                href: "/features/forecast-radar",
+                color: "blue",
+                icon: <Eye className="w-5 h-5" />,
+                tag: "NEW",
+              },
+              {
+                title: "Certified Teaming Directory",
+                desc: "Tribal, 8(a), HUBZone, WOSB, SDVOSB firms ranked by NAICS overlap with your profile.",
+                href: "/features/tribal-partners",
+                color: "amber",
+                icon: <Users className="w-5 h-5" />,
+                tag: "NEW",
+              },
+              {
+                title: "Capture Brief (AI)",
+                desc: "One-click 2-page brief per opportunity with PWin + bid/no-bid + recommended actions.",
+                href: "/features/proposals",
+                color: "purple",
+                icon: <FileText className="w-5 h-5" />,
+                tag: "NEW",
+              },
+              {
+                title: "Voice Briefs",
+                desc: "Hold to record, release to hear it back. Capture briefs narrated in 150 words, phone-ready.",
+                href: "/features/proposals",
+                color: "rose",
+                icon: <Mic className="w-5 h-5" />,
+                tag: "NEW",
+              },
+              {
+                title: "MCP + Zapier + Slack",
+                desc: "Connect CapturePilot to Claude Desktop, 7K+ Zapier apps, and your team's Slack workspace.",
+                href: "/updates",
+                color: "indigo",
+                icon: <Zap className="w-5 h-5" />,
+                tag: "NEW",
+              },
+            ].map((f, i) => (
+              <Link
+                key={i}
+                href={f.href}
+                className="group relative bg-white border border-stone-200 rounded-2xl p-5 hover:border-emerald-300 hover:shadow-md transition-all overflow-hidden"
+              >
+                <div className={`absolute top-3 right-3 bg-emerald-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full`}>
+                  {f.tag}
+                </div>
+                <div
+                  className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${
+                    f.color === "emerald" ? "bg-emerald-100 text-emerald-600" :
+                    f.color === "blue" ? "bg-blue-100 text-blue-600" :
+                    f.color === "amber" ? "bg-amber-100 text-amber-700" :
+                    f.color === "purple" ? "bg-purple-100 text-purple-600" :
+                    f.color === "rose" ? "bg-rose-100 text-rose-600" :
+                    "bg-indigo-100 text-indigo-600"
+                  }`}
+                >
+                  {f.icon}
+                </div>
+                <h3 className="font-bold text-stone-900 mb-1 group-hover:text-emerald-700 transition-colors">
+                  {f.title}
+                </h3>
+                <p className="text-sm text-stone-600 leading-relaxed">{f.desc}</p>
+                <p className="text-xs font-bold text-emerald-700 mt-3 inline-flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  Learn more
+                  <ArrowRight className="w-3 h-3" />
+                </p>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link
+              href="/updates"
+              className="inline-flex items-center gap-2 text-sm font-bold text-emerald-700 hover:text-emerald-800"
+            >
+              See the full live changelog
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>

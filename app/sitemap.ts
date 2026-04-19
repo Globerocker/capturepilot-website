@@ -57,6 +57,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/resources/bid-checklist`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/resources/proposal-template`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/resources/agency-pain-points`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/resources/sdvosb-opportunity-map`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/resources/vetcert-checklist`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
 
     // Comparison index + additional pages
     { url: `${baseUrl}/vs`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
