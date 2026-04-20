@@ -3,8 +3,10 @@ import { Sparkles, Zap, Wrench, Gauge, Plug } from "lucide-react";
 import SiteNav from "../../components/SiteNav";
 import SiteFooter from "../../components/SiteFooter";
 
-export const revalidate = 300; // refresh every 5 minutes
-export const dynamic = "force-dynamic";
+// Revalidate the rendered page every 5 minutes so new release notes show up
+// without needing a redeploy. Don't mix with force-dynamic — those two flags
+// conflict and Next ends up disabling caching entirely.
+export const revalidate = 300;
 
 export const metadata: Metadata = {
     title: "Product Updates — CapturePilot",
@@ -84,8 +86,14 @@ export default async function UpdatesPage() {
                 <section className="py-12 px-6">
                     <div className="max-w-3xl mx-auto">
                         {notes.length === 0 ? (
-                            <div className="bg-white border border-stone-200 rounded-2xl p-10 text-center">
-                                <p className="text-sm text-stone-500">Timeline loading…</p>
+                            <div className="bg-white border border-stone-200 rounded-2xl p-10 text-center space-y-3">
+                                <Sparkles className="w-8 h-8 text-stone-300 mx-auto" />
+                                <p className="text-sm font-semibold text-stone-700">We&apos;re shipping new features daily.</p>
+                                <p className="text-sm text-stone-500 max-w-md mx-auto leading-relaxed">
+                                    Our release timeline rebuilds from Git commits automatically. If nothing&apos;s
+                                    here yet, it&apos;s because the daily sync hasn&apos;t run since the last
+                                    deploy — check back in a few hours, or follow us on LinkedIn for live updates.
+                                </p>
                             </div>
                         ) : (
                             <div className="relative pl-8 border-l-2 border-stone-200 space-y-10">
