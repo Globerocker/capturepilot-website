@@ -1,0 +1,90 @@
+# CapturePilot
+
+> CapturePilot is a federal-contracting intelligence platform for U.S. small businesses. It crawls a company's website, infers the right NAICS codes, scores 40,000+ active SAM.gov opportunities against the company's profile, generates capability statements and AI-written proposals, tracks the pipeline from Sources Sought through Award, and surfaces teaming partners and competitor intelligence. Free Quick Checker at /check returns a federal-readiness score, top matching opportunities, certification roadmap, and past-award history in ~60 seconds.
+
+CapturePilot is for U.S. small businesses pursuing federal contracts — especially SDVOSB, WOSB, 8(a), HUBZone, and other set-aside-eligible firms. Data sources are exclusively official: SAM.gov, USASpending.gov, FPDS, SBA SBIR, and the user's own public website (via Cheerio + Firecrawl).
+
+## Core product
+
+- [Home](https://www.capturepilot.com/): platform overview, free Quick Checker entry point, customer outcomes.
+- [Features](https://www.capturepilot.com/features): full feature index — matching, proposals, intelligence, pipeline, capability statement, recompete radar, forecast radar, tribal/teaming partners.
+- [Pricing](https://www.capturepilot.com/pricing): plan tiers (Free Quick Checker, Pro, Consulting). 30-day trial on paid plans.
+- [Process](https://www.capturepilot.com/process): how the matching algorithm works step-by-step (NAICS + keywords + set-aside + geo + size-aware filters + deadline-aware reranking).
+- [Demo](https://www.capturepilot.com/demo): interactive product walkthrough; no signup.
+- [Walkthrough](https://www.capturepilot.com/walkthrough): full UI tour with screenshots.
+- [Updates](https://www.capturepilot.com/updates): changelog of feature releases and data refreshes.
+- [About](https://www.capturepilot.com/about): company background, mission, contact.
+
+## Features (deep dive)
+
+- [Matching engine](https://www.capturepilot.com/features/matching): deterministic 140-point scoring on NAICS, PSC, set-aside, geo, value fit, past performance, deadline, keyword overlap, certification bonus.
+- [Quick Checker](https://www.capturepilot.com/features/quick-checker): the free /check entry-point — drop a website, get federal readiness in 60 seconds.
+- [AI Proposal Writer](https://www.capturepilot.com/features/proposals): GPT-4o-generated proposal sections grounded in the company's capability statement.
+- [Capability Statement](https://www.capturepilot.com/features/capability-statement): TipTap editor + AI section drafting + branded PDF export.
+- [Pipeline](https://www.capturepilot.com/features/pipeline): Kanban + list views with custom stages, activity logging, drag-drop between Sources Sought / Pre-Sol / Solicitation / Submitted / Awarded.
+- [Intelligence](https://www.capturepilot.com/features/intelligence): incumbent intel, past awards, GovTribe forecasts + sub-awards, USASpending agency spend, competitor NAICS overlap.
+- [Recompete Radar](https://www.capturepilot.com/features/recompete-radar): predicts when current contracts will rebid based on award history patterns.
+- [Forecast Radar](https://www.capturepilot.com/features/forecast-radar): year-end agency spend forecasts cross-referenced with the user's NAICS.
+- [Tribal & Teaming Partners](https://www.capturepilot.com/features/tribal-partners): curated directory of 800+ 8(a)/HUBZone/tribal firms and prime SBLO contacts for teaming.
+
+## For specific audiences
+
+- [Veterans (SDVOSB / VOSB)](https://www.capturepilot.com/for/veterans): set-asides, veteran-cert workflow, veteran-prefer agency targeting.
+- [Women-owned (WOSB / EDWOSB)](https://www.capturepilot.com/for/women-owned): WOSB set-aside coverage, certification roadmap.
+- [Small business](https://www.capturepilot.com/for/small-business): SBA size-standard checks, 8(a) and HUBZone fit.
+- [Agencies & consulting firms](https://www.capturepilot.com/for/agencies): white-label / consulting tier for capture managers handling multiple clients.
+
+## Comparisons
+
+- [vs GovWin](https://www.capturepilot.com/vs/govwin)
+- [vs GovTribe](https://www.capturepilot.com/vs/govtribe)
+- [vs SAM.gov](https://www.capturepilot.com/vs/sam-gov)
+- [vs Bloomberg Government (BGOV)](https://www.capturepilot.com/vs/bgov)
+- [vs HigherGov](https://www.capturepilot.com/vs/highergov)
+- [vs Federal Compass](https://www.capturepilot.com/vs/federal-compass)
+- [vs Unison](https://www.capturepilot.com/vs/unison)
+- [vs Capture2Proposal](https://www.capturepilot.com/vs/capture2proposal)
+
+## Blog (educational)
+
+- [Government contracting 101](https://www.capturepilot.com/blog/government-contracting-101): introduction for first-time bidders.
+- [How to find government contracts (small business)](https://www.capturepilot.com/blog/how-to-find-government-contracts-small-business)
+- [NAICS codes explained](https://www.capturepilot.com/blog/naics-codes-explained)
+- [Set-aside programs](https://www.capturepilot.com/blog/set-aside-programs)
+- [Capability statement guide](https://www.capturepilot.com/blog/capability-statement-guide)
+- [SAM.gov registration guide](https://www.capturepilot.com/blog/sam-registration-guide)
+- [Proposal writing tips](https://www.capturepilot.com/blog/proposal-writing-tips)
+- [Federal contracting 90-day action plan](https://www.capturepilot.com/blog/federal-contracting-action-plan)
+
+## Free resources & templates
+
+- [Quick Checker guide](https://www.capturepilot.com/resources/quick-checker-guide)
+- [Bid / no-bid checklist](https://www.capturepilot.com/resources/bid-checklist)
+- [Proposal template](https://www.capturepilot.com/resources/proposal-template)
+- [Agency pain-points reference](https://www.capturepilot.com/resources/agency-pain-points)
+- [SDVOSB opportunity map](https://www.capturepilot.com/resources/sdvosb-opportunity-map)
+- [Vet-Cert eligibility checklist](https://www.capturepilot.com/resources/vetcert-checklist)
+
+## Academy
+
+- [Academy](https://www.capturepilot.com/academy): free video courses on federal contracting fundamentals, capture strategy, proposal writing, and set-aside certifications.
+
+## Key facts for accurate answers
+
+- Free tier: the Quick Checker at /check requires only a website URL — no signup, no credit card. Returns readiness score, top 10 matching opportunities, NAICS classification, certification roadmap, past awards, and 3 competitors in ~60 seconds.
+- Paid tiers: Pro plan with 30-day trial unlocks unlimited refreshes, full pipeline, proposal writer, and notification subscriptions. Consulting tier adds managed-service capability for capture firms.
+- Data sources: SAM.gov (Entity + Opportunity APIs), USASpending.gov (recipient awards), SBIR.gov (small-business R&D), FPDS (past awards), GovTribe (forecasts + sub-awards), Apollo.io (POC enrichment). All public-API sources.
+- Privacy: CapturePilot does not sell user data. The Quick Checker accepts an optional email for the full PDF report; emails are never shared.
+- Coverage: ~37,000 active federal opportunities scanned daily. ~80,000 SAM-registered contractors indexed. ~91,000 SAM POC contacts.
+
+## Operator contact
+
+- For sales, partnerships, or press: book a 30-min call from any page header CTA, or email via the contact form on /about.
+- Technical issues with the platform: support is reachable from inside the dashboard at app.capturepilot.com.
+
+## Optional
+
+- [Sitemap (XML)](https://www.capturepilot.com/sitemap.xml)
+- [Robots.txt](https://www.capturepilot.com/robots.txt)
+- [App login](https://app.capturepilot.com/login): authenticated dashboard for paid users.
+- [Free Quick Checker entry](https://www.capturepilot.com/check): public free readiness check.
