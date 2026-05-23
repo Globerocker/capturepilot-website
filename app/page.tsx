@@ -9,6 +9,7 @@ import {
   ChevronRight, Layers, Mic, TrendingUp, Check, X, Play,
   Award, Building2, Sparkles, MousePointerClick, BookOpen, Eye,
 } from "lucide-react";
+import { LiveCountInline } from "@/components/LiveOpportunityCounter";
 
 const APP_URL = "https://app.capturepilot.com";
 const CHECK_URL = `${APP_URL}/check`;
@@ -211,7 +212,7 @@ export default function Homepage() {
               <div className="flex flex-wrap items-center gap-6 mt-10 pt-8 border-t border-stone-800/60">
                 <div className="flex items-center gap-2 text-sm text-stone-500">
                   <BarChart3 className="w-4 h-4 text-emerald-500" />
-                  <span><strong className="text-white">40,000+</strong> Opps Scanned Daily</span>
+                  <span><LiveCountInline fallback={40000} /> Active Opportunities</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-stone-500">
                   <Shield className="w-4 h-4 text-emerald-500" />
