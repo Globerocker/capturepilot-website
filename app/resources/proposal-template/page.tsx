@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
+import LeadMagnetForm from "@/components/LeadMagnetForm";
 import {
   ArrowRight,
   FileText,
@@ -419,6 +420,22 @@ export default function ProposalTemplatePage() {
               </div>
               <DocumentMockup />
             </div>
+          </div>
+        </section>
+
+        {/* Lead-magnet email gate (above the volume breakdowns — full content
+            stays readable below; this offers the printable bundle). */}
+        <section className="px-6 -mt-2 mb-2">
+          <div className="max-w-2xl mx-auto">
+            <LeadMagnetForm
+              magnetKey="proposal-template"
+              title="Get the complete 5-volume template as a printable PDF"
+              description="Plus our compliance matrix template and a pricing-volume worksheet. Three docs, one email."
+              downloadUrl={`${SIGNUP_URL}?utm_source=resource_proposal_template&next=/proposals`}
+              ctaLabel="Send Me the Bundle"
+              successLabel="Check your inbox — and start your 30-day free trial."
+              collectCompany={false}
+            />
           </div>
         </section>
 

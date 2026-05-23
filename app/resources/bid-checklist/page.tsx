@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
+import LeadMagnetForm from "@/components/LeadMagnetForm";
 import {
   ArrowRight,
   Square,
@@ -300,6 +301,22 @@ export default function BidChecklistPage() {
                 <Target className="w-4 h-4" />
               </Link>
             </div>
+          </div>
+        </section>
+
+        {/* Lead-magnet email gate (above the checklist content — full content remains
+            readable below; this offers a printable PDF + extras for email capture). */}
+        <section className="px-6 -mt-4 mb-2">
+          <div className="max-w-2xl mx-auto">
+            <LeadMagnetForm
+              magnetKey="bid-checklist"
+              title="Get this checklist as a printable PDF"
+              description="Plus our 30-day proposal calendar and 5 winning RFP excerpts. One email, all three."
+              downloadUrl={`${SIGNUP_URL}?utm_source=resource_bid_checklist&next=/resources`}
+              ctaLabel="Send Me the Bundle"
+              successLabel="Check your inbox — and start your 30-day free trial."
+              collectCompany={false}
+            />
           </div>
         </section>
 

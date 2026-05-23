@@ -265,15 +265,15 @@ export default function PricingPage() {
               </div>
             </Link>
 
-            {/* Beta Banner */}
+            {/* Trial Banner */}
             <div className="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-6 mb-10 text-left sm:text-center">
               <p className="text-lg font-black text-emerald-800 mb-1">
-                PUBLIC BETA — Try Everything Free
+                FREE 30-DAY TRIAL — Try Every Pro Feature
               </p>
               <p className="text-sm text-emerald-700 leading-relaxed">
-                Every Pro feature is unlocked free until <span className="font-bold">May 9, 2026</span> (our founder Andre Schuler&apos;s birthday). No credit card required.
+                Full access to matching, AI proposals, market intelligence, and the capability statement builder. No credit card required to start.
                 <br className="hidden sm:block" />
-                Beta users who provide feedback get <span className="font-bold">$149/mo locked-in pricing</span> (25% off forever).
+                Cancel anytime from your dashboard. After trial: $199/mo Pro, or $149/mo on annual.
               </p>
             </div>
 
@@ -382,7 +382,7 @@ export default function PricingPage() {
               <div className="relative rounded-2xl border-2 border-emerald-500 shadow-xl shadow-emerald-100 scale-[1.02] p-8 flex flex-col transition-all">
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                   <span className="bg-emerald-500 text-white text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap">
-                    Public Beta — Free Access
+                    Most Popular — 30-Day Free Trial
                   </span>
                 </div>
                 <div className="mb-6">
@@ -443,11 +443,11 @@ export default function PricingPage() {
                   href={SIGNUP_URL}
                   className="w-full text-center py-3.5 rounded-full font-bold transition-colors inline-flex items-center justify-center gap-2 bg-black text-white hover:bg-stone-800"
                 >
-                  Join the Beta — Free
+                  Start Free 30-Day Trial
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <p className="text-[11px] text-stone-400 text-center mt-2">
-                  After beta: $199/mo standard or $149/mo locked-in for beta feedback users
+                  No credit card required. Cancel anytime.
                 </p>
               </div>
 
@@ -728,7 +728,7 @@ export default function PricingPage() {
                 href={SIGNUP_URL}
                 className="bg-black text-white px-8 py-4 rounded-full font-bold hover:bg-stone-800 transition-colors inline-flex items-center justify-center gap-2 text-lg"
               >
-                Join the Beta — Free
+                Start Free 30-Day Trial
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
@@ -743,7 +743,7 @@ export default function PricingPage() {
             <div className="mt-6 flex flex-col sm:flex-row gap-6 justify-center text-sm text-stone-500">
               <span className="inline-flex items-center gap-1.5">
                 <Check className="w-4 h-4 text-emerald-500" />
-                Public beta — all features free
+                Free 30-day trial — all features unlocked
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <Check className="w-4 h-4 text-emerald-500" />

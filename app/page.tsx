@@ -122,12 +122,12 @@ export default function Homepage() {
       `}</style>
 
       {/* ================================================================ */}
-      {/* BETA BANNER                                                      */}
+      {/* TRIAL BANNER                                                     */}
       {/* ================================================================ */}
       <div className="fixed top-0 w-full bg-emerald-600 text-white text-center py-2.5 px-4 text-sm font-medium z-[60]">
-        <span className="mr-2">🚀</span>
-        Public Beta — All Features Free for 30 Days.
-        <a href="https://app.capturepilot.com/signup" className="underline underline-offset-2 font-bold ml-1">Join the Beta →</a>
+        <span className="mr-2">🎯</span>
+        Free 30-Day Trial — No Credit Card Required.
+        <a href="https://app.capturepilot.com/signup" className="underline underline-offset-2 font-bold ml-1">Start Free →</a>
       </div>
 
       {/* ================================================================ */}

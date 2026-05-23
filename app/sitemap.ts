@@ -1,76 +1,77 @@
 import type { MetadataRoute } from "next";
+import fs from "node:fs";
+import path from "node:path";
+
+const BASE_URL = "https://www.capturepilot.com";
+
+/**
+ * Walk the app/ directory at build time and emit a sitemap entry for every
+ * static, public route. Dynamic segments (`[slug]`), private groups, the
+ * embed route, and the LinkedIn-banner ephemeral pages are excluded.
+ *
+ * Priority + changeFrequency derive from path depth + section heuristics so
+ * we never miss a new page (the old manual list had drifted ~70 routes
+ * behind the codebase).
+ */
+function walkAppRoutes(): string[] {
+  const appDir = path.join(process.cwd(), "app");
+  const routes: string[] = [];
+
+  function walk(dir: string, urlPath: string) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    const hasPage = entries.some((e) => e.isFile() && e.name === "page.tsx");
+    if (hasPage) routes.push(urlPath || "/");
+
+    for (const entry of entries) {
+      if (!entry.isDirectory()) continue;
+      const name = entry.name;
+      // Skip dynamic segments, private route groups, and excluded sections
+      if (name.startsWith("[") || name.startsWith("(") || name.startsWith("_")) continue;
+      if (EXCLUDED_SECTIONS.includes(name) && urlPath === "") continue;
+      walk(path.join(dir, name), `${urlPath}/${name}`);
+    }
+  }
+
+  walk(appDir, "");
+  return routes;
+}
+
+const EXCLUDED_SECTIONS = ["embed", "linkedin-banner", "api"];
+
+function priorityFor(route: string): number {
+  if (route === "/") return 1.0;
+  if (route === "/pricing" || route === "/features" || route === "/check") return 0.9;
+  if (route.startsWith("/vs/") && route !== "/vs") return 0.85;
+  if (route === "/vs" || route === "/blog" || route === "/academy") return 0.8;
+  if (route.startsWith("/features/") || route.startsWith("/for/")) return 0.8;
+  if (route.startsWith("/blog/")) return 0.7;
+  if (route.startsWith("/resources/")) return 0.7;
+  if (route.startsWith("/presentations/")) return 0.4;
+  if (route === "/walkthrough" || route === "/updates") return 0.5;
+  return 0.6;
+}
+
+function changeFreqFor(route: string): MetadataRoute.Sitemap[number]["changeFrequency"] {
+  if (route === "/" || route === "/check") return "weekly";
+  if (route === "/updates") return "daily";
+  if (route === "/blog" || route === "/pricing" || route === "/features") return "weekly";
+  if (route.startsWith("/blog/")) return "monthly";
+  if (route.startsWith("/vs/")) return "monthly";
+  if (route.startsWith("/resources/") || route.startsWith("/for/")) return "monthly";
+  return "monthly";
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.capturepilot.com";
   const now = new Date().toISOString();
+  const routes = walkAppRoutes();
 
-  return [
-    // Core pages — highest priority
-    { url: baseUrl, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
-    { url: `${baseUrl}/features`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/pricing`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/demo`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/process`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-
-    // Feature pages — high priority
-    { url: `${baseUrl}/features/matching`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/features/proposals`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/features/intelligence`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/features/quick-checker`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/features/pipeline`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/features/capability-statement`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/features/recompete-radar`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/features/forecast-radar`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/features/tribal-partners`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/updates`, lastModified: now, changeFrequency: "daily", priority: 0.7 },
-    { url: `${baseUrl}/academy`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-
-    // Comparison pages — high SEO value
-    { url: `${baseUrl}/vs/govwin`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/vs/govtribe`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/vs/sam-gov`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/vs/bgov`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/vs/highergov`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/vs/federal-compass`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/vs/unison`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/vs/capture2proposal`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-
-    // Audience pages — medium-high priority
-    { url: `${baseUrl}/for/veterans`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/for/women-owned`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/for/small-business`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/for/agencies`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-
-    // Blog — medium priority, high SEO value
-    { url: `${baseUrl}/blog/government-contracting-101`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/blog/how-to-find-government-contracts-small-business`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/blog/naics-codes-explained`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/blog/set-aside-programs`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/blog/capability-statement-guide`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/blog/sam-registration-guide`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/blog/proposal-writing-tips`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/blog/federal-contracting-action-plan`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-
-    // Resources — medium priority
-    { url: `${baseUrl}/resources/quick-checker-guide`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${baseUrl}/resources/bid-checklist`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${baseUrl}/resources/proposal-template`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${baseUrl}/resources/agency-pain-points`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/resources/sdvosb-opportunity-map`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/resources/vetcert-checklist`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-
-    // Comparison index + additional pages
-    { url: `${baseUrl}/vs`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/vs/sweetspot`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/vs/govdash`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/vs/ezgovopps`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-
-    // Quick Checker + Blog index
-    { url: `${baseUrl}/check`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-
-    // Walkthrough — lower priority (embeddable)
-    { url: `${baseUrl}/walkthrough`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-  ];
+  return routes
+    .filter((r) => !r.includes("/presentations/")) // internal-only sales decks
+    .map((route) => ({
+      url: `${BASE_URL}${route === "/" ? "" : route}`,
+      lastModified: now,
+      changeFrequency: changeFreqFor(route),
+      priority: priorityFor(route),
+    }))
+    .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
 }

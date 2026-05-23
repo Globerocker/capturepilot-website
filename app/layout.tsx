@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import TrackingScripts, { TrackingNoscript } from "@/components/TrackingScripts";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -151,8 +152,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
+        <TrackingScripts />
       </head>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        <TrackingNoscript />
+        {children}
+      </body>
     </html>
   );
 }
