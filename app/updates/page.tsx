@@ -9,11 +9,11 @@ import SiteFooter from "../../components/SiteFooter";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-    title: "Product Updates — CapturePilot",
-    description: "See what we shipped this week. Live changelog of new features, integrations, and improvements to CapturePilot.",
+    title: "What's new at CapturePilot",
+    description: "A running log of what we've built recently and what we're working on.",
     openGraph: {
-        title: "Product Updates — CapturePilot",
-        description: "A live timeline of what we're building.",
+        title: "What's new at CapturePilot",
+        description: "A running log of what we've built recently and what we're working on.",
     },
 };
 
@@ -70,14 +70,13 @@ export default async function UpdatesPage() {
                     <div className="max-w-3xl mx-auto text-center">
                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium mb-6">
                             <Zap className="w-4 h-4" />
-                            Live changelog
+                            What&apos;s new
                         </div>
                         <h1 className="text-4xl md:text-5xl font-black tracking-tight text-stone-900 mb-4">
-                            What we&apos;re shipping.
+                            What we&apos;ve been working on.
                         </h1>
                         <p className="text-lg text-stone-600 leading-relaxed">
-                            A running log of every feature, integration, and improvement we ship. No vague &ldquo;quarterly
-                            roadmap&rdquo; — just what&apos;s actually live this week.
+                            We build CapturePilot in the open. This page is where new stuff shows up first.
                         </p>
                     </div>
                 </section>
@@ -88,11 +87,12 @@ export default async function UpdatesPage() {
                         {notes.length === 0 ? (
                             <div className="bg-white border border-stone-200 rounded-2xl p-10 text-center space-y-3">
                                 <Sparkles className="w-8 h-8 text-stone-300 mx-auto" />
-                                <p className="text-sm font-semibold text-stone-700">We&apos;re shipping new features daily.</p>
+                                <p className="text-sm font-semibold text-stone-700">Hold on, the page hasn&apos;t caught up yet.</p>
                                 <p className="text-sm text-stone-500 max-w-md mx-auto leading-relaxed">
-                                    Our release timeline rebuilds from Git commits automatically. If nothing&apos;s
-                                    here yet, it&apos;s because the daily sync hasn&apos;t run since the last
-                                    deploy — check back in a few hours, or follow us on LinkedIn for live updates.
+                                    We pull this from our internal release log, and it takes a few minutes
+                                    to refresh after a deploy. Try again in a bit, or say hi on{" "}
+                                    <a href="https://www.linkedin.com/company/111953265/" className="underline underline-offset-2 hover:text-stone-700" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                                    {" "}where we usually post the highlights.
                                 </p>
                             </div>
                         ) : (

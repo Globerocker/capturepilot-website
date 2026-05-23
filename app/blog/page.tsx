@@ -52,51 +52,51 @@ interface Post {
 
 /* ─── All 30 published blog posts ───────────────────────────────── */
 const POSTS: Post[] = [
-  // Getting Started (8)
-  { slug: "government-contracting-101", title: "Government Contracting 101: Complete Beginner's Guide", category: "Getting Started", readTime: "15 min", description: "Everything you need to know about selling to the federal government. NAICS codes, SAM.gov, set-asides, contract types, and step-by-step instructions.", featured: true },
-  { slug: "how-to-find-government-contracts-small-business", title: "How to Find Government Contracts as a Small Business (2026)", category: "Getting Started", readTime: "18 min", description: "Step-by-step playbook to find federal contracts you can actually win. SAM.gov, Sources Sought, set-asides, and the tools that cut 20 hours of search per week.", featured: true },
-  { slug: "naics-codes-explained", title: "NAICS Codes Explained: Find the Right Codes for Your Business", category: "Getting Started", readTime: "10 min", description: "What NAICS codes are, why they matter, how to find yours, and the top codes for small business government contractors." },
-  { slug: "sam-registration-guide", title: "SAM.gov Registration: Step-by-Step Guide (2026)", category: "Getting Started", readTime: "12 min", description: "Complete walkthrough of SAM.gov registration. Prerequisites, 8-step process, common issues, and renewal requirements." },
-  { slug: "best-naics-codes-small-business", title: "The 10 Best NAICS Codes for Small Business Contractors", category: "Getting Started", readTime: "9 min", description: "The NAICS codes that consistently produce the most small-business federal awards — by volume, win-rate, and size-standard friendliness." },
-  { slug: "federal-contract-types-explained", title: "Federal Contract Types Explained: FFP, T&M, IDIQ, and Which to Pursue", category: "Getting Started", readTime: "11 min", description: "Firm-fixed-price, time-and-materials, cost-plus, IDIQ — what each contract type means for risk, margin, and how you bid." },
-  { slug: "federal-contracting-certifications", title: "Federal Contracting Certifications: Which Ones Actually Help You Win", category: "Getting Started", readTime: "10 min", description: "8(a), SDVOSB, WOSB, HUBZone, EDWOSB — what each certification unlocks, who qualifies, and the order to pursue them in." },
-  { slug: "subcontracting-government-contracts", title: "Subcontracting on Government Contracts: Your First Step Into Federal", category: "Getting Started", readTime: "8 min", description: "Why subcontracting is the fastest way to build past performance. How to find primes, position yourself, and avoid the worst teaming agreements." },
-  { slug: "federal-contracting-action-plan", title: "Your 90-Day Federal Contracting Action Plan", category: "Getting Started", readTime: "14 min", description: "Week-by-week roadmap to land your first federal contract in 90 days. Built from real small-business case studies." },
-  { slug: "micro-purchase-threshold", title: "Micro-Purchase Threshold: The Easiest Way to Start Selling to the Government", category: "Getting Started", readTime: "7 min", description: "How $10K micro-purchases let you skip the whole proposal grind, build past performance fast, and get federal revenue flowing." },
+  // Getting Started (10)
+  { slug: "government-contracting-101", title: "Government Contracting 101: A Real Beginner's Guide", category: "Getting Started", readTime: "15 min", description: "If you've never sold to the government before, start here. We cover NAICS codes, SAM.gov, set-asides, and contract types in plain English, without the acronym soup.", featured: true },
+  { slug: "how-to-find-government-contracts-small-business", title: "How Small Businesses Actually Find Government Contracts", category: "Getting Started", readTime: "18 min", description: "Most people open SAM.gov, get overwhelmed, and quit. Here's what works instead, including the daily search habits we use ourselves.", featured: true },
+  { slug: "naics-codes-explained", title: "NAICS Codes, Explained Without the Headache", category: "Getting Started", readTime: "10 min", description: "What a NAICS code actually is, how to find the right ones for your business, and which codes the government spends the most money under." },
+  { slug: "sam-registration-guide", title: "Getting Registered on SAM.gov (Without Losing a Week)", category: "Getting Started", readTime: "12 min", description: "SAM.gov registration is the gatekeeper for everything else. Here's the order to do it in, what trips most people up, and how to fix the common errors." },
+  { slug: "best-naics-codes-small-business", title: "The NAICS Codes Where Small Businesses Actually Win", category: "Getting Started", readTime: "9 min", description: "Not every NAICS code is worth chasing. These are the ones where small firms win the most contracts, with the friendliest size standards." },
+  { slug: "federal-contract-types-explained", title: "FFP, T&M, IDIQ: What These Contract Types Mean for You", category: "Getting Started", readTime: "11 min", description: "Fixed-price means you eat any overrun. Cost-plus means you don't. We break down what each contract type costs you in risk and what it pays in margin." },
+  { slug: "federal-contracting-certifications", title: "Which Certifications Are Worth Actually Filing For", category: "Getting Started", readTime: "10 min", description: "There are seven main certifications. Some take a weekend to apply for, some take a year. Here's which ones move the needle and the order to chase them." },
+  { slug: "subcontracting-government-contracts", title: "Why Subcontracting First Is Usually Smarter", category: "Getting Started", readTime: "8 min", description: "Bidding as a prime when you have no past performance is a long shot. Subcontracting under one is how most firms get their first federal revenue." },
+  { slug: "federal-contracting-action-plan", title: "A 90-Day Plan to Land Your First Federal Contract", category: "Getting Started", readTime: "14 min", description: "Week-by-week, what to actually do. Drawn from the firms we've watched go from zero to their first award in three months." },
+  { slug: "micro-purchase-threshold", title: "Micro-Purchases: The Sneaky-Easy Way In", category: "Getting Started", readTime: "7 min", description: "Anything under $10K can skip the whole RFP grind. Most beginners never hear about this, even though it's how a lot of veteran-owned firms got their first contract." },
 
   // Set-Asides (6)
-  { slug: "set-aside-programs", title: "Government Set-Aside Programs: Your Unfair Advantage", category: "Set-Asides", readTime: "12 min", description: "Complete guide to 8(a), SDVOSB, WOSB, EDWOSB, HUBZone, and SDB set-aside programs with eligibility requirements.", featured: true },
-  { slug: "sdvosb-contracts-guide", title: "SDVOSB Contracts: A Complete Guide for Veteran-Owned Businesses", category: "Set-Asides", readTime: "13 min", description: "Service-Disabled Veteran-Owned Small Business contracts — sole-source up to $5M, top buying agencies, and the VetCert filing path." },
-  { slug: "wosb-certification-guide", title: "WOSB Certification: How Women-Owned Businesses Win Federal Contracts", category: "Set-Asides", readTime: "11 min", description: "Women-Owned Small Business + EDWOSB programs. Eligibility, the SBA certification process, and how to find WOSB-only contracts." },
-  { slug: "8a-sole-source-contracts", title: "8(a) Sole-Source Contracts: The Fastest Path to Federal Revenue", category: "Set-Asides", readTime: "12 min", description: "How 8(a) firms can win sole-source contracts up to $4.5M without competition. Eligibility, the 9-year clock, and capture strategy." },
-  { slug: "hubzone-program-guide", title: "HUBZone Program: How Location Can Win You Government Contracts", category: "Set-Asides", readTime: "10 min", description: "HUBZone certification, designated tract map, employee residency rules, and the contracts reserved exclusively for HUBZone firms." },
-  { slug: "small-business-set-aside-threshold", title: "Small Business Set-Aside Thresholds: Dollar Limits You Need to Know", category: "Set-Asides", readTime: "8 min", description: "The exact dollar thresholds that trigger small-business set-asides under the Rule of Two — and how to position your bid around them." },
+  { slug: "set-aside-programs", title: "Set-Aside Programs and Why They Exist", category: "Set-Asides", readTime: "12 min", description: "The government carves out billions for small, veteran-owned, women-owned, and disadvantaged businesses. Here's who qualifies for what.", featured: true },
+  { slug: "sdvosb-contracts-guide", title: "SDVOSB Contracts: What Veteran-Owned Firms Should Know", category: "Set-Asides", readTime: "13 min", description: "If you're SDVOSB-verified, agencies can hand you contracts up to $5M without a competition. We walk through who buys the most and how to get certified." },
+  { slug: "wosb-certification-guide", title: "Getting WOSB Certified (and Why It's Worth It)", category: "Set-Asides", readTime: "11 min", description: "Women-owned firms have their own slice of federal contracting. Here's how to qualify, what the paperwork actually looks like, and where to find WOSB-only contracts." },
+  { slug: "8a-sole-source-contracts", title: "The 8(a) Sole-Source Path: Fastest Route to Federal Revenue", category: "Set-Asides", readTime: "12 min", description: "If you qualify for 8(a), the government can award you up to $4.5M without anyone else bidding. The catch: you only have nine years to use the program." },
+  { slug: "hubzone-program-guide", title: "HUBZone: When Your Address Is Your Edge", category: "Set-Asides", readTime: "10 min", description: "If your office and most of your employees live in a HUBZone tract, you qualify for a category of contracts almost nobody else can touch." },
+  { slug: "small-business-set-aside-threshold", title: "The Dollar Thresholds That Trigger Set-Asides", category: "Set-Asides", readTime: "8 min", description: "When two or more small businesses can do the work, the contract has to be set aside for small businesses. We cover the exact dollar limits and how to use them." },
 
   // Proposals (5)
-  { slug: "proposal-writing-tips", title: "10 Government Proposal Writing Tips That Actually Win Contracts", category: "Proposals", readTime: "14 min", description: "Proven tips from compliance matrices to pricing strategy. Plus how AI can help you draft faster.", featured: true },
-  { slug: "government-proposal-compliance-matrix", title: "How to Build a Compliance Matrix for Government Proposals", category: "Proposals", readTime: "9 min", description: "The single most important artifact in your proposal — what goes in it, how to format it, and why missing requirements gets you eliminated." },
-  { slug: "government-rfp-response-guide", title: "How to Respond to a Government RFP: Step-by-Step for First-Timers", category: "Proposals", readTime: "16 min", description: "Reading the RFP, building the outline, writing each section, pricing, packaging, and submission — without the rookie mistakes." },
-  { slug: "past-performance-government-contracts", title: "Past Performance in Government Contracts: Why It Matters and How to Build It", category: "Proposals", readTime: "11 min", description: "Past performance can be 30% of your evaluation score. How to build it from zero, document it correctly, and present it in proposals." },
-  { slug: "government-contract-pricing-strategies", title: "Government Contract Pricing: Strategies to Win Without Losing Money", category: "Proposals", readTime: "13 min", description: "Cost-plus, fixed-price, and competitive pricing — including price-to-win analysis and how to avoid the unprofitable contract trap." },
+  { slug: "proposal-writing-tips", title: "10 Things That Actually Make a Federal Proposal Win", category: "Proposals", readTime: "14 min", description: "Most proposals lose not because they're bad, but because they miss a single requirement. Here's what experienced bidders pay attention to.", featured: true },
+  { slug: "government-proposal-compliance-matrix", title: "The Compliance Matrix: Boring But Decisive", category: "Proposals", readTime: "9 min", description: "Skip the compliance matrix and your proposal gets thrown out in the first pass, no matter how good the technical writing is. Here's how to build one." },
+  { slug: "government-rfp-response-guide", title: "Responding to Your First Federal RFP", category: "Proposals", readTime: "16 min", description: "Reading the RFP, building the outline, pricing it, packaging it, getting it submitted on time. A walkthrough for people doing this for the first time." },
+  { slug: "past-performance-government-contracts", title: "Past Performance: How to Build It From Zero", category: "Proposals", readTime: "11 min", description: "Past performance can be a third of your evaluation score. If you don't have it yet, here's how firms in your shoes have built it." },
+  { slug: "government-contract-pricing-strategies", title: "Pricing a Federal Bid Without Going Broke", category: "Proposals", readTime: "13 min", description: "The cheapest bid usually loses (or wins and bleeds money). We cover what reasonable pricing looks like and how to defend it." },
 
   // Strategy (3)
-  { slug: "sources-sought-notice", title: "Sources Sought Notices: How to Get In Early and Shape the RFP", category: "Strategy", readTime: "10 min", description: "Sources Sought responses are the highest-leverage capture activity in federal contracting. Why, when, and exactly what to write." },
-  { slug: "government-contract-teaming-agreement", title: "Teaming Agreements: How to Partner Up and Win Bigger Government Contracts", category: "Strategy", readTime: "11 min", description: "Prime/sub teaming, joint ventures, mentor-protégé — when to team, who to team with, and the contract clauses that protect you." },
-  { slug: "government-contract-win-rate", title: "Government Contract Win Rates: What's Realistic and How to Improve Yours", category: "Strategy", readTime: "9 min", description: "Industry benchmark win rates, why most firms lose, and the bid/no-bid discipline that doubles your hit rate." },
+  { slug: "sources-sought-notice", title: "Sources Sought: The Highest-Leverage Thing Most Firms Skip", category: "Strategy", readTime: "10 min", description: "Responding to a Sources Sought notice takes maybe four hours and can shape the eventual RFP in your favor. Most small businesses never bother." },
+  { slug: "government-contract-teaming-agreement", title: "Teaming Up Without Getting Screwed", category: "Strategy", readTime: "11 min", description: "Prime/sub partnerships open up contracts you can't win alone, but the agreement matters. We cover the clauses that actually protect you." },
+  { slug: "government-contract-win-rate", title: "What a Realistic Win Rate Looks Like", category: "Strategy", readTime: "9 min", description: "If you're winning one in ten, you're doing fine. Here's why most firms lose and the bid/no-bid habits that improve your numbers." },
 
   // Marketing (2)
-  { slug: "capability-statement-guide", title: "How to Write a Capability Statement That Wins Contracts", category: "Marketing", readTime: "10 min", description: "The 6 essential sections, design tips, common mistakes, and how AI can build yours in minutes." },
-  { slug: "capability-statement-examples", title: "Capability Statement Examples: What Good (and Bad) Ones Look Like", category: "Marketing", readTime: "8 min", description: "Side-by-side examples of strong vs weak capability statements — and the specific design + content moves that win meetings." },
+  { slug: "capability-statement-guide", title: "Writing a Capability Statement That Gets Read", category: "Marketing", readTime: "10 min", description: "Six sections, one page, no fluff. We cover what to include, the common mistakes, and how to make sure yours actually gets opened." },
+  { slug: "capability-statement-examples", title: "Capability Statement Examples (the Good and the Embarrassing)", category: "Marketing", readTime: "8 min", description: "Side-by-side comparisons of capability statements that work and ones that don't, with notes on what makes the difference." },
 
   // Vehicles (2)
-  { slug: "gsa-schedule-guide", title: "GSA Schedule Contracts: Is a GSA Schedule Right for Your Business?", category: "Vehicles", readTime: "12 min", description: "GSA MAS schedules cost $25K+ to get on and 6-12 months. The math on whether the access is worth it for your business model." },
-  { slug: "idiq-contracts-explained", title: "IDIQ Contracts Explained: How to Get on a Multi-Year Contract Vehicle", category: "Vehicles", readTime: "10 min", description: "Indefinite-Delivery / Indefinite-Quantity contracts — how task orders work, why they're a steady revenue base, and how to bid your way onto one." },
+  { slug: "gsa-schedule-guide", title: "Is a GSA Schedule Actually Worth the Hassle?", category: "Vehicles", readTime: "12 min", description: "Getting on a GSA Schedule takes six to twelve months and costs real money. We do the math on when it's worth it and when it isn't." },
+  { slug: "idiq-contracts-explained", title: "IDIQ Contracts and Why Primes Love Them", category: "Vehicles", readTime: "10 min", description: "Indefinite-quantity vehicles can give you years of steady task orders, but getting on one is a different game than winning a single RFP. Here's how the math works." },
 
   // Intelligence (1)
-  { slug: "federal-spending-trends-2026", title: "Federal Spending Trends 2026: Where the Government Is Investing", category: "Intelligence", readTime: "11 min", description: "Where the biggest federal-budget growth is happening this year — by agency, NAICS, and program area — so you can position ahead of it." },
+  { slug: "federal-spending-trends-2026", title: "Where Federal Money Is Actually Going in 2026", category: "Intelligence", readTime: "11 min", description: "Which agencies grew their budgets, which NAICS codes saw the biggest jumps, and where small-business contracting is genuinely accelerating." },
 
   // Tools (1)
-  { slug: "sam-gov-search-tips", title: "SAM.gov Search Tips: Stop Wasting Time and Find Real Opportunities", category: "Tools", readTime: "9 min", description: "The non-obvious SAM.gov search techniques that cut your daily search time from 90 minutes to 10 — without missing relevant opps." },
+  { slug: "sam-gov-search-tips", title: "SAM.gov Search Tips That Save Hours", category: "Tools", readTime: "9 min", description: "SAM.gov's native search is rough. These are the specific tricks we use to cut a 90-minute daily review down to about ten minutes." },
 ];
 
 /* ─── JSON-LD ────────────────────────────────────────────────────── */
@@ -160,14 +160,14 @@ export default function BlogPage() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-emerald-500/15 rounded-full blur-[120px] pointer-events-none" />
           <div className="max-w-4xl mx-auto text-center relative z-10">
             <div className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full px-4 py-1.5 text-sm font-medium mb-6">
-              <BookOpen className="w-4 h-4" /> {POSTS.length} GovCon Guides · Updated 2026
+              <BookOpen className="w-4 h-4" /> {POSTS.length} guides · written by people who do this work
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight mb-4">
-              The Government Contracting<br />
-              <span className="text-emerald-400">Playbook</span>
+              How federal contracting<br />
+              <span className="text-emerald-400">actually works</span>
             </h1>
             <p className="text-lg text-stone-400 max-w-2xl mx-auto mb-8">
-              Practical, practitioner-written guides for small businesses breaking into federal contracting. No fluff, no AI slop — just what actually works.
+              The stuff we wish someone had told us when we started bidding on federal contracts. NAICS codes, certifications, RFPs, pricing, the lot.
             </p>
 
             {/* Search bar */}
@@ -230,7 +230,7 @@ export default function BlogPage() {
             <div className="max-w-6xl mx-auto">
               <div className="flex items-center gap-2 mb-6">
                 <Award className="w-4 h-4 text-amber-500" />
-                <h2 className="text-xs uppercase tracking-widest font-bold text-stone-600">Most-Read Guides</h2>
+                <h2 className="text-xs uppercase tracking-widest font-bold text-stone-600">Start with these</h2>
               </div>
               <div className="grid md:grid-cols-3 gap-5">
                 {featured.map((post, i) => {
@@ -352,18 +352,18 @@ export default function BlogPage() {
         {/* ─── CTA strip ─── */}
         <section className="py-16 px-6 bg-stone-50 border-t border-stone-100">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="text-xs uppercase tracking-widest font-bold text-emerald-600 mb-3">Free Tool</p>
+            <p className="text-xs uppercase tracking-widest font-bold text-emerald-600 mb-3">Free, no signup</p>
             <h2 className="text-2xl md:text-3xl font-black text-stone-900 mb-3">
-              Reading is great. Winning is better.
+              Want to skip ahead and see what fits you?
             </h2>
             <p className="text-stone-600 mb-8 max-w-xl mx-auto">
-              Run our free 30-second Quick Checker. Get your NAICS codes, SAM.gov status, set-aside eligibility, and live matching contracts.
+              Drop in your website. In about 30 seconds you'll see your NAICS codes, your SAM.gov status, the set-asides you qualify for, and the contracts that match.
             </p>
             <Link
               href="https://app.capturepilot.com/check"
               className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3.5 rounded-full font-bold shadow-lg transition-all hover:scale-105"
             >
-              Run Free Check <ArrowRight className="w-4 h-4" />
+              Try the free check <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </section>
