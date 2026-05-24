@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.capturepilot.com"),
   verification: {
     google: "d0DbhX6VNRMZVVyi9TrVAZ-mqsL9k_tBIOvGhqGC95o",
+    other: {
+      "facebook-domain-verification": "hhwfqjeokngp1bgo1c02ih4a03o2d1",
+    },
   },
   openGraph: {
     title: "CapturePilot — Win Government Contracts. Faster.",
