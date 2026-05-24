@@ -40,7 +40,7 @@ const EXCLUDED_SECTIONS = ["embed", "linkedin-banner", "api"];
 
 function priorityFor(route: string): number {
   if (route === "/") return 1.0;
-  if (route === "/pricing" || route === "/features" || route === "/check") return 0.9;
+  if (route === "/pricing" || route === "/features" || route === "/check" || route === "/startup-pack") return 0.9;
   if (route.startsWith("/vs/") && route !== "/vs") return 0.85;
   if (route === "/vs" || route === "/blog" || route === "/academy") return 0.8;
   if (route.startsWith("/features/") || route.startsWith("/for/")) return 0.8;
@@ -52,7 +52,7 @@ function priorityFor(route: string): number {
 }
 
 function changeFreqFor(route: string): MetadataRoute.Sitemap[number]["changeFrequency"] {
-  if (route === "/" || route === "/check") return "weekly";
+  if (route === "/" || route === "/check" || route === "/startup-pack") return "weekly";
   if (route === "/updates") return "daily";
   if (route === "/blog" || route === "/pricing" || route === "/features") return "weekly";
   if (route.startsWith("/blog/")) return "monthly";
