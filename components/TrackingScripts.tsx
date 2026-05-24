@@ -21,6 +21,7 @@ export default function TrackingScripts() {
   const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
   const linkedinId = process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID;
   const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+  const fbAppId = process.env.NEXT_PUBLIC_FB_APP_ID;
 
   return (
     <>
@@ -62,6 +63,22 @@ export default function TrackingScripts() {
           'https://connect.facebook.net/en_US/fbevents.js');
           fbq('init', '${metaPixelId}');
           fbq('track', 'PageView');
+        `}</Script>
+      )}
+
+      {fbAppId && (
+        <Script id="fb-sdk" strategy="afterInteractive">{`
+          window.fbAsyncInit = function() {
+            FB.init({ appId: '${fbAppId}', cookie: true, xfbml: true, version: 'v22.0' });
+            FB.AppEvents.logPageView();
+          };
+          (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
         `}</Script>
       )}
 
