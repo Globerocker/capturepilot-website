@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import {
   Building2, MapPin, Award,
   CheckCircle2, ExternalLink, ArrowLeft, ArrowRight, Briefcase, Globe, Sparkles, Trophy,
+  ThumbsUp, ThumbsDown, FileText, Plus, Minus,
 } from "lucide-react";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
@@ -52,6 +53,55 @@ async function fetchContractor(slug: string): Promise<ContractorProfile | null> 
   } catch {
     return null;
   }
+}
+
+interface PeerSummary {
+  business_name: string;
+  slug: string;
+  federal_score: number | null;
+  total_awarded_amount: number | null;
+}
+
+async function fetchPeers(naics: string | null, excludeSlug: string): Promise<PeerSummary[]> {
+  if (!naics) return [];
+  try {
+    const res = await fetch(`https://app.capturepilot.com/api/public/contractors?naics=${naics}&limit=50&sort=score`, {
+      next: { revalidate: 1200 },
+    });
+    if (!res.ok) return [];
+    const data = await res.json() as { contractors?: PeerSummary[] };
+    return (data.contractors || []).filter((p) => p.slug !== excludeSlug);
+  } catch {
+    return [];
+  }
+}
+
+function computeComparison(c: ContractorProfile, peers: PeerSummary[]): {
+  scorePercentile: number | null;
+  scoreVsMedian: number | null;
+  awardsVsMedian: number | null;
+  certCountVsMedian: number | null;
+  peerCount: number;
+  topPeer: PeerSummary | null;
+} {
+  if (peers.length === 0 || c.federal_score === null) {
+    return { scorePercentile: null, scoreVsMedian: null, awardsVsMedian: null, certCountVsMedian: null, peerCount: 0, topPeer: null };
+  }
+  const scores = peers.map((p) => p.federal_score ?? 0).sort((a, b) => a - b);
+  const median = scores[Math.floor(scores.length / 2)] || 0;
+  const lower = scores.filter((s) => s < (c.federal_score || 0)).length;
+  const scorePercentile = Math.round((lower / scores.length) * 100);
+  const awardsMedian = peers
+    .map((p) => Number(p.total_awarded_amount || 0))
+    .sort((a, b) => a - b)[Math.floor(peers.length / 2)] || 0;
+  return {
+    scorePercentile,
+    scoreVsMedian: (c.federal_score || 0) - median,
+    awardsVsMedian: Number(c.total_awarded_amount || 0) - awardsMedian,
+    certCountVsMedian: (c.sba_certifications?.length || 0) - 1, // assumed median ~1
+    peerCount: peers.length,
+    topPeer: peers[0] || null,
+  };
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -104,6 +154,11 @@ export default async function ContractorDetail({ params }: { params: Promise<{ s
   if (!c) notFound();
 
   const totalAwards = Number(c.total_awarded_amount || 0);
+  // Peer comparison — fetch other contractors in the same primary NAICS to
+  // build "above-median by X / behind by Y" bullet points for the comparison
+  // section. Empty for the first published contractor in a NAICS (no peers).
+  const peers = await fetchPeers(c.primary_naics, slug);
+  const cmp = computeComparison(c, peers);
 
   // JSON-LD structured data for rich snippets in Google
   const jsonLd = {
@@ -239,6 +294,150 @@ export default async function ContractorDetail({ params }: { params: Promise<{ s
             <p className="text-stone-700 text-base leading-relaxed whitespace-pre-line">{c.ai_summary}</p>
           </section>
         )}
+
+        {/* Pros / Cons vs. peers — only renders when we have peers in same NAICS */}
+        {cmp.peerCount >= 2 && (
+          <section className="bg-white border border-stone-200 rounded-3xl p-6 sm:p-8 mb-6">
+            <div className="flex items-baseline justify-between mb-5 flex-wrap gap-2">
+              <h2 className="font-bold text-stone-900 inline-flex items-center gap-2">
+                <Award className="w-5 h-5 text-emerald-600" /> How {c.business_name} compares
+              </h2>
+              <span className="text-xs text-stone-500">
+                vs {cmp.peerCount} peers in NAICS {c.primary_naics}
+              </span>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-5">
+              {/* Strengths */}
+              <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <ThumbsUp className="w-4 h-4 text-emerald-700" />
+                  <p className="text-[11px] font-bold uppercase tracking-widest text-emerald-700">Strengths</p>
+                </div>
+                <ul className="space-y-2 text-sm">
+                  {cmp.scorePercentile !== null && cmp.scorePercentile >= 50 && (
+                    <li className="flex items-start gap-2">
+                      <Plus className="w-3.5 h-3.5 text-emerald-600 mt-1 flex-shrink-0" />
+                      <span className="text-stone-700">
+                        Federal Score is <strong>higher than {cmp.scorePercentile}%</strong> of peers in NAICS {c.primary_naics}.
+                      </span>
+                    </li>
+                  )}
+                  {cmp.awardsVsMedian !== null && cmp.awardsVsMedian > 0 && (
+                    <li className="flex items-start gap-2">
+                      <Plus className="w-3.5 h-3.5 text-emerald-600 mt-1 flex-shrink-0" />
+                      <span className="text-stone-700">
+                        Lifetime awards <strong>{fmtMoney(cmp.awardsVsMedian)} above median</strong> for the peer set.
+                      </span>
+                    </li>
+                  )}
+                  {(c.sba_certifications?.length || 0) >= 3 && (
+                    <li className="flex items-start gap-2">
+                      <Plus className="w-3.5 h-3.5 text-emerald-600 mt-1 flex-shrink-0" />
+                      <span className="text-stone-700">
+                        Carries <strong>{c.sba_certifications?.length} SBA certifications</strong> — stacked set-asides give bid-pool advantages.
+                      </span>
+                    </li>
+                  )}
+                  {c.sam_registered && (
+                    <li className="flex items-start gap-2">
+                      <Plus className="w-3.5 h-3.5 text-emerald-600 mt-1 flex-shrink-0" />
+                      <span className="text-stone-700">
+                        SAM.gov registration <strong>active</strong> — eligible to bid on every federal solicitation today.
+                      </span>
+                    </li>
+                  )}
+                </ul>
+              </div>
+
+              {/* Limitations */}
+              <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <ThumbsDown className="w-4 h-4 text-amber-700" />
+                  <p className="text-[11px] font-bold uppercase tracking-widest text-amber-700">Watch-outs</p>
+                </div>
+                <ul className="space-y-2 text-sm">
+                  {cmp.scorePercentile !== null && cmp.scorePercentile < 50 && (
+                    <li className="flex items-start gap-2">
+                      <Minus className="w-3.5 h-3.5 text-amber-700 mt-1 flex-shrink-0" />
+                      <span className="text-stone-700">
+                        Federal Score is below the median for this NAICS (<strong>only above {cmp.scorePercentile}%</strong>).
+                      </span>
+                    </li>
+                  )}
+                  {cmp.awardsVsMedian !== null && cmp.awardsVsMedian < 0 && (
+                    <li className="flex items-start gap-2">
+                      <Minus className="w-3.5 h-3.5 text-amber-700 mt-1 flex-shrink-0" />
+                      <span className="text-stone-700">
+                        Lifetime awards <strong>{fmtMoney(Math.abs(cmp.awardsVsMedian))} below median</strong> for peers.
+                      </span>
+                    </li>
+                  )}
+                  {(c.sba_certifications?.length || 0) === 0 && (
+                    <li className="flex items-start gap-2">
+                      <Minus className="w-3.5 h-3.5 text-amber-700 mt-1 flex-shrink-0" />
+                      <span className="text-stone-700">
+                        No SBA certifications listed — limits eligibility for set-aside opportunities.
+                      </span>
+                    </li>
+                  )}
+                  {totalAwards === 0 && (
+                    <li className="flex items-start gap-2">
+                      <Minus className="w-3.5 h-3.5 text-amber-700 mt-1 flex-shrink-0" />
+                      <span className="text-stone-700">
+                        No public federal contract awards on record — track record is unverified.
+                      </span>
+                    </li>
+                  )}
+                  {!c.sam_registered && (
+                    <li className="flex items-start gap-2">
+                      <Minus className="w-3.5 h-3.5 text-amber-700 mt-1 flex-shrink-0" />
+                      <span className="text-stone-700">
+                        SAM.gov registration <strong>not active</strong> — must re-register before bidding.
+                      </span>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </div>
+
+            {cmp.topPeer && (
+              <p className="text-xs text-stone-500 mt-4 text-center">
+                Top peer in this NAICS:{" "}
+                <Link href={`/contractors/${cmp.topPeer.slug}`} className="text-emerald-700 hover:underline">
+                  {cmp.topPeer.business_name}
+                </Link>{" "}
+                ({fmtMoney(Number(cmp.topPeer.total_awarded_amount || 0))} lifetime awards)
+              </p>
+            )}
+          </section>
+        )}
+
+        {/* Capability statement — placeholder until the contractor claims their profile */}
+        <section className="bg-white border-2 border-dashed border-stone-300 rounded-3xl p-6 sm:p-8 mb-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-xl bg-stone-100 text-stone-500 flex items-center justify-center flex-shrink-0">
+                <FileText className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-stone-500">Capability statement</p>
+                <h3 className="font-bold text-stone-900 mt-1">
+                  Not uploaded yet
+                </h3>
+                <p className="text-sm text-stone-500 mt-1">
+                  When {c.business_name} claims this profile, their capability statement will appear here for procurement officers to download.
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/check"
+              className="flex-shrink-0 inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold px-4 py-2.5 rounded-xl transition-colors"
+            >
+              Claim profile <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </section>
 
         {/* Awards + Certifications grid */}
         <section className="grid sm:grid-cols-2 gap-4 mb-6">
