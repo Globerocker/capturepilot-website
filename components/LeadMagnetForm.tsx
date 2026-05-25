@@ -18,7 +18,14 @@ interface LeadMagnetFormProps {
   ctaLabel?: string;
   /** Optional: success state copy. */
   successLabel?: string;
-  /** Optional: extra fields (e.g. company name) collected alongside email. */
+  /**
+   * Optional: extra fields. Standard download form collects first name, last
+   * name, work email, company name (all required) and phone (optional). When
+   * `collectCompany` is true the company input is rendered as required — the
+   * Apollo + HubSpot enrichment pipeline downstream needs a domain or org
+   * name to match against. See `dashboard/src/lib/lead-magnets.ts` for the
+   * full per-download form spec.
+   */
   collectCompany?: boolean;
   /**
    * Optional: when set, the form redirects to this URL on success instead of
@@ -31,11 +38,10 @@ interface LeadMagnetFormProps {
 
 /**
  * Drop-in email-gate for resource downloads. POSTs to `/api/leads` (the
- * dashboard) which adds the row to Supabase + Resend audience and returns 200.
- *
- * Embed it inline on any resources/* page where today the PDF is exposed
- * directly — gating gives us an email + Resend list-add + retargeting pixel
- * fire without breaking the user's flow (download starts on success).
+ * dashboard) which (1) inserts the row, (2) Apollo-enriches the contact when
+ * a domain can be extracted from the email, (3) syncs to HubSpot CRM as a
+ * Lead with full firmographics, and (4) sends the PDF link via Resend last
+ * so the HubSpot contact has phone + title + linkedin before delivery.
  */
 export default function LeadMagnetForm({
   magnetKey,
@@ -47,8 +53,11 @@ export default function LeadMagnetForm({
   collectCompany = false,
   redirectTo,
 }: LeadMagnetFormProps) {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
+  const [phone, setPhone] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -60,12 +69,24 @@ export default function LeadMagnetForm({
       const res = await fetch("https://app.capturepilot.com/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, company, magnet: magnetKey, source: window.location.pathname }),
+        body: JSON.stringify({
+          email,
+          first_name: firstName,
+          last_name: lastName,
+          company,
+          phone,
+          magnet: magnetKey,
+          source: window.location.pathname,
+        }),
       });
       if (!res.ok && res.status !== 409) {
         throw new Error(`HTTP ${res.status}`);
       }
-      track("lead_magnet", { magnet: magnetKey, has_company: Boolean(company) });
+      track("lead_magnet", {
+        magnet: magnetKey,
+        has_company: Boolean(company),
+        has_phone: Boolean(phone),
+      });
       if (redirectTo) {
         // Build URL preserving any UTM params on the current page so the
         // thank-you page can attribute the conversion in GA / Meta Pixel.
@@ -117,23 +138,54 @@ export default function LeadMagnetForm({
       </div>
 
       <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-3">
+          <input
+            type="text"
+            required
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            placeholder="First name"
+            autoComplete="given-name"
+            className="w-full px-4 py-3 bg-white border border-stone-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
+          />
+          <input
+            type="text"
+            required
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            placeholder="Last name"
+            autoComplete="family-name"
+            className="w-full px-4 py-3 bg-white border border-stone-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
+          />
+        </div>
         <input
           type="email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@yourcompany.com"
+          placeholder="Work email"
+          autoComplete="email"
           className="w-full px-4 py-3 bg-white border border-stone-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
         />
         {collectCompany && (
           <input
             type="text"
+            required
             value={company}
             onChange={(e) => setCompany(e.target.value)}
-            placeholder="Company name (optional)"
+            placeholder="Company name"
+            autoComplete="organization"
             className="w-full px-4 py-3 bg-white border border-stone-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
           />
         )}
+        <input
+          type="tel"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder="Phone (optional)"
+          autoComplete="tel"
+          className="w-full px-4 py-3 bg-white border border-stone-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
+        />
         <button
           type="submit"
           disabled={state === "loading"}

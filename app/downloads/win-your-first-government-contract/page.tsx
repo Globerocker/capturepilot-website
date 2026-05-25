@@ -11,10 +11,39 @@ import {
   DollarSign,
   ArrowLeft,
   Shield,
+  Lock,
+  Eye,
 } from "lucide-react";
 
 const PDF_URL =
   "https://ryxgjzehoijjvczqkhwr.supabase.co/storage/v1/object/public/Lead%20Magnets/CapturePilot-Win-Your-First-Government-Contract.pdf";
+
+function PreviewPage({
+  page,
+  title,
+  children,
+}: {
+  page: number;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="relative bg-white border border-stone-200 rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+      {/* Page number tab */}
+      <div className="absolute top-2 right-2 text-[9px] font-bold text-stone-400 tabular-nums">
+        Page {page}
+      </div>
+      {/* Top emerald accent bar — mimics print spread */}
+      <div className="h-1 bg-emerald-500" />
+      <div className="p-4">
+        <h3 className="font-black text-stone-900 text-sm leading-tight mb-3">
+          {title}
+        </h3>
+        {children}
+      </div>
+    </div>
+  );
+}
 
 const SECTIONS = [
   {
@@ -105,6 +134,85 @@ export default function FieldManualPage() {
                 </div>
               </div>
             </div>
+
+            {/* Sneak peek — 3 stylized mock pages teasing actual content. */}
+            <section className="mt-14">
+              <div className="flex items-baseline gap-3 mb-2">
+                <Eye className="w-4 h-4 text-emerald-600" />
+                <p className="text-[10px] font-bold uppercase tracking-widest text-emerald-600">Sneak peek inside</p>
+              </div>
+              <h2 className="font-black text-2xl sm:text-3xl text-stone-900 leading-tight">
+                3 sample pages — the rest comes in your inbox.
+              </h2>
+              <p className="text-stone-600 mt-3 text-sm leading-relaxed max-w-xl">
+                Below is the actual structure of three frameworks from the manual. The full worksheets, scoring
+                weights, and benchmark numbers live in the PDF.
+              </p>
+
+              <div className="mt-7 grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Page 7 — Bid / No-Bid Matrix */}
+                <PreviewPage page={7} title="Bid / No-Bid Matrix">
+                  <table className="w-full text-[10px] text-stone-700 border-collapse">
+                    <thead>
+                      <tr className="border-b border-stone-300">
+                        <th className="text-left font-bold py-1 pr-1">Question</th>
+                        <th className="text-right font-bold py-1 w-10">Score</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-stone-100"><td className="py-1 pr-1">Do we know the customer?</td><td className="text-right">_/10</td></tr>
+                      <tr className="border-b border-stone-100"><td className="py-1 pr-1">NAICS match?</td><td className="text-right">_/10</td></tr>
+                      <tr className="border-b border-stone-100"><td className="py-1 pr-1">Past performance fits?</td><td className="text-right">_/15</td></tr>
+                      <tr className="border-b border-stone-100"><td className="py-1 pr-1">Set-aside aligned?</td><td className="text-right">_/15</td></tr>
+                      <tr className="border-b border-stone-100"><td className="py-1 pr-1">Win price defensible?</td><td className="text-right">_/15</td></tr>
+                      <tr><td className="py-1 pr-1 text-stone-400 italic">+ 4 more…</td><td className="text-right">_/35</td></tr>
+                    </tbody>
+                  </table>
+                  <p className="text-[9px] text-stone-400 mt-2 italic">Under 60? Walk.</p>
+                </PreviewPage>
+
+                {/* Page 13 — PWin Calculator */}
+                <PreviewPage page={13} title="PWin Calculator">
+                  <ul className="space-y-1 text-[10px] text-stone-700">
+                    {[
+                      { f: "Customer Relationship", w: "12%" },
+                      { f: "Competitive Position", w: "10%" },
+                      { f: "Technical Fit", w: "15%" },
+                      { f: "Past Performance", w: "12%" },
+                      { f: "Price-to-Win", w: "15%" },
+                      { f: "+ 5 more factors", w: "36%", muted: true },
+                    ].map((row) => (
+                      <li key={row.f} className={`flex items-center justify-between border-b border-stone-100 pb-0.5 ${row.muted ? "text-stone-400 italic" : ""}`}>
+                        <span>{row.f}</span>
+                        <span className="font-bold tabular-nums">{row.w}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-2 bg-emerald-50 border border-emerald-200 rounded px-2 py-1 text-[9px] text-emerald-800 font-bold">
+                    PWin = Σ(score × weight)
+                  </div>
+                </PreviewPage>
+
+                {/* Page 18 — Pricing-to-Win */}
+                <PreviewPage page={18} title="Pricing-to-Win">
+                  <div className="space-y-1.5 text-[10px] text-stone-700">
+                    <div className="flex justify-between border-b border-stone-100 pb-0.5"><span>Direct labor rate</span><span className="tabular-nums">$___/hr</span></div>
+                    <div className="flex justify-between border-b border-stone-100 pb-0.5"><span>+ Fringe (typ. 28%)</span><span className="tabular-nums">$___</span></div>
+                    <div className="flex justify-between border-b border-stone-100 pb-0.5"><span>+ Overhead (typ. 35%)</span><span className="tabular-nums">$___</span></div>
+                    <div className="flex justify-between border-b border-stone-100 pb-0.5"><span>+ G&A (typ. 8%)</span><span className="tabular-nums">$___</span></div>
+                    <div className="flex justify-between border-b border-stone-100 pb-0.5"><span>+ Profit (typ. 7-10%)</span><span className="tabular-nums">$___</span></div>
+                    <div className="flex justify-between font-bold text-stone-900 pt-1"><span>Loaded rate</span><span className="tabular-nums">$___/hr</span></div>
+                  </div>
+                  <p className="text-[9px] text-stone-400 mt-2 italic">First-timers under-price by 25-40%.</p>
+                </PreviewPage>
+              </div>
+
+              {/* Locked overlay tease */}
+              <div className="mt-6 flex items-center justify-center gap-2 text-xs text-stone-500">
+                <Lock className="w-3.5 h-3.5" />
+                <span>17 more pages of frameworks, worksheets, and benchmark tables — emailed to you instantly.</span>
+              </div>
+            </section>
           </article>
 
           {/* RIGHT — form (sticky on desktop) */}
