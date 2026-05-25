@@ -12,7 +12,7 @@ interface LeadMagnetFormProps {
   title: string;
   /** Sub-headline / 1-sentence value prop. */
   description: string;
-  /** Final download URL (PDF / Google Drive / etc.). Delivered after submit. */
+  /** Final download URL (PDF / Google Drive / etc.). Only used when not redirecting. */
   downloadUrl: string;
   /** Optional: button copy. */
   ctaLabel?: string;
@@ -20,6 +20,13 @@ interface LeadMagnetFormProps {
   successLabel?: string;
   /** Optional: extra fields (e.g. company name) collected alongside email. */
   collectCompany?: boolean;
+  /**
+   * Optional: when set, the form redirects to this URL on success instead of
+   * showing the inline download CTA. Used by /downloads/* pages so the user
+   * lands on a clean "check your inbox" thank-you page and trusts that the
+   * email is the authoritative delivery channel.
+   */
+  redirectTo?: string;
 }
 
 /**
@@ -38,6 +45,7 @@ export default function LeadMagnetForm({
   ctaLabel = "Get the Guide — Free",
   successLabel = "Check your inbox — and download below.",
   collectCompany = false,
+  redirectTo,
 }: LeadMagnetFormProps) {
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
@@ -58,6 +66,19 @@ export default function LeadMagnetForm({
         throw new Error(`HTTP ${res.status}`);
       }
       track("lead_magnet", { magnet: magnetKey, has_company: Boolean(company) });
+      if (redirectTo) {
+        // Build URL preserving any UTM params on the current page so the
+        // thank-you page can attribute the conversion in GA / Meta Pixel.
+        const url = new URL(redirectTo, window.location.origin);
+        url.searchParams.set("magnet", magnetKey);
+        const search = new URLSearchParams(window.location.search);
+        for (const k of ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"]) {
+          const v = search.get(k);
+          if (v) url.searchParams.set(k, v);
+        }
+        window.location.href = url.toString();
+        return;
+      }
       setState("success");
     } catch (err) {
       setError((err as Error).message);

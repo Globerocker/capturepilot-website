@@ -41,6 +41,7 @@ const EXCLUDED_SECTIONS = ["embed", "linkedin-banner", "api"];
 function priorityFor(route: string): number {
   if (route === "/") return 1.0;
   if (route === "/pricing" || route === "/features" || route === "/check" || route === "/startup-pack") return 0.9;
+  if (route === "/downloads" || route.startsWith("/downloads/")) return 0.85;
   if (route.startsWith("/vs/") && route !== "/vs") return 0.85;
   if (route === "/vs" || route === "/blog" || route === "/academy") return 0.8;
   if (route.startsWith("/features/") || route.startsWith("/for/")) return 0.8;
@@ -55,11 +56,15 @@ function changeFreqFor(route: string): MetadataRoute.Sitemap[number]["changeFreq
   if (route === "/" || route === "/check" || route === "/startup-pack") return "weekly";
   if (route === "/updates") return "daily";
   if (route === "/blog" || route === "/pricing" || route === "/features") return "weekly";
+  if (route === "/downloads" || route.startsWith("/downloads/")) return "weekly";
   if (route.startsWith("/blog/")) return "monthly";
   if (route.startsWith("/vs/")) return "monthly";
   if (route.startsWith("/resources/") || route.startsWith("/for/")) return "monthly";
   return "monthly";
 }
+
+// Pages we never want indexed (noindex meta is also set in the page layout).
+const HIDDEN_FROM_SITEMAP = new Set(["/thank-you"]);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString();
@@ -67,6 +72,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return routes
     .filter((r) => !r.includes("/presentations/")) // internal-only sales decks
+    .filter((r) => !HIDDEN_FROM_SITEMAP.has(r))
     .map((route) => ({
       url: `${BASE_URL}${route === "/" ? "" : route}`,
       lastModified: now,
