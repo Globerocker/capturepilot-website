@@ -42,6 +42,8 @@ function priorityFor(route: string): number {
   if (route === "/") return 1.0;
   if (route === "/pricing" || route === "/features" || route === "/check" || route === "/startup-pack") return 0.9;
   if (route === "/downloads" || route.startsWith("/downloads/")) return 0.85;
+  if (route === "/contractors") return 0.9;
+  if (route.startsWith("/contractors/")) return 0.7;
   if (route.startsWith("/vs/") && route !== "/vs") return 0.85;
   if (route === "/vs" || route === "/blog" || route === "/academy") return 0.8;
   if (route.startsWith("/features/") || route.startsWith("/for/")) return 0.8;
@@ -57,6 +59,7 @@ function changeFreqFor(route: string): MetadataRoute.Sitemap[number]["changeFreq
   if (route === "/updates") return "daily";
   if (route === "/blog" || route === "/pricing" || route === "/features") return "weekly";
   if (route === "/downloads" || route.startsWith("/downloads/")) return "weekly";
+  if (route === "/contractors" || route.startsWith("/contractors/")) return "weekly";
   if (route.startsWith("/blog/")) return "monthly";
   if (route.startsWith("/vs/")) return "monthly";
   if (route.startsWith("/resources/") || route.startsWith("/for/")) return "monthly";
@@ -66,11 +69,27 @@ function changeFreqFor(route: string): MetadataRoute.Sitemap[number]["changeFreq
 // Pages we never want indexed (noindex meta is also set in the page layout).
 const HIDDEN_FROM_SITEMAP = new Set(["/thank-you"]);
 
-export default function sitemap(): MetadataRoute.Sitemap {
+async function fetchContractorSlugs(): Promise<Array<{ slug: string; published_at?: string }>> {
+  // Pulls published contractor profile slugs at build/regeneration time so
+  // the dynamic /contractors/[slug] routes appear in the sitemap. The hub
+  // page itself comes from the file walk above; this adds the per-firm URLs.
+  try {
+    const res = await fetch("https://app.capturepilot.com/api/public/contractors?limit=200&sort=score", {
+      next: { revalidate: 3600 }, // rebuild sitemap at most hourly
+    });
+    if (!res.ok) return [];
+    const data = await res.json() as { contractors?: Array<{ slug: string; published_at?: string }> };
+    return data.contractors || [];
+  } catch {
+    return [];
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date().toISOString();
   const routes = walkAppRoutes();
 
-  return routes
+  const staticEntries = routes
     .filter((r) => !r.includes("/presentations/")) // internal-only sales decks
     .filter((r) => !HIDDEN_FROM_SITEMAP.has(r))
     .map((route) => ({
@@ -78,6 +97,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: changeFreqFor(route),
       priority: priorityFor(route),
-    }))
-    .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
+    }));
+
+  // Dynamic contractor profile pages — fetch published slugs and append.
+  const contractors = await fetchContractorSlugs();
+  const contractorEntries: MetadataRoute.Sitemap = contractors.map((c) => ({
+    url: `${BASE_URL}/contractors/${c.slug}`,
+    lastModified: c.published_at || now,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...contractorEntries].sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
 }
