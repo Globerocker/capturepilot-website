@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import fs from "node:fs";
 import path from "node:path";
+import { NAICS_LABELS } from "@/lib/naics-labels";
 
 const BASE_URL = "https://www.capturepilot.com";
 
@@ -108,5 +109,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...contractorEntries].sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
+  // NAICS aggregator landing pages — one per code in our curated label set.
+  const naicsAggregators: MetadataRoute.Sitemap = NAICS_LABELS.map((n) => ({
+    url: `${BASE_URL}/contractors/in/${n.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticEntries, ...contractorEntries, ...naicsAggregators]
+    .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
 }

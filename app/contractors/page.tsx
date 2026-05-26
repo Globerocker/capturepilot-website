@@ -157,14 +157,18 @@ export default async function ContractorsHub() {
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { naics: "561720", label: "Janitorial Services" },
-              { naics: "541330", label: "Engineering Services" },
-              { naics: "541511", label: "Custom Programming" },
-              { naics: "238210", label: "Electrical Contractors" },
+              { naics: "336411", slug: "aircraft-manufacturing", label: "Aircraft Manufacturing" },
+              { naics: "541512", slug: "computer-systems-design-services", label: "Computer Systems Design" },
+              { naics: "541330", slug: "engineering-services", label: "Engineering Services" },
+              { naics: "541715", slug: "research-and-development", label: "R&D Services" },
+              { naics: "236220", slug: "commercial-construction", label: "Construction" },
+              { naics: "541611", slug: "management-consulting", label: "Management Consulting" },
+              { naics: "561720", slug: "janitorial-services", label: "Janitorial Services" },
+              { naics: "611310", slug: "universities", label: "Universities" },
             ].map((c) => (
               <Link
                 key={c.naics}
-                href={`/contractors?naics=${c.naics}`}
+                href={`/contractors/in/${c.slug}`}
                 className="group bg-white border border-stone-200 hover:border-emerald-300 hover:shadow-sm rounded-xl p-4 transition-all"
               >
                 <p className="text-[10px] font-bold uppercase tracking-widest text-stone-400">NAICS {c.naics}</p>
@@ -172,7 +176,7 @@ export default async function ContractorsHub() {
                   {c.label}
                 </p>
                 <p className="text-xs text-stone-500 mt-2 inline-flex items-center gap-1">
-                  View contractors <ArrowRight className="w-3 h-3" />
+                  Top contractors <ArrowRight className="w-3 h-3" />
                 </p>
               </Link>
             ))}
