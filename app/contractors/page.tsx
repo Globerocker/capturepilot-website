@@ -1,6 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Building2, Award, TrendingUp, Briefcase, ArrowRight, MapPin, Trophy } from "lucide-react";
+import { Building2, Award, TrendingUp, Briefcase, ArrowRight, MapPin, Trophy, Globe } from "lucide-react";
+
+// Inline LinkedIn glyph — lucide-react v1.7 in this repo doesn't ship one.
+// Matches the size/stroke language of the other lucide icons used here.
+function LinkedinIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.21 0 22.23 0z" />
+    </svg>
+  );
+}
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 
@@ -24,6 +34,18 @@ type ContractorSummary = {
   top_agency: string | null;
   badges: string[] | null;
   industry: string | null;
+  /** Apollo-enriched fields — populated when the enrich_apollo_contractors
+   *  cron finds a match. May be null on rows that haven't been enriched yet. */
+  company_website?: string | null;
+  company_linkedin?: string | null;
+  /** Rank context — "#3 in NAICS 561720", "#12 in TX" — adds proof-of-rank
+   *  without the user clicking through. */
+  naics_rank?: number | null;
+  naics_total?: number | null;
+  state_rank?: number | null;
+  state_total?: number | null;
+  total_awards_count?: number | null;
+  ai_summary?: string | null;
 };
 
 type ApiResponse = {
@@ -33,7 +55,7 @@ type ApiResponse = {
 
 async function fetchContractors(): Promise<ApiResponse> {
   try {
-    const res = await fetch("https://app.capturepilot.com/api/public/contractors?limit=60", {
+    const res = await fetch("https://app.capturepilot.com/api/public/contractors?limit=100", {
       next: { revalidate: 600 }, // 10-min cache — pages drip daily, no need for live
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -223,7 +245,7 @@ export default async function ContractorsHub() {
                           </span>
                         )}
                       </div>
-                      <p className="text-sm text-stone-500 mt-0.5 inline-flex items-center gap-1.5">
+                      <p className="text-sm text-stone-500 mt-0.5 inline-flex items-center gap-1.5 flex-wrap">
                         {c.city && c.state && (
                           <>
                             <MapPin className="w-3 h-3" /> {c.city}, {c.state}
@@ -231,20 +253,70 @@ export default async function ContractorsHub() {
                         )}
                         {c.industry && <span className="mx-1 text-stone-300">&middot;</span>}
                         {c.industry && <span>{c.industry}</span>}
+                        {/* Rank context — "#3 / 412 in NAICS 561720"  ·  "#12 / 89 in TX"
+                            tells the user exactly how this contractor stacks up without
+                            requiring a click-through. */}
+                        {c.naics_rank != null && c.naics_total != null && (
+                          <>
+                            <span className="mx-1 text-stone-300">&middot;</span>
+                            <span title={`Federal score rank within NAICS ${c.primary_naics ?? ""}`}>
+                              #{c.naics_rank.toLocaleString()} / {c.naics_total.toLocaleString()} in NAICS
+                            </span>
+                          </>
+                        )}
+                        {c.state_rank != null && c.state_total != null && c.state && (
+                          <>
+                            <span className="mx-1 text-stone-300">&middot;</span>
+                            <span title={`Federal score rank within ${c.state}`}>
+                              #{c.state_rank.toLocaleString()} / {c.state_total.toLocaleString()} in {c.state}
+                            </span>
+                          </>
+                        )}
                       </p>
-                      {c.badges && c.badges.length > 0 && (
-                        <div className="flex gap-1.5 flex-wrap mt-3">
-                          {c.badges.slice(0, 5).map((b) => {
-                            const meta = BADGE_META[b];
-                            if (!meta) return null;
-                            return (
-                              <span key={b} className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded border ${meta.tone}`}>
-                                {meta.label}
-                              </span>
-                            );
-                          })}
-                        </div>
+                      {/* AI-generated 1-line summary — shown only when populated, gives the
+                          row a real description instead of just stats. */}
+                      {c.ai_summary && (
+                        <p className="text-xs text-stone-600 mt-2 leading-relaxed line-clamp-2">
+                          {c.ai_summary}
+                        </p>
                       )}
+                      <div className="flex gap-1.5 flex-wrap mt-3 items-center">
+                        {c.badges && c.badges.slice(0, 5).map((b) => {
+                          const meta = BADGE_META[b];
+                          if (!meta) return null;
+                          return (
+                            <span key={b} className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded border ${meta.tone}`}>
+                              {meta.label}
+                            </span>
+                          );
+                        })}
+                        {/* Apollo-enriched contact links — clickable icons. Only render
+                            when present so unenriched rows stay clean. */}
+                        {c.company_website && (
+                          <a
+                            href={c.company_website.startsWith("http") ? c.company_website : `https://${c.company_website}`}
+                            target="_blank"
+                            rel="noopener noreferrer nofollow"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded border bg-stone-50 text-stone-700 border-stone-200 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-200 transition-colors"
+                            title="Visit website"
+                          >
+                            <Globe className="w-3 h-3" /> Website
+                          </a>
+                        )}
+                        {c.company_linkedin && (
+                          <a
+                            href={c.company_linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer nofollow"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded border bg-blue-50 text-blue-800 border-blue-200 hover:bg-blue-100 transition-colors"
+                            title="Open LinkedIn profile"
+                          >
+                            <LinkedinIcon className="w-3 h-3" /> LinkedIn
+                          </a>
+                        )}
+                      </div>
                     </div>
 
                     {/* Right column — awards */}
@@ -255,6 +327,11 @@ export default async function ContractorsHub() {
                       <p className="text-2xl font-black text-stone-900 mt-1">
                         {fmtMoney(Number(c.total_awarded_amount || 0))}
                       </p>
+                      {c.total_awards_count != null && c.total_awards_count > 0 && (
+                        <p className="text-[10px] text-stone-400 mt-0.5">
+                          across {c.total_awards_count.toLocaleString()} contract{c.total_awards_count === 1 ? "" : "s"}
+                        </p>
+                      )}
                       {c.top_agency && (
                         <p className="text-xs text-stone-500 mt-1 inline-flex items-center gap-1">
                           <Trophy className="w-3 h-3" /> {c.top_agency}
