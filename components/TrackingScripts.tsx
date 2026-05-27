@@ -16,12 +16,14 @@ import Script from "next/script";
  * route everything through GTM by setting only NEXT_PUBLIC_GTM_CONTAINER_ID.
  */
 export default function TrackingScripts() {
-  const ga4Id = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
-  const gtmId = process.env.NEXT_PUBLIC_GTM_CONTAINER_ID;
-  const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
-  const linkedinId = process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID;
-  const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
-  const fbAppId = process.env.NEXT_PUBLIC_FB_APP_ID;
+  // .trim() guards against `echo "..." | vercel env add` leaving a trailing
+  // newline in the value — that newline silently breaks fbq('init', ...).
+  const ga4Id = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID?.trim();
+  const gtmId = process.env.NEXT_PUBLIC_GTM_CONTAINER_ID?.trim();
+  const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim();
+  const linkedinId = process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID?.trim();
+  const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID?.trim();
+  const fbAppId = process.env.NEXT_PUBLIC_FB_APP_ID?.trim();
 
   return (
     <>
