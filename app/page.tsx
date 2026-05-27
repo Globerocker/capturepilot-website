@@ -9,7 +9,7 @@ import {
   ChevronRight, Layers, Mic, TrendingUp, Check, X, Play,
   Award, Building2, Sparkles, MousePointerClick, BookOpen, Eye,
 } from "lucide-react";
-import { LiveCountInline } from "@/components/LiveOpportunityCounter";
+import { LiveCountInline, PublicStatsBar } from "@/components/LiveOpportunityCounter";
 
 const APP_URL = "https://app.capturepilot.com";
 const CHECK_URL = `${APP_URL}/check`;
@@ -306,7 +306,26 @@ export default function Homepage() {
       </section>
 
       {/* ================================================================ */}
-      {/* 2. TRUST BAR                                                     */}
+      {/* 2. LIVE COUNTERS — Federal/State/County/City breakdown          */}
+      {/* ================================================================ */}
+      <section className="py-12 px-6 bg-white border-b border-stone-100">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-6">
+            <p className="text-xs font-bold uppercase tracking-widest text-emerald-700">
+              <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-2 align-middle" />
+              Live from our intelligence engine
+            </p>
+            <h3 className="mt-2 text-2xl sm:text-3xl font-black text-stone-900 tracking-tight">
+              Every open opportunity, every level of government
+            </h3>
+            <p className="mt-1 text-sm text-stone-500">Federal · State · County · City — counted in real time.</p>
+          </div>
+          <PublicStatsBar variant="light" />
+        </div>
+      </section>
+
+      {/* ================================================================ */}
+      {/* 3. TRUST BAR                                                     */}
       {/* ================================================================ */}
       <section className="py-8 px-6 bg-stone-50 border-y border-stone-100">
         <div className="max-w-5xl mx-auto">
