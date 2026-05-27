@@ -344,6 +344,15 @@ function AnimatedDemo() {
 export default function CheckPage() {
   const [url, setUrl] = useState("");
 
+  useEffect(() => {
+    const w = window as unknown as { fbq?: (...args: unknown[]) => void };
+    w.fbq?.("track", "ViewContent", {
+      content_name: "Quick Federal Readiness Check (landing)",
+      content_category: "tool",
+      content_ids: ["check_landing"],
+    });
+  }, []);
+
   const handleCheck = () => {
     const trimmed = url.trim();
     if (trimmed) {

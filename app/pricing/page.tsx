@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
@@ -207,6 +207,15 @@ function CellValue({ value }: { value: boolean | string }) {
 export default function PricingPage() {
   const [yearly, setYearly] = useState(false);
   const [veteranMode, setVeteranMode] = useState(false);
+
+  useEffect(() => {
+    const w = window as unknown as { fbq?: (...args: unknown[]) => void };
+    w.fbq?.("track", "ViewContent", {
+      content_name: "Pricing",
+      content_category: "pricing",
+      content_ids: ["pricing_page"],
+    });
+  }, []);
 
   const proMonthly = 199;
   const proYearly = 159;
