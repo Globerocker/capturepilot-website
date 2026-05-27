@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import TrackingScripts, { TrackingNoscript } from "@/components/TrackingScripts";
+import FbclidCapture from "@/components/FbclidCapture";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -159,6 +160,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col font-sans">
         <TrackingNoscript />
+        <FbclidCapture />
         {children}
       </body>
     </html>
