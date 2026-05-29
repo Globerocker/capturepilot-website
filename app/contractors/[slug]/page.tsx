@@ -662,17 +662,30 @@ export default async function ContractorDetail({ params }: { params: Promise<{ s
               )}
             </div>
 
-            {/* All NAICS codes — beyond just the primary one. Useful for
-                teaming partners to spot adjacent capabilities. */}
+            {/* All NAICS codes — beyond just the primary one. Each chip
+                navigates to /contractors/in/<slug> when an aggregator
+                exists; static chip otherwise. */}
             {c.top_naics_codes && c.top_naics_codes.length > 0 && (
               <div className="mt-5 pt-5 border-t border-stone-100">
                 <p className="text-[10px] uppercase tracking-widest text-stone-400 font-bold mb-3">All NAICS codes</p>
                 <div className="flex flex-wrap gap-1.5">
-                  {c.top_naics_codes.slice(0, 12).map((n) => (
-                    <span key={n} className="text-xs font-mono bg-stone-100 text-stone-700 border border-stone-200 px-2 py-1 rounded">
-                      {n}
-                    </span>
-                  ))}
+                  {c.top_naics_codes.slice(0, 12).map((n) => {
+                    const slug = naicsSlugFor(n);
+                    const base = "text-xs font-mono px-2 py-1 rounded inline-flex items-center gap-1";
+                    return slug ? (
+                      <Link
+                        key={n}
+                        href={`/contractors/in/${slug}`}
+                        className={`${base} bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100 hover:border-emerald-300 transition-colors`}
+                      >
+                        {n} <ArrowRight className="w-2.5 h-2.5 opacity-70" />
+                      </Link>
+                    ) : (
+                      <span key={n} className={`${base} bg-stone-100 text-stone-700 border border-stone-200`}>
+                        {n}
+                      </span>
+                    );
+                  })}
                   {c.top_naics_codes.length > 12 && (
                     <span className="text-xs text-stone-400 px-2 py-1">+{c.top_naics_codes.length - 12} more</span>
                   )}
@@ -732,15 +745,26 @@ export default async function ContractorDetail({ params }: { params: Promise<{ s
               <Briefcase className="w-5 h-5 text-emerald-600" /> Top NAICS codes
             </h2>
             <div className="flex flex-wrap gap-2">
-              {c.top_naics_codes.map((n) => (
-                <Link
-                  key={n}
-                  href={`/contractors?naics=${n}`}
-                  className="text-xs font-bold text-stone-700 bg-stone-100 hover:bg-emerald-100 hover:text-emerald-800 px-3 py-1.5 rounded-lg border border-stone-200 transition-colors"
-                >
-                  {n}
-                </Link>
-              ))}
+              {c.top_naics_codes.map((n) => {
+                const slug = naicsSlugFor(n);
+                return slug ? (
+                  <Link
+                    key={n}
+                    href={`/contractors/in/${slug}`}
+                    className="text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-200 inline-flex items-center gap-1 transition-colors"
+                  >
+                    {n} <ArrowRight className="w-3 h-3 opacity-70" />
+                  </Link>
+                ) : (
+                  <span
+                    key={n}
+                    className="text-xs font-bold text-stone-700 bg-stone-100 px-3 py-1.5 rounded-lg border border-stone-200"
+                    title="No aggregator page yet for this NAICS"
+                  >
+                    {n}
+                  </span>
+                );
+              })}
             </div>
           </section>
         )}

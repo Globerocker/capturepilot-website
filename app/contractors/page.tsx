@@ -1,18 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Building2, Award, TrendingUp, Briefcase, ArrowRight, MapPin, Trophy, Globe } from "lucide-react";
-
-// Inline LinkedIn glyph — lucide-react v1.7 in this repo doesn't ship one.
-// Matches the size/stroke language of the other lucide icons used here.
-function LinkedinIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.21 0 22.23 0z" />
-    </svg>
-  );
-}
+import { Building2, Award, TrendingUp, ArrowRight } from "lucide-react";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
+import ContractorList, { type ContractorSummary } from "@/components/ContractorList";
 
 export const dynamic = "force-dynamic"; // public landing pages refresh daily via cron — no point caching forever
 
@@ -21,31 +12,6 @@ export const metadata: Metadata = {
   description:
     "Browse verified US federal contractors with public award histories, set-aside certifications, and NAICS rankings. Find primes for teaming, subcontracting opportunities for smaller firms, and contracting partners for your next bid.",
   alternates: { canonical: "https://www.capturepilot.com/contractors" },
-};
-
-type ContractorSummary = {
-  slug: string;
-  business_name: string;
-  primary_naics: string | null;
-  state: string | null;
-  city: string | null;
-  federal_score: number | null;
-  total_awarded_amount: number | null;
-  top_agency: string | null;
-  badges: string[] | null;
-  industry: string | null;
-  /** Apollo-enriched fields — populated when the enrich_apollo_contractors
-   *  cron finds a match. May be null on rows that haven't been enriched yet. */
-  company_website?: string | null;
-  company_linkedin?: string | null;
-  /** Rank context — "#3 in NAICS 561720", "#12 in TX" — adds proof-of-rank
-   *  without the user clicking through. */
-  naics_rank?: number | null;
-  naics_total?: number | null;
-  state_rank?: number | null;
-  state_total?: number | null;
-  total_awards_count?: number | null;
-  ai_summary?: string | null;
 };
 
 type ApiResponse = {
@@ -71,19 +37,6 @@ function fmtMoney(n: number): string {
   if (n >= 1_000) return `$${(n / 1_000).toFixed(0)}K`;
   return `$${n.toFixed(0)}`;
 }
-
-const BADGE_META: Record<string, { label: string; tone: string }> = {
-  veteran_owned: { label: "Veteran Owned", tone: "bg-blue-50 text-blue-800 border-blue-200" },
-  eight_a: { label: "8(a)", tone: "bg-purple-50 text-purple-800 border-purple-200" },
-  hubzone: { label: "HUBZone", tone: "bg-amber-50 text-amber-800 border-amber-200" },
-  woman_owned: { label: "Woman Owned", tone: "bg-pink-50 text-pink-800 border-pink-200" },
-  multi_cert: { label: "Multi-Cert", tone: "bg-emerald-50 text-emerald-800 border-emerald-200" },
-  ten_million_club: { label: "$10M+ Club", tone: "bg-emerald-100 text-emerald-900 border-emerald-300 font-bold" },
-  million_dollar_winner: { label: "$1M+ Winner", tone: "bg-emerald-50 text-emerald-800 border-emerald-200" },
-  active_bidder: { label: "Active Bidder", tone: "bg-stone-50 text-stone-700 border-stone-200" },
-  federal_score_a: { label: "A-Grade", tone: "bg-emerald-100 text-emerald-900 border-emerald-300 font-bold" },
-  federal_score_b: { label: "B-Grade", tone: "bg-emerald-50 text-emerald-700 border-emerald-200" },
-};
 
 export default async function ContractorsHub() {
   const { contractors, meta } = await fetchContractors();
@@ -205,143 +158,8 @@ export default async function ContractorsHub() {
           </div>
         </section>
 
-        {/* Contractor list */}
-        <section>
-          <div className="flex items-baseline justify-between mb-5">
-            <h2 className="font-black text-2xl text-stone-900">Top-ranked contractors</h2>
-            <p className="text-xs text-stone-500">Sorted by Federal Contracting Score</p>
-          </div>
-
-          {contractors.length === 0 ? (
-            <div className="bg-stone-50 border border-stone-200 rounded-2xl p-8 text-center">
-              <Briefcase className="w-10 h-10 text-stone-300 mx-auto mb-3" />
-              <p className="text-stone-600 text-sm">
-                Profiles are publishing now. Check back in a few minutes &mdash; new contractors land daily.
-              </p>
-            </div>
-          ) : (
-            <div className="grid gap-4">
-              {contractors.map((c, idx) => (
-                <Link
-                  key={c.slug}
-                  href={`/contractors/${c.slug}`}
-                  className="group block bg-white border border-stone-200 hover:border-emerald-300 hover:shadow-md rounded-2xl p-5 sm:p-6 transition-all"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                    {/* Rank */}
-                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-stone-100 border border-stone-200 flex items-center justify-center font-black text-stone-700">
-                      #{idx + 1}
-                    </div>
-
-                    {/* Identity */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-baseline gap-2 flex-wrap">
-                        <h3 className="font-black text-stone-900 text-lg group-hover:text-emerald-700 transition-colors">
-                          {c.business_name}
-                        </h3>
-                        {c.federal_score !== null && (
-                          <span className="text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-200 px-2 py-0.5 rounded">
-                            {c.federal_score}/100
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-sm text-stone-500 mt-0.5 inline-flex items-center gap-1.5 flex-wrap">
-                        {c.city && c.state && (
-                          <>
-                            <MapPin className="w-3 h-3" /> {c.city}, {c.state}
-                          </>
-                        )}
-                        {c.industry && <span className="mx-1 text-stone-300">&middot;</span>}
-                        {c.industry && <span>{c.industry}</span>}
-                        {/* Rank context — "#3 / 412 in NAICS 561720"  ·  "#12 / 89 in TX"
-                            tells the user exactly how this contractor stacks up without
-                            requiring a click-through. */}
-                        {c.naics_rank != null && c.naics_total != null && (
-                          <>
-                            <span className="mx-1 text-stone-300">&middot;</span>
-                            <span title={`Federal score rank within NAICS ${c.primary_naics ?? ""}`}>
-                              #{c.naics_rank.toLocaleString()} / {c.naics_total.toLocaleString()} in NAICS
-                            </span>
-                          </>
-                        )}
-                        {c.state_rank != null && c.state_total != null && c.state && (
-                          <>
-                            <span className="mx-1 text-stone-300">&middot;</span>
-                            <span title={`Federal score rank within ${c.state}`}>
-                              #{c.state_rank.toLocaleString()} / {c.state_total.toLocaleString()} in {c.state}
-                            </span>
-                          </>
-                        )}
-                      </p>
-                      {/* AI-generated 1-line summary — shown only when populated, gives the
-                          row a real description instead of just stats. */}
-                      {c.ai_summary && (
-                        <p className="text-xs text-stone-600 mt-2 leading-relaxed line-clamp-2">
-                          {c.ai_summary}
-                        </p>
-                      )}
-                      <div className="flex gap-1.5 flex-wrap mt-3 items-center">
-                        {c.badges && c.badges.slice(0, 5).map((b) => {
-                          const meta = BADGE_META[b];
-                          if (!meta) return null;
-                          return (
-                            <span key={b} className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded border ${meta.tone}`}>
-                              {meta.label}
-                            </span>
-                          );
-                        })}
-                        {/* Apollo-enriched contact links — clickable icons. Only render
-                            when present so unenriched rows stay clean. */}
-                        {c.company_website && (
-                          <a
-                            href={c.company_website.startsWith("http") ? c.company_website : `https://${c.company_website}`}
-                            target="_blank"
-                            rel="noopener noreferrer nofollow"
-                            className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded border bg-stone-50 text-stone-700 border-stone-200 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-200 transition-colors"
-                            title="Visit website"
-                          >
-                            <Globe className="w-3 h-3" /> Website
-                          </a>
-                        )}
-                        {c.company_linkedin && (
-                          <a
-                            href={c.company_linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer nofollow"
-                            className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded border bg-blue-50 text-blue-800 border-blue-200 hover:bg-blue-100 transition-colors"
-                            title="Open LinkedIn profile"
-                          >
-                            <LinkedinIcon className="w-3 h-3" /> LinkedIn
-                          </a>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Right column — awards */}
-                    <div className="flex-shrink-0 text-right">
-                      <p className="text-[10px] uppercase tracking-widest text-stone-400 font-bold">
-                        Lifetime awards
-                      </p>
-                      <p className="text-2xl font-black text-stone-900 mt-1">
-                        {fmtMoney(Number(c.total_awarded_amount || 0))}
-                      </p>
-                      {c.total_awards_count != null && c.total_awards_count > 0 && (
-                        <p className="text-[10px] text-stone-400 mt-0.5">
-                          across {c.total_awards_count.toLocaleString()} contract{c.total_awards_count === 1 ? "" : "s"}
-                        </p>
-                      )}
-                      {c.top_agency && (
-                        <p className="text-xs text-stone-500 mt-1 inline-flex items-center gap-1">
-                          <Trophy className="w-3 h-3" /> {c.top_agency}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
-        </section>
+        {/* Contractor list — interactive sort tabs (lifetime / by year / Federal Score) */}
+        <ContractorList contractors={contractors} />
 
         {/* CTA — claim profile */}
         <section className="mt-20 bg-gradient-to-br from-emerald-600 via-emerald-700 to-blue-800 rounded-[28px] p-8 sm:p-12 text-white text-center">
