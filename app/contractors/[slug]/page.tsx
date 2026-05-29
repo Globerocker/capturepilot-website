@@ -70,7 +70,29 @@ interface ContractorProfile {
   naics_total: number | null;
   state_total: number | null;
   published_at: string | null;
+  /** Merged-in by /api/public/contractor — POC from contractors table
+   *  when profile_pages didn't have it. Lets the public page show
+   *  "Primary contact: Name (Title)" without forcing claim. */
+  _poc?: { name: string | null; title: string | null } | null;
+  /** SAM fields merged from contractors — registration expiry, entity
+   *  structure (LLC / S-Corp / etc). Both useful for credibility. */
+  _sam?: { expiration_date: string | null; entity_structure: string | null } | null;
 }
+
+/** US state-code → state-name map for tooltip-style readability. */
+const STATE_NAMES: Record<string, string> = {
+  AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California",
+  CO: "Colorado", CT: "Connecticut", DE: "Delaware", FL: "Florida", GA: "Georgia",
+  HI: "Hawaii", ID: "Idaho", IL: "Illinois", IN: "Indiana", IA: "Iowa",
+  KS: "Kansas", KY: "Kentucky", LA: "Louisiana", ME: "Maine", MD: "Maryland",
+  MA: "Massachusetts", MI: "Michigan", MN: "Minnesota", MS: "Mississippi", MO: "Missouri",
+  MT: "Montana", NE: "Nebraska", NV: "Nevada", NH: "New Hampshire", NJ: "New Jersey",
+  NM: "New Mexico", NY: "New York", NC: "North Carolina", ND: "North Dakota", OH: "Ohio",
+  OK: "Oklahoma", OR: "Oregon", PA: "Pennsylvania", RI: "Rhode Island", SC: "South Carolina",
+  SD: "South Dakota", TN: "Tennessee", TX: "Texas", UT: "Utah", VT: "Vermont",
+  VA: "Virginia", WA: "Washington", WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming",
+  DC: "District of Columbia",
+};
 
 async function fetchContractor(slug: string): Promise<ContractorProfile | null> {
   try {
@@ -234,6 +256,39 @@ export default async function ContractorDetail({ params }: { params: Promise<{ s
                   </span>
                 )}
               </div>
+
+              {/* Prominent website + LinkedIn links right under the title —
+                  previously buried at the bottom of the right column, users
+                  often missed them entirely. Always render the row if EITHER
+                  link exists. */}
+              {(c.company_website || c.company_linkedin) && (
+                <div className="flex flex-wrap items-center gap-2 mt-2">
+                  {c.company_website && (
+                    <a
+                      href={c.company_website.startsWith("http") ? c.company_website : `https://${c.company_website}`}
+                      target="_blank"
+                      rel="nofollow noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded-lg transition-colors"
+                    >
+                      <Globe className="w-3 h-3" />
+                      {c.company_website.replace(/^https?:\/\//, "").replace(/\/$/, "").slice(0, 40)}
+                      <ExternalLink className="w-3 h-3 opacity-60" />
+                    </a>
+                  )}
+                  {c.company_linkedin && (
+                    <a
+                      href={c.company_linkedin}
+                      target="_blank"
+                      rel="nofollow noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 px-2.5 py-1 rounded-lg transition-colors"
+                    >
+                      <Globe className="w-3 h-3" />
+                      LinkedIn
+                      <ExternalLink className="w-3 h-3 opacity-60" />
+                    </a>
+                  )}
+                </div>
+              )}
 
               <p className="text-stone-500 mt-2 text-sm inline-flex items-center gap-2 flex-wrap">
                 {c.city && c.state && (
@@ -545,6 +600,14 @@ export default async function ContractorDetail({ params }: { params: Promise<{ s
               <CheckCircle2 className="w-5 h-5 text-emerald-600" /> Certifications &amp; data
             </h2>
             <div className="space-y-2">
+              {(c.city || c.state) && (
+                <div className="flex items-baseline justify-between text-sm">
+                  <span className="text-stone-500">Headquarters</span>
+                  <span className="text-stone-900">
+                    {[c.city, c.state ? (STATE_NAMES[c.state] || c.state) : null].filter(Boolean).join(", ")}
+                  </span>
+                </div>
+              )}
               {c.cage_code && (
                 <div className="flex items-baseline justify-between text-sm">
                   <span className="text-stone-500">CAGE code</span>
@@ -559,10 +622,28 @@ export default async function ContractorDetail({ params }: { params: Promise<{ s
                   </span>
                 </div>
               )}
+              {c._sam?.expiration_date && (
+                <div className="flex items-baseline justify-between text-sm">
+                  <span className="text-stone-500">SAM expires</span>
+                  <span className="text-stone-900">{new Date(c._sam.expiration_date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
+                </div>
+              )}
+              {c._sam?.entity_structure && (
+                <div className="flex items-baseline justify-between text-sm">
+                  <span className="text-stone-500">Entity structure</span>
+                  <span className="text-stone-900">{c._sam.entity_structure}</span>
+                </div>
+              )}
               {c.company_size_est && (
                 <div className="flex items-baseline justify-between text-sm">
                   <span className="text-stone-500">Employees (est.)</span>
                   <span className="font-bold text-stone-900">{c.company_size_est}</span>
+                </div>
+              )}
+              {c.founded_year && (
+                <div className="flex items-baseline justify-between text-sm">
+                  <span className="text-stone-500">Founded</span>
+                  <span className="font-bold text-stone-900">{c.founded_year}</span>
                 </div>
               )}
               {c.industry && (
@@ -571,7 +652,33 @@ export default async function ContractorDetail({ params }: { params: Promise<{ s
                   <span className="font-bold text-stone-900">{c.industry}</span>
                 </div>
               )}
+              {(c._poc?.name || c._poc?.title) && (
+                <div className="flex items-baseline justify-between text-sm">
+                  <span className="text-stone-500">Primary contact</span>
+                  <span className="text-stone-900 text-right">
+                    {c._poc.name}{c._poc.title ? <span className="text-stone-500 block text-xs">{c._poc.title}</span> : null}
+                  </span>
+                </div>
+              )}
             </div>
+
+            {/* All NAICS codes — beyond just the primary one. Useful for
+                teaming partners to spot adjacent capabilities. */}
+            {c.top_naics_codes && c.top_naics_codes.length > 0 && (
+              <div className="mt-5 pt-5 border-t border-stone-100">
+                <p className="text-[10px] uppercase tracking-widest text-stone-400 font-bold mb-3">All NAICS codes</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {c.top_naics_codes.slice(0, 12).map((n) => (
+                    <span key={n} className="text-xs font-mono bg-stone-100 text-stone-700 border border-stone-200 px-2 py-1 rounded">
+                      {n}
+                    </span>
+                  ))}
+                  {c.top_naics_codes.length > 12 && (
+                    <span className="text-xs text-stone-400 px-2 py-1">+{c.top_naics_codes.length - 12} more</span>
+                  )}
+                </div>
+              </div>
+            )}
 
             {c.sba_certifications && c.sba_certifications.length > 0 && (
               <div className="mt-5 pt-5 border-t border-stone-100">
