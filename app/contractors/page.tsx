@@ -297,7 +297,6 @@ export default async function ContractorsHub() {
                             href={c.company_website.startsWith("http") ? c.company_website : `https://${c.company_website}`}
                             target="_blank"
                             rel="noopener noreferrer nofollow"
-                            onClick={(e) => e.stopPropagation()}
                             className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded border bg-stone-50 text-stone-700 border-stone-200 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-200 transition-colors"
                             title="Visit website"
                           >
@@ -309,7 +308,6 @@ export default async function ContractorsHub() {
                             href={c.company_linkedin}
                             target="_blank"
                             rel="noopener noreferrer nofollow"
-                            onClick={(e) => e.stopPropagation()}
                             className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded border bg-blue-50 text-blue-800 border-blue-200 hover:bg-blue-100 transition-colors"
                             title="Open LinkedIn profile"
                           >
@@ -353,10 +351,10 @@ export default async function ContractorsHub() {
             Add your team, services, capability statement, and capture pipeline. Free for verified contractors.
           </p>
           <Link
-            href="/check"
+            href="/claim"
             className="mt-6 inline-flex items-center gap-2 bg-white text-emerald-700 px-6 py-3 rounded-xl font-bold hover:bg-emerald-50 transition-colors"
           >
-            Find your profile <ArrowRight className="w-4 h-4" />
+            Claim your profile <ArrowRight className="w-4 h-4" />
           </Link>
         </section>
       </main>

@@ -8,8 +8,38 @@ import {
 } from "lucide-react";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
+import { NAICS_LABELS } from "@/lib/naics-labels";
 
 export const dynamic = "force-dynamic";
+
+/**
+ * SBA business-type codes that come back from SAM via the contractor
+ * pipeline as raw 2-3 char codes. Map to readable labels so the
+ * "Certifications & data" section doesn't render "23, 2X, XS, QZ".
+ */
+const SBA_CERT_LABELS: Record<string, string> = {
+  "23": "Minority-Owned",
+  "27": "HUBZone",
+  "2X": "8(a)",
+  "A2": "WOSB",
+  "A4": "EDWOSB",
+  "A5": "VOSB",
+  "QF": "SDVOSB",
+  "XS": "Tribally-Owned",
+  "QZ": "ANC / NHO",
+  "JT": "Joint Venture",
+  "XX": "SDB",
+};
+
+function readableCert(code: string): string {
+  return SBA_CERT_LABELS[code] || code;
+}
+
+function naicsSlugFor(code: string | null): string | null {
+  if (!code) return null;
+  const e = NAICS_LABELS.find(n => n.code === code);
+  return e ? e.slug : null;
+}
 
 interface ContractorProfile {
   slug: string;
@@ -211,12 +241,22 @@ export default async function ContractorDetail({ params }: { params: Promise<{ s
                     <MapPin className="w-3.5 h-3.5" /> {c.city}, {c.state}
                   </span>
                 )}
-                {c.primary_naics && (
-                  <>
-                    <span className="text-stone-300">&middot;</span>
-                    <span>NAICS {c.primary_naics}</span>
-                  </>
-                )}
+                {c.primary_naics && (() => {
+                  const slug = naicsSlugFor(c.primary_naics);
+                  return (
+                    <>
+                      <span className="text-stone-300">&middot;</span>
+                      {slug ? (
+                        <Link href={`/contractors/in/${slug}`} className="text-emerald-700 hover:underline inline-flex items-center gap-0.5">
+                          NAICS {c.primary_naics}
+                          <ArrowRight className="w-3 h-3" />
+                        </Link>
+                      ) : (
+                        <span>NAICS {c.primary_naics}</span>
+                      )}
+                    </>
+                  );
+                })()}
                 {c.industry && (
                   <>
                     <span className="text-stone-300">&middot;</span>
@@ -246,17 +286,29 @@ export default async function ContractorDetail({ params }: { params: Promise<{ s
                 </div>
               )}
 
-              {/* Rank pills — only if computed */}
+              {/* Rank pills — clickable when an aggregator page exists for the NAICS */}
               {(c.naics_rank || c.state_rank) && (
                 <div className="flex flex-wrap gap-3 mt-5">
-                  {c.naics_rank && c.primary_naics && (
-                    <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2 text-xs">
+                  {c.naics_rank && c.primary_naics && (() => {
+                    const naicsSlug = naicsSlugFor(c.primary_naics);
+                    const body = (
                       <p className="text-emerald-700 font-bold inline-flex items-center gap-1.5">
                         <Trophy className="w-3.5 h-3.5" /> Rank #{c.naics_rank}{" "}
                         {c.naics_total ? `of ${c.naics_total.toLocaleString()}` : ""} in NAICS {c.primary_naics}
+                        {naicsSlug && <ArrowRight className="w-3 h-3 ml-1 opacity-70" />}
                       </p>
-                    </div>
-                  )}
+                    );
+                    return naicsSlug ? (
+                      <Link
+                        href={`/contractors/in/${naicsSlug}`}
+                        className="bg-emerald-50 border border-emerald-200 hover:border-emerald-400 hover:bg-emerald-100 rounded-xl px-3 py-2 text-xs transition-colors"
+                      >
+                        {body}
+                      </Link>
+                    ) : (
+                      <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2 text-xs">{body}</div>
+                    );
+                  })()}
                   {c.state_rank && c.state && (
                     <div className="bg-blue-50 border border-blue-200 rounded-xl px-3 py-2 text-xs">
                       <p className="text-blue-700 font-bold inline-flex items-center gap-1.5">
@@ -431,7 +483,7 @@ export default async function ContractorDetail({ params }: { params: Promise<{ s
               </div>
             </div>
             <Link
-              href="/check"
+              href={`/claim?slug=${encodeURIComponent(c.slug || "")}&company=${encodeURIComponent(c.business_name)}`}
               className="flex-shrink-0 inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold px-4 py-2.5 rounded-xl transition-colors"
             >
               Claim profile <ArrowRight className="w-4 h-4" />
@@ -470,7 +522,7 @@ export default async function ContractorDetail({ params }: { params: Promise<{ s
               <div className="mt-5 pt-5 border-t border-stone-100">
                 <p className="text-[10px] uppercase tracking-widest text-stone-400 font-bold mb-3">Awards by year</p>
                 <div className="space-y-1.5">
-                  {c.awards_by_year.map((y) => {
+                  {[...c.awards_by_year].sort((a, b) => b.year - a.year).map((y) => {
                     const max = Math.max(...c.awards_by_year!.map((a) => a.value));
                     const pct = max > 0 ? (y.value / max) * 100 : 0;
                     return (
@@ -526,8 +578,12 @@ export default async function ContractorDetail({ params }: { params: Promise<{ s
                 <p className="text-[10px] uppercase tracking-widest text-stone-400 font-bold mb-3">SBA certifications</p>
                 <div className="flex flex-wrap gap-1.5">
                   {c.sba_certifications.map((cert) => (
-                    <span key={cert} className="text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-1 rounded">
-                      {cert}
+                    <span
+                      key={cert}
+                      title={cert === readableCert(cert) ? undefined : `SBA code: ${cert}`}
+                      className="text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-1 rounded"
+                    >
+                      {readableCert(cert)}
                     </span>
                   ))}
                 </div>
@@ -599,7 +655,7 @@ export default async function ContractorDetail({ params }: { params: Promise<{ s
           </Link>
 
           <Link
-            href="/check"
+            href={`/claim?slug=${encodeURIComponent(c.slug || "")}&company=${encodeURIComponent(c.business_name)}`}
             className="block bg-gradient-to-br from-emerald-600 via-emerald-700 to-blue-800 text-white rounded-2xl p-6 hover:opacity-95 transition-opacity group"
           >
             <p className="text-[10px] font-bold uppercase tracking-widest text-emerald-200">Are you {c.business_name}?</p>
