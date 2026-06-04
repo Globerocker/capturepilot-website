@@ -33,10 +33,6 @@ import {
   Star as StarIcon,
 } from "lucide-react";
 
-const VETERAN_DISCOUNT_PERCENT = 20;
-function vetPrice(base: number) {
-  return Math.round(base * (1 - VETERAN_DISCOUNT_PERCENT / 100));
-}
 
 /* ------------------------------------------------------------------ */
 /*  Constants                                                          */
@@ -90,7 +86,6 @@ const CONSULTING_FEATURES = [
   "Competitor analysis and intelligence reports",
   "Monthly strategy calls and pipeline reviews",
   "We are your B2G representative \u2014 we do the work, you do the job when you win",
-  "5% royalty aligns our incentives \u2014 we\u2019re motivated to WIN, not just bill hours",
 ];
 
 /* ------------------------------------------------------------------ */
@@ -127,7 +122,6 @@ const COMPARISON: ComparisonRow[] = [
   { feature: "SAM.gov registration assistance", free: false, pro: false, consulting: true },
   { feature: "Competitor intelligence reports", free: false, pro: false, consulting: true },
   { feature: "Monthly strategy calls", free: false, pro: false, consulting: true },
-  { feature: "5% winning fee alignment", free: false, pro: false, consulting: true },
   { feature: "Support", free: "Community", pro: "Priority", consulting: "Dedicated team" },
 ];
 
@@ -137,20 +131,12 @@ const COMPARISON: ComparisonRow[] = [
 
 const FAQS = [
   {
-    q: "Do veteran-owned businesses get a discount?",
-    a: "Yes. Verified SDVOSB and VOSB firms get 20% off every paid plan \u2014 forever, not just the first year. We verify your certification via the SAM.gov Entity API using your UEI. Not certified yet? Self-declare in the app and we\u2019ll re-verify automatically once your VetCert propagates to SAM.",
-  },
-  {
     q: "Can I cancel anytime?",
     a: "Yes. Monthly plans cancel anytime from your dashboard \u2014 no contracts, no cancellation fees. You keep access through the end of your billing period.",
   },
   {
     q: "What\u2019s in the free trial?",
-    a: "Full Pro features for 30 days. No credit card required to start. If you love it, add payment to continue. If not, you\u2019ll automatically move to the Free tier.",
-  },
-  {
-    q: "What does the 5% winning fee cover?",
-    a: "The 5% fee is on awarded contract value only. You don\u2019t pay until you win. This covers our ongoing capture management, proposal work, and communications with contracting officers throughout the life of the contract pursuit.",
+    a: "Full Pro features for 14 days. Card required to start (auto-converts to $89/mo Pro on day 15). Cancel anytime before then with zero charge.",
   },
   {
     q: "Can I switch from Pro to Consulting?",
@@ -216,7 +202,6 @@ function CellValue({ value }: { value: boolean | string }) {
 
 export default function PricingPage() {
   const [yearly, setYearly] = useState(false);
-  const [veteranMode, setVeteranMode] = useState(false);
 
   useEffect(() => {
     const w = window as unknown as { fbq?: (...args: unknown[]) => void };
@@ -245,11 +230,9 @@ export default function PricingPage() {
   const consultAnnualTotal = 24000;
   const consultSavings = 6000;
 
-  const baseLightPrice = yearly ? lightYearly : lightMonthly;
-  const lightPrice = baseLightPrice; // No veteran discount on Light — Pro tier only.
-  const baseProPrice = yearly ? proYearly : proMonthly;
-  const proPrice = veteranMode ? vetPrice(baseProPrice) : baseProPrice;
-  const proAnnualTotalDisplayed = veteranMode ? vetPrice(proAnnualTotal) : proAnnualTotal;
+  const lightPrice = yearly ? lightYearly : lightMonthly;
+  const proPrice = yearly ? proYearly : proMonthly;
+  const proAnnualTotalDisplayed = proAnnualTotal;
   const consultPrice = yearly ? consultYearly : consultMonthly;
 
   // FAQ JSON-LD for rich snippets in Google search results
@@ -279,21 +262,6 @@ export default function PricingPage() {
           {/* shimmer bg */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-50/60 via-transparent to-transparent pointer-events-none" />
           <div className="max-w-4xl mx-auto text-center relative">
-            {/* Veteran Banner — PROMINENT hero callout */}
-            <Link
-              href="/for/veterans"
-              className="group inline-block w-full sm:w-auto mb-6"
-            >
-              <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-2xl px-6 py-4 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all flex items-center gap-3 flex-wrap justify-center">
-                <Shield className="w-5 h-5 flex-shrink-0" />
-                <p className="text-sm md:text-base font-bold">
-                  Verified SDVOSB/VOSB? Get{" "}
-                  <span className="bg-white/20 rounded-full px-2 py-0.5">20% off — forever</span>
-                </p>
-                <ArrowRight className="w-4 h-4 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </Link>
-
             {/* Trial Banner */}
             <div className="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-6 mb-10 text-left sm:text-center">
               <p className="text-lg font-black text-emerald-800 mb-1">
@@ -346,29 +314,6 @@ export default function PricingPage() {
               </button>
             </div>
 
-            {/* ── Veteran Discount Toggle ── */}
-            <div className="mt-6 flex justify-center">
-              <button
-                type="button"
-                onClick={() => setVeteranMode(!veteranMode)}
-                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all border-2 ${
-                  veteranMode
-                    ? "bg-emerald-600 text-white border-emerald-600 shadow-md"
-                    : "bg-white text-emerald-700 border-emerald-300 hover:bg-emerald-50"
-                }`}
-              >
-                <Shield className="w-4 h-4" />
-                {veteranMode
-                  ? `${VETERAN_DISCOUNT_PERCENT}% Veteran Discount Applied`
-                  : `Veteran-Owned Business? See ${VETERAN_DISCOUNT_PERCENT}% Off`}
-              </button>
-            </div>
-            {veteranMode && (
-              <p className="mt-3 text-sm text-emerald-700 max-w-xl mx-auto">
-                Auto-applied at checkout for verified SDVOSB + VOSB firms. Self-declare in the app;
-                we re-verify via SAM.gov monthly.
-              </p>
-            )}
           </div>
         </section>
 
@@ -454,18 +399,12 @@ export default function PricingPage() {
               <div className="relative rounded-2xl border-2 border-emerald-500 shadow-xl shadow-emerald-100 scale-[1.02] p-8 flex flex-col transition-all">
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                   <span className="bg-emerald-500 text-white text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap">
-                    Most Popular — 30-Day Free Trial
+                    Most Popular — 14-Day Free Trial
                   </span>
                 </div>
                 <div className="mb-6">
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="text-lg font-black text-stone-900">Pro</h3>
-                    {veteranMode && (
-                      <span className="inline-flex items-center gap-1 bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                        <Shield className="w-3 h-3" />
-                        VET {VETERAN_DISCOUNT_PERCENT}% OFF
-                      </span>
-                    )}
                   </div>
                   <div className="flex items-baseline gap-2 mb-1 flex-wrap">
                     <span
@@ -475,26 +414,15 @@ export default function PricingPage() {
                       ${proPrice}
                     </span>
                     <span className="text-stone-500 text-sm">/mo</span>
-                    {veteranMode && (
-                      <span className="text-sm text-stone-400 line-through">
-                        ${baseProPrice}
-                      </span>
-                    )}
                   </div>
                   {yearly && (
                     <p className="text-xs text-emerald-600 font-medium mb-2">
-                      Billed ${proAnnualTotalDisplayed.toLocaleString()}/yr
-                      {veteranMode && (
-                        <span className="text-stone-400 line-through ml-1.5">
-                          ${proAnnualTotal.toLocaleString()}
-                        </span>
-                      )}
-                      {" "}&mdash; save ${proSavings}{veteranMode && " + 20% vet"}
+                      Billed ${proAnnualTotalDisplayed.toLocaleString()}/yr &mdash; save ${proSavings}
                     </p>
                   )}
                   {!yearly && (
                     <p className="text-xs text-stone-400 mb-2">
-                      or ${veteranMode ? vetPrice(proYearly) : proYearly}/mo billed yearly (save ${proSavings}/yr)
+                      or ${proYearly}/mo billed yearly (save ${proSavings}/yr)
                     </p>
                   )}
                   <p className="text-sm text-stone-600 leading-relaxed">
@@ -550,7 +478,7 @@ export default function PricingPage() {
                     <span className="text-stone-500 text-sm">/mo</span>
                   </div>
                   <p className="text-xs text-stone-500 font-medium mb-1">
-                    + 5% winning fee on awarded contracts
+                    Custom retainer — quoted on the qualification call
                   </p>
                   {yearly && (
                     <p className="text-xs text-emerald-600 font-medium mb-2">
@@ -677,16 +605,9 @@ export default function PricingPage() {
                 </div>
                 <p className="text-sm text-stone-600 leading-relaxed mb-4">
                   This is NOT self-service. We require a qualification call because
-                  we only take clients we believe we can win contracts for. Our 5%
-                  winning fee means we&apos;re invested in your success &mdash; if you
-                  don&apos;t win, we don&apos;t earn.
+                  we only take clients we believe we can win contracts for. Pricing
+                  + scope are tailored to your capture volume on that call.
                 </p>
-                <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
-                  <p className="text-sm text-emerald-800 font-medium">
-                    &ldquo;We charge 5% of awarded contract value because we&apos;re
-                    invested in your success. If you don&apos;t win, we don&apos;t earn.&rdquo;
-                  </p>
-                </div>
               </div>
             </div>
           </div>
@@ -752,53 +673,6 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* ── Why the 5% Fee? ── */}
-        <section className="py-16 px-6 bg-stone-50 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-emerald-50/40 via-transparent to-transparent pointer-events-none" />
-          <div className="max-w-3xl mx-auto text-center relative">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium mb-6">
-              <TrendingUp className="w-4 h-4" />
-              Aligned Incentives
-            </div>
-            <h2 className="text-3xl md:text-4xl font-black text-stone-900 mb-6">
-              Why the 5% Fee?
-            </h2>
-            <p className="text-lg text-stone-600 leading-relaxed mb-8 max-w-2xl mx-auto">
-              Most consultants charge hourly regardless of results. They get paid
-              whether you win or lose. Our 5% winning fee flips that model &mdash;
-              we only earn more when you earn more. Fully aligned incentives.
-            </p>
-            <div className="grid sm:grid-cols-3 gap-4">
-              <div className="bg-white rounded-xl border border-stone-200 p-5">
-                <div className="p-2 bg-red-100 rounded-lg w-fit mx-auto mb-3">
-                  <Clock className="w-5 h-5 text-red-500" />
-                </div>
-                <h4 className="font-bold text-stone-900 text-sm mb-1">Traditional Consultants</h4>
-                <p className="text-xs text-stone-500">
-                  Charge hourly. Bill regardless of outcome. No skin in the game.
-                </p>
-              </div>
-              <div className="bg-white rounded-xl border border-stone-200 p-5">
-                <div className="p-2 bg-amber-100 rounded-lg w-fit mx-auto mb-3">
-                  <Briefcase className="w-5 h-5 text-amber-500" />
-                </div>
-                <h4 className="font-bold text-stone-900 text-sm mb-1">Other Platforms</h4>
-                <p className="text-xs text-stone-500">
-                  Flat SaaS fee. Give you tools but no execution. You&apos;re on your own.
-                </p>
-              </div>
-              <div className="bg-emerald-50 rounded-xl border-2 border-emerald-300 p-5">
-                <div className="p-2 bg-emerald-100 rounded-lg w-fit mx-auto mb-3">
-                  <Handshake className="w-5 h-5 text-emerald-600" />
-                </div>
-                <h4 className="font-bold text-emerald-900 text-sm mb-1">CapturePilot Consulting</h4>
-                <p className="text-xs text-emerald-700">
-                  Retainer + 5% on wins. We execute. We only earn more when you win more.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* ── FAQ ── */}
         <section className="py-16 px-6 bg-white">
