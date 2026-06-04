@@ -53,21 +53,31 @@ const CALENDLY_URL = "https://meetings-na2.hubspot.com/americurial/intro-call";
 
 const FREE_FEATURES = [
   "Quick Company Check (unlimited)",
-  "5 opportunity matches preview",
+  "50 federal opportunity matches/day",
   "NAICS code identification",
   "Basic company analysis",
 ];
 
+// Light = federal-only, no AI, but with full competitor + partner intel.
+const LIGHT_FEATURES = [
+  "200 federal opportunity matches/day",
+  "Competitor profiles (80K+ contractors)",
+  "Teaming partner search + save",
+  "Live SAM.gov passthrough search",
+  "5 saved searches with alerts",
+  "Daily federal opportunity emails",
+];
+
 const PRO_FEATURES = [
-  "Unlimited matched opportunities",
+  "Unlimited federal opportunity matches",
+  "State + county + city opportunities (48 states)",
   "AI Proposal Draft Generator",
-  "Market Intelligence dashboard",
-  "Capability Statement Builder",
-  "Deal Pipeline management",
-  "Partner & teaming search",
-  "Email alerts for new opportunities",
-  "Eligibility checks & set-aside analysis",
-  "IDIQ & contract vehicle tracking",
+  "Per-opportunity AI summaries",
+  "AI Capability Statement editor",
+  "Competitor + partner profiles",
+  "Export CSV / XLSX + PDF",
+  "API access + webhooks",
+  "5 team seats",
   "Priority support",
 ];
 
@@ -217,16 +227,26 @@ export default function PricingPage() {
     });
   }, []);
 
-  const proMonthly = 199;
-  const proYearly = 159;
-  const proAnnualTotal = 1908;
-  const proSavings = 480;
+  // Prices reflect migration 111 (Pro = $89, Light = $39).
+  // Sync source of truth: dashboard/supabase/migrations/111_pro_max_features_agency_tier.sql
+  const lightMonthly = 39;
+  const lightYearly = 31; // ~$374/yr → $31/mo equivalent
+  const lightAnnualTotal = 374;
 
+  const proMonthly = 89;
+  const proYearly = 71; // $854/yr → $71/mo equivalent
+  const proAnnualTotal = 854;
+  const proSavings = 214;
+
+  // Consulting tier stays as a done-for-you option (separate from the SaaS
+  // Agency tier in-app). Pricing unchanged.
   const consultMonthly = 2500;
   const consultYearly = 2000;
   const consultAnnualTotal = 24000;
   const consultSavings = 6000;
 
+  const baseLightPrice = yearly ? lightYearly : lightMonthly;
+  const lightPrice = baseLightPrice; // No veteran discount on Light — Pro tier only.
   const baseProPrice = yearly ? proYearly : proMonthly;
   const proPrice = veteranMode ? vetPrice(baseProPrice) : baseProPrice;
   const proAnnualTotalDisplayed = veteranMode ? vetPrice(proAnnualTotal) : proAnnualTotal;
@@ -277,12 +297,12 @@ export default function PricingPage() {
             {/* Trial Banner */}
             <div className="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-6 mb-10 text-left sm:text-center">
               <p className="text-lg font-black text-emerald-800 mb-1">
-                FREE 30-DAY TRIAL — Try Every Pro Feature
+                14-DAY FREE TRIAL — Full Pro Access
               </p>
               <p className="text-sm text-emerald-700 leading-relaxed">
-                Full access to matching, AI proposals, market intelligence, and the capability statement builder. No credit card required to start.
+                Try matching, AI proposals, market intelligence, exports, and the capability statement builder. Card required to start (auto-converts to $89/mo Pro on day 15 unless you cancel).
                 <br className="hidden sm:block" />
-                Cancel anytime from your dashboard. After trial: $199/mo Pro, or $149/mo on annual.
+                Cancel anytime in your dashboard with zero charge during the trial.
               </p>
             </div>
 
@@ -387,6 +407,49 @@ export default function PricingPage() {
                 </Link>
               </div>
 
+              {/* ─── Light ─── */}
+              <div className="relative rounded-2xl border-2 border-stone-200 hover:border-stone-300 p-8 flex flex-col transition-all">
+                <div className="mb-6">
+                  <h3 className="text-lg font-black text-stone-900 mb-2">Light</h3>
+                  <div className="flex items-baseline gap-2 mb-1 flex-wrap">
+                    <span className="text-4xl font-black text-stone-900">${lightPrice}</span>
+                    <span className="text-stone-500 text-sm">/mo</span>
+                  </div>
+                  {yearly ? (
+                    <p className="text-xs text-emerald-600 font-medium mb-2">
+                      Billed ${lightAnnualTotal}/yr &mdash; save ${(lightMonthly * 12) - lightAnnualTotal}
+                    </p>
+                  ) : (
+                    <p className="text-xs text-stone-400 mb-2">
+                      or ${lightYearly}/mo billed yearly (save ${(lightMonthly * 12) - lightAnnualTotal}/yr)
+                    </p>
+                  )}
+                  <p className="text-sm text-stone-600 leading-relaxed">
+                    Federal-only opportunities + competitor + partner intelligence. No AI, no state/local. Perfect for solo contractors at the start.
+                  </p>
+                </div>
+                <div className="flex-1 mb-8">
+                  <div className="space-y-3">
+                    {LIGHT_FEATURES.map((f, i) => (
+                      <div key={i} className="flex items-start gap-2.5">
+                        <Check className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm text-stone-700">{f}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <Link
+                  href={`${SIGNUP_URL}?plan=light`}
+                  className="w-full text-center py-3.5 rounded-full font-bold transition-colors inline-flex items-center justify-center gap-2 bg-stone-900 text-white hover:bg-stone-800"
+                >
+                  Start 14-Day Light Trial
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <p className="text-[11px] text-stone-400 text-center mt-2">
+                  Card required. Auto-converts to ${lightMonthly}/mo on day 15.
+                </p>
+              </div>
+
               {/* ─── Pro ─── */}
               <div className="relative rounded-2xl border-2 border-emerald-500 shadow-xl shadow-emerald-100 scale-[1.02] p-8 flex flex-col transition-all">
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
@@ -449,18 +512,25 @@ export default function PricingPage() {
                   </div>
                 </div>
                 <Link
-                  href={SIGNUP_URL}
+                  href={`${SIGNUP_URL}?plan=pro`}
                   className="w-full text-center py-3.5 rounded-full font-bold transition-colors inline-flex items-center justify-center gap-2 bg-black text-white hover:bg-stone-800"
                 >
-                  Start Free 30-Day Trial
+                  Start 14-Day Pro Trial
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <p className="text-[11px] text-stone-400 text-center mt-2">
-                  No credit card required. Cancel anytime.
+                  Card required. Auto-converts to ${proMonthly}/mo on day 15 unless you cancel.
                 </p>
               </div>
 
-              {/* ─── Consulting ─── */}
+              {/* ─── Consulting (HIDDEN — moved to footer CTA below grid)
+                   User direction (June 4 2026): Agency/Consulting is enterprise-style
+                   pricing that should be quoted via a sales call, not advertised on the
+                   public grid. Kept the source below in case we want to re-show it as
+                   an explicit "Done-for-you" option later, but flag-off the visible card. */}
+              {false && (
+              <div className="hidden">
+                {/* ─── Consulting ─── */}
               <div className="relative rounded-2xl border-2 border-stone-200 hover:border-stone-300 p-8 flex flex-col transition-all">
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                   <span className="bg-stone-800 text-white text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap">
@@ -518,6 +588,31 @@ export default function PricingPage() {
                   <Phone className="w-4 h-4" />
                 </Link>
               </div>
+              </div>
+              )}
+            </div>
+
+            {/* ── Agency / Consulting footer CTA ── */}
+            <div className="mt-12 rounded-2xl border border-stone-200 bg-gradient-to-r from-stone-900 to-stone-800 text-white p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 max-w-5xl mx-auto">
+              <div className="flex items-start gap-4 min-w-0 flex-1">
+                <div className="bg-emerald-500/20 p-3 rounded-xl flex-shrink-0">
+                  <Handshake className="w-6 h-6 text-emerald-400" />
+                </div>
+                <div className="min-w-0">
+                  <p className="font-black text-lg leading-tight mb-1">Running federal capture for multiple clients?</p>
+                  <p className="text-sm text-stone-300 leading-relaxed">
+                    Our <strong>Agencies &amp; Consultants</strong> tier gives B2G shops multi-client workspaces, white-glove client portals, white-labeling, bulk proposal generation, and GPT-4o on every AI feature. Custom pricing per client volume.
+                  </p>
+                </div>
+              </div>
+              <Link
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-3 rounded-full font-bold text-sm inline-flex items-center gap-2 transition-colors flex-shrink-0 whitespace-nowrap"
+              >
+                <Phone className="w-4 h-4" /> Book a call
+              </Link>
             </div>
           </div>
         </section>
