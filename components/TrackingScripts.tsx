@@ -24,6 +24,9 @@ export default function TrackingScripts() {
   const linkedinId = process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID?.trim();
   const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID?.trim();
   const fbAppId = process.env.NEXT_PUBLIC_FB_APP_ID?.trim();
+  // Microsoft Clarity — session replay + heatmaps (free, no sampling).
+  // Defaults to the production project ID; override per-env via NEXT_PUBLIC_CLARITY_ID.
+  const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID?.trim() || "x2icimnnsi";
 
   return (
     <>
@@ -90,6 +93,16 @@ export default function TrackingScripts() {
           var b=document.createElement("script");b.type="text/javascript";b.async=true;
           b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";
           s.parentNode.insertBefore(b,s);})(window.lintrk);
+        `}</Script>
+      )}
+
+      {clarityId && (
+        <Script id="ms-clarity" strategy="afterInteractive">{`
+          (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "${clarityId}");
         `}</Script>
       )}
     </>
