@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;max-width:100%;height:auto;">
+  <!--
+    Federal Launch Kit hero illustration.
+    Style: matches CapturePilot Field Manual + dark-panel pages.
+    - Dark forest-green background with subtle squared grid (no dots, per user spec)
+    - 10 numbered tab-folder cards (one per kit category) arranged in 2x5 grid
+    - Each card: emerald number badge + name in mono caps + asset count
+    - Big stat strip overlay: "38 ASSETS · 10 KITS · ONE OUTCOME"
+    - CapturePilot mark + tagline
+  -->
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1512"/>
+      <stop offset="1" stop-color="#0d1c18"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 H0 V40" fill="none" stroke="#10b981" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+    <filter id="softshadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#15302a"/>
+      <stop offset="1" stop-color="#10241f"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="620" fill="url(#bg)"/>
+  <rect width="1200" height="620" fill="url(#grid)"/>
+
+  <!-- Header strip: eyebrow + headline -->
+  <g font-family="'IBM Plex Mono','SF Mono',Consolas,monospace">
+    <text x="60" y="58" fill="#10b981" font-size="13" font-weight="600" letter-spacing="3.2">/ INSIDE THE FEDERAL LAUNCH KIT</text>
+  </g>
+  <g font-family="'Inter','-apple-system',sans-serif">
+    <text x="60" y="118" fill="#ffffff" font-size="56" font-weight="900" letter-spacing="-1.2">38 assets.</text>
+    <text x="60" y="178" fill="#ffffff" font-size="56" font-weight="900" letter-spacing="-1.2">10 kits.</text>
+    <text x="60" y="238" fill="#10b981" font-size="56" font-weight="900" letter-spacing="-1.2">One outcome.</text>
+  </g>
+
+  <!-- Sub-line in the top-right -->
+  <g font-family="'IBM Plex Mono','SF Mono',Consolas,monospace">
+    <text x="1140" y="58" text-anchor="end" fill="#a8a29e" font-size="11" letter-spacing="2.4">FREE LAUNCH KIT · $70 ONE-TIME</text>
+    <g transform="translate(700, 95)">
+      <rect width="440" height="160" rx="8" fill="#15302a" stroke="#10b981" stroke-opacity="0.25" stroke-width="1"/>
+      <text x="24" y="32" fill="#10b981" font-size="10" font-weight="600" letter-spacing="2.4">WHAT YOU GET</text>
+      <g font-family="'Inter',sans-serif" fill="#f5f5f4" font-size="13">
+        <g transform="translate(24, 56)">
+          <circle cx="6" cy="-3" r="3" fill="#10b981"/>
+          <text x="20" y="0">24 polished PDFs (Sources Sought, RFP, Pricing…)</text>
+        </g>
+        <g transform="translate(24, 80)">
+          <circle cx="6" cy="-3" r="3" fill="#10b981"/>
+          <text x="20" y="0">11 working Excel calculators &amp; checklists</text>
+        </g>
+        <g transform="translate(24, 104)">
+          <circle cx="6" cy="-3" r="3" fill="#10b981"/>
+          <text x="20" y="0">3 editable Word templates (cap statement, teaming…)</text>
+        </g>
+        <g transform="translate(24, 128)">
+          <circle cx="6" cy="-3" r="3" fill="#10b981"/>
+          <text x="20" y="0">1 founder onboarding call (30 min)</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- 10 category cards in 2 rows of 5 -->
+  <!-- Card dimensions: 200w × 130h, gap 18px, starts at x=60 y=320 -->
+  <g font-family="'Inter',sans-serif" filter="url(#softshadow)">
+
+    <!-- Row 1 -->
+    <!-- Card 01 -->
+    <g transform="translate(60, 320)">
+      <rect width="200" height="130" rx="10" fill="url(#cardGrad)" stroke="#10b981" stroke-opacity="0.2" stroke-width="1"/>
+      <rect x="0" y="0" width="56" height="22" rx="4" fill="#10b981"/>
+      <text x="28" y="16" text-anchor="middle" fill="#0a1512" font-family="'IBM Plex Mono',monospace" font-size="11" font-weight="700">01</text>
+      <text x="20" y="60" fill="#10b981" font-family="'IBM Plex Mono',monospace" font-size="9" font-weight="600" letter-spacing="2">SAM.GOV REGISTRATION</text>
+      <text x="20" y="88" fill="#ffffff" font-size="17" font-weight="800">From DUNS</text>
+      <text x="20" y="108" fill="#ffffff" font-size="17" font-weight="800">to Active in 7 days</text>
+      <text x="180" y="122" text-anchor="end" fill="#a8a29e" font-family="'IBM Plex Mono',monospace" font-size="9">4 assets</text>
+    </g>
+
+    <!-- Card 02 -->
+    <g transform="translate(278, 320)">
+      <rect width="200" height="130" rx="10" fill="url(#cardGrad)" stroke="#10b981" stroke-opacity="0.2" stroke-width="1"/>
+      <rect x="0" y="0" width="56" height="22" rx="4" fill="#10b981"/>
+      <text x="28" y="16" text-anchor="middle" fill="#0a1512" font-family="'IBM Plex Mono',monospace" font-size="11" font-weight="700">02</text>
+      <text x="20" y="60" fill="#10b981" font-family="'IBM Plex Mono',monospace" font-size="9" font-weight="600" letter-spacing="2">CAPABILITY STATEMENT</text>
+      <text x="20" y="88" fill="#ffffff" font-size="17" font-weight="800">Pass the</text>
+      <text x="20" y="108" fill="#ffffff" font-size="17" font-weight="800">8-second skim test</text>
+      <text x="180" y="122" text-anchor="end" fill="#a8a29e" font-family="'IBM Plex Mono',monospace" font-size="9">3 assets</text>
+    </g>
+
+    <!-- Card 03 -->
+    <g transform="translate(496, 320)">
+      <rect width="200" height="130" rx="10" fill="url(#cardGrad)" stroke="#10b981" stroke-opacity="0.2" stroke-width="1"/>
+      <rect x="0" y="0" width="56" height="22" rx="4" fill="#10b981"/>
+      <text x="28" y="16" text-anchor="middle" fill="#0a1512" font-family="'IBM Plex Mono',monospace" font-size="11" font-weight="700">03</text>
+      <text x="20" y="60" fill="#10b981" font-family="'IBM Plex Mono',monospace" font-size="9" font-weight="600" letter-spacing="2">SOLICITATION PLAYBOOKS</text>
+      <text x="20" y="88" fill="#ffffff" font-size="17" font-weight="800">One playbook</text>
+      <text x="20" y="108" fill="#ffffff" font-size="17" font-weight="800">per notice type</text>
+      <text x="180" y="122" text-anchor="end" fill="#a8a29e" font-family="'IBM Plex Mono',monospace" font-size="9">6 assets</text>
+    </g>
+
+    <!-- Card 04 -->
+    <g transform="translate(714, 320)">
+      <rect width="200" height="130" rx="10" fill="url(#cardGrad)" stroke="#10b981" stroke-opacity="0.2" stroke-width="1"/>
+      <rect x="0" y="0" width="56" height="22" rx="4" fill="#10b981"/>
+      <text x="28" y="16" text-anchor="middle" fill="#0a1512" font-family="'IBM Plex Mono',monospace" font-size="11" font-weight="700">04</text>
+      <text x="20" y="60" fill="#10b981" font-family="'IBM Plex Mono',monospace" font-size="9" font-weight="600" letter-spacing="2">BID / NO-BID</text>
+      <text x="20" y="88" fill="#ffffff" font-size="17" font-weight="800">PWin calculator</text>
+      <text x="20" y="108" fill="#ffffff" font-size="17" font-weight="800">+ decision matrix</text>
+      <text x="180" y="122" text-anchor="end" fill="#a8a29e" font-family="'IBM Plex Mono',monospace" font-size="9">3 assets</text>
+    </g>
+
+    <!-- Card 05 -->
+    <g transform="translate(932, 320)">
+      <rect width="200" height="130" rx="10" fill="url(#cardGrad)" stroke="#10b981" stroke-opacity="0.2" stroke-width="1"/>
+      <rect x="0" y="0" width="56" height="22" rx="4" fill="#10b981"/>
+      <text x="28" y="16" text-anchor="middle" fill="#0a1512" font-family="'IBM Plex Mono',monospace" font-size="11" font-weight="700">05</text>
+      <text x="20" y="60" fill="#10b981" font-family="'IBM Plex Mono',monospace" font-size="9" font-weight="600" letter-spacing="2">CERTIFICATIONS</text>
+      <text x="20" y="88" fill="#ffffff" font-size="17" font-weight="800">8(a) · HUBZone</text>
+      <text x="20" y="108" fill="#ffffff" font-size="17" font-weight="800">WOSB · SDVOSB</text>
+      <text x="180" y="122" text-anchor="end" fill="#a8a29e" font-family="'IBM Plex Mono',monospace" font-size="9">4 assets</text>
+    </g>
+
+    <!-- Row 2 -->
+    <!-- Card 06 -->
+    <g transform="translate(60, 468)">
+      <rect width="200" height="130" rx="10" fill="url(#cardGrad)" stroke="#10b981" stroke-opacity="0.2" stroke-width="1"/>
+      <rect x="0" y="0" width="56" height="22" rx="4" fill="#10b981"/>
+      <text x="28" y="16" text-anchor="middle" fill="#0a1512" font-family="'IBM Plex Mono',monospace" font-size="11" font-weight="700">06</text>
+      <text x="20" y="60" fill="#10b981" font-family="'IBM Plex Mono',monospace" font-size="9" font-weight="600" letter-spacing="2">PAST PERFORMANCE</text>
+      <text x="20" y="88" fill="#ffffff" font-size="17" font-weight="800">Convert commercial</text>
+      <text x="20" y="108" fill="#ffffff" font-size="17" font-weight="800">work to federal</text>
+      <text x="180" y="122" text-anchor="end" fill="#a8a29e" font-family="'IBM Plex Mono',monospace" font-size="9">2 assets</text>
+    </g>
+
+    <!-- Card 07 -->
+    <g transform="translate(278, 468)">
+      <rect width="200" height="130" rx="10" fill="url(#cardGrad)" stroke="#10b981" stroke-opacity="0.2" stroke-width="1"/>
+      <rect x="0" y="0" width="56" height="22" rx="4" fill="#10b981"/>
+      <text x="28" y="16" text-anchor="middle" fill="#0a1512" font-family="'IBM Plex Mono',monospace" font-size="11" font-weight="700">07</text>
+      <text x="20" y="60" fill="#10b981" font-family="'IBM Plex Mono',monospace" font-size="9" font-weight="600" letter-spacing="2">CO OUTREACH</text>
+      <text x="20" y="88" fill="#ffffff" font-size="17" font-weight="800">Scripts that</text>
+      <text x="20" y="108" fill="#ffffff" font-size="17" font-weight="800">get replies</text>
+      <text x="180" y="122" text-anchor="end" fill="#a8a29e" font-family="'IBM Plex Mono',monospace" font-size="9">4 assets</text>
+    </g>
+
+    <!-- Card 08 -->
+    <g transform="translate(496, 468)">
+      <rect width="200" height="130" rx="10" fill="url(#cardGrad)" stroke="#10b981" stroke-opacity="0.2" stroke-width="1"/>
+      <rect x="0" y="0" width="56" height="22" rx="4" fill="#10b981"/>
+      <text x="28" y="16" text-anchor="middle" fill="#0a1512" font-family="'IBM Plex Mono',monospace" font-size="11" font-weight="700">08</text>
+      <text x="20" y="60" fill="#10b981" font-family="'IBM Plex Mono',monospace" font-size="9" font-weight="600" letter-spacing="2">PRICE-TO-WIN</text>
+      <text x="20" y="88" fill="#ffffff" font-size="17" font-weight="800">FY2026 wrap rates</text>
+      <text x="20" y="108" fill="#ffffff" font-size="17" font-weight="800">+ indirect calc</text>
+      <text x="180" y="122" text-anchor="end" fill="#a8a29e" font-family="'IBM Plex Mono',monospace" font-size="9">3 assets</text>
+    </g>
+
+    <!-- Card 09 -->
+    <g transform="translate(714, 468)">
+      <rect width="200" height="130" rx="10" fill="url(#cardGrad)" stroke="#10b981" stroke-opacity="0.2" stroke-width="1"/>
+      <rect x="0" y="0" width="56" height="22" rx="4" fill="#10b981"/>
+      <text x="28" y="16" text-anchor="middle" fill="#0a1512" font-family="'IBM Plex Mono',monospace" font-size="11" font-weight="700">09</text>
+      <text x="20" y="60" fill="#10b981" font-family="'IBM Plex Mono',monospace" font-size="9" font-weight="600" letter-spacing="2">BEST PRACTICES</text>
+      <text x="20" y="88" fill="#ffffff" font-size="17" font-weight="800">Color reviews ·</text>
+      <text x="20" y="108" fill="#ffffff" font-size="17" font-weight="800">FAR decoder · more</text>
+      <text x="180" y="122" text-anchor="end" fill="#a8a29e" font-family="'IBM Plex Mono',monospace" font-size="9">5 assets</text>
+    </g>
+
+    <!-- Card 10 — bonus, highlighted -->
+    <g transform="translate(932, 468)">
+      <rect width="200" height="130" rx="10" fill="#10b981"/>
+      <rect x="0" y="0" width="56" height="22" rx="4" fill="#0a1512"/>
+      <text x="28" y="16" text-anchor="middle" fill="#10b981" font-family="'IBM Plex Mono',monospace" font-size="11" font-weight="700">10</text>
+      <text x="20" y="60" fill="#0a1512" font-family="'IBM Plex Mono',monospace" font-size="9" font-weight="600" letter-spacing="2">BONUS · FOUNDER CALL</text>
+      <text x="20" y="88" fill="#0a1512" font-size="17" font-weight="800">30 min with André</text>
+      <text x="20" y="108" fill="#0a1512" font-size="17" font-weight="800">walk your first bid</text>
+      <text x="180" y="122" text-anchor="end" fill="#0a1512" font-family="'IBM Plex Mono',monospace" font-size="9" opacity="0.8">included</text>
+    </g>
+  </g>
+</svg>
