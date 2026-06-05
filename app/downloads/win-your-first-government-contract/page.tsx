@@ -15,6 +15,16 @@ import {
   Eye,
 } from "lucide-react";
 
+// Lucide 1.x in this app doesn't ship a brand `Linkedin` icon — inline the
+// official LinkedIn glyph. Same approach used in components/ContractorList.tsx.
+function LinkedinIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.21 0 22.23 0z" />
+    </svg>
+  );
+}
+
 const PDF_URL =
   "https://ryxgjzehoijjvczqkhwr.supabase.co/storage/v1/object/public/Lead%20Magnets/CapturePilot-Win-Your-First-Government-Contract.pdf";
 
@@ -233,6 +243,26 @@ export default function FieldManualPage() {
                     </li>
                   ))}
                 </ul>
+              </div>
+
+              {/* LinkedIn shortcut — bypasses the email form entirely. We
+                  redirect to the dashboard origin so Supabase OAuth cookies
+                  land on app.capturepilot.com (cross-origin sessions are
+                  not a thing). The dashboard's /auth/callback then fires
+                  /api/lead-magnet/deliver (Resend + HubSpot) and 302s the
+                  user back to the thank-you page on www.capturepilot.com. */}
+              <a
+                href={`https://app.capturepilot.com/auth/linkedin-lead-magnet?magnet=field-manual&return_to=${encodeURIComponent("https://www.capturepilot.com/thank-you")}`}
+                className="w-full bg-white border-2 border-[#0A66C2] text-[#0A66C2] rounded-2xl py-3.5 px-4 font-bold text-sm flex items-center justify-center gap-2 hover:bg-[#0A66C2]/5 transition-colors shadow-sm"
+              >
+                <LinkedinIcon className="w-4 h-4" />
+                Continue with LinkedIn &mdash; instant download
+              </a>
+
+              <div className="flex items-center gap-3 py-1">
+                <div className="flex-1 h-px bg-stone-200" />
+                <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">or use email</span>
+                <div className="flex-1 h-px bg-stone-200" />
               </div>
 
               <LeadMagnetForm
