@@ -28,6 +28,9 @@ export default function Page() {
             When you sign up we ask for your <strong>email, name, and company</strong>. That&apos;s the minimum to give you a login and personalize matches. If you&apos;re registered with SAM.gov and enter your <strong>UEI</strong>, we store it so we can pull your registration data and score opportunities for you.
           </p>
           <p className="text-stone-700 leading-relaxed mb-4">
+            If you sign in with <strong>LinkedIn</strong>, we receive your name, email, profile picture URL, headline (when available), and LinkedIn user ID. That&apos;s it. We do not access your connections, messages, posts, or anything beyond these basic profile fields.
+          </p>
+          <p className="text-stone-700 leading-relaxed mb-4">
             If you upgrade to a paid plan, <strong>Stripe handles your card information directly</strong>. We never see or store your full card number — we only get back a customer ID and the last four digits for receipts.
           </p>
           <p className="text-stone-700 leading-relaxed mb-4">
@@ -56,6 +59,7 @@ export default function Page() {
             <li><strong>HubSpot</strong> — CRM for our consulting clients only. If you&apos;re on the self-service plan, your data doesn&apos;t go here.</li>
             <li><strong>Vercel</strong> — hosts the website and the app, plus serves the analytics.</li>
             <li><strong>Meta and Google</strong> — ad platforms. They get aggregated conversion signals (e.g. &quot;someone from this ad signed up&quot;) so we know which ads are working.</li>
+            <li><strong>LinkedIn</strong> — sign-in provider, OAuth only. Used to authenticate you if you choose &quot;Sign in with LinkedIn.&quot;</li>
           </ul>
           <p className="text-stone-700 leading-relaxed mb-4">
             We don&apos;t sell your data to anyone. We don&apos;t share it with anyone outside the vendors above without your permission, except when we&apos;re legally required to.

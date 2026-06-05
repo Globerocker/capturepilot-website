@@ -235,6 +235,15 @@ export default function TermsPage() {
                 We monitor usage in aggregate and reserve the right to suspend
                 accounts that look like they&apos;re abusing the system.
               </p>
+              <p className="mt-4">
+                If you choose to sign in with LinkedIn, that flow does{" "}
+                <strong>not</strong> grant us access to anything you have not
+                explicitly consented to via the LinkedIn OAuth consent screen.
+                We request the standard scope only:{" "}
+                <code>openid</code>, <code>profile</code>, and{" "}
+                <code>email</code>. No connections, messages, posts, or company
+                pages.
+              </p>
             </div>
 
             {/* 7 */}
