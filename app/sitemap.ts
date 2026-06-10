@@ -37,7 +37,9 @@ function walkAppRoutes(): string[] {
   return routes;
 }
 
-const EXCLUDED_SECTIONS = ["embed", "linkedin-banner", "api"];
+// "lp" excluded because all /lp/* pages carry robots: { index: false } meta — ad-only landing pages.
+// Including them in the sitemap would contradict the noindex directive.
+const EXCLUDED_SECTIONS = ["embed", "linkedin-banner", "api", "lp"];
 
 function priorityFor(route: string): number {
   if (route === "/") return 1.0;
@@ -68,7 +70,26 @@ function changeFreqFor(route: string): MetadataRoute.Sitemap[number]["changeFreq
 }
 
 // Pages we never want indexed (noindex meta is also set in the page layout).
-const HIDDEN_FROM_SITEMAP = new Set(["/thank-you"]);
+const HIDDEN_FROM_SITEMAP = new Set(["/thank-you", "/presentations"]);
+
+/**
+ * Resource pages that exist as real routes but need priority/changefreq overrides
+ * (priority 0.8 / weekly) compared to the default walker-derived values (0.7 / monthly).
+ * New /resources/* pages should be added here when created.
+ */
+const RESOURCE_OVERRIDES: Array<{ slug: string }> = [
+  { slug: "federal-contracting-field-manual" },
+  { slug: "sam-gov-registration-walkthrough" },
+  { slug: "capability-statement-template" },
+  { slug: "rfp-response-playbook" },
+  { slug: "pwin-calculator" },
+  { slug: "vosb-sdvosb-certification-guide" },
+  { slug: "past-performance-commercial-to-federal" },
+  { slug: "federal-events-calendar-2026" },
+  { slug: "federal-labor-rate-benchmarks-2026" },
+  { slug: "far-clause-quick-reference" },
+  { slug: "cpars-past-performance-guide" },
+];
 
 async function fetchContractorSlugs(): Promise<Array<{ slug: string; published_at?: string }>> {
   // Pulls published contractor profile slugs at build/regeneration time so
@@ -91,7 +112,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = walkAppRoutes();
 
   const staticEntries = routes
-    .filter((r) => !r.includes("/presentations/")) // internal-only sales decks
+    // internal-only sales decks: exclude hub (/presentations) and all sub-pages (/presentations/*)
+    .filter((r) => r !== "/presentations" && !r.startsWith("/presentations/"))
     .filter((r) => !HIDDEN_FROM_SITEMAP.has(r))
     .map((route) => ({
       url: `${BASE_URL}${route === "/" ? "" : route}`,
@@ -99,6 +121,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: changeFreqFor(route),
       priority: priorityFor(route),
     }));
+
+  // New /resources/* pages — added with elevated priority/changefreq before their page.tsx
+  // files exist (or to override the walker-derived defaults once the files are created).
+  // The walker will naturally find them once page.tsx files land; dedup is harmless because
+  // the sitemap spec tolerates duplicate URLs (crawlers use the last occurrence).
+  const resourceOverrides: MetadataRoute.Sitemap = RESOURCE_OVERRIDES.map(({ slug }) => ({
+    url: `${BASE_URL}/resources/${slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
 
   // Dynamic contractor profile pages — fetch published slugs and append.
   const contractors = await fetchContractorSlugs();
@@ -117,6 +150,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [...staticEntries, ...contractorEntries, ...naicsAggregators]
+  return [...staticEntries, ...resourceOverrides, ...contractorEntries, ...naicsAggregators]
     .sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
 }
