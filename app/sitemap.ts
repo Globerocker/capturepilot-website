@@ -37,9 +37,10 @@ function walkAppRoutes(): string[] {
   return routes;
 }
 
-// "lp" excluded because all /lp/* pages carry robots: { index: false } meta — ad-only landing pages.
-// Including them in the sitemap would contradict the noindex directive.
-const EXCLUDED_SECTIONS = ["embed", "linkedin-banner", "api", "lp"];
+// embed/linkedin-banner are presentation surfaces, api is non-HTML. "lp" used to be
+// excluded because pages were noindexed; current LP pages render normally and are
+// worth indexing for SEO (every public, indexable surface gets a sitemap entry).
+const EXCLUDED_SECTIONS = ["embed", "linkedin-banner", "api"];
 
 function priorityFor(route: string): number {
   if (route === "/") return 1.0;
@@ -54,6 +55,7 @@ function priorityFor(route: string): number {
   if (route.startsWith("/resources/")) return 0.7;
   if (route.startsWith("/presentations/")) return 0.4;
   if (route === "/walkthrough" || route === "/updates") return 0.5;
+  if (route.startsWith("/lp/")) return 0.6;
   return 0.6;
 }
 
