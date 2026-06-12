@@ -1,4 +1,7 @@
 {
+  "status": "complete",
+  "completedDate": "2026-06-12",
+  "note": "All 40 topics have been written as of 2026-06-12. Add new topics to the array below to queue additional posts.",
   "topics": [
     { "slug": "how-to-find-government-contracts-small-business", "keyword": "how to find government contracts for small business", "title": "How to Find Government Contracts for Your Small Business (2026 Guide)", "category": "getting-started", "features": ["matching", "quick-checker"] },
     { "slug": "sdvosb-contracts-guide", "keyword": "SDVOSB contracts", "title": "SDVOSB Contracts: A Complete Guide for Veteran-Owned Businesses", "category": "set-asides", "features": ["matching", "pipeline"] },
