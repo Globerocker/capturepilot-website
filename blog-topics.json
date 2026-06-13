@@ -1,7 +1,7 @@
 {
-  "status": "complete",
-  "completedDate": "2026-06-12",
-  "note": "All 40 topics have been written as of 2026-06-12. Add new topics to the array below to queue additional posts.",
+  "status": "in-progress",
+  "completedDate": null,
+  "note": "New topics added 2026-06-13. Write the first unwritten topic each day.",
   "topics": [
     { "slug": "how-to-find-government-contracts-small-business", "keyword": "how to find government contracts for small business", "title": "How to Find Government Contracts for Your Small Business (2026 Guide)", "category": "getting-started", "features": ["matching", "quick-checker"] },
     { "slug": "sdvosb-contracts-guide", "keyword": "SDVOSB contracts", "title": "SDVOSB Contracts: A Complete Guide for Veteran-Owned Businesses", "category": "set-asides", "features": ["matching", "pipeline"] },
@@ -42,6 +42,16 @@
     { "slug": "government-contracting-for-startups", "keyword": "government contracting for startups", "title": "Government Contracting for Startups: Is Federal Revenue Right for You?", "category": "getting-started", "features": ["quick-checker", "matching"] },
     { "slug": "simplified-acquisition-procedure", "keyword": "simplified acquisition procedure", "title": "Simplified Acquisition Procedures: The Fast Track for Contracts Under $250K", "category": "getting-started", "features": ["matching"] },
     { "slug": "cost-volume-government-proposal", "keyword": "cost volume government proposal", "title": "How to Write the Cost Volume of a Government Proposal", "category": "proposals", "features": ["proposals"] },
-    { "slug": "technical-volume-government-proposal", "keyword": "technical volume government proposal", "title": "Writing a Winning Technical Volume for Government Proposals", "category": "proposals", "features": ["proposals"] }
+    { "slug": "technical-volume-government-proposal", "keyword": "technical volume government proposal", "title": "Writing a Winning Technical Volume for Government Proposals", "category": "proposals", "features": ["proposals"] },
+    { "slug": "debriefing-government-contract", "keyword": "government contract debriefing", "title": "Government Contract Debriefings: How to Learn from Every Loss and Win Next Time", "category": "strategy", "features": ["intelligence", "proposals"] },
+    { "slug": "vosb-vs-sdvosb", "keyword": "VOSB vs SDVOSB", "title": "VOSB vs SDVOSB: Which Veteran Certification Actually Wins More Contracts", "category": "set-asides", "features": ["matching", "quick-checker"] },
+    { "slug": "fpds-contract-research", "keyword": "FPDS contract research", "title": "FPDS Research: How to Find Your Competitors' Government Contracts (Free)", "category": "tools", "features": ["intelligence", "matching"] },
+    { "slug": "mentor-protege-program-guide", "keyword": "mentor protege program government contracting", "title": "The SBA Mentor-Protégé Program: How to Get a Large Business Partner", "category": "strategy", "features": ["pipeline", "matching"] },
+    { "slug": "blanket-purchase-agreements-guide", "keyword": "blanket purchase agreement BPA", "title": "Blanket Purchase Agreements (BPAs): The Repeat Revenue Tool Most Contractors Ignore", "category": "vehicles", "features": ["pipeline", "intelligence"] },
+    { "slug": "osdbu-small-business-offices", "keyword": "OSDBU government contracting", "title": "OSDBU Offices: How to Use Agency Small Business Advocates to Win Contracts", "category": "strategy", "features": ["matching", "intelligence"] },
+    { "slug": "small-business-bonding-requirements", "keyword": "government contract bonding requirements", "title": "Government Contract Bonding: Bid Bonds, Performance Bonds, and Payment Bonds Explained", "category": "compliance", "features": ["matching"] },
+    { "slug": "far-part-15-negotiated-acquisitions", "keyword": "FAR part 15 negotiated acquisitions", "title": "FAR Part 15 Negotiated Acquisitions: What Every Bidder Must Understand", "category": "advanced", "features": ["proposals", "intelligence"] },
+    { "slug": "joint-venture-government-contracts", "keyword": "joint venture government contracts small business", "title": "Small Business Joint Ventures: How to Pool Resources and Win Larger Contracts", "category": "strategy", "features": ["pipeline", "matching"] },
+    { "slug": "8a-program-graduation-planning", "keyword": "8a program graduation planning", "title": "8(a) Program Graduation: How to Plan Your Business Exit Before Day One", "category": "set-asides", "features": ["pipeline", "intelligence"] }
   ]
 }
