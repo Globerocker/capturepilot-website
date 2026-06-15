@@ -1,7 +1,7 @@
 {
-  "status": "complete",
+  "status": "active",
   "completedDate": "2026-06-12",
-  "note": "All 40 topics have been written as of 2026-06-12. Add new topics to the array below to queue additional posts.",
+  "note": "First 40 topics completed as of 2026-06-12. New topics added 2026-06-15.",
   "topics": [
     { "slug": "how-to-find-government-contracts-small-business", "keyword": "how to find government contracts for small business", "title": "How to Find Government Contracts for Your Small Business (2026 Guide)", "category": "getting-started", "features": ["matching", "quick-checker"] },
     { "slug": "sdvosb-contracts-guide", "keyword": "SDVOSB contracts", "title": "SDVOSB Contracts: A Complete Guide for Veteran-Owned Businesses", "category": "set-asides", "features": ["matching", "pipeline"] },
@@ -42,6 +42,11 @@
     { "slug": "government-contracting-for-startups", "keyword": "government contracting for startups", "title": "Government Contracting for Startups: Is Federal Revenue Right for You?", "category": "getting-started", "features": ["quick-checker", "matching"] },
     { "slug": "simplified-acquisition-procedure", "keyword": "simplified acquisition procedure", "title": "Simplified Acquisition Procedures: The Fast Track for Contracts Under $250K", "category": "getting-started", "features": ["matching"] },
     { "slug": "cost-volume-government-proposal", "keyword": "cost volume government proposal", "title": "How to Write the Cost Volume of a Government Proposal", "category": "proposals", "features": ["proposals"] },
-    { "slug": "technical-volume-government-proposal", "keyword": "technical volume government proposal", "title": "Writing a Winning Technical Volume for Government Proposals", "category": "proposals", "features": ["proposals"] }
+    { "slug": "technical-volume-government-proposal", "keyword": "technical volume government proposal", "title": "Writing a Winning Technical Volume for Government Proposals", "category": "proposals", "features": ["proposals"] },
+    { "slug": "dcaa-audit-small-business", "keyword": "DCAA audit small business", "title": "DCAA Audit Preparation: What Small Business Government Contractors Must Know", "category": "strategy", "features": ["intelligence", "pipeline"] },
+    { "slug": "cpars-contractor-performance", "keyword": "CPARS government contract", "title": "CPARS Explained: How Contractor Performance Ratings Shape Future Awards", "category": "strategy", "features": ["intelligence", "proposals"] },
+    { "slug": "sbir-sttr-grants-guide", "keyword": "SBIR grants small business", "title": "SBIR and STTR Grants: How Small Businesses Win R&D Funding from DoD", "category": "getting-started", "features": ["matching", "intelligence"] },
+    { "slug": "far-clauses-small-business", "keyword": "FAR clauses small business", "title": "Key FAR Clauses Every Small Business Contractor Must Know", "category": "getting-started", "features": ["proposals", "intelligence"] },
+    { "slug": "contracting-officer-relationship", "keyword": "government contracting officer relationship", "title": "How to Build Relationships With Government Contracting Officers", "category": "strategy", "features": ["intelligence", "pipeline"] }
   ]
 }

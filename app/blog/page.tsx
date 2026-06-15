@@ -97,6 +97,9 @@ const POSTS: Post[] = [
 
   // Tools (1)
   { slug: "sam-gov-search-tips", title: "SAM.gov Search Tips That Save Hours", category: "Tools", readTime: "9 min", description: "SAM.gov's native search is rough. These are the specific tricks we use to cut a 90-minute daily review down to about ten minutes." },
+
+  // Strategy (continued)
+  { slug: "dcaa-audit-small-business", title: "DCAA Audit Preparation: What Small Business Contractors Must Know", category: "Strategy", readTime: "16 min", description: "DCAA examined $599.8B in contract costs in FY2024. Here's what small businesses need: SF 1408 requirements, incurred cost submissions, 2025 rule changes, and the deficiencies that show up in almost every audit." },
 ];
 
 /* ─── JSON-LD ────────────────────────────────────────────────────── */
