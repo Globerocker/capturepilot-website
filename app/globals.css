@@ -35,3 +35,35 @@ html { scroll-behavior: smooth; }
 
 .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+
+/* ── Starter-pack motion kit ─────────────────────────────────────── */
+@keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.animate-float { animation: floatY 5s ease-in-out infinite; }
+
+@keyframes floatSlow { 0%,100% { transform: translateY(0) rotate(-1.5deg); } 50% { transform: translateY(-14px) rotate(1.5deg); } }
+.animate-float-slow { animation: floatSlow 7s ease-in-out infinite; }
+
+@keyframes pulseGlow { 0%,100% { box-shadow: 0 10px 30px rgba(5,150,105,.28); } 50% { box-shadow: 0 16px 48px rgba(5,150,105,.55); } }
+.animate-pulse-glow { animation: pulseGlow 2.4s ease-in-out infinite; }
+
+@keyframes shimmerMove { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+.shimmer-text {
+  background: linear-gradient(110deg, #059669 28%, #34d399 50%, #059669 72%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: shimmerMove 4s linear infinite;
+}
+
+@keyframes marqueeX { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.animate-marquee { animation: marqueeX 32s linear infinite; }
+
+/* scroll-reveal base (toggled by the Reveal component) */
+.reveal { opacity: 0; transition: opacity .7s ease-out, transform .7s cubic-bezier(.16,.84,.44,1); will-change: transform, opacity; }
+.reveal.is-visible { opacity: 1; transform: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float, .animate-float-slow, .animate-pulse-glow, .shimmer-text, .animate-marquee { animation: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
