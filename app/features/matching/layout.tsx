@@ -40,7 +40,7 @@ const softwareJsonLd = {
   ],
   offers: {
     "@type": "Offer",
-    price: "199",
+    price: "89",
     priceCurrency: "USD",
     url: "https://app.capturepilot.com/signup",
   },

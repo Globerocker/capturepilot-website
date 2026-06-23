@@ -56,7 +56,7 @@ const faqJsonLd = {
       name: "Is Capture2Proposal or CapturePilot better for small businesses?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "CapturePilot, if you do not have a dedicated proposal team. Capture2Proposal is built for proposal shops with 10+ writers running 20+ proposals per quarter. Its value is in process management, not content generation. Small businesses and solo founders need the opposite: AI that finds opportunities and drafts the proposal content. CapturePilot starts at $199/mo flat with a free tier; Capture2Proposal is $50–$150 per seat per month, which adds up quickly for a team of five.",
+        text: "CapturePilot, if you do not have a dedicated proposal team. Capture2Proposal is built for proposal shops with 10+ writers running 20+ proposals per quarter. Its value is in process management, not content generation. Small businesses and solo founders need the opposite: AI that finds opportunities and drafts the proposal content. CapturePilot starts at $89/mo flat with a free tier; Capture2Proposal is $50–$150 per seat per month, which adds up quickly for a team of five.",
       },
     },
     {
@@ -64,7 +64,7 @@ const faqJsonLd = {
       name: "What is the pricing difference between Capture2Proposal and CapturePilot?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Capture2Proposal uses per-seat pricing at roughly $50–$150 per user per month. For a 5-person team that is $250–$750/month ($3,000–$9,000/year). CapturePilot is $199/month flat regardless of team size ($2,388/year) with a 30-day free trial on Pro and a free tier for eligibility checking. You save on both the direct cost and the second tool you no longer need for opportunity discovery and AI drafting.",
+        text: "Capture2Proposal uses per-seat pricing at roughly $50–$150 per user per month. For a 5-person team that is $250–$750/month ($3,000–$9,000/year). CapturePilot is $89/month flat regardless of team size ($854/year) with a 30-day free trial on Pro and a free tier for eligibility checking. You save on both the direct cost and the second tool you no longer need for opportunity discovery and AI drafting.",
       },
     },
     {

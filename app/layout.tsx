@@ -95,7 +95,7 @@ const softwareJsonLd = {
     "@type": "AggregateOffer",
     priceCurrency: "USD",
     lowPrice: "0",
-    highPrice: "199",
+    highPrice: "89",
     offerCount: "3",
     offers: [
       {
@@ -108,7 +108,7 @@ const softwareJsonLd = {
       {
         "@type": "Offer",
         name: "Pro",
-        price: "199",
+        price: "89",
         priceCurrency: "USD",
         priceValidUntil: "2026-12-31",
         description: "Unlimited matches, AI proposals, market intelligence, full dashboard",

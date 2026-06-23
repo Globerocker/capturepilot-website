@@ -62,7 +62,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "Voice-to-Document", cpStatus: "yes", cpLabel: "Record & generate", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Free Tier", cpStatus: "yes", cpLabel: "Yes", otherStatus: "no", otherLabel: "No" },
   { feature: "30-Day Free Trial", cpStatus: "yes", cpLabel: "Yes", otherStatus: "no", otherLabel: "No" },
-  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$199/mo flat", otherStatus: "no", otherLabel: "$6K-$12K/yr per seat" },
+  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$89/mo flat", otherStatus: "no", otherLabel: "$6K-$12K/yr per seat" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -150,11 +150,11 @@ export default function VsBGOV() {
       <title>CapturePilot vs BGOV (Bloomberg Government) — Compare Features & Pricing | CapturePilot</title>
       <meta
         name="description"
-        content="Compare CapturePilot vs Bloomberg Government. BGOV costs $6K-$12K/yr and is built for lobbyists. CapturePilot is built for contractors who want to win contracts at $199/mo."
+        content="Compare CapturePilot vs Bloomberg Government. BGOV costs $6K-$12K/yr and is built for lobbyists. CapturePilot is built for contractors who want to win contracts at $89/mo."
       />
       <meta name="keywords" content="BGOV alternative, Bloomberg Government vs CapturePilot, government contract software, GovCon tools, federal contracting platform, BGOV pricing" />
       <meta property="og:title" content="CapturePilot vs BGOV — Intelligence Without the Enterprise Price Tag" />
-      <meta property="og:description" content="BGOV costs $6K-$12K/yr for legislative tracking. CapturePilot gives you AI capture tools at $199/mo. Free tier available." />
+      <meta property="og:description" content="BGOV costs $6K-$12K/yr for legislative tracking. CapturePilot gives you AI capture tools at $89/mo. Free tier available." />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://www.capturepilot.com/vs/bgov" />
 
@@ -292,7 +292,7 @@ export default function VsBGOV() {
 
           <div className="relative max-w-4xl mx-auto px-6">
             <h2 className="text-3xl sm:text-4xl font-black text-center mb-12">
-              Pricing: 95% Less. 10x More <span className="text-emerald-400">Useful</span>.
+              Pricing: 90% Less. 10x More <span className="text-emerald-400">Useful</span>.
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -300,8 +300,8 @@ export default function VsBGOV() {
               <div className="bg-gradient-to-br from-emerald-950 to-emerald-900 rounded-2xl p-8 border-2 border-emerald-500 relative shadow-lg shadow-emerald-500/20">
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-xs font-bold px-4 py-1 rounded-full">Recommended</div>
                 <p className="text-sm font-bold text-emerald-400 uppercase tracking-widest mb-2">CapturePilot Pro</p>
-                <p className="text-5xl font-black mb-1">$199<span className="text-lg font-medium text-stone-400">/mo</span></p>
-                <p className="text-sm text-stone-400 mb-6">$2,388/year &middot; 30-day free trial</p>
+                <p className="text-5xl font-black mb-1">$89<span className="text-lg font-medium text-stone-400">/mo</span></p>
+                <p className="text-sm text-stone-400 mb-6">$854/year on annual billing &middot; 30-day free trial</p>
                 <ul className="space-y-3 mb-8">
                   {[
                     "Unlimited AI opportunity matching",
@@ -390,7 +390,7 @@ export default function VsBGOV() {
                     "Need proposal drafting and capture tools",
                     "Want to track competitors and incumbents",
                     "Need set-aside matching (SDVOSB, WOSB, 8(a), HUBZone)",
-                    "Want to pay $199/mo instead of $12,000/yr",
+                    "Want to pay $89/mo instead of $12,000/yr",
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-emerald-800">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />{item}

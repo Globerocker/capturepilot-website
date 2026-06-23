@@ -40,7 +40,7 @@ export default function SamGovAlternativePage() {
               ["Drafting a proposal", "Open Word, start from scratch", "AI draft based on the RFP"],
               ["Knowing who held it last", "Hidden in the award history", "On the opportunity page"],
               ["Capability statement", "Build it somewhere else", "Drafted from your website"],
-              ["What it costs you", "Free, but eats your week", "$199/month, and you get the week back"],
+              ["What it costs you", "Free, but eats your week", "$89/month, and you get the week back"],
             ].map((row, i) => (
               <div key={i} className={`grid grid-cols-3 border-b border-stone-100 ${i % 2 ? "bg-stone-50/50" : ""}`}>
                 <div className="p-4 text-sm text-stone-700">{row[0]}</div>
@@ -61,7 +61,7 @@ export default function SamGovAlternativePage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-black mb-6">"Free" isn't really free</h2>
           <p className="text-lg text-stone-400 mb-10">
-            If you spend ten hours a week searching SAM.gov and your time is worth $75 an hour, that's about <span className="text-emerald-400 font-bold">$3,000 a month</span> in opportunity cost. Pro is $199 and you mostly get the week back.
+            If you spend ten hours a week searching SAM.gov and your time is worth $75 an hour, that's about <span className="text-emerald-400 font-bold">$3,000 a month</span> in opportunity cost. Pro is $89 and you mostly get the week back.
           </p>
           <div className="grid sm:grid-cols-3 gap-4">
             {[

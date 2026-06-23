@@ -70,7 +70,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "Voice-to-Document", cpStatus: "yes", cpLabel: "Record & generate", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Compliance Matrix Generation", cpStatus: "partial", cpLabel: "Coming soon", otherStatus: "yes", otherLabel: "Automatic" },
   { feature: "Free Tier", cpStatus: "yes", cpLabel: "Yes", otherStatus: "no", otherLabel: "No" },
-  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$199/mo flat", otherStatus: "no", otherLabel: "$500+/mo per seat" },
+  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$89/mo flat", otherStatus: "no", otherLabel: "$500+/mo per seat" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -80,9 +80,9 @@ const COMPARISON_ROWS: ComparisonRow[] = [
 const WHY_SWITCH_CARDS = [
   {
     icon: DollarSign,
-    title: "60% Lower Cost",
+    title: "Up to 85% Lower Cost",
     description:
-      "GovDash charges $500+ per month per seat with enterprise pricing. CapturePilot is $199/month flat with full team access. For a 3-person team, that is $199/month vs $1,500+/month.",
+      "GovDash charges $500+ per month per seat with enterprise pricing. CapturePilot is $89/month flat with full team access. For a 3-person team, that is $89/month vs $1,500+/month.",
   },
   {
     icon: Layers,
@@ -162,7 +162,7 @@ export default function VsGovDashPage() {
 
   if (!mounted) return null;
 
-  const cpYearly = 199 * 12;
+  const cpYearly = 854;
   const gdMonthly = 500;
   const gdYearly = gdMonthly * 12;
   const savings = gdYearly - cpYearly;
@@ -230,7 +230,7 @@ export default function VsGovDashPage() {
 
             <p className="text-lg sm:text-xl text-stone-500 leading-relaxed max-w-2xl mx-auto animate-fade-in-up animate-delay-200">
               GovDash builds great proposal tools for large teams. CapturePilot
-              gives small businesses the full capture pipeline at 60% lower cost.
+              gives small businesses the full capture pipeline at a fraction of the cost.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animate-delay-300">
@@ -426,10 +426,10 @@ export default function VsGovDashPage() {
                 <div className="mb-6">
                   <p className="text-sm font-medium text-emerald-400 mb-1">Monthly, cancel anytime</p>
                   <p className="text-4xl font-extrabold tracking-tight">
-                    $199<span className="text-lg font-medium text-stone-400">/mo</span>
+                    $89<span className="text-lg font-medium text-stone-400">/mo</span>
                   </p>
                   <p className="text-sm text-emerald-400 font-medium mt-1">
-                    = ${cpYearly.toLocaleString()}/year
+                    = ${cpYearly.toLocaleString()}/year on annual billing
                   </p>
                 </div>
                 <div className="space-y-3 mb-8">
@@ -546,7 +546,7 @@ export default function VsGovDashPage() {
             </h2>
             <p className="text-stone-400 text-lg mb-8 max-w-xl mx-auto">
               Enterprise proposal tools at enterprise prices are not the only
-              option. Get the full capture pipeline for $199/month.
+              option. Get the full capture pipeline for $89/month.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "How It Works — Self-Service or Done-For-You",
-  description: "Choose your path: use CapturePilot yourself ($199/mo) or let our veteran team handle everything. See our step-by-step process.",
+  description: "Choose your path: use CapturePilot yourself ($89/mo) or let our veteran team handle everything. See our step-by-step process.",
   keywords: "how CapturePilot works, GovCon process, government contract help, done-for-you GovCon, self-service government contracts, CapturePilot onboarding",
   alternates: { canonical: "https://www.capturepilot.com/process" },
   openGraph: {
     title: "How It Works — Self-Service or Done-For-You",
-    description: "Choose your path: use CapturePilot yourself ($199/mo) or let our veteran team handle everything. See our step-by-step process.",
+    description: "Choose your path: use CapturePilot yourself ($89/mo) or let our veteran team handle everything. See our step-by-step process.",
     url: "https://www.capturepilot.com/process",
   },
 };
@@ -103,7 +103,7 @@ const faqJsonLd = {
       name: "Can I switch from self-service to consulting later?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Many of our consulting clients started on the self-service platform at $199/month and upgraded when they wanted hands-on support. Your data, matches, pipeline history, capability statements, and proposal drafts all carry over seamlessly. The consulting tier adds a dedicated capture manager, proposal writing support, and monthly strategy calls.",
+        text: "Yes. Many of our consulting clients started on the self-service platform at $89/month and upgraded when they wanted hands-on support. Your data, matches, pipeline history, capability statements, and proposal drafts all carry over seamlessly. The consulting tier adds a dedicated capture manager, proposal writing support, and monthly strategy calls.",
       },
     },
     {

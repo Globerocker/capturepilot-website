@@ -68,7 +68,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "Voice-to-Document", cpStatus: "yes", cpLabel: "Record & generate", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Free Tier", cpStatus: "yes", cpLabel: "Yes", otherStatus: "yes", otherLabel: "Limited free plan" },
   { feature: "30-Day Free Trial", cpStatus: "yes", cpLabel: "Yes", otherStatus: "no", otherLabel: "No" },
-  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$199/mo flat", otherStatus: "no", otherLabel: "Starting at $50/mo" },
+  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$89/mo flat", otherStatus: "no", otherLabel: "Starting at $50/mo" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -520,7 +520,7 @@ export default function VsGovTribePage() {
                 </ul>
                 <div className="mt-6 pt-6 border-t border-stone-100">
                   <p className="text-sm text-stone-500">
-                    <span className="font-semibold text-stone-700">Starting at $199/mo</span> —
+                    <span className="font-semibold text-stone-700">$89/mo flat</span> —
                     Everything you need to win, not just search.
                   </p>
                 </div>

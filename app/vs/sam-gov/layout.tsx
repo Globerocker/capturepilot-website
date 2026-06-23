@@ -72,7 +72,7 @@ const faqJsonLd = {
       name: "Can I use CapturePilot for free?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. The Free plan includes unlimited Quick Company Checks, a preview of your top 5 matched opportunities, and NAICS identification — so you can test match quality before upgrading to Pro at $199/month.",
+        text: "Yes. The Free plan includes unlimited Quick Company Checks, a preview of your top 5 matched opportunities, and NAICS identification — so you can test match quality before upgrading to Pro at $89/month.",
       },
     },
     {

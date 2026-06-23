@@ -56,7 +56,7 @@ const faqJsonLd = {
       name: "Is GovTribe or CapturePilot better for small businesses?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "CapturePilot. GovTribe is fine if you already know what you are looking for and only need a better search UX than SAM.gov. Small businesses typically need more — they need AI to qualify opportunities for them (NAICS match, set-aside eligibility, value fit), draft proposals, and build the capability statement that opens the door. GovTribe does none of that. CapturePilot does all of it at $199/mo flat with a free tier.",
+        text: "CapturePilot. GovTribe is fine if you already know what you are looking for and only need a better search UX than SAM.gov. Small businesses typically need more — they need AI to qualify opportunities for them (NAICS match, set-aside eligibility, value fit), draft proposals, and build the capability statement that opens the door. GovTribe does none of that. CapturePilot does all of it at $89/mo flat with a free tier.",
       },
     },
     {
@@ -64,7 +64,7 @@ const faqJsonLd = {
       name: "What is the pricing difference between GovTribe and CapturePilot?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "GovTribe starts around $50/month per seat for individual plans and scales up from there. CapturePilot is $199/month flat regardless of team size, with annual billing 20% off ($2,388/year) and a free tier. If you only need search, GovTribe is cheaper. If you need search plus AI proposals, capability statements, scoring, and pipeline, CapturePilot is cheaper once you factor in the 3–4 tools GovTribe does not replace.",
+        text: "GovTribe starts around $50/month per seat for individual plans and scales up from there. CapturePilot is $89/month flat regardless of team size, with annual billing 20% off ($854/year) and a free tier. For a single seat that only needs search, GovTribe is cheaper. By two seats CapturePilot's flat price wins on cost alone, and the gap widens with team size. Once you factor in the 3–4 tools GovTribe does not replace (AI proposals, capability statements, scoring, pipeline), CapturePilot is cheaper sooner.",
       },
     },
     {

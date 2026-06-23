@@ -96,7 +96,7 @@ const faqJsonLd = {
       name: "What happens after I see my Quick Checker results?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "You'll see a preview of your top 5 matched federal opportunities scored against your profile. To see the full list of 40,000+ opportunities, access AI proposal writing, build a branded capability statement, or manage a pipeline, start a 30-day free trial of CapturePilot Pro at $199/month — no credit card required until the trial ends. The Quick Checker results also flag any gaps (missing SAM.gov registration, expired certifications, NAICS gaps) so you have a prioritized fix-list.",
+        text: "You'll see a preview of your top 5 matched federal opportunities scored against your profile. To see the full list of 40,000+ opportunities, access AI proposal writing, build a branded capability statement, or manage a pipeline, start a 30-day free trial of CapturePilot Pro at $89/month — no credit card required until the trial ends. The Quick Checker results also flag any gaps (missing SAM.gov registration, expired certifications, NAICS gaps) so you have a prioritized fix-list.",
       },
     },
   ],

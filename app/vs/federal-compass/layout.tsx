@@ -64,7 +64,7 @@ const faqJsonLd = {
       name: "What is the pricing difference between Federal Compass and CapturePilot?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Federal Compass charges roughly $500–$1,500+ per seat per month with an enterprise sales process and typical annual contracts. For a 3-person team that is $18,000–$54,000+/year. CapturePilot is $199/month flat ($2,388/year) regardless of team size, with transparent public pricing, a 30-day Pro trial, and a free tier. Switching typically cuts tooling costs by 85–95% while adding AI tools Federal Compass does not include.",
+        text: "Federal Compass charges roughly $500–$1,500+ per seat per month with an enterprise sales process and typical annual contracts. For a 3-person team that is $18,000–$54,000+/year. CapturePilot is $89/month flat ($854/year) regardless of team size, with transparent public pricing, a 30-day Pro trial, and a free tier. Switching typically cuts tooling costs by 85–95% while adding AI tools Federal Compass does not include.",
       },
     },
     {
@@ -80,7 +80,7 @@ const faqJsonLd = {
       name: "Can I migrate from Federal Compass to CapturePilot?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. CapturePilot ingests SAM.gov opportunities daily and supplements with USASpending.gov award data for competitor and incumbent intelligence — the analytics layer you lose is largely replaced by smart matching, automatic scoring, and daily scored alerts. Onboarding is under 10 minutes: NAICS, set-asides, target states. Start on the free tier to verify match quality, then upgrade to Pro at $199/mo flat.",
+        text: "Yes. CapturePilot ingests SAM.gov opportunities daily and supplements with USASpending.gov award data for competitor and incumbent intelligence — the analytics layer you lose is largely replaced by smart matching, automatic scoring, and daily scored alerts. Onboarding is under 10 minutes: NAICS, set-asides, target states. Start on the free tier to verify match quality, then upgrade to Pro at $89/mo flat.",
       },
     },
     {

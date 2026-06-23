@@ -70,7 +70,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "Voice-to-Document", cpStatus: "yes", cpLabel: "Record & generate", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Recompete Intelligence", cpStatus: "partial", cpLabel: "Via award data", otherStatus: "yes", otherLabel: "Analyst-curated" },
   { feature: "Free Tier", cpStatus: "yes", cpLabel: "Yes", otherStatus: "no", otherLabel: "5-day trial only" },
-  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$199/mo flat", otherStatus: "no", otherLabel: "$2,695-$5,995/yr" },
+  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$89/mo flat", otherStatus: "no", otherLabel: "$2,695-$5,995/yr" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -88,7 +88,7 @@ const WHY_SWITCH_CARDS = [
     icon: DollarSign,
     title: "Lower Cost, More Features",
     description:
-      "EZGovOpps starts at $2,695/year for 1 user and goes up to $5,995 for 6 users. CapturePilot is $2,388/year with full team access and AI tools that EZGovOpps does not offer.",
+      "EZGovOpps starts at $2,695/year for 1 user and goes up to $5,995 for 6 users. CapturePilot is $854/year with full team access and AI tools that EZGovOpps does not offer.",
   },
   {
     icon: Zap,
@@ -162,7 +162,7 @@ export default function VsEZGovOppsPage() {
 
   if (!mounted) return null;
 
-  const cpYearly = 199 * 12;
+  const cpYearly = 854;
   const ezMin = 2695;
   const ezMax = 5995;
 
@@ -425,7 +425,7 @@ export default function VsEZGovOppsPage() {
                 <div className="mb-6">
                   <p className="text-sm font-medium text-emerald-400 mb-1">Monthly, cancel anytime</p>
                   <p className="text-4xl font-extrabold tracking-tight">
-                    $199<span className="text-lg font-medium text-stone-400">/mo</span>
+                    $89<span className="text-lg font-medium text-stone-400">/mo</span>
                   </p>
                   <p className="text-sm text-emerald-400 font-medium mt-1">
                     = ${cpYearly.toLocaleString()}/year
@@ -458,7 +458,7 @@ export default function VsEZGovOppsPage() {
               <div className="inline-flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/30 rounded-full px-6 py-3">
                 <TrendingUp className="w-5 h-5 text-emerald-400" />
                 <span className="text-sm font-bold text-emerald-300">
-                  Same price range, but with AI proposals, capability statements, and more
+                  Lower price, plus AI proposals, capability statements, and more
                 </span>
               </div>
             </div>

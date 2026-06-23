@@ -48,7 +48,7 @@ const faqJsonLd = {
       name: "How does CapturePilot compare to GovWin by Deltek?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "GovWin (Deltek IQ) is the legacy enterprise leader for federal, state, and local procurement intelligence — large database, analyst reports, teaming network, and IDIQ tracking, priced at $8,000–$15,000+ per seat per year. CapturePilot covers federal contracting specifically with AI tools GovWin does not include: proprietary multi-factor smart matching, AI proposal drafting (gpt-4o-mini), a voice-powered capability statement builder, and Quick Checker eligibility. At $199/month flat with a free tier, CapturePilot costs roughly 80–90% less while adding the capture tools GovWin skips.",
+        text: "GovWin (Deltek IQ) is the legacy enterprise leader for federal, state, and local procurement intelligence — large database, analyst reports, teaming network, and IDIQ tracking, priced at $8,000–$15,000+ per seat per year. CapturePilot covers federal contracting specifically with AI tools GovWin does not include: proprietary multi-factor smart matching, AI proposal drafting (gpt-4o-mini), a voice-powered capability statement builder, and Quick Checker eligibility. At $89/month flat with a free tier, CapturePilot costs roughly 90% less while adding the capture tools GovWin skips.",
       },
     },
     {
@@ -56,7 +56,7 @@ const faqJsonLd = {
       name: "Is GovWin or CapturePilot better for small businesses?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "CapturePilot. GovWin is priced and built for large enterprises with 100+ employees, $10M+ revenue, and dedicated capture teams. Its feature set assumes you already have analysts, proposal writers, and compliance staff — GovWin is the research layer on top. Small businesses under $10M typically need the opposite: AI that replaces the missing analyst and proposal writer. CapturePilot was built specifically for SMB GovCon — SDVOSB, WOSB, 8(a), HUBZone — at $199/mo flat with automatic set-aside matching.",
+        text: "CapturePilot. GovWin is priced and built for large enterprises with 100+ employees, $10M+ revenue, and dedicated capture teams. Its feature set assumes you already have analysts, proposal writers, and compliance staff — GovWin is the research layer on top. Small businesses under $10M typically need the opposite: AI that replaces the missing analyst and proposal writer. CapturePilot was built specifically for SMB GovCon — SDVOSB, WOSB, 8(a), HUBZone — at $89/mo flat with automatic set-aside matching.",
       },
     },
     {
@@ -64,7 +64,7 @@ const faqJsonLd = {
       name: "What is the pricing difference between GovWin and CapturePilot?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "GovWin uses per-seat annual licensing at roughly $8,000–$15,000 per seat per year with a mandatory enterprise sales process and no free tier. For a 5-person team that is $40,000–$75,000/year. CapturePilot is $199/month flat ($2,388/year) regardless of team size, with a 30-day Pro trial and a free tier. A 5-person team saves up to $72,600/year by switching, while gaining AI tools GovWin does not include.",
+        text: "GovWin uses per-seat annual licensing at roughly $8,000–$15,000 per seat per year with a mandatory enterprise sales process and no free tier. For a 5-person team that is $40,000–$75,000/year. CapturePilot is $89/month flat ($854/year on annual billing) regardless of team size, with a 30-day Pro trial and a free tier. A 5-person team saves up to $74,000/year by switching, while gaining AI tools GovWin does not include.",
       },
     },
     {

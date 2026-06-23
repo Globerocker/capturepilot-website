@@ -48,7 +48,7 @@ const faqJsonLd = {
       name: "How does CapturePilot compare to Bloomberg Government (BGOV)?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "BGOV is a legislative and policy intelligence terminal built for lobbyists, law firms, and large federal affairs teams — it costs $6,000–$12,000+ per seat per year. CapturePilot is a capture-management platform built for small businesses that want to win contracts: smart matching against NAICS / PSC / set-aside, AI proposal drafting, voice-powered capability statement builder, and a Kanban deal pipeline. At $199/mo flat (no per-seat fees, free tier available), CapturePilot costs roughly 95% less while adding tools BGOV does not offer.",
+        text: "BGOV is a legislative and policy intelligence terminal built for lobbyists, law firms, and large federal affairs teams — it costs $6,000–$12,000+ per seat per year. CapturePilot is a capture-management platform built for small businesses that want to win contracts: smart matching against NAICS / PSC / set-aside, AI proposal drafting, voice-powered capability statement builder, and a Kanban deal pipeline. At $89/mo flat (no per-seat fees, free tier available), CapturePilot costs roughly 90% less while adding tools BGOV does not offer.",
       },
     },
     {
@@ -64,7 +64,7 @@ const faqJsonLd = {
       name: "What is the pricing difference between BGOV and CapturePilot?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "BGOV uses per-seat annual licensing at roughly $6,000–$12,000 per seat per year with an enterprise sales process. For a 5-person team that is $30,000–$60,000 annually. CapturePilot is $199/month flat ($2,388/year) with no per-seat fees and a free tier. Annual billing is 20% off. A small team using CapturePilot pays roughly 95% less than the same team on BGOV and gets AI proposal drafting, capability statements, and pipeline tools that BGOV does not include.",
+        text: "BGOV uses per-seat annual licensing at roughly $6,000–$12,000 per seat per year with an enterprise sales process. For a 5-person team that is $30,000–$60,000 annually. CapturePilot is $89/month flat with no per-seat fees and a free tier; billed yearly it is $854 (20% off). A small team using CapturePilot pays roughly 95% less than the same team on BGOV and gets AI proposal drafting, capability statements, and pipeline tools that BGOV does not include.",
       },
     },
     {

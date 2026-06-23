@@ -70,7 +70,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "Voice-to-Document", cpStatus: "yes", cpLabel: "Record & generate", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Free Tier", cpStatus: "yes", cpLabel: "Yes", otherStatus: "no", otherLabel: "No" },
   { feature: "AI Form Fill", cpStatus: "no", cpLabel: "Not yet", otherStatus: "yes", otherLabel: "Available" },
-  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$199/mo flat", otherStatus: "partial", otherLabel: "Custom pricing" },
+  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$89/mo flat", otherStatus: "partial", otherLabel: "Custom pricing" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -422,10 +422,10 @@ export default function VsSweetspotPage() {
                 <div className="mb-6">
                   <p className="text-sm font-medium text-emerald-400 mb-1">Monthly, cancel anytime</p>
                   <p className="text-4xl font-extrabold tracking-tight">
-                    $199<span className="text-lg font-medium text-stone-400">/mo</span>
+                    $89<span className="text-lg font-medium text-stone-400">/mo</span>
                   </p>
                   <p className="text-sm text-emerald-400 font-medium mt-1">
-                    = $2,388/year
+                    = $854/year
                   </p>
                 </div>
                 <div className="space-y-3 mb-8">
@@ -444,7 +444,7 @@ export default function VsSweetspotPage() {
                 </div>
                 <div className="bg-emerald-500 rounded-xl p-4 text-center">
                   <p className="text-xs text-emerald-100 mb-1">Transparent pricing</p>
-                  <p className="text-2xl font-extrabold text-white">$199/mo flat</p>
+                  <p className="text-2xl font-extrabold text-white">$89/mo flat</p>
                 </div>
               </div>
             </div>

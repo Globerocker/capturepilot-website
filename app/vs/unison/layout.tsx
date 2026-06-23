@@ -64,7 +64,7 @@ const faqJsonLd = {
       name: "What is the pricing difference between Unison and CapturePilot?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Unison offers a limited freemium tier and premium placement tiers starting around $200–$600/month depending on visibility features, with advisory services billed separately. CapturePilot is $199/month flat regardless of team size ($2,388/year annual, 20% off), with a free tier for eligibility checking. CapturePilot's price buys capture tools, not marketplace placement — AI proposal drafting, capability statements, set-aside matching, pipeline tracking.",
+        text: "Unison offers a limited freemium tier and premium placement tiers starting around $200–$600/month depending on visibility features, with advisory services billed separately. CapturePilot is $89/month flat regardless of team size ($854/year annual, 20% off), with a free tier for eligibility checking. CapturePilot's price buys capture tools, not marketplace placement — AI proposal drafting, capability statements, set-aside matching, pipeline tracking.",
       },
     },
     {

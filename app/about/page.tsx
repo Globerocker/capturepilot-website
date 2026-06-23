@@ -349,7 +349,7 @@ export default function AboutPage() {
               </h3>
               <ul className="space-y-3">
                 {[
-                  "Free tier forever — Pro at $199/month",
+                  "Free tier forever — Pro at $89/month",
                   "Built for 1-50 person companies",
                   "AI does the capture management for you",
                   "Enter your website, get matches in 60 seconds",

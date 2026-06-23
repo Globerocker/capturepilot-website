@@ -67,7 +67,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "Voice-to-Document", cpStatus: "yes", cpLabel: "Record & generate", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Free Tier", cpStatus: "yes", cpLabel: "Yes", otherStatus: "no", otherLabel: "No" },
   { feature: "30-Day Free Trial", cpStatus: "yes", cpLabel: "Yes", otherStatus: "no", otherLabel: "No" },
-  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$199/mo flat", otherStatus: "no", otherLabel: "$8K-$15K/yr per seat" },
+  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$89/mo flat", otherStatus: "no", otherLabel: "$8K-$15K/yr per seat" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -89,9 +89,9 @@ const WHY_SWITCH_CARDS = [
   },
   {
     icon: DollarSign,
-    title: "70% Lower Cost",
+    title: "Up to 90% Lower Cost",
     description:
-      "At $199/month ($2,388/year), CapturePilot costs a fraction of GovWin's $8,000-$15,000+ annual seat licenses. For a 5-person team, that is $12,000/year vs $40,000-$75,000.",
+      "At $89/month ($854/year on annual billing), CapturePilot costs a fraction of GovWin's $8,000-$15,000+ annual seat licenses. Pricing is flat, so a 5-person team still pays $854/year vs $40,000-$75,000.",
   },
   {
     icon: Rocket,
@@ -158,7 +158,7 @@ export default function VsGovWinPage() {
 
   if (!mounted) return null;
 
-  const cpYearly = 199 * 12;
+  const cpYearly = 854;
   const gwMin = 8000;
   const gwMax = 15000;
   const savingsMin = gwMin - cpYearly;
@@ -413,10 +413,10 @@ export default function VsGovWinPage() {
                 <div className="mb-6">
                   <p className="text-sm font-medium text-emerald-400 mb-1">Monthly, cancel anytime</p>
                   <p className="text-4xl font-extrabold tracking-tight">
-                    $199<span className="text-lg font-medium text-stone-400">/mo</span>
+                    $89<span className="text-lg font-medium text-stone-400">/mo</span>
                   </p>
                   <p className="text-sm text-emerald-400 font-medium mt-1">
-                    = ${cpYearly.toLocaleString()}/year
+                    = ${cpYearly.toLocaleString()}/year on annual billing
                   </p>
                 </div>
                 <div className="space-y-3 mb-8">

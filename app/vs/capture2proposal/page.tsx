@@ -104,7 +104,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "Free Tier Available", capturepilot: "Yes", cpStatus: "yes", competitor: "No", compStatus: "no" },
   { feature: "30-Day Free Trial (Pro)", capturepilot: "Yes", cpStatus: "yes", competitor: "Demo only", compStatus: "no" },
   { feature: "Shipley Methodology", capturepilot: "Not needed (AI drafts)", cpStatus: "text", competitor: "Built-in process", compStatus: "yes" },
-  { feature: "Starting Price", capturepilot: "$199/mo flat", cpStatus: "text", competitor: "$50-150/user/mo", compStatus: "text" },
+  { feature: "Starting Price", capturepilot: "$89/mo flat", cpStatus: "text", competitor: "$50-150/user/mo", compStatus: "text" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -208,8 +208,8 @@ export default function VsCapture2ProposalPage() {
 
   if (!mounted) return null;
 
-  const cpMonthly = 199;
-  const cpYearly = cpMonthly * 12;
+  const cpMonthly = 89;
+  const cpYearly = 854;
   const c2pMinSeat = 50;
   const c2pMaxSeat = 150;
   const teamSize = 5;
@@ -226,11 +226,11 @@ export default function VsCapture2ProposalPage() {
       <title>CapturePilot vs Capture2Proposal — Compare Features & Pricing | CapturePilot</title>
       <meta
         name="description"
-        content="Compare CapturePilot vs Capture2Proposal. AI drafts your proposals -- not just manages them. Full pipeline from opportunity discovery to submission for $199/mo flat."
+        content="Compare CapturePilot vs Capture2Proposal. AI drafts your proposals -- not just manages them. Full pipeline from opportunity discovery to submission for $89/mo flat."
       />
       <meta name="keywords" content="Capture2Proposal alternative, Capture2Proposal vs CapturePilot, proposal management software, GovCon proposal tools, AI proposal writer, Shipley methodology alternative" />
       <meta property="og:title" content="CapturePilot vs Capture2Proposal — AI Drafts Your Proposal, Not Just Manages It" />
-      <meta property="og:description" content="Full pipeline from discovery to submission. AI-powered proposal drafting, smart matching, and capability statements. $199/mo flat vs per-seat pricing." />
+      <meta property="og:description" content="Full pipeline from discovery to submission. AI-powered proposal drafting, smart matching, and capability statements. $89/mo flat vs per-seat pricing." />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://www.capturepilot.com/vs/capture2proposal" />
 
@@ -494,7 +494,7 @@ export default function VsCapture2ProposalPage() {
                 <div className="mb-6">
                   <p className="text-sm font-medium text-emerald-600 mb-1">Flat rate, cancel anytime</p>
                   <p className="text-4xl font-extrabold text-stone-800 tracking-tight">
-                    $199<span className="text-lg font-medium text-stone-400">/mo</span>
+                    $89<span className="text-lg font-medium text-stone-400">/mo</span>
                   </p>
                   <p className="text-sm text-emerald-600 font-medium mt-1">
                     = ${cpYearly.toLocaleString()}/year -- AI drafting included

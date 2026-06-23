@@ -151,7 +151,7 @@ const faqs = [
   },
   {
     q: "How is this different from GovWin or BGOV?",
-    a: "Those platforms cost $10,000-$50,000/year and are built for Fortune 500 defense contractors. CapturePilot is built for small businesses at $199/month, with AI that does the heavy lifting so you don't need a dedicated capture team.",
+    a: "Those platforms cost $10,000-$50,000/year and are built for Fortune 500 defense contractors. CapturePilot is built for small businesses at $89/month, with AI that does the heavy lifting so you don't need a dedicated capture team.",
   },
 ];
 
@@ -375,7 +375,7 @@ export default function ProcessPage() {
                 </div>
                 <h3 className="text-2xl font-black mb-2">Self-Service Pro</h3>
                 <p className="text-emerald-600 font-bold text-sm mb-4">
-                  $199/month &middot; 30-day free trial
+                  $89/month &middot; 30-day free trial
                 </p>
                 <p className="text-stone-500 leading-relaxed mb-6">
                   Use the full platform yourself. Daily opportunity matching, AI

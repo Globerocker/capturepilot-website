@@ -41,7 +41,7 @@ const aboutPageJsonLd = {
       name: "Andre Schuler",
     },
     description:
-      "Veteran-owned federal capture intelligence software for small businesses. Replaces $10K–$50K/year legacy tools like GovWin and BGOV with AI-powered matching, proposal writing, and market intelligence at $199/month.",
+      "Veteran-owned federal capture intelligence software for small businesses. Replaces $10K–$50K/year legacy tools like GovWin and BGOV with AI-powered matching, proposal writing, and market intelligence at $89/month.",
     sameAs: [
       "https://www.capturepilot.com",
     ],
@@ -89,7 +89,7 @@ const faqJsonLd = {
       name: "How is CapturePilot different from GovWin or BGOV?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "GovWin IQ and Bloomberg Government are enterprise tools priced at $10,000–$50,000/year and built for Fortune 500 defense contractors with dedicated capture teams. CapturePilot is priced at $199/month for small businesses. The AI handles the heavy lifting — opportunity matching, proposal drafting, competitor analysis, market research — that legacy tools require a full-time capture manager to do manually.",
+        text: "GovWin IQ and Bloomberg Government are enterprise tools priced at $10,000–$50,000/year and built for Fortune 500 defense contractors with dedicated capture teams. CapturePilot is priced at $89/month for small businesses. The AI handles the heavy lifting — opportunity matching, proposal drafting, competitor analysis, market research — that legacy tools require a full-time capture manager to do manually.",
       },
     },
   ],

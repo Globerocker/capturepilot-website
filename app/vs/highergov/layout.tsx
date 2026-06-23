@@ -56,7 +56,7 @@ const faqJsonLd = {
       name: "Is HigherGov or CapturePilot better for small businesses?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "CapturePilot for federal-focused SMBs. HigherGov is a good fit if you bid across federal, state, and local markets and need a single search interface. But if your revenue comes from federal contracts — or you are a SDVOSB / WOSB / 8(a) / HUBZone firm working federal set-asides — CapturePilot's automatic set-aside matching, scored alerts, and AI proposal drafting save more hours per week than HigherGov's broader coverage. Same price range ($99–$199/mo), but CapturePilot includes AI tools HigherGov skips.",
+        text: "CapturePilot for federal-focused SMBs. HigherGov is a good fit if you bid across federal, state, and local markets and need a single search interface. But if your revenue comes from federal contracts — or you are a SDVOSB / WOSB / 8(a) / HUBZone firm working federal set-asides — CapturePilot's automatic set-aside matching, scored alerts, and AI proposal drafting save more hours per week than HigherGov's broader coverage. CapturePilot is $89/mo flat, below HigherGov's $99–$199/mo per-seat range, and includes AI tools HigherGov skips.",
       },
     },
     {
@@ -64,7 +64,7 @@ const faqJsonLd = {
       name: "What is the pricing difference between HigherGov and CapturePilot?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "HigherGov is roughly $99–$199 per seat per month depending on plan. CapturePilot is $199/month flat regardless of team size, with annual billing 20% off ($2,388/year) and a free tier. At 1 seat, HigherGov is cheaper on the entry tier. At 3+ seats, CapturePilot becomes cheaper because HigherGov is per-seat. At every seat count, CapturePilot includes AI proposal drafting, capability statement builder, and Quick Checker that HigherGov does not offer.",
+        text: "HigherGov is roughly $99–$199 per seat per month depending on plan. CapturePilot is $89/month flat regardless of team size, with annual billing 20% off ($854/year) and a free tier. CapturePilot costs less than HigherGov from the first seat, since even HigherGov's entry tier starts above $89, and the gap widens with every seat you add because HigherGov is per-seat. At every seat count, CapturePilot also includes AI proposal drafting, capability statement builder, and Quick Checker that HigherGov does not offer.",
       },
     },
     {

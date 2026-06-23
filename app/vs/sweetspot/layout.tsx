@@ -59,7 +59,7 @@ const faqJsonLd = {
       name: "Is Sweetspot or CapturePilot better for small businesses?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "CapturePilot, particularly for veteran-owned, women-owned, and small businesses entering federal contracting. Sweetspot targets mid-market AI-first firms comfortable with demo-driven custom pricing. CapturePilot is built explicitly for SMB GovCon — SDVOSB, WOSB, 8(a), HUBZone — with automatic set-aside matching, Quick Checker eligibility, a free tier, and transparent $199/mo flat pricing. No sales call required to see pricing or start using the product.",
+        text: "CapturePilot, particularly for veteran-owned, women-owned, and small businesses entering federal contracting. Sweetspot targets mid-market AI-first firms comfortable with demo-driven custom pricing. CapturePilot is built explicitly for SMB GovCon — SDVOSB, WOSB, 8(a), HUBZone — with automatic set-aside matching, Quick Checker eligibility, a free tier, and transparent $89/mo flat pricing. No sales call required to see pricing or start using the product.",
       },
     },
     {
@@ -67,7 +67,7 @@ const faqJsonLd = {
       name: "What is the pricing difference between Sweetspot and CapturePilot?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Sweetspot uses custom pricing that requires a demo call — exact numbers are not published publicly. CapturePilot is transparent: $199/month flat ($2,388/year with 20% off annual), with a 30-day Pro trial and a free tier for eligibility checking. If you prefer to evaluate and buy without a sales conversation, CapturePilot wins on process. If you want bespoke enterprise terms, Sweetspot fits that model better.",
+        text: "Sweetspot uses custom pricing that requires a demo call — exact numbers are not published publicly. CapturePilot is transparent: $89/month flat ($854/year with 20% off annual), with a 30-day Pro trial and a free tier for eligibility checking. If you prefer to evaluate and buy without a sales conversation, CapturePilot wins on process. If you want bespoke enterprise terms, Sweetspot fits that model better.",
       },
     },
     {

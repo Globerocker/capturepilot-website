@@ -1000,7 +1000,7 @@ export default function Homepage() {
                       { feature: "Voice-to-Document", cp: true, gw: false, gt: false, sam: false },
                       { feature: "Built for Small Business", cp: true, gw: false, gt: true, sam: true },
                       { feature: "Free Tier Available", cp: true, gw: false, gt: true, sam: true },
-                      { feature: "Starting Price", cp: "$199/mo", gw: "$12K+/yr", gt: "$899/yr", sam: "Free" },
+                      { feature: "Starting Price", cp: "$89/mo", gw: "$12K+/yr", gt: "$899/yr", sam: "Free" },
                     ].map((row, i) => (
                       <tr key={i} className="border-b border-stone-800/50 hover:bg-stone-800/30 transition-colors">
                         <td className="p-5 text-stone-300 font-medium">{row.feature}</td>
@@ -1187,7 +1187,7 @@ export default function Homepage() {
               <div className="bg-black text-white rounded-2xl p-8 border-2 border-emerald-500 relative hover-lift h-full flex flex-col shadow-xl shadow-emerald-500/10">
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-xs font-bold px-5 py-1 rounded-full">Most Popular</div>
                 <p className="text-sm font-bold text-emerald-400 uppercase tracking-widest mb-2">Pro</p>
-                <p className="text-5xl font-black mb-1">$199</p>
+                <p className="text-5xl font-black mb-1">$89</p>
                 <p className="text-sm text-stone-400 mb-8">per month, billed monthly</p>
                 <ul className="space-y-3 mb-8 flex-1">
                   {[

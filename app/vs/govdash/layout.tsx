@@ -59,7 +59,7 @@ const faqJsonLd = {
       name: "Is GovDash or CapturePilot better for small businesses?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "CapturePilot. GovDash is priced and positioned for firms with $10M+ revenue submitting 20+ proposals per year. Small businesses under $10M and solo founders rarely hit that volume and cannot justify per-seat enterprise pricing. CapturePilot was built for teams of 1–20: $199/mo flat with full team access, a free tier for eligibility checking, automatic set-aside matching for SDVOSB / WOSB / 8(a) / HUBZone, and an optional consulting tier for hands-off capture.",
+        text: "CapturePilot. GovDash is priced and positioned for firms with $10M+ revenue submitting 20+ proposals per year. Small businesses under $10M and solo founders rarely hit that volume and cannot justify per-seat enterprise pricing. CapturePilot was built for teams of 1–20: $89/mo flat with full team access, a free tier for eligibility checking, automatic set-aside matching for SDVOSB / WOSB / 8(a) / HUBZone, and an optional consulting tier for hands-off capture.",
       },
     },
     {
@@ -67,7 +67,7 @@ const faqJsonLd = {
       name: "What is the pricing difference between GovDash and CapturePilot?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "GovDash starts at roughly $500+ per seat per month with an enterprise sales process, typical annual commitments, and no free tier. For a 3-person team that is $18,000+/year. CapturePilot is $199/month flat ($2,388/year) regardless of team size, with a 30-day Pro trial and a free tier. A 3-person team saves roughly $15,600+/year by switching, while gaining features GovDash does not include — Quick Checker, capability statement builder, partner search, consulting tier.",
+        text: "GovDash starts at roughly $500+ per seat per month with an enterprise sales process, typical annual commitments, and no free tier. For a 3-person team that is $18,000+/year. CapturePilot is $89/month flat ($854/year on annual billing) regardless of team size, with a 30-day Pro trial and a free tier. A 3-person team saves roughly $17,000+/year by switching, while gaining features GovDash does not include — Quick Checker, capability statement builder, partner search, consulting tier.",
       },
     },
     {

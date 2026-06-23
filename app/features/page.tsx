@@ -247,7 +247,7 @@ export default function FeaturesPage() {
 
           <p className="text-xl md:text-2xl text-stone-400 mb-10 max-w-3xl mx-auto animate-fade-in-up animate-delay-200 leading-relaxed">
             16 powerful features. One platform.{" "}
-            <span className="text-white font-semibold">$199/mo.</span>
+            <span className="text-white font-semibold">$89/mo.</span>
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animate-delay-300">
@@ -763,7 +763,7 @@ export default function FeaturesPage() {
 
           <div className="text-center mt-8">
             <p className="text-stone-500 text-sm">
-              <span className="text-white font-semibold">Pro: $199/mo</span> &middot;{" "}
+              <span className="text-white font-semibold">Pro: $89/mo</span> &middot;{" "}
               <span className="text-white font-semibold">Consulting: Custom pricing</span> &middot;{" "}
               <Link href="/pricing" className="text-emerald-400 hover:underline">
                 View full pricing details

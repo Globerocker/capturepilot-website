@@ -67,7 +67,7 @@ const faqJsonLd = {
       name: "What is the pricing difference between EZGovOpps and CapturePilot?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "EZGovOpps ranges from roughly $2,695/year for a single user up to $5,995/year for a 6-user team, billed annually. CapturePilot is $199/month flat ($2,388/year) regardless of team size, with a 30-day free trial on Pro and a free tier for eligibility checking. CapturePilot's annual cost fits inside EZGovOpps' single-user tier and scales to unlimited users at the same flat rate.",
+        text: "EZGovOpps ranges from roughly $2,695/year for a single user up to $5,995/year for a 6-user team, billed annually. CapturePilot is $89/month flat ($854/year) regardless of team size, with a 30-day free trial on Pro and a free tier for eligibility checking. CapturePilot's annual cost is well under EZGovOpps' single-user tier and scales to unlimited users at the same flat rate.",
       },
     },
     {

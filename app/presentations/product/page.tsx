@@ -42,7 +42,7 @@ import {
   ArrowDown,
 } from "lucide-react";
 
-const TOTAL_SLIDES = 19;
+const TOTAL_SLIDES = 20;
 
 /* ------------------------------------------------------------------ */
 /*  Intersection Observer hook                                         */
@@ -243,7 +243,7 @@ export default function ProductPresentationPage() {
     return () => obs.disconnect();
   }, []);
 
-  const darkSlides = [1, 3, 5, 6, 9, 13, 15, 16, 19];
+  const darkSlides = [1, 3, 5, 6, 9, 13, 15, 16, 18, 19];
   const isDark = darkSlides.includes(currentSlide);
 
   const fadeUp = (visible: boolean, delay = 0) =>
@@ -1699,7 +1699,7 @@ export default function ProductPresentationPage() {
                     className="p-3 flex items-center justify-center bg-emerald-500/10 border-x border-b border-emerald-500/30 rounded-b-xl"
                     style={{ animation: v16 ? "pulseBorder 3s ease-in-out infinite" : "none" }}
                   >
-                    <span className="text-emerald-400 text-sm font-bold">$199/mo</span>
+                    <span className="text-emerald-400 text-sm font-bold">$89/mo</span>
                   </div>
                   {["$8K+/yr", "$600/yr", "$7K+/yr", "$1K+/yr", "Custom", "$500+/mo", "$2.7K+/yr"].map((price, i) => (
                     <div key={i} className="p-3 flex items-center justify-center">
@@ -1729,10 +1729,10 @@ export default function ProductPresentationPage() {
               </p>
               <h2 style={fadeUp(v17, 100)} className="text-4xl md:text-6xl font-extralight text-stone-900 mb-4 leading-tight">
                 16 features.{" "}
-                <span className="text-emerald-600">$199/mo.</span>
+                <span className="text-emerald-600">$89/mo.</span>
               </h2>
               <div style={fadeUp(v17, 200)} className="flex items-center justify-center gap-3 mt-4">
-                <span className="bg-emerald-100 text-emerald-700 text-sm font-bold px-4 py-1.5 rounded-full">Save 20% with yearly — $159/mo</span>
+                <span className="bg-emerald-100 text-emerald-700 text-sm font-bold px-4 py-1.5 rounded-full">Save 20% with yearly — $71/mo</span>
                 <span className="text-stone-400 text-sm">30-day free trial included</span>
               </div>
             </div>
@@ -1771,7 +1771,92 @@ export default function ProductPresentationPage() {
           </div>
         </section>
 
-        {/* SLIDE 18 removed — pricing merged into slide 17 */}
+        {/* =================================================================
+            SLIDE 18 — PLATFORM MATURITY (dark)
+        ================================================================= */}
+        <section
+          ref={s18}
+          className="slide min-h-screen bg-stone-950 flex items-center justify-center relative overflow-hidden"
+          style={{ scrollSnapAlign: "start" }}
+        >
+          <DarkGridBg />
+
+          <div className="relative z-10 w-full px-16 lg:px-24 max-w-[1500px] mx-auto">
+            <div className="max-w-3xl mb-14">
+              <p style={fadeUp(v18, 0)} className="text-emerald-500 text-sm tracking-[0.3em] uppercase mb-4 font-medium">
+                Enterprise-ready
+              </p>
+              <h2 style={fadeUp(v18, 100)} className="text-4xl md:text-6xl font-extralight text-white mb-5 leading-tight">
+                Built to keep getting smarter{" "}
+                <span className="text-emerald-500">while you sleep.</span>
+              </h2>
+              <p style={fadeUp(v18, 200)} className="text-stone-400 text-lg leading-relaxed font-light">
+                CapturePilot is not a static search screen. It is a continuously running capture
+                system: ingestion, enrichment, scoring, alerts, CRM sync, and admin health checks
+                working together behind the scenes.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+              {[
+                {
+                  icon: Database,
+                  title: "Data enrichment",
+                  body: "SAM, USAspending, HigherGov, SLED, contacts, NAICS, PSC, awards, and contractor intelligence.",
+                  metric: "86 cron routes",
+                  delay: 350,
+                },
+                {
+                  icon: Layers,
+                  title: "Worker queues",
+                  body: "Long-running extraction, OCR, scoring, and portal crawling run through resumable worker lanes.",
+                  metric: "Async by design",
+                  delay: 500,
+                },
+                {
+                  icon: Shield,
+                  title: "Operational guardrails",
+                  body: "Cron auth, RLS hardening, signed storage URLs, health checks, telemetry, and self-healing jobs.",
+                  metric: "Fail-closed",
+                  delay: 650,
+                },
+                {
+                  icon: Handshake,
+                  title: "CRM readiness",
+                  body: "Private HubSpot sync exists today; OAuth marketplace path is mapped for the next distribution phase.",
+                  metric: "HubSpot path",
+                  delay: 800,
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  style={fadeUp(v18, item.delay)}
+                  className="rounded-2xl border border-stone-800 bg-stone-900/70 p-6"
+                >
+                  <div className="w-11 h-11 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-5">
+                    <item.icon className="w-5 h-5 text-emerald-400" />
+                  </div>
+                  <p className="text-emerald-400 text-xs font-bold uppercase tracking-[0.2em] mb-3">{item.metric}</p>
+                  <h3 className="text-white text-xl font-medium mb-3">{item.title}</h3>
+                  <p className="text-stone-500 text-sm leading-relaxed">{item.body}</p>
+                </div>
+              ))}
+            </div>
+
+            <div style={fadeUp(v18, 1050)} className="mt-10 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+              <div>
+                <p className="text-white text-lg font-medium">Current maturity focus</p>
+                <p className="text-stone-400 text-sm mt-1">
+                  Reliability, enrichment coverage, admin diagnostics, HubSpot marketplace readiness, and UI polish.
+                </p>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-emerald-300">
+                <CheckCircle2 className="w-5 h-5" />
+                <span>Audit-driven roadmap active</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* =================================================================
             SLIDE 19 — TRUST (dark)

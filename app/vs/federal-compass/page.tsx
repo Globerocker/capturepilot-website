@@ -99,7 +99,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "Voice-to-Document", capturepilot: "Record, AI writes", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
   { feature: "Free Tier Available", capturepilot: "Yes", cpStatus: "yes", competitor: "No", compStatus: "no" },
   { feature: "30-Day Free Trial (Pro)", capturepilot: "Yes", cpStatus: "yes", competitor: "No", compStatus: "no" },
-  { feature: "Starting Price", capturepilot: "$199/mo flat", cpStatus: "text", competitor: "$500-1,500+/seat/mo", compStatus: "text" },
+  { feature: "Starting Price", capturepilot: "$89/mo flat", cpStatus: "text", competitor: "$500-1,500+/seat/mo", compStatus: "text" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -169,8 +169,8 @@ export default function VsFederalCompassPage() {
 
   if (!mounted) return null;
 
-  const cpMonthly = 199;
-  const cpYearly = cpMonthly * 12;
+  const cpMonthly = 89;
+  const cpYearly = 854;
   const fcMinSeat = 500;
   const fcMaxSeat = 1500;
   const teamSize = 5;
@@ -223,7 +223,7 @@ export default function VsFederalCompassPage() {
 
             <p className="text-lg sm:text-xl text-stone-400 leading-relaxed max-w-2xl mx-auto animate-fade-in-up animate-delay-200">
               Federal Compass charges $500-1,500+ per seat per month for analytics dashboards.
-              CapturePilot gives you the intelligence <em>and</em> the tools to act on it -- for $199/mo flat.
+              CapturePilot gives you the intelligence <em>and</em> the tools to act on it -- for $89/mo flat.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animate-delay-300">
@@ -451,7 +451,7 @@ export default function VsFederalCompassPage() {
                 <div className="mb-6">
                   <p className="text-sm font-medium text-emerald-600 mb-1">Flat rate, cancel anytime</p>
                   <p className="text-4xl font-extrabold text-stone-800 tracking-tight">
-                    $199<span className="text-lg font-medium text-stone-400">/mo</span>
+                    $89<span className="text-lg font-medium text-stone-400">/mo</span>
                   </p>
                   <p className="text-sm text-emerald-600 font-medium mt-1">
                     = ${cpYearly.toLocaleString()}/year total

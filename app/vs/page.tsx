@@ -70,9 +70,9 @@ const vsHubFaqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
-    { "@type": "Question", name: "Which CapturePilot alternative is the best for small businesses?", acceptedAnswer: { "@type": "Answer", text: "For small businesses under $10M revenue, none of the established players were built for you. GovWin ($8K-$15K/yr per seat) and BGOV ($6K-$12K/yr) target enterprises. GovTribe ($50+/mo) is search-only. HigherGov ($99-$199/mo) covers federal + state + local broadly but has no AI proposal or capability statement tools. CapturePilot was purpose-built for SMB GovCon at $199/mo flat with a free tier, AI proposal drafting, Quick Checker eligibility, and set-aside matching for SDVOSB, WOSB, 8(a), and HUBZone." } },
+    { "@type": "Question", name: "Which CapturePilot alternative is the best for small businesses?", acceptedAnswer: { "@type": "Answer", text: "For small businesses under $10M revenue, none of the established players were built for you. GovWin ($8K-$15K/yr per seat) and BGOV ($6K-$12K/yr) target enterprises. GovTribe ($50+/mo) is search-only. HigherGov ($99-$199/mo) covers federal + state + local broadly but has no AI proposal or capability statement tools. CapturePilot was purpose-built for SMB GovCon at $89/mo flat with a free tier, AI proposal drafting, Quick Checker eligibility, and set-aside matching for SDVOSB, WOSB, 8(a), and HUBZone." } },
     { "@type": "Question", name: "Why are there so many government contracting tools?", acceptedAnswer: { "@type": "Answer", text: "GovCon tooling fragmented because different teams have different jobs. BGOV and GovWin grew out of legislative and defense intelligence for lobbyists and large primes. GovTribe and HigherGov are search databases on top of SAM.gov data. Capture2Proposal and Shipley-style tools manage the proposal workflow. Unison runs a teaming marketplace. Sweetspot and GovDash added AI on top of proposal or search workflows. CapturePilot exists because small businesses needed one platform that covers the whole pipeline — find, qualify, draft, submit — not five stitched-together tools." } },
-    { "@type": "Question", name: "What is the cheapest GovCon platform with AI proposal writing?", acceptedAnswer: { "@type": "Answer", text: "As of 2026, CapturePilot at $199/month is the lowest-priced platform that includes AI proposal drafting, with a free tier for eligibility checking and top-5 match preview. GovDash starts at $500+/mo per seat. Sweetspot AI requires a custom-pricing sales call. Capture2Proposal charges $50-$150 per seat per month but manages proposals rather than drafting them with AI. Traditional research tools like GovWin and BGOV charge enterprise prices and do not include AI proposal drafting at all." } },
+    { "@type": "Question", name: "What is the cheapest GovCon platform with AI proposal writing?", acceptedAnswer: { "@type": "Answer", text: "As of 2026, CapturePilot at $89/month is the lowest-priced platform that includes AI proposal drafting, with a free tier for eligibility checking and top-5 match preview. GovDash starts at $500+/mo per seat. Sweetspot AI requires a custom-pricing sales call. Capture2Proposal charges $50-$150 per seat per month but manages proposals rather than drafting them with AI. Traditional research tools like GovWin and BGOV charge enterprise prices and do not include AI proposal drafting at all." } },
     { "@type": "Question", name: "Is SAM.gov enough, or do I need a paid tool?", acceptedAnswer: { "@type": "Answer", text: "SAM.gov is the official federal database and is free, but it is raw data — no matching, no scoring, no proposal help, and weak search filtering. Small businesses typically spend 15–25 hours per week sifting through irrelevant listings. A paid layer makes sense once your time is worth more than the subscription. CapturePilot ingests the same SAM.gov data daily but scores 37K+ opportunities against your NAICS / PSC / set-aside / geography profile and surfaces only matches you can realistically win." } },
     { "@type": "Question", name: "Can I switch from GovWin or BGOV to CapturePilot without losing data?", acceptedAnswer: { "@type": "Answer", text: "Yes. CapturePilot indexes the same SAM.gov contract opportunities and supplements them with USASpending.gov award data, SBIR.gov R&D opportunities, and SAM.gov registered-contractor records (1M+) for partner search. You do not need to export watchlists — CapturePilot's smart matching automatically surfaces the opportunities that fit your profile. Existing pursuits can be recreated in the Kanban pipeline in minutes, and onboarding (NAICS + set-aside + states) takes under 10 minutes." } },
   ],
@@ -112,7 +112,7 @@ const MATRIX_ROWS: MatrixRow[] = [
 ];
 
 const PRICE_LABELS: Record<string, string> = {
-  cp: "$199/mo",
+  cp: "$89/mo",
   govwin: "$8K+/yr",
   govtribe: "$600/yr",
   bgov: "$7K+/yr",
@@ -202,7 +202,7 @@ const WHY_SWITCH = [
     icon: DollarSign,
     title: "Built for SMB Budgets",
     description:
-      "At $199/month with a free tier, CapturePilot costs less than most competitors' entry plans. No enterprise sales calls, no annual lock-in, no per-seat fees.",
+      "At $89/month with a free tier, CapturePilot costs less than most competitors' entry plans. No enterprise sales calls, no annual lock-in, no per-seat fees.",
   },
   {
     icon: Rocket,
@@ -571,7 +571,7 @@ export default function VsOverviewPage() {
               {[
                 { value: "37K+", label: "Opportunities Tracked" },
                 { value: "80K+", label: "Contractors Indexed" },
-                { value: "$199", label: "Per Month, Flat" },
+                { value: "$89", label: "Per Month, Flat" },
                 { value: "Free", label: "Tier Available" },
               ].map((stat, i) => (
                 <div

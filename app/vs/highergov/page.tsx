@@ -64,7 +64,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "Voice-to-Document", cpStatus: "yes", cpLabel: "Record & generate", otherStatus: "no", otherLabel: "Not available" },
   { feature: "Free Tier", cpStatus: "yes", cpLabel: "Yes", otherStatus: "partial", otherLabel: "Very limited" },
   { feature: "30-Day Free Trial", cpStatus: "yes", cpLabel: "Yes", otherStatus: "no", otherLabel: "No" },
-  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$199/mo flat", otherStatus: "no", otherLabel: "$99-$199/mo per seat" },
+  { feature: "Flat Pricing (no per-seat)", cpStatus: "yes", cpLabel: "$89/mo flat", otherStatus: "no", otherLabel: "$99-$199/mo per seat" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -390,10 +390,11 @@ export default function VsHigherGov() {
 
           <div className="relative max-w-4xl mx-auto px-6">
             <h2 className="text-3xl sm:text-4xl font-black text-center mb-4">
-              Similar Price. Far More <span className="gradient-text">Features</span>.
+              Lower Price. Far More <span className="gradient-text">Features</span>.
             </h2>
             <p className="text-lg text-stone-500 text-center mb-12 max-w-2xl mx-auto">
-              At the same price point, CapturePilot gives you AI tools, capture management, and consulting
+              At $89/mo flat, CapturePilot costs less than HigherGov from the first seat, and the gap
+              widens as your team grows. You also get AI tools, capture management, and consulting
               that HigherGov simply does not offer.
             </p>
 
@@ -402,7 +403,7 @@ export default function VsHigherGov() {
               <div className="bg-black text-white rounded-2xl p-8 border-2 border-emerald-500 relative shadow-lg shadow-emerald-100/30">
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-xs font-bold px-4 py-1 rounded-full">More Features</div>
                 <p className="text-sm font-bold text-emerald-400 uppercase tracking-widest mb-2">CapturePilot Pro</p>
-                <p className="text-5xl font-black mb-1">$199<span className="text-lg font-medium text-stone-400">/mo</span></p>
+                <p className="text-5xl font-black mb-1">$89<span className="text-lg font-medium text-stone-400">/mo</span></p>
                 <p className="text-sm text-stone-400 mb-6">30-day free trial &middot; No contract</p>
                 <ul className="space-y-3 mb-8">
                   {[

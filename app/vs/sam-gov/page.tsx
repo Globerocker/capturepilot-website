@@ -67,7 +67,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "Voice-to-Document", samStatus: "no", samLabel: "Not available", cpStatus: "yes", cpLabel: "Record & generate" },
   { feature: "Free Tier", samStatus: "yes", samLabel: "Completely free", cpStatus: "yes", cpLabel: "Yes" },
   { feature: "30-Day Free Trial", samStatus: "yes", samLabel: "N/A (free)", cpStatus: "yes", cpLabel: "Yes" },
-  { feature: "Flat Pricing (no per-seat)", samStatus: "yes", samLabel: "Free", cpStatus: "yes", cpLabel: "$199/mo flat" },
+  { feature: "Flat Pricing (no per-seat)", samStatus: "yes", samLabel: "Free", cpStatus: "yes", cpLabel: "$89/mo flat" },
 ];
 
 /* ------------------------------------------------------------------ */

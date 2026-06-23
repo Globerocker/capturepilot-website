@@ -102,7 +102,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "Voice-to-Document", capturepilot: "Record, AI writes", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
   { feature: "Free Tier Available", capturepilot: "Yes", cpStatus: "yes", competitor: "Freemium (limited)", compStatus: "partial" },
   { feature: "30-Day Free Trial (Pro)", capturepilot: "Yes", cpStatus: "yes", competitor: "Not available", compStatus: "no" },
-  { feature: "Starting Price", capturepilot: "$199/mo flat", cpStatus: "text", competitor: "$200-600/mo", compStatus: "text" },
+  { feature: "Starting Price", capturepilot: "$89/mo flat", cpStatus: "text", competitor: "$200-600/mo", compStatus: "text" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -214,7 +214,7 @@ export default function VsUnisonPage() {
       <title>CapturePilot vs Unison — Compare Features & Pricing | CapturePilot</title>
       <meta
         name="description"
-        content="Compare CapturePilot vs Unison. AI-powered government contract intelligence vs a vendor marketplace. Smart matching, AI proposals, and capability statements -- all for $199/mo."
+        content="Compare CapturePilot vs Unison. AI-powered government contract intelligence vs a vendor marketplace. Smart matching, AI proposals, and capability statements -- all for $89/mo."
       />
       <meta name="keywords" content="Unison alternative, Unison vs CapturePilot, government contract software, GovCon marketplace alternative, federal contracting platform, teaming platform" />
       <meta property="og:title" content="CapturePilot vs Unison — Intelligence, Not a Marketplace" />
@@ -406,7 +406,7 @@ export default function VsUnisonPage() {
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">
                 What You Get for{" "}
-                <span className="gradient-text">$199/mo</span>
+                <span className="gradient-text">$89/mo</span>
               </h2>
               <p className="text-stone-500 max-w-2xl mx-auto">
                 One flat price. No per-seat charges. No marketplace fees.
@@ -468,7 +468,7 @@ export default function VsUnisonPage() {
                 <div className="mb-6">
                   <p className="text-sm font-medium text-emerald-600 mb-1">Flat rate, cancel anytime</p>
                   <p className="text-4xl font-extrabold text-stone-800 tracking-tight">
-                    $199<span className="text-lg font-medium text-stone-400">/mo</span>
+                    $89<span className="text-lg font-medium text-stone-400">/mo</span>
                   </p>
                   <p className="text-sm text-emerald-600 font-medium mt-1">
                     Everything included. No hidden fees.

@@ -1660,7 +1660,7 @@ export default function ProductPresentationPrintPage() {
                 </div>
                 <div className="p-3 flex items-center justify-center bg-emerald-500/10 border-x border-b border-emerald-500/30 rounded-b-xl">
                   <span className="text-emerald-400 text-sm font-bold">
-                    $199/mo
+                    $89/mo
                   </span>
                 </div>
                 {[
@@ -1710,7 +1710,7 @@ export default function ProductPresentationPrintPage() {
             </p>
             <h2 className="text-4xl md:text-6xl font-extralight text-stone-900 mb-4 leading-tight">
               16 features.{" "}
-              <span className="text-emerald-600">$199/mo.</span>
+              <span className="text-emerald-600">$89/mo.</span>
             </h2>
             <div className="flex items-center justify-center gap-3 mt-4">
               <span className="bg-emerald-100 text-emerald-700 text-sm font-bold px-4 py-1.5 rounded-full">

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pricing — Free, Pro $199/mo, or Done-For-You Consulting",
-  description: "CapturePilot pricing: Free Quick Checker, Pro at $199/mo (or $159/mo yearly) with 30-day trial, or Done-For-You consulting with aligned incentives. No hidden fees.",
+  title: "Pricing — Free, Pro $89/mo, or Done-For-You Consulting",
+  description: "CapturePilot pricing: Free Quick Checker, Pro at $89/mo (or $71/mo yearly) with 30-day trial, or Done-For-You consulting with aligned incentives. No hidden fees.",
   keywords: "CapturePilot pricing, government contract software pricing, GovCon tool cost, CapturePilot free trial, CapturePilot Pro plan, government contract consulting, B2G consulting",
   alternates: { canonical: "https://www.capturepilot.com/pricing" },
   openGraph: {
     title: "Pricing — Start Free, Scale When Ready",
-    description: "CapturePilot pricing: Free Quick Checker, Pro at $199/mo with 30-day trial, or Custom consulting. No hidden fees.",
+    description: "CapturePilot pricing: Free Quick Checker, Pro at $89/mo with 30-day trial, or Custom consulting. No hidden fees.",
     url: "https://www.capturepilot.com/pricing",
   },
 };
@@ -32,7 +32,7 @@ const productJsonLd = {
     "@type": "AggregateOffer",
     priceCurrency: "USD",
     lowPrice: "0",
-    highPrice: "199",
+    highPrice: "89",
     offerCount: "3",
     offers: [
       {
@@ -47,7 +47,7 @@ const productJsonLd = {
       {
         "@type": "Offer",
         name: "Pro Monthly",
-        price: "199",
+        price: "89",
         priceCurrency: "USD",
         description: "Unlimited matching, AI proposals, capability statement, market intelligence. 30-day free trial.",
         url: "https://app.capturepilot.com/signup?plan=pro",
@@ -56,9 +56,9 @@ const productJsonLd = {
       {
         "@type": "Offer",
         name: "Pro Yearly",
-        price: "1908",
+        price: "854",
         priceCurrency: "USD",
-        description: "Pro plan billed annually — $159/month equivalent, 20% saving vs monthly.",
+        description: "Pro plan billed annually — $71/month equivalent, 20% saving vs monthly.",
         url: "https://app.capturepilot.com/signup?plan=pro-yearly",
         availability: "https://schema.org/InStock",
       },
@@ -89,7 +89,7 @@ const faqJsonLd = {
       name: "How much does CapturePilot Pro cost?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Pro is $199/month billed monthly, or $159/month ($1,908/year) billed annually — a 20% saving. Pro unlocks unlimited matching against 40,000+ federal opportunities, AI-generated proposals, the capability statement builder, and market intelligence.",
+        text: "Pro is $89/month billed monthly, or $71/month ($854/year) billed annually — a 20% saving. Pro unlocks unlimited matching against 40,000+ federal opportunities, AI-generated proposals, the capability statement builder, and market intelligence.",
       },
     },
     {

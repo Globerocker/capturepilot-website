@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const popularLinks = [
   { href: "/features", label: "Features", description: "Matching, Quick Checker, AI Proposals" },
-  { href: "/pricing", label: "Pricing", description: "Free forever, Pro $199/mo, or Consulting" },
+  { href: "/pricing", label: "Pricing", description: "Free forever, Pro $89/mo, or Consulting" },
   { href: "/vs/sam-gov", label: "CapturePilot vs SAM.gov", description: "Why a smart layer beats raw search" },
   { href: "/for/veterans", label: "For Veteran-Owned Business", description: "SDVOSB/VOSB set-aside matching" },
   { href: "/blog/government-contracting-101", label: "Government Contracting 101", description: "Beginner's guide to federal contracts" },
