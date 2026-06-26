@@ -1,7 +1,7 @@
 {
-  "status": "complete",
-  "completedDate": "2026-06-20",
-  "note": "All 45 topics completed as of 2026-06-20. First 40 completed 2026-06-12, topics 41-45 added 2026-06-15 and completed 2026-06-20. Add new topics to resume daily publishing.",
+  "status": "in_progress",
+  "completedDate": null,
+  "note": "First 45 topics completed 2026-06-20. New batch of 10 topics added 2026-06-26 to resume daily publishing.",
   "topics": [
     { "slug": "how-to-find-government-contracts-small-business", "keyword": "how to find government contracts for small business", "title": "How to Find Government Contracts for Your Small Business (2026 Guide)", "category": "getting-started", "features": ["matching", "quick-checker"] },
     { "slug": "sdvosb-contracts-guide", "keyword": "SDVOSB contracts", "title": "SDVOSB Contracts: A Complete Guide for Veteran-Owned Businesses", "category": "set-asides", "features": ["matching", "pipeline"] },
@@ -47,6 +47,16 @@
     { "slug": "cpars-contractor-performance", "keyword": "CPARS government contract", "title": "CPARS Explained: How Contractor Performance Ratings Shape Future Awards", "category": "strategy", "features": ["intelligence", "proposals"] },
     { "slug": "sbir-sttr-grants-guide", "keyword": "SBIR grants small business", "title": "SBIR and STTR Grants: How Small Businesses Win R&D Funding from DoD", "category": "getting-started", "features": ["matching", "intelligence"] },
     { "slug": "far-clauses-small-business", "keyword": "FAR clauses small business", "title": "Key FAR Clauses Every Small Business Contractor Must Know", "category": "getting-started", "features": ["proposals", "intelligence"] },
-    { "slug": "contracting-officer-relationship", "keyword": "government contracting officer relationship", "title": "How to Build Relationships With Government Contracting Officers", "category": "strategy", "features": ["intelligence", "pipeline"] }
+    { "slug": "contracting-officer-relationship", "keyword": "government contracting officer relationship", "title": "How to Build Relationships With Government Contracting Officers", "category": "strategy", "features": ["intelligence", "pipeline"] },
+    { "slug": "cmmc-compliance-dod-contractors", "keyword": "CMMC compliance", "title": "CMMC 2.0 Compliance: What Every DoD Contractor Must Know Before the Deadline", "category": "strategy", "features": ["intelligence", "proposals"] },
+    { "slug": "ota-contracts-guide", "keyword": "OTA contracts", "title": "OTA Contracts Explained: How Other Transaction Authority Is Changing Defense Procurement", "category": "vehicles", "features": ["matching", "intelligence"] },
+    { "slug": "bid-no-bid-decision-framework", "keyword": "bid no bid decision government contracts", "title": "The Bid/No-Bid Decision: A Framework for Stopping Bad Pursuits Before They Start", "category": "strategy", "features": ["pipeline", "intelligence"] },
+    { "slug": "mentor-protege-program", "keyword": "SBA mentor protege program", "title": "SBA Mentor-Protégé Program: How to Find a Partner and Win Bigger Contracts", "category": "strategy", "features": ["matching", "pipeline"] },
+    { "slug": "price-to-win-government-contracts", "keyword": "price to win government contracts", "title": "Price-to-Win Analysis: How to Calculate the Right Bid Price Before You Submit", "category": "proposals", "features": ["proposals", "intelligence"] },
+    { "slug": "government-contractor-debarment", "keyword": "government contractor debarment", "title": "Government Contractor Debarment: How to Avoid It and What to Do If It Happens", "category": "advanced", "features": ["intelligence", "pipeline"] },
+    { "slug": "blanket-purchase-agreements", "keyword": "blanket purchase agreement BPA", "title": "Blanket Purchase Agreements: How BPAs Create Predictable Government Revenue", "category": "vehicles", "features": ["pipeline", "matching"] },
+    { "slug": "section-889-telecom-ban", "keyword": "section 889 telecommunications ban DoD", "title": "Section 889 Compliance: The Telecom Ban That Can Get You Removed From a Contract", "category": "advanced", "features": ["intelligence", "proposals"] },
+    { "slug": "joint-venture-government-contracts", "keyword": "small business joint venture government contracts", "title": "Small Business Joint Ventures: How to Structure a Deal That Actually Wins", "category": "strategy", "features": ["pipeline", "matching"] },
+    { "slug": "federal-budget-continuing-resolution", "keyword": "federal budget continuing resolution government contractors", "title": "Continuing Resolutions: How Federal Budget Uncertainty Affects Your Contracts", "category": "intelligence", "features": ["intelligence", "pipeline"] }
   ]
 }
