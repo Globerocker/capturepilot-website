@@ -99,91 +99,37 @@ const FAQS = [
 function FounderVideo() {
   const ref = useRef<HTMLVideoElement>(null);
   const [sound, setSound] = useState(false);
-  const [done, setDone] = useState(false);
-
-  // Keep the visitor on the intro: lock page scroll until the video ends or
-  // they skip. Released in unlock(). Cleaned up on unmount.
-  useEffect(() => {
-    const html = document.documentElement;
-    const prevBody = document.body.style.overflow;
-    const prevHtml = html.style.overflow;
-    document.body.style.overflow = "hidden";
-    html.style.overflow = "hidden";
-    return () => { document.body.style.overflow = prevBody; html.style.overflow = prevHtml; };
-  }, []);
-  function unlock() {
-    document.body.style.overflow = "";
-    document.documentElement.style.overflow = "";
-    setDone(true);
-  }
-
-  // Try to play with sound once the page settles. Browsers usually block
-  // audible autoplay without a gesture, so we also unmute on the visitor's
-  // first interaction (a tap, a key, or even an attempt to scroll).
-  useEffect(() => {
-    const v = ref.current;
-    if (!v) return;
-    const enableSound = () => {
-      v.muted = false;
-      v.volume = 1;
-      v.play().then(() => setSound(true)).catch(() => {});
-    };
-    const t = setTimeout(enableSound, 2500);
-    const onFirst = () => { enableSound(); cleanup(); };
-    const cleanup = () => {
-      window.removeEventListener("pointerdown", onFirst);
-      window.removeEventListener("keydown", onFirst);
-      window.removeEventListener("wheel", onFirst);
-      window.removeEventListener("touchstart", onFirst);
-    };
-    window.addEventListener("pointerdown", onFirst);
-    window.addEventListener("keydown", onFirst);
-    window.addEventListener("wheel", onFirst, { passive: true });
-    window.addEventListener("touchstart", onFirst, { passive: true });
-    return () => { clearTimeout(t); cleanup(); };
-  }, []);
-
+  // Clean, framed portrait reel. Autoplays muted on loop as a preview; click it
+  // (or the badge) to hear it. No scroll-lock, no forced audio.
   function toggleSound() {
     const v = ref.current;
     if (!v) return;
     const next = !sound;
     setSound(next);
     v.muted = !next;
-    if (next) v.play().catch(() => {});
+    v.play().catch(() => {});
   }
-
   return (
-    <div className="relative mx-auto w-full max-w-[360px]">
-      <div className="absolute -inset-4 bg-emerald-400/25 blur-3xl rounded-[2.5rem]" aria-hidden />
-      <video
-        ref={ref}
-        onEnded={unlock}
-        className="relative w-full aspect-[9/16] object-cover rounded-[1.75rem] shadow-2xl ring-1 ring-white/20 bg-black"
-        autoPlay
-        muted
-        playsInline
-        poster="/flk-hero-poster.jpg"
-        preload="auto"
-      >
-        <source src="/flk-hero.mp4" type="video/mp4" />
-      </video>
-      <button
-        type="button"
-        onClick={toggleSound}
-        className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 bg-black/60 backdrop-blur text-white text-xs font-bold px-3 py-1.5 rounded-full hover:bg-black/80 transition-colors"
-      >
-        {sound ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
-        {sound ? "Sound on" : "Tap for sound"}
-      </button>
-      {!done && (
-        <button
-          type="button"
-          onClick={unlock}
-          className="absolute -bottom-8 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 text-white/55 hover:text-white text-xs font-semibold transition-colors whitespace-nowrap"
+    <div className="relative mx-auto w-full max-w-[290px]">
+      <div className="absolute -inset-5 bg-emerald-400/20 blur-3xl rounded-[3rem]" aria-hidden />
+      <button type="button" onClick={toggleSound} aria-label="Toggle sound" className="group relative block w-full rounded-[2rem] p-1.5 bg-white/10 ring-1 ring-white/15 backdrop-blur">
+        <video
+          ref={ref}
+          className="w-full aspect-[9/16] object-cover rounded-[1.6rem] bg-black shadow-2xl"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/flk-hero-poster.jpg"
+          preload="metadata"
         >
-          Skip intro <ChevronDown className="w-3.5 h-3.5" />
-        </button>
-      )}
+          <source src="/flk-hero.mp4" type="video/mp4" />
+        </video>
+        <span className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 bg-black/55 backdrop-blur text-white text-xs font-bold px-3 py-1.5 rounded-full group-hover:bg-black/75 transition-colors">
+          {sound ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
+          {sound ? "Sound on" : "Tap for sound"}
+        </span>
+      </button>
     </div>
   );
 }
@@ -354,14 +300,17 @@ export default function StartupPackLandingPage() {
           </div>
           {/* h1 kept for SEO/accessibility; the headline itself lives in the video. */}
           <h1 className="sr-only">{TOTAL_FILES} files, one folder: your first federal contract, demystified. The Federal Launch Kit by Americurial.</h1>
-          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14 grid lg:grid-cols-[0.92fr_1.08fr] gap-10 lg:gap-12 items-center">
-            {/* The explainer reel — first on mobile, bigger overall */}
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            {/* The explainer reel — first on mobile, beside the copy on desktop */}
             <Reveal dir="right" delay={60} className="order-1 lg:order-2">
               <FounderVideo />
             </Reveal>
 
             <Reveal dir="left" className="order-2 lg:order-1">
-              <p className="text-white/80 text-lg sm:text-xl leading-relaxed max-w-xl">
+              <p className="text-2xl sm:text-3xl font-black text-white leading-[1.15]">
+                Everything you need to win federal work, in <span className="text-emerald-300">one folder.</span>
+              </p>
+              <p className="text-white/70 text-base sm:text-lg leading-relaxed max-w-lg mt-4">
                 Every template, playbook, checklist and worksheet a small business needs to get registered, pick the right bids, price them correctly, and reach the contracting officer before the RFP drops. The same toolkit we run in paid capture work at Americurial.
               </p>
 
