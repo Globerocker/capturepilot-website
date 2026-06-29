@@ -268,25 +268,23 @@ export default function StartupPackLandingPage() {
 
   return (
     <>
-      {/* Announcement bar (countdown) — sits at the very top, no nav links above it */}
-      <div className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 text-amber-950">
-        <div className="max-w-6xl mx-auto px-4 py-2 flex items-center justify-center gap-2 sm:gap-3 text-center">
-          <Clock className="w-4 h-4 hidden sm:block" />
-          <span className="text-[11px] sm:text-sm font-black uppercase tracking-widest">{expired ? "Offer ended" : `${savingsPct}% off ends in`}</span>
-          {!expired && <span className="font-mono text-xs sm:text-base tabular-nums font-black">{days}d {pad(hours)}h {pad(minutes)}m {pad(seconds)}s</span>}
-        </div>
-      </div>
-
-      {/* Minimal landing nav — logo + one CTA, no links out (this is a landing page, not the site) */}
+      {/* One landing header: logo · countdown · CTA. No nav links (landing page). */}
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200">
-        <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-2 select-none">
-            <span className="w-7 h-7 rounded-lg bg-stone-900 text-white flex items-center justify-center font-black text-[11px]">CP</span>
-            <span className="font-black text-base tracking-tight text-stone-900">CapturePilot</span>
+        <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2 select-none shrink-0">
+            <Image src="/logo.png" alt="CapturePilot" width={30} height={30} className="rounded-lg" />
+            <span className="font-black text-base tracking-tight text-stone-900 hidden sm:block">CapturePilot</span>
           </div>
-          <button type="button" onClick={handleBuy} disabled={loading || expired} className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold px-4 py-2 rounded-xl transition-all hover:scale-[1.03] disabled:opacity-60">
+          {!expired && (
+            <div className="flex items-center gap-1.5 sm:gap-2 text-amber-700 min-w-0">
+              <Clock className="w-4 h-4 shrink-0" />
+              <span className="hidden md:inline text-xs font-black uppercase tracking-widest">{savingsPct}% off ends in</span>
+              <span className="font-mono text-xs sm:text-sm tabular-nums font-black whitespace-nowrap">{days}d {pad(hours)}h {pad(minutes)}m {pad(seconds)}s</span>
+            </div>
+          )}
+          <button type="button" onClick={handleBuy} disabled={loading || expired} className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold px-3 sm:px-4 py-2 rounded-xl transition-all hover:scale-[1.03] disabled:opacity-60 shrink-0">
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Lock className="w-4 h-4" />}
-            Get the Kit — {fmtPrice(PRICE_CENTS)}
+            <span className="hidden sm:inline">Get the Kit — </span>{fmtPrice(PRICE_CENTS)}
           </button>
         </div>
       </header>
