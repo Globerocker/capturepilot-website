@@ -9,16 +9,12 @@ import Reveal from "@/components/Reveal";
 import {
   Lock, Clock, FileText, Scale, Award, Trophy, Mail, DollarSign, Video,
   ArrowRight, Loader2, Star, ShieldCheck, ClipboardCheck, BookOpen, Building2,
-  Play, Infinity as InfinityIcon, Plus, Eye, X, ChevronDown, Download, Zap,
-  CheckCircle2,
+  Infinity as InfinityIcon, Plus, Eye, X, ChevronDown, Download, Zap,
+  CheckCircle2, Handshake, BadgeCheck, Volume2, VolumeX,
 } from "lucide-react";
 
 const APP_URL = "https://app.capturepilot.com";
 const CHECKOUT_URL = `${APP_URL}/api/startup-pack/checkout`;
-
-// Paste the Loom share/embed URL here after recording. Embed form:
-// https://www.loom.com/embed/<id>  (leave empty to show the poster placeholder)
-const LOOM_EMBED_URL: string = "";
 
 const PRODUCT_NAME = "Federal Launch Kit";
 const PRICE_CENTS = 7000;
@@ -55,12 +51,20 @@ const FOLDERS = [
   { num: "10", label: "Bonus: 30-min Founder Onboarding Call", count: 2, description: "Prep guide plus a Calendly link to book a 1:1 with our capture lead. Walk through your first bid live.", icon: Video, formats: ["PDF", "Calendly"], highlight: "Free with kit" },
 ];
 
-const TOTAL_FILES = 60;
+const TOTAL_FILES = 82;
 const FORMAT_BREAKDOWN = [
-  { label: "PDFs", count: 31, color: "bg-emerald-100 text-emerald-800" },
-  { label: "Spreadsheets", count: 15, color: "bg-blue-100 text-blue-800" },
-  { label: "Word templates", count: 12, color: "bg-amber-100 text-amber-800" },
-  { label: "Calendly / link", count: 2, color: "bg-stone-100 text-stone-700" },
+  { label: "Guides & playbooks", count: 51, color: "bg-emerald-100 text-emerald-800" },
+  { label: "Calculators & worksheets", count: 16, color: "bg-blue-100 text-blue-800" },
+  { label: "Editable Word templates", count: 15, color: "bg-amber-100 text-amber-800" },
+];
+
+// Trust badges shown over the hero video.
+const TRUST_BADGES = [
+  { Icon: ShieldCheck, label: "Veteran-owned" },
+  { Icon: Handshake, label: "HubSpot partner" },
+  { Icon: Building2, label: "Built on SAM.gov data" },
+  { Icon: Lock, label: "Stripe-secured" },
+  { Icon: BadgeCheck, label: "7-day refund" },
 ];
 
 const VALUE_STACK = [
@@ -94,43 +98,42 @@ const FAQS = [
 // ─── Small components ──────────────────────────────────────────────────────────
 
 function FounderVideo() {
-  const [playing, setPlaying] = useState(false);
-  if (LOOM_EMBED_URL && playing) {
-    return (
-      <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-stone-200 bg-black">
-        <iframe
-          title="Federal Launch Kit founder video"
-          src={`${LOOM_EMBED_URL}${LOOM_EMBED_URL.includes("?") ? "&" : "?"}autoplay=1`}
-          allow="autoplay; fullscreen"
-          allowFullScreen
-          className="absolute inset-0 w-full h-full"
-        />
-      </div>
-    );
+  const ref = useRef<HTMLVideoElement>(null);
+  const [sound, setSound] = useState(false);
+  function toggleSound() {
+    const v = ref.current;
+    if (!v) return;
+    const next = !sound;
+    setSound(next);
+    v.muted = !next;
+    v.play().catch(() => {});
   }
+  // The recorded explainer is a 9:16 reel, so it plays portrait (autoplay muted
+  // loop) with a tap-for-sound toggle, rather than getting cropped into 16:9.
   return (
-    <button
-      type="button"
-      onClick={() => LOOM_EMBED_URL && setPlaying(true)}
-      className="group relative aspect-video w-full rounded-3xl overflow-hidden shadow-2xl border border-stone-800 bg-gradient-to-br from-stone-900 via-stone-900 to-emerald-950 text-left"
-    >
-      {/* soft moving glow */}
-      <div className="absolute -top-1/3 -right-1/4 w-2/3 h-2/3 bg-emerald-500/20 blur-3xl rounded-full animate-float-slow" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-6">
-        <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/95 text-emerald-700 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 animate-pulse-glow">
-          <Play className="w-7 h-7 sm:w-9 sm:h-9 ml-1 fill-emerald-700" />
-        </span>
-        <div className="text-center">
-          <p className="text-white font-bold text-sm sm:text-base">A 2-minute hello from the founders</p>
-          <p className="text-emerald-200/80 text-xs mt-1">Why $70 is the easiest yes in federal contracting</p>
-        </div>
-      </div>
-      <div className="absolute bottom-3 left-4 flex items-center gap-2 text-[11px] text-white/70">
-        <span className="inline-flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" /> Loom</span>
-        <span>·</span>
-        <span>2:00</span>
-      </div>
-    </button>
+    <div className="relative mx-auto w-full max-w-[300px]">
+      <div className="absolute -inset-3 bg-emerald-400/25 blur-2xl rounded-[2rem]" aria-hidden />
+      <video
+        ref={ref}
+        className="relative w-full aspect-[9/16] object-cover rounded-[1.75rem] shadow-2xl ring-1 ring-white/15 bg-black"
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/flk-hero-poster.jpg"
+        preload="metadata"
+      >
+        <source src="/flk-hero.mp4" type="video/mp4" />
+      </video>
+      <button
+        type="button"
+        onClick={toggleSound}
+        className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 bg-black/60 backdrop-blur text-white text-xs font-bold px-3 py-1.5 rounded-full hover:bg-black/80 transition-colors"
+      >
+        {sound ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
+        {sound ? "Sound on" : "Tap for sound"}
+      </button>
+    </div>
   );
 }
 
@@ -149,7 +152,7 @@ function PreviewCard({ p, i }: { p: (typeof PREVIEWS)[number]; i: number }) {
           {p.locked && (
             <div className="absolute inset-0 bg-gradient-to-t from-stone-900/85 via-stone-900/20 to-transparent flex items-end justify-center pb-5 backdrop-blur-[2px]">
               <span className="inline-flex items-center gap-1.5 text-white text-xs font-bold bg-white/10 border border-white/25 px-3 py-1.5 rounded-full">
-                <Lock className="w-3.5 h-3.5" /> Unlock all 60 files
+                <Lock className="w-3.5 h-3.5" /> Unlock all 82 files
               </span>
             </div>
           )}
@@ -287,22 +290,38 @@ export default function StartupPackLandingPage() {
       </div>
 
       <main className="bg-stone-50 overflow-x-clip">
-        <div className="max-w-5xl mx-auto px-4 pb-24 pt-10 space-y-20">
-
-          {/* ── HERO ── */}
-          <section className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+        {/* ── HERO (full-bleed, headline over the explainer reel) ── */}
+        <section className="relative overflow-hidden">
+          <div className="absolute inset-0" aria-hidden>
+            <Image src="/flk-hero-poster.jpg" alt="" fill priority className="object-cover blur-2xl scale-110 opacity-40" />
+            <div className="absolute inset-0 bg-gradient-to-br from-stone-950/92 via-stone-950/82 to-emerald-950/88" />
+          </div>
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-12 items-center">
             <Reveal dir="left">
-              <p className="text-[11px] font-bold uppercase tracking-widest text-emerald-600 mb-3">Federal Launch Kit</p>
-              <h1 className="font-black text-4xl sm:text-5xl lg:text-[3.25rem] leading-[1.05] text-stone-900">
-                60 files. One folder.<br />
-                <span className="shimmer-text">Your first federal contract,</span><br />
-                de-mystified.
+              <p className="text-[11px] font-bold uppercase tracking-widest text-emerald-300 mb-3 flex items-center gap-2">
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-white/15 text-white text-[10px] font-black">A</span>
+                Federal Launch Kit · by Americurial
+              </p>
+              <h1 className="font-black text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.05] text-white">
+                {TOTAL_FILES} files. One folder.<br />
+                Your first federal contract,<br />
+                <span className="text-emerald-300">de-mystified.</span>
               </h1>
-              <p className="text-stone-600 text-lg mt-5 leading-relaxed max-w-lg">
-                Every template, playbook, checklist, and worksheet a small business needs to get registered, pick the right bids, price them correctly, and reach the contracting officer before the RFP drops. Built from the toolkit we use in paid capture work.
+              <p className="text-white/75 text-lg mt-5 leading-relaxed max-w-xl">
+                Every template, playbook, checklist and worksheet a small business needs to get registered, pick the right bids, price them correctly, and reach the contracting officer before the RFP drops. The same toolkit we run in paid capture work at Americurial.
               </p>
 
+              {/* Trust badges */}
               <div className="flex flex-wrap gap-2 mt-6">
+                {TRUST_BADGES.map(({ Icon, label }) => (
+                  <span key={label} className="inline-flex items-center gap-1.5 bg-white/10 border border-white/15 text-white/90 text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur">
+                    <Icon className="w-3.5 h-3.5 text-emerald-300" />{label}
+                  </span>
+                ))}
+              </div>
+
+              {/* Format pills */}
+              <div className="flex flex-wrap gap-2 mt-4">
                 {FORMAT_BREAKDOWN.map((f) => (
                   <span key={f.label} className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${f.color}`}>
                     <span className="text-sm font-black">{f.count}</span>{f.label}
@@ -310,23 +329,26 @@ export default function StartupPackLandingPage() {
                 ))}
               </div>
 
+              {/* Price + CTA */}
               <div className="flex flex-wrap items-baseline gap-3 mt-7">
-                <span className="text-5xl font-black text-stone-900">{fmtPrice(PRICE_CENTS)}</span>
-                <span className="text-xl text-stone-400 line-through">{fmtPrice(FULL_PRICE_CENTS)}</span>
-                <span className="text-xs font-bold bg-amber-300 text-amber-900 px-2 py-1 rounded-md uppercase tracking-wider">Save {fmtPrice(savings)}</span>
+                <span className="text-5xl font-black text-white">{fmtPrice(PRICE_CENTS)}</span>
+                <span className="text-xl text-white/40 line-through">{fmtPrice(FULL_PRICE_CENTS)}</span>
+                <span className="text-xs font-bold bg-amber-300 text-amber-950 px-2 py-1 rounded-md uppercase tracking-wider">Save {fmtPrice(savings)}</span>
               </div>
-
               <div className="mt-5"><CTA label={`Get the Kit — ${fmtPrice(PRICE_CENTS)}`} big /></div>
-              <p className="text-[11px] text-stone-400 mt-2.5">Instant access · Lifetime use · Free future updates · 7-day refund · Stripe-secured</p>
-              {error && <p className="text-red-600 text-sm mt-3 bg-red-50 border border-red-200 px-3 py-2 rounded-lg max-w-md">{error}</p>}
+              <p className="text-[11px] text-white/50 mt-2.5">Instant access · Lifetime use · Free future updates · 7-day refund · Stripe-secured</p>
+              {error && <p className="text-red-200 text-sm mt-3 bg-red-900/40 border border-red-400/30 px-3 py-2 rounded-lg max-w-md">{error}</p>}
             </Reveal>
 
-            {/* Founder video */}
+            {/* The explainer reel */}
             <Reveal dir="right" delay={120}>
               <FounderVideo />
-              <p className="text-center text-xs text-stone-500 mt-3">Two minutes. The honest reason we priced this at $70.</p>
+              <p className="text-center text-xs text-white/55 mt-3">90 seconds. Your first federal contract, demystified.</p>
             </Reveal>
-          </section>
+          </div>
+        </section>
+
+        <div className="max-w-5xl mx-auto px-4 pb-24 pt-16 space-y-20">
 
           {/* ── MARQUEE STRIP (always-on motion) ── */}
           <div className="relative -mx-4 border-y border-stone-200 bg-white py-3 overflow-hidden">
@@ -359,13 +381,13 @@ export default function StartupPackLandingPage() {
             <div className="relative">
               <Reveal>
                 <p className="text-[10px] font-bold uppercase tracking-widest text-emerald-300 flex items-center gap-1.5"><InfinityIcon className="w-4 h-4" /> Buy once. Keep forever.</p>
-                <h2 className="font-black text-3xl sm:text-4xl mt-2 max-w-3xl leading-tight">You're not buying 60 files. You're buying a folder that keeps growing, at a price you lock in today.</h2>
+                <h2 className="font-black text-3xl sm:text-4xl mt-2 max-w-3xl leading-tight">You're not buying 82 files. You're buying a folder that keeps growing, at a price you lock in today.</h2>
                 <p className="text-white/70 mt-4 max-w-2xl leading-relaxed">Every new template, calculator, and playbook we build goes into this same folder. You get it automatically, at no extra cost, for as long as the kit exists. The list price climbs as the library grows. Your $70 does not.</p>
               </Reveal>
 
               <div className="grid sm:grid-cols-3 gap-4 mt-8">
                 {[
-                  { icon: Download, t: "Today", d: "60 files across 10 categories, in your inbox the second you pay." },
+                  { icon: Download, t: "Today", d: "82 files across 6 phases, in your inbox the second you pay." },
                   { icon: Plus, t: "Every few weeks", d: "New templates and tools land in the same folder. Yours, free." },
                   { icon: InfinityIcon, t: "Forever", d: "No renewal, no subscription. One payment, lifetime access." },
                 ].map((c, i) => (
@@ -569,9 +591,9 @@ export default function StartupPackLandingPage() {
             <button type="button" aria-label="Close" onClick={() => setExitOpen(false)} className="absolute top-4 right-4 text-stone-400 hover:text-stone-700 transition-colors"><X className="w-5 h-5" /></button>
             <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center mb-4"><Zap className="w-6 h-6 text-emerald-600" /></div>
             <h3 className="font-black text-2xl text-stone-900 leading-tight">Before you click away.</h3>
-            <p className="text-stone-600 text-sm mt-3 leading-relaxed">The whole kit is {fmtPrice(PRICE_CENTS)}, once. That's less than an hour of a capture consultant, for 60 files you keep for life with every future update included.</p>
+            <p className="text-stone-600 text-sm mt-3 leading-relaxed">The whole kit is {fmtPrice(PRICE_CENTS)}, once. That's less than an hour of a capture consultant, for 82 files you keep for life with every future update included.</p>
             <ul className="mt-4 space-y-2">
-              {["60 files, instant download", "Lifetime access plus free future updates", "7-day refund, reply to one email"].map((t) => (
+              {["82 files, instant download", "Lifetime access plus free future updates", "7-day refund, reply to one email"].map((t) => (
                 <li key={t} className="flex items-center gap-2 text-sm text-stone-700"><CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />{t}</li>
               ))}
             </ul>
