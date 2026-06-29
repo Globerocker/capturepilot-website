@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import Reveal from "@/components/Reveal";
 import {
@@ -100,28 +99,71 @@ const FAQS = [
 function FounderVideo() {
   const ref = useRef<HTMLVideoElement>(null);
   const [sound, setSound] = useState(false);
+  const [done, setDone] = useState(false);
+
+  // Keep the visitor on the intro: lock page scroll until the video ends or
+  // they skip. Released in unlock(). Cleaned up on unmount.
+  useEffect(() => {
+    const html = document.documentElement;
+    const prevBody = document.body.style.overflow;
+    const prevHtml = html.style.overflow;
+    document.body.style.overflow = "hidden";
+    html.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prevBody; html.style.overflow = prevHtml; };
+  }, []);
+  function unlock() {
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
+    setDone(true);
+  }
+
+  // Try to play with sound once the page settles. Browsers usually block
+  // audible autoplay without a gesture, so we also unmute on the visitor's
+  // first interaction (a tap, a key, or even an attempt to scroll).
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    const enableSound = () => {
+      v.muted = false;
+      v.volume = 1;
+      v.play().then(() => setSound(true)).catch(() => {});
+    };
+    const t = setTimeout(enableSound, 2500);
+    const onFirst = () => { enableSound(); cleanup(); };
+    const cleanup = () => {
+      window.removeEventListener("pointerdown", onFirst);
+      window.removeEventListener("keydown", onFirst);
+      window.removeEventListener("wheel", onFirst);
+      window.removeEventListener("touchstart", onFirst);
+    };
+    window.addEventListener("pointerdown", onFirst);
+    window.addEventListener("keydown", onFirst);
+    window.addEventListener("wheel", onFirst, { passive: true });
+    window.addEventListener("touchstart", onFirst, { passive: true });
+    return () => { clearTimeout(t); cleanup(); };
+  }, []);
+
   function toggleSound() {
     const v = ref.current;
     if (!v) return;
     const next = !sound;
     setSound(next);
     v.muted = !next;
-    v.play().catch(() => {});
+    if (next) v.play().catch(() => {});
   }
-  // The recorded explainer is a 9:16 reel, so it plays portrait (autoplay muted
-  // loop) with a tap-for-sound toggle, rather than getting cropped into 16:9.
+
   return (
-    <div className="relative mx-auto w-full max-w-[300px]">
-      <div className="absolute -inset-3 bg-emerald-400/25 blur-2xl rounded-[2rem]" aria-hidden />
+    <div className="relative mx-auto w-full max-w-[360px]">
+      <div className="absolute -inset-4 bg-emerald-400/25 blur-3xl rounded-[2.5rem]" aria-hidden />
       <video
         ref={ref}
-        className="relative w-full aspect-[9/16] object-cover rounded-[1.75rem] shadow-2xl ring-1 ring-white/15 bg-black"
+        onEnded={unlock}
+        className="relative w-full aspect-[9/16] object-cover rounded-[1.75rem] shadow-2xl ring-1 ring-white/20 bg-black"
         autoPlay
         muted
-        loop
         playsInline
         poster="/flk-hero-poster.jpg"
-        preload="metadata"
+        preload="auto"
       >
         <source src="/flk-hero.mp4" type="video/mp4" />
       </video>
@@ -133,6 +175,15 @@ function FounderVideo() {
         {sound ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
         {sound ? "Sound on" : "Tap for sound"}
       </button>
+      {!done && (
+        <button
+          type="button"
+          onClick={unlock}
+          className="absolute -bottom-8 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 text-white/55 hover:text-white text-xs font-semibold transition-colors whitespace-nowrap"
+        >
+          Skip intro <ChevronDown className="w-3.5 h-3.5" />
+        </button>
+      )}
     </div>
   );
 }
@@ -271,23 +322,28 @@ export default function StartupPackLandingPage() {
 
   return (
     <>
-      <SiteNav />
-      <div className="h-[104px]" />
-
-      {/* COUNTDOWN BAR */}
-      <div className="sticky top-[104px] z-40 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 border-b-2 border-amber-500 shadow-md">
-        <div className="max-w-6xl mx-auto px-4 py-2.5 flex items-center justify-between gap-3 flex-wrap text-amber-950">
-          <div className="flex items-center gap-2 text-xs sm:text-sm font-black">
-            <Clock className="w-4 h-4" />
-            <span className="uppercase tracking-widest">{expired ? "Offer ended" : `${savingsPct}% off ends in`}</span>
-            {!expired && <span className="font-mono text-base sm:text-lg tabular-nums">{days}d {pad(hours)}h {pad(minutes)}m {pad(seconds)}s</span>}
-          </div>
-          <button type="button" onClick={handleBuy} disabled={loading || expired} className="bg-stone-900 text-amber-100 px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-black transition-all inline-flex items-center gap-1.5 disabled:opacity-60 hover:scale-[1.03]">
-            {loading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Lock className="w-3.5 h-3.5" />}
-            Claim for {fmtPrice(PRICE_CENTS)}
-          </button>
+      {/* Announcement bar (countdown) — sits at the very top, no nav links above it */}
+      <div className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 text-amber-950">
+        <div className="max-w-6xl mx-auto px-4 py-2 flex items-center justify-center gap-2 sm:gap-3 text-center">
+          <Clock className="w-4 h-4 hidden sm:block" />
+          <span className="text-[11px] sm:text-sm font-black uppercase tracking-widest">{expired ? "Offer ended" : `${savingsPct}% off ends in`}</span>
+          {!expired && <span className="font-mono text-xs sm:text-base tabular-nums font-black">{days}d {pad(hours)}h {pad(minutes)}m {pad(seconds)}s</span>}
         </div>
       </div>
+
+      {/* Minimal landing nav — logo + one CTA, no links out (this is a landing page, not the site) */}
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200">
+        <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+          <div className="flex items-center gap-2 select-none">
+            <span className="w-7 h-7 rounded-lg bg-stone-900 text-white flex items-center justify-center font-black text-[11px]">CP</span>
+            <span className="font-black text-base tracking-tight text-stone-900">CapturePilot</span>
+          </div>
+          <button type="button" onClick={handleBuy} disabled={loading || expired} className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold px-4 py-2 rounded-xl transition-all hover:scale-[1.03] disabled:opacity-60">
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Lock className="w-4 h-4" />}
+            Get the Kit — {fmtPrice(PRICE_CENTS)}
+          </button>
+        </div>
+      </header>
 
       <main className="bg-stone-50 overflow-x-clip">
         {/* ── HERO (full-bleed, headline over the explainer reel) ── */}
@@ -296,23 +352,21 @@ export default function StartupPackLandingPage() {
             <Image src="/flk-hero-poster.jpg" alt="" fill priority className="object-cover blur-2xl scale-110 opacity-40" />
             <div className="absolute inset-0 bg-gradient-to-br from-stone-950/92 via-stone-950/82 to-emerald-950/88" />
           </div>
-          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-12 items-center">
-            <Reveal dir="left">
-              <p className="text-[11px] font-bold uppercase tracking-widest text-emerald-300 mb-3 flex items-center gap-2">
-                <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-white/15 text-white text-[10px] font-black">A</span>
-                Federal Launch Kit · by Americurial
-              </p>
-              <h1 className="font-black text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.05] text-white">
-                {TOTAL_FILES} files. One folder.<br />
-                Your first federal contract,<br />
-                <span className="text-emerald-300">de-mystified.</span>
-              </h1>
-              <p className="text-white/75 text-lg mt-5 leading-relaxed max-w-xl">
+          {/* h1 kept for SEO/accessibility; the headline itself lives in the video. */}
+          <h1 className="sr-only">{TOTAL_FILES} files, one folder: your first federal contract, demystified. The Federal Launch Kit by Americurial.</h1>
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14 grid lg:grid-cols-[0.92fr_1.08fr] gap-10 lg:gap-12 items-center">
+            {/* The explainer reel — first on mobile, bigger overall */}
+            <Reveal dir="right" delay={60} className="order-1 lg:order-2">
+              <FounderVideo />
+            </Reveal>
+
+            <Reveal dir="left" className="order-2 lg:order-1">
+              <p className="text-white/80 text-lg sm:text-xl leading-relaxed max-w-xl">
                 Every template, playbook, checklist and worksheet a small business needs to get registered, pick the right bids, price them correctly, and reach the contracting officer before the RFP drops. The same toolkit we run in paid capture work at Americurial.
               </p>
 
               {/* Trust badges */}
-              <div className="flex flex-wrap gap-2 mt-6">
+              <div className="flex flex-wrap gap-2 mt-5">
                 {TRUST_BADGES.map(({ Icon, label }) => (
                   <span key={label} className="inline-flex items-center gap-1.5 bg-white/10 border border-white/15 text-white/90 text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur">
                     <Icon className="w-3.5 h-3.5 text-emerald-300" />{label}
@@ -321,7 +375,7 @@ export default function StartupPackLandingPage() {
               </div>
 
               {/* Format pills */}
-              <div className="flex flex-wrap gap-2 mt-4">
+              <div className="flex flex-wrap gap-2 mt-3">
                 {FORMAT_BREAKDOWN.map((f) => (
                   <span key={f.label} className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${f.color}`}>
                     <span className="text-sm font-black">{f.count}</span>{f.label}
@@ -330,7 +384,7 @@ export default function StartupPackLandingPage() {
               </div>
 
               {/* Price + CTA */}
-              <div className="flex flex-wrap items-baseline gap-3 mt-7">
+              <div className="flex flex-wrap items-baseline gap-3 mt-6">
                 <span className="text-5xl font-black text-white">{fmtPrice(PRICE_CENTS)}</span>
                 <span className="text-xl text-white/40 line-through">{fmtPrice(FULL_PRICE_CENTS)}</span>
                 <span className="text-xs font-bold bg-amber-300 text-amber-950 px-2 py-1 rounded-md uppercase tracking-wider">Save {fmtPrice(savings)}</span>
@@ -338,12 +392,6 @@ export default function StartupPackLandingPage() {
               <div className="mt-5"><CTA label={`Get the Kit — ${fmtPrice(PRICE_CENTS)}`} big /></div>
               <p className="text-[11px] text-white/50 mt-2.5">Instant access · Lifetime use · Free future updates · 7-day refund · Stripe-secured</p>
               {error && <p className="text-red-200 text-sm mt-3 bg-red-900/40 border border-red-400/30 px-3 py-2 rounded-lg max-w-md">{error}</p>}
-            </Reveal>
-
-            {/* The explainer reel */}
-            <Reveal dir="right" delay={120}>
-              <FounderVideo />
-              <p className="text-center text-xs text-white/55 mt-3">90 seconds. Your first federal contract, demystified.</p>
             </Reveal>
           </div>
         </section>
@@ -604,6 +652,25 @@ export default function StartupPackLandingPage() {
           </div>
         </div>
       )}
+
+      {/* Mobile sticky buy bar — clickfunnel style, always one tap from checkout */}
+      <div className="sm:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-t border-stone-200 px-4 py-2.5 flex items-center justify-between gap-3 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+        <div className="leading-tight">
+          <div className="text-lg font-black text-stone-900">
+            {fmtPrice(PRICE_CENTS)} <span className="text-xs text-stone-400 line-through font-bold">{fmtPrice(FULL_PRICE_CENTS)}</span>
+          </div>
+          <div className="text-[10px] text-stone-500 font-semibold">{TOTAL_FILES} files · lifetime · 7-day refund</div>
+        </div>
+        <button
+          type="button"
+          onClick={handleBuy}
+          disabled={loading || expired}
+          className="flex-1 max-w-[210px] inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-4 py-3 rounded-xl text-sm transition-all active:scale-95 disabled:opacity-60"
+        >
+          {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Lock className="w-4 h-4" />}
+          Get the Kit
+        </button>
+      </div>
 
       <SiteFooter />
     </>
