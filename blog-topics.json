@@ -1,7 +1,7 @@
 {
-  "status": "complete",
+  "status": "active",
   "completedDate": "2026-07-06",
-  "note": "First 45 topics completed 2026-06-20. New batch of 10 topics added 2026-06-26. All 55 topics completed 2026-07-06. Add new topics to resume daily publishing.",
+  "note": "First 45 topics completed 2026-06-20. New batch of 10 topics added 2026-06-26. All 55 topics completed 2026-07-06. Second batch of 10 topics added 2026-07-13.",
   "topics": [
     { "slug": "how-to-find-government-contracts-small-business", "keyword": "how to find government contracts for small business", "title": "How to Find Government Contracts for Your Small Business (2026 Guide)", "category": "getting-started", "features": ["matching", "quick-checker"] },
     { "slug": "sdvosb-contracts-guide", "keyword": "SDVOSB contracts", "title": "SDVOSB Contracts: A Complete Guide for Veteran-Owned Businesses", "category": "set-asides", "features": ["matching", "pipeline"] },
@@ -57,6 +57,16 @@
     { "slug": "blanket-purchase-agreements", "keyword": "blanket purchase agreement BPA", "title": "Blanket Purchase Agreements: How BPAs Create Predictable Government Revenue", "category": "vehicles", "features": ["pipeline", "matching"] },
     { "slug": "section-889-telecom-ban", "keyword": "section 889 telecommunications ban DoD", "title": "Section 889 Compliance: The Telecom Ban That Can Get You Removed From a Contract", "category": "advanced", "features": ["intelligence", "proposals"] },
     { "slug": "joint-venture-government-contracts", "keyword": "small business joint venture government contracts", "title": "Small Business Joint Ventures: How to Structure a Deal That Actually Wins", "category": "strategy", "features": ["pipeline", "matching"] },
-    { "slug": "federal-budget-continuing-resolution", "keyword": "federal budget continuing resolution government contractors", "title": "Continuing Resolutions: How Federal Budget Uncertainty Affects Your Contracts", "category": "intelligence", "features": ["intelligence", "pipeline"] }
+    { "slug": "federal-budget-continuing-resolution", "keyword": "federal budget continuing resolution government contractors", "title": "Continuing Resolutions: How Federal Budget Uncertainty Affects Your Contracts", "category": "intelligence", "features": ["intelligence", "pipeline"] },
+    { "slug": "sba-size-standards-guide", "keyword": "SBA size standards", "title": "SBA Size Standards: The Complete 2026 Guide to Qualifying as a Small Business", "category": "getting-started", "features": ["quick-checker", "matching"] },
+    { "slug": "vosb-certification-guide", "keyword": "VOSB certification", "title": "VOSB Certification: How Veteran-Owned Businesses Access Federal Contracts", "category": "set-asides", "features": ["matching", "quick-checker"] },
+    { "slug": "government-contract-invoicing", "keyword": "how to invoice government agency", "title": "How to Invoice a Government Agency: Getting Paid on Federal Contracts", "category": "getting-started", "features": ["pipeline", "intelligence"] },
+    { "slug": "federal-contractor-insurance", "keyword": "government contractor insurance requirements", "title": "Government Contractor Insurance: What Coverage You Actually Need to Win", "category": "getting-started", "features": ["proposals", "intelligence"] },
+    { "slug": "small-business-subcontracting-plan", "keyword": "small business subcontracting plan", "title": "Small Business Subcontracting Plans: What Prime Contractors Require and How to Win With Them", "category": "strategy", "features": ["pipeline", "matching"] },
+    { "slug": "naics-code-change-guide", "keyword": "how to change NAICS codes SAM.gov", "title": "How to Change Your NAICS Codes in SAM.gov Without Losing Set-Aside Eligibility", "category": "tools", "features": ["matching", "quick-checker"] },
+    { "slug": "proposal-color-teams", "keyword": "proposal color team review", "title": "Proposal Color Teams: How Winning Contractors Review Bids Before Submission", "category": "proposals", "features": ["proposals"] },
+    { "slug": "government-contract-closeout", "keyword": "government contract closeout process", "title": "Government Contract Closeout: How to Finish a Contract and Get Your Final Payment", "category": "strategy", "features": ["pipeline", "intelligence"] },
+    { "slug": "base-year-option-year-contracts", "keyword": "base year option year government contract", "title": "Base Year + Option Years: How Multi-Year Government Contracts Actually Work", "category": "getting-started", "features": ["pipeline", "intelligence"] },
+    { "slug": "sba-loans-government-contractors", "keyword": "SBA loans for government contractors", "title": "SBA Loans for Government Contractors: 7(a), Contract Financing, and How to Use Them", "category": "getting-started", "features": ["intelligence", "pipeline"] }
   ]
 }
