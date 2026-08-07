@@ -1,8 +1,8 @@
 {
-  "status": "complete",
-  "completedDate": "2026-08-05",
+  "status": "in-progress",
+  "completedDate": null,
   "verifiedDate": "2026-08-06",
-  "note": "First 45 topics completed 2026-06-20. New batch of 10 topics added 2026-06-26. All 55 topics completed 2026-07-06. Second batch of 10 topics added 2026-07-13. All 65 topics completed 2026-07-23. Third batch of 10 topics added 2026-07-24. All 75 topics completed 2026-08-05. Verified complete 2026-08-06 — add new topics to resume daily blog publishing.",
+  "note": "First 45 topics completed 2026-06-20. New batch of 10 topics added 2026-06-26. All 55 topics completed 2026-07-06. Second batch of 10 topics added 2026-07-13. All 65 topics completed 2026-07-23. Third batch of 10 topics added 2026-07-24. All 75 topics completed 2026-08-05. Fourth batch of 10 topics added 2026-08-07.",
   "topics": [
     { "slug": "how-to-find-government-contracts-small-business", "keyword": "how to find government contracts for small business", "title": "How to Find Government Contracts for Your Small Business (2026 Guide)", "category": "getting-started", "features": ["matching", "quick-checker"] },
     { "slug": "sdvosb-contracts-guide", "keyword": "SDVOSB contracts", "title": "SDVOSB Contracts: A Complete Guide for Veteran-Owned Businesses", "category": "set-asides", "features": ["matching", "pipeline"] },
@@ -78,6 +78,16 @@
     { "slug": "surety-bond-government-contract", "keyword": "surety bond government contract", "title": "Surety Bonds for Government Contractors: How to Get Bonded and Win Construction Work", "category": "getting-started", "features": ["matching", "proposals"] },
     { "slug": "federal-procurement-forecast-guide", "keyword": "federal procurement forecast", "title": "Federal Agency Procurement Forecasts: How to Use Them to Get Ahead of Every Opportunity", "category": "strategy", "features": ["intelligence", "matching"] },
     { "slug": "section-l-section-m-guide", "keyword": "section L section M government proposal", "title": "Section L and Section M: How to Use an RFP's Own Instructions to Build a Winning Proposal", "category": "proposals", "features": ["proposals"] },
-    { "slug": "government-contract-termination", "keyword": "termination for convenience government contract", "title": "Termination for Convenience: What Every Government Contractor Must Know When the Agency Pulls the Plug", "category": "advanced", "features": ["pipeline", "intelligence"] }
+    { "slug": "government-contract-termination", "keyword": "termination for convenience government contract", "title": "Termination for Convenience: What Every Government Contractor Must Know When the Agency Pulls the Plug", "category": "advanced", "features": ["pipeline", "intelligence"] },
+    { "slug": "government-contract-cash-flow", "keyword": "government contract cash flow", "title": "Government Contract Cash Flow: How to Survive 30–90 Day Payment Cycles", "category": "getting-started", "features": ["pipeline", "intelligence"] },
+    { "slug": "task-order-competition-idiq", "keyword": "task order competition IDIQ", "title": "Task Order Competitions: How to Win Work Under IDIQ Contracts", "category": "vehicles", "features": ["matching", "intelligence", "proposals"] },
+    { "slug": "8a-program-graduation-planning", "keyword": "8a program graduation", "title": "8(a) Program Graduation Planning: How to Prepare Before Your 9-Year Clock Runs Out", "category": "set-asides", "features": ["pipeline", "intelligence"] },
+    { "slug": "government-contract-data-rights", "keyword": "government contract data rights DFARS", "title": "Data Rights in Government Contracts: What Every Tech Contractor Must Know About DFARS", "category": "advanced", "features": ["proposals", "intelligence"] },
+    { "slug": "small-business-set-aside-mistakes", "keyword": "small business set-aside eligibility mistakes", "title": "7 Set-Aside Eligibility Mistakes That Can Get You Suspended or Debarred", "category": "set-asides", "features": ["quick-checker", "intelligence"] },
+    { "slug": "sam-gov-entity-validation", "keyword": "SAM.gov entity validation", "title": "SAM.gov Entity Validation: How to Fix Registration Errors Before They Kill Your Bid", "category": "tools", "features": ["matching", "quick-checker"] },
+    { "slug": "wosb-sole-source-contracts", "keyword": "WOSB sole source contracts", "title": "WOSB Sole Source Contracts: How Women-Owned Businesses Win Direct Awards", "category": "set-asides", "features": ["matching", "intelligence"] },
+    { "slug": "contractor-team-arrangement", "keyword": "contractor team arrangement government contract", "title": "Contractor Team Arrangements: How to Structure a CTA Without Losing Set-Aside Status", "category": "strategy", "features": ["pipeline", "matching"] },
+    { "slug": "government-prompt-payment-act", "keyword": "prompt payment act government contractors", "title": "The Prompt Payment Act: How to Use Federal Law to Get Paid Faster", "category": "getting-started", "features": ["pipeline", "intelligence"] },
+    { "slug": "federal-contract-novation", "keyword": "federal contract novation", "title": "Contract Novation: How to Transfer a Federal Contract When You Sell or Restructure Your Business", "category": "advanced", "features": ["pipeline", "intelligence"] }
   ]
 }
