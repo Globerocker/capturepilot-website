@@ -1,8 +1,8 @@
 {
-  "status": "complete",
+  "status": "in-progress",
   "completedDate": "2026-08-20",
   "verifiedDate": "2026-09-06",
-  "note": "First 45 topics completed 2026-06-20. New batch of 10 topics added 2026-06-26. All 55 topics completed 2026-07-06. Second batch of 10 topics added 2026-07-13. All 65 topics completed 2026-07-23. Third batch of 10 topics added 2026-07-24. All 75 topics completed 2026-08-05. Fourth batch of 10 topics added 2026-08-09. All 85 topics verified complete 2026-08-31. Re-verified 2026-09-06: all 85 slugs have published page.tsx files. Add new topics to continue daily publishing.",
+  "note": "First 45 topics completed 2026-06-20. New batch of 10 topics added 2026-06-26. All 55 topics completed 2026-07-06. Second batch of 10 topics added 2026-07-13. All 65 topics completed 2026-07-23. Third batch of 10 topics added 2026-07-24. All 75 topics completed 2026-08-05. Fourth batch of 10 topics added 2026-08-09. All 85 topics verified complete 2026-08-31. Re-verified 2026-09-06: all 85 slugs have published page.tsx files. Fifth batch added 2026-09-07 to continue daily publishing.",
   "topics": [
     { "slug": "how-to-find-government-contracts-small-business", "keyword": "how to find government contracts for small business", "title": "How to Find Government Contracts for Your Small Business (2026 Guide)", "category": "getting-started", "features": ["matching", "quick-checker"] },
     { "slug": "sdvosb-contracts-guide", "keyword": "SDVOSB contracts", "title": "SDVOSB Contracts: A Complete Guide for Veteran-Owned Businesses", "category": "set-asides", "features": ["matching", "pipeline"] },
@@ -88,6 +88,7 @@
     { "slug": "logistics-transportation-government-contracts", "keyword": "transportation government contracts", "title": "Logistics and Transportation Government Contracts: How to Break Into a $15 Billion Market", "category": "industries", "features": ["matching", "intelligence"] },
     { "slug": "energy-government-contracts", "keyword": "ESPC energy government contracts", "title": "Energy Service Contracts (ESPC): How Contractors Win Federal Energy Efficiency Work", "category": "industries", "features": ["matching", "intelligence"] },
     { "slug": "state-local-government-contracts", "keyword": "state and local government contracts", "title": "State and Local Government Contracts: How to Expand Beyond Federal Work", "category": "getting-started", "features": ["matching", "pipeline"] },
-    { "slug": "government-contract-accounting-systems", "keyword": "government contract accounting system DCAA compliant", "title": "DCAA-Compliant Accounting Systems: Which One You Need and When to Get It", "category": "strategy", "features": ["intelligence", "proposals"] }
+    { "slug": "government-contract-accounting-systems", "keyword": "government contract accounting system DCAA compliant", "title": "DCAA-Compliant Accounting Systems: Which One You Need and When to Get It", "category": "strategy", "features": ["intelligence", "proposals"] },
+    { "slug": "oasis-plus-contract-vehicle", "keyword": "OASIS+ contract vehicle", "title": "OASIS+ Contract Vehicle: How Small Businesses Win Work on GSA's $60 Billion MAC", "category": "vehicles", "features": ["matching", "intelligence", "pipeline"] }
   ]
 }
