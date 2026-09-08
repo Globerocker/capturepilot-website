@@ -88,6 +88,7 @@
     { "slug": "logistics-transportation-government-contracts", "keyword": "transportation government contracts", "title": "Logistics and Transportation Government Contracts: How to Break Into a $15 Billion Market", "category": "industries", "features": ["matching", "intelligence"] },
     { "slug": "energy-government-contracts", "keyword": "ESPC energy government contracts", "title": "Energy Service Contracts (ESPC): How Contractors Win Federal Energy Efficiency Work", "category": "industries", "features": ["matching", "intelligence"] },
     { "slug": "state-local-government-contracts", "keyword": "state and local government contracts", "title": "State and Local Government Contracts: How to Expand Beyond Federal Work", "category": "getting-started", "features": ["matching", "pipeline"] },
-    { "slug": "government-contract-accounting-systems", "keyword": "government contract accounting system DCAA compliant", "title": "DCAA-Compliant Accounting Systems: Which One You Need and When to Get It", "category": "strategy", "features": ["intelligence", "proposals"] }
+    { "slug": "government-contract-accounting-systems", "keyword": "government contract accounting system DCAA compliant", "title": "DCAA-Compliant Accounting Systems: Which One You Need and When to Get It", "category": "strategy", "features": ["intelligence", "proposals"] },
+    { "slug": "track-government-contract-awards", "keyword": "track government contract awards", "title": "How to Track Government Contract Awards: USASpending.gov and SAM.gov Intelligence Guide", "category": "tools", "features": ["intelligence", "matching"] }
   ]
 }
