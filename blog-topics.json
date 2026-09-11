@@ -1,8 +1,8 @@
 {
-  "status": "complete",
+  "status": "in-progress",
   "completedDate": "2026-08-20",
-  "verifiedDate": "2026-09-09",
-  "note": "First 45 topics completed 2026-06-20. New batch of 10 topics added 2026-06-26. All 55 topics completed 2026-07-06. Second batch of 10 topics added 2026-07-13. All 65 topics completed 2026-07-23. Third batch of 10 topics added 2026-07-24. All 75 topics completed 2026-08-05. Fourth batch of 10 topics added 2026-08-09. All 85 topics verified complete 2026-08-31. Re-verified 2026-09-06: all 85 slugs have published page.tsx files. Re-verified 2026-09-09: all 86 topics (85 original + track-government-contract-awards) have page.tsx files. All topics complete — add new topics to blog-topics.json to continue daily publishing.",
+  "verifiedDate": "2026-09-11",
+  "note": "First 45 topics completed 2026-06-20. New batch of 10 topics added 2026-06-26. All 55 topics completed 2026-07-06. Second batch of 10 topics added 2026-07-13. All 65 topics completed 2026-07-23. Third batch of 10 topics added 2026-07-24. All 75 topics completed 2026-08-05. Fourth batch of 10 topics added 2026-08-09. All 85 topics verified complete 2026-08-31. Re-verified 2026-09-06: all 85 slugs have published page.tsx files. Re-verified 2026-09-09: all 86 topics (85 original + track-government-contract-awards) have page.tsx files. government-contract-vehicles-comparison also confirmed complete (87 total). Fifth batch of 5 topics added 2026-09-11.",
   "topics": [
     { "slug": "how-to-find-government-contracts-small-business", "keyword": "how to find government contracts for small business", "title": "How to Find Government Contracts for Your Small Business (2026 Guide)", "category": "getting-started", "features": ["matching", "quick-checker"] },
     { "slug": "sdvosb-contracts-guide", "keyword": "SDVOSB contracts", "title": "SDVOSB Contracts: A Complete Guide for Veteran-Owned Businesses", "category": "set-asides", "features": ["matching", "pipeline"] },
@@ -90,6 +90,11 @@
     { "slug": "state-local-government-contracts", "keyword": "state and local government contracts", "title": "State and Local Government Contracts: How to Expand Beyond Federal Work", "category": "getting-started", "features": ["matching", "pipeline"] },
     { "slug": "government-contract-accounting-systems", "keyword": "government contract accounting system DCAA compliant", "title": "DCAA-Compliant Accounting Systems: Which One You Need and When to Get It", "category": "strategy", "features": ["intelligence", "proposals"] },
     { "slug": "track-government-contract-awards", "keyword": "track government contract awards", "title": "How to Track Government Contract Awards: USASpending.gov and SAM.gov Intelligence Guide", "category": "tools", "features": ["intelligence", "matching"] },
-    { "slug": "government-contract-vehicles-comparison", "keyword": "government contract vehicles", "title": "Government Contract Vehicles: GSA MAS, GWACs, MACs, and OASIS+ Explained (2026)", "category": "vehicles", "features": ["intelligence", "pipeline", "matching"] }
+    { "slug": "government-contract-vehicles-comparison", "keyword": "government contract vehicles", "title": "Government Contract Vehicles: GSA MAS, GWACs, MACs, and OASIS+ Explained (2026)", "category": "vehicles", "features": ["intelligence", "pipeline", "matching"] },
+    { "slug": "cage-code-registration-guide", "keyword": "CAGE code registration", "title": "CAGE Code Registration: What It Is, How to Get One, and Why Every Government Contractor Needs It", "category": "getting-started", "features": ["matching", "quick-checker"] },
+    { "slug": "first-government-contract-checklist", "keyword": "how to get your first government contract", "title": "How to Get Your First Government Contract: A Step-by-Step Checklist", "category": "getting-started", "features": ["quick-checker", "matching", "pipeline"] },
+    { "slug": "government-contract-novation-guide", "keyword": "government contract novation", "title": "Government Contract Novation: How to Transfer a Federal Contract When Your Business Is Acquired", "category": "advanced", "features": ["pipeline", "intelligence"] },
+    { "slug": "federal-fy2027-spending-outlook", "keyword": "federal spending FY2027 government contractors", "title": "FY2027 Federal Spending Outlook: Where Contract Dollars Are Flowing Next Year", "category": "intelligence", "features": ["intelligence", "matching"] },
+    { "slug": "annual-representations-certifications-guide", "keyword": "annual representations certifications SAM.gov", "title": "Annual Representations and Certifications in SAM.gov: What They Are and How to Keep Them Current", "category": "tools", "features": ["matching", "quick-checker"] }
   ]
 }
